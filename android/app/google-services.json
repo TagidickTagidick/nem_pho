@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "400483238383",
+    "firebase_url": "https://nem-pho-f7f90-default-rtdb.firebaseio.com",
+    "project_id": "nem-pho-f7f90",
+    "storage_bucket": "nem-pho-f7f90.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:400483238383:android:be4b67361de1abb4e4361a",
+        "android_client_info": {
+          "package_name": "com.example.nem_pho"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "400483238383-6sb0eu1mknplvbm94hpuco4nj9jfg3mm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJ8wJWERM00aXKF94W-879UU77Qn9sJwY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "400483238383-6sb0eu1mknplvbm94hpuco4nj9jfg3mm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
