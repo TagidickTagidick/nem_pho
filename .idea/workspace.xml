@@ -4,7 +4,38 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b6f293d-8a9f-442d-a8b9-0171887f3429" name="Changes" comment="" />
+    <list default="true" id="9b6f293d-8a9f-442d-a8b9-0171887f3429" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/images/cart.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/drawer/drawer_icons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/drawer/drawer_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/drawer/drawer_title.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/hit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/loading_page_bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/main_page_view.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Вьет острый перец.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Закуски.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Лапша.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Напитки.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Рис.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Ростки бобов.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Салаты.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Супы.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Фо бо.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Фо га.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/nem_pho_android.iml" beforeDir="false" afterPath="$PROJECT_DIR$/android/nem_pho_android.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/firebase_options.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/menu_model.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/menu_page.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/product_page.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/topping_model.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,6 +68,7 @@
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
     "io.flutter.reload.alreadyRun": "true",
+    "last_opened_file_path": "/Users/mindykfam/Desktop/Developer/nem_pho",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
@@ -56,5 +88,16 @@
       <updated>1677338629514</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
