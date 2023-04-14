@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 
-import 'models/product_model.dart';
+import 'models/menu_model.dart';
 
 class CartProvider with ChangeNotifier, DiagnosticableTreeMixin {
-  List<ProductModel> _cart = [];
+  final List<ProductModel> _cart = [];
 
   List<ProductModel> get cart => _cart;
 
@@ -13,7 +13,7 @@ class CartProvider with ChangeNotifier, DiagnosticableTreeMixin {
   }
 
   void removeProduct(ProductModel product) {
-    ProductModel removedProduct = _cart.firstWhere((element) => element.id == product.id);
+    ProductModel removedProduct = _cart.firstWhere((element) => element.title == product.title);
     _cart.remove(removedProduct);
     notifyListeners();
   }

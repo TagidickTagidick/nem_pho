@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-import '../pages/category_page.dart';
-import '../pages/main_page.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
+import '../pages/drawer/menu_item_page.dart';
 
 class MenuTile extends StatefulWidget {
   const MenuTile({super.key});
@@ -14,16 +15,16 @@ class _MenuTileState extends State<MenuTile> with SingleTickerProviderStateMixin
   bool isExpanded = false;
 
   late AnimationController _controller;
-
-  static const List<String> menuTileItems = [
-    "Супы",
-    "Лапша в соусе",
-    "Салаты",
-    "Рис",
-    "Закуски",
-    "Напитки",
-    "Вкусняшки"
-  ];
+  //
+  // static const List<String> menuTileItems = [
+  //   "Супы",
+  //   "Лапша в соусе",
+  //   "Салаты",
+  //   "Рис",
+  //   "Закуски",
+  //   "Напитки",
+  //   "Вкусняшки"
+  // ];
 
   @override
   void initState() {
@@ -73,31 +74,48 @@ class _MenuTileState extends State<MenuTile> with SingleTickerProviderStateMixin
       GestureDetector(
         onTap: () {
           Navigator.of(context).pop();
-          Navigator
-              .of(context)
-              .push(MaterialPageRoute(builder: (context) => CategoryPage(
-              banners: categories[0].banners,
-              products: categories[0].products
-          )));
+          // Navigator
+          //     .of(context)
+          //     .push(MaterialPageRoute(builder: (context) => CategoryPage(
+          //     banners: categories[0].banners,
+          //     products: categories[0].products
+          // )));
         },
         child: SizeTransition(
             sizeFactor: _controller.view,
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  for (int i = 0; i < menuTileItems.length; i++)
-                    Padding(
-                        padding: const EdgeInsets.only(left: 60),
-                        child: Text(
-                            menuTileItems[i],
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 20,
-                                color: Color(0xff000000)
-                            )
-                        )
-                    )
-                ]
+            child: StreamBuilder(
+              stream: FirebaseDatabase.instance.ref("menu").onValue,
+              builder: (context, AsyncSnapshot<DatabaseEvent> snapshot) {
+                if (snapshot.hasData) {
+                  List<String> menu = [];
+                  Map<String, dynamic> data = jsonDecode(jsonEncode(snapshot.data?.snapshot.value));
+                  data.forEach((key, value) {
+                    menu.add(key);
+                  });
+                  return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        for (int i = 0; i < menu.length; i++)
+                          GestureDetector(
+                            onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => MenuItemPage(menuItem: menu[i]))),
+                            child: Container(
+                              color: Colors.transparent,
+                                padding: const EdgeInsets.only(left: 60),
+                                child: Text(
+                                    menu[i],
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 20,
+                                        color: Color(0xff000000)
+                                    )
+                                )
+                            ),
+                          )
+                      ]
+                  );
+                }
+                return Container();
+              }
             )
         )
       )

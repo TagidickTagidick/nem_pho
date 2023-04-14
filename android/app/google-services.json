@@ -30,6 +30,13 @@
             {
               "client_id": "400483238383-6sb0eu1mknplvbm94hpuco4nj9jfg3mm.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "400483238383-26598p0i0jvuudj27iqcdflddbv4vlra.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.nemPho"
+              }
             }
           ]
         }

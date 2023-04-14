@@ -1,39 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b6f293d-8a9f-442d-a8b9-0171887f3429" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/images/cart.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/drawer/drawer_icons.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/drawer/drawer_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/drawer/drawer_title.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/hit.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/loading_page_bg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/main_page_view.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/Вьет острый перец.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/Закуски.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/Лапша.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/Напитки.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/Рис.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/Ростки бобов.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/Салаты.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/Супы.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/Фо бо.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/Фо га.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/da.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/about_page.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/delivery_page.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/menu_item_page.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ui/widgets/custom_drawer.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ui/widgets/custom_switch.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ui/widgets/custom_text_field.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/nem_pho_android.iml" beforeDir="false" afterPath="$PROJECT_DIR$/android/nem_pho_android.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/firebase_options.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/google-services.json" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/google-services.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Podfile" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Podfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Podfile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/AppDelegate.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/AppDelegate.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/cart_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cart_provider.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/menu_model.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/menu_page.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/product_page.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/topping_model.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/menu_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/menu_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/product_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/product_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/topping_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/topping_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/cart_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/cart_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/category_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/category_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/main_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/main_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/product_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/product_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/widgets/menu_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/menu_tile.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,6 +56,24 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/android/app/build.gradle" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/android/build.gradle" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ios/Runner/AppDelegate.swift" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/firebase_options.dart" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/main.dart" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/models/menu_model.dart" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/models/topping_model.dart" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/ui/pages/drawer/about_page.dart" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/ui/pages/drawer/delivery_page.dart" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/ui/pages/main_page.dart" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/ui/pages/product_page.dart" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/ui/widgets/cart_icon.dart" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/ui/widgets/custom_drawer.dart" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/ui/widgets/menu_tile.dart" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pubspec.yaml" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -60,18 +83,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "cidr.known.project.marker": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "io.flutter.reload.alreadyRun": "true",
-    "last_opened_file_path": "/Users/mindykfam/Desktop/Developer/nem_pho",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mindykfam/Desktop/Developer/nem_pho&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/ui/pages/drawer" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
       <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />

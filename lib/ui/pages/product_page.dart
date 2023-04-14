@@ -1,12 +1,17 @@
+import 'dart:convert';
+
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../cart_provider.dart';
+import '../../models/menu_model.dart';
 import '../../models/product_model.dart';
+import '../../models/topping_model.dart';
 import '../widgets/custom_appbar.dart';
 
 class ProductPage extends StatelessWidget {
-  ProductPage({super.key, required this.product});
+  const ProductPage({super.key, required this.product});
 
   final ProductModel product;
 
@@ -19,17 +24,18 @@ class ProductPage extends StatelessWidget {
       ),
       body: Stack(
           children: [
-            Column(
+            ListView(
                 children: [
                   Hero(
-                      tag: product.id,
+                      tag: product.title,
                       child: Container(
                           height: MediaQuery.of(context).size.width - 21,
                           width: MediaQuery.of(context).size.width - 21,
+                          margin: const EdgeInsets.symmetric(horizontal: 10.5),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
-                                  image: AssetImage("images/${product.image}.png"),
+                                  image: NetworkImage(product.image),
                                   fit: BoxFit.cover
                               )
                           )
@@ -65,14 +71,14 @@ class ProductPage extends StatelessWidget {
                                 )
                             ),
                             const SizedBox(height: 17),
-                            Text(
-                                product.ml,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 11,
-                                    color: Color(0xff000000)
-                                )
-                            ),
+                            // Text(
+                            //     product.ml,
+                            //     style: const TextStyle(
+                            //         fontWeight: FontWeight.w400,
+                            //         fontSize: 11,
+                            //         color: Color(0xff000000)
+                            //     )
+                            // ),
                             const Text(
                                 "Добавьте топпинги",
                                 style: TextStyle(
@@ -86,26 +92,42 @@ class ProductPage extends StatelessWidget {
                   ),
                   SizedBox(
                       height: 137,
-                      child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: product.toppings.length,
-                          itemBuilder: (context, index) => Column(
-                              children: [
-                                Image.asset(
-                                    "images/${product.toppings[index].image}.png"
-                                ),
-                                Text(
-                                    product.toppings[index].text,
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 11,
-                                        color: Color(0xff000000)
-                                    )
+                      child: StreamBuilder(
+                        stream: FirebaseDatabase.instance.ref("toppings").onValue,
+                        builder: (context, AsyncSnapshot<DatabaseEvent> snapshot) {
+                          if (snapshot.hasData) {
+                            List<ToppingModel> toppings = [];
+                            Map<String, dynamic> data = jsonDecode(jsonEncode(snapshot.data?.snapshot.value));
+                            for (var item in data.values) {
+                              toppings.add(ToppingModel.fromJson(item));
+                            }
+                            return ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: toppings.length,
+                                itemBuilder: (context, index) => Column(
+                                    children: [
+                                      Image.network(
+                                          toppings[index].image,
+                                        height: 97,
+                                        width: 108
+                                      ),
+                                      Text(
+                                          toppings[index].title,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 11,
+                                              color: Color(0xff000000)
+                                          )
+                                      )
+                                    ]
                                 )
-                              ]
-                          )
+                            );
+                          }
+                          return Container();
+                        },
                       )
-                  )
+                  ),
+                  const SizedBox(height: 78)
                 ]
             ),
             Positioned(
@@ -115,22 +137,25 @@ class ProductPage extends StatelessWidget {
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Container(
-                          height: 40,
-                          width: 140,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              color: const Color(0xffFF451D),
-                              borderRadius: BorderRadius.circular(200)
-                          ),
-                          child: const Text(
-                              "Меню",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 16,
-                                  color: Color(0xffFFFFFF)
-                              )
-                          )
+                      GestureDetector(
+                        onTap: () => Navigator.of(context).popUntil((route) => route.isFirst),
+                        child: Container(
+                            height: 40,
+                            width: 140,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                color: const Color(0xffFF451D),
+                                borderRadius: BorderRadius.circular(200)
+                            ),
+                            child: const Text(
+                                "Меню",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 16,
+                                    color: Color(0xffFFFFFF)
+                                )
+                            )
+                        )
                       ),
                       GestureDetector(
                           onTap: () => context.read<CartProvider>().addToCart(product),

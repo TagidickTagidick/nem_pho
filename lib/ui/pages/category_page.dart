@@ -4,6 +4,7 @@ import 'package:nem_pho/ui/widgets/custom_appbar.dart';
 import 'package:provider/provider.dart';
 
 import '../../cart_provider.dart';
+import '../../models/menu_model.dart';
 import '../../models/product_model.dart';
 
 class CategoryPage extends StatelessWidget {
@@ -50,7 +51,7 @@ class CategoryPage extends StatelessWidget {
                   Row(
                       children: [
                         Hero(
-                          tag: product.id,
+                          tag: product.title,
                           child: GestureDetector(
                               onTap: () => Navigator
                                   .of(context)
@@ -115,7 +116,7 @@ class CategoryPage extends StatelessWidget {
                                             onTap: () => context.read<CartProvider>().addToCart(product),
                                             child: Container(
                                                 height: 40,
-                                                width: 110,
+                                                width: 120,
                                                 alignment: Alignment.center,
                                                 decoration: BoxDecoration(
                                                     color: const Color(0xffF7F3F3),
