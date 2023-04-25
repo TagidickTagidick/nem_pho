@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:nem_pho/ui/pages/drawer/menu_item_page.dart';
-import 'package:nem_pho/ui/widgets/menu_tile.dart';
 import '../widgets/cart_icon.dart';
 import '../widgets/custom_drawer.dart';
 
@@ -22,6 +21,8 @@ class _MainPageState extends State<MainPage> {
   List banners = [];
 
   int index = 0;
+
+  bool isLoading = true;
 
   @override
   void initState() {
@@ -43,22 +44,13 @@ class _MainPageState extends State<MainPage> {
         .get();
     banners = dataSnapshot.value as List;
     Timer.periodic(const Duration(seconds: 5), (timer) {
-      if (index == banners.length - 1) {
-        index = 0;
-        _controller.animateToPage(
-            0,
-            duration: const Duration(milliseconds: 500),
-            curve: Curves.ease
-        );
-      }
-      else {
-        index++;
-        _controller.nextPage(
-            duration: const Duration(milliseconds: 500),
-            curve: Curves.ease
-        );
-      }
+      index++;
+      _controller.nextPage(
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.ease
+      );
     });
+    isLoading = false;
     setState(() {});
   }
 
@@ -89,20 +81,23 @@ class _MainPageState extends State<MainPage> {
       ]
     ),
     drawer: const CustomDrawer(),
-    body: CustomScrollView(
+    body: isLoading
+        ? Container()
+        : CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
-            child: SizedBox(
-              height: 179,
-              child: PageView.builder(
-                  controller: _controller,
-                  itemCount: banners.length,
-                  itemBuilder: (context, index) => Image.network(
-                    banners[index],
-                    fit: BoxFit.cover,
+              child: SizedBox(
+                  height: 179,
+                  child: PageView.builder(
+                      controller: _controller,
+                      itemCount: 1000,
+                      allowImplicitScrolling: true,
+                      itemBuilder: (context, index) => Image.network(
+                        banners[index % banners.length],
+                        fit: BoxFit.cover,
+                      )
                   )
               )
-            )
           ),
           SliverPadding(
               padding: const EdgeInsets.only(
@@ -136,10 +131,10 @@ class _MainPageState extends State<MainPage> {
                             alignment: Alignment.bottomCenter,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                              image: DecorationImage(
-                                  image: NetworkImage(images[index]),
-                                  fit: BoxFit.cover
-                              )
+                                image: DecorationImage(
+                                    image: NetworkImage(images[index]),
+                                    fit: BoxFit.cover
+                                )
                             ),
                             child: GestureDetector(
                                 onTap: () {
@@ -176,6 +171,6 @@ class _MainPageState extends State<MainPage> {
               )
           )
         ]
-    ),
+    )
   );
 }

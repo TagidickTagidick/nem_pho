@@ -9,37 +9,15 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b6f293d-8a9f-442d-a8b9-0171887f3429" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/da.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/about_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/delivery_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/menu_item_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/ui/widgets/custom_drawer.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/ui/widgets/custom_switch.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/ui/widgets/custom_text_field.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+    <list default="true" id="9b6f293d-8a9f-442d-a8b9-0171887f3429" name="Changes" comment="Последние изменения">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/nem_pho.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/nem_pho.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/google-services.json" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/google-services.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Podfile" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Podfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Podfile.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/AppDelegate.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/AppDelegate.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/cart_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cart_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/da.dart" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/menu_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/menu_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/product_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/product_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/topping_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/topping_model.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/cart_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/cart_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/category_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/category_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/main_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/main_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/product_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/product_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/widgets/menu_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/menu_tile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,6 +97,14 @@
       <option name="presentableId" value="Default" />
       <updated>1677338629514</updated>
     </task>
+    <task id="LOCAL-00001" summary="Последние изменения">
+      <created>1681505483162</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1681505483162</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -131,5 +117,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Последние изменения" />
+    <option name="LAST_COMMIT_MESSAGE" value="Последние изменения" />
   </component>
 </project>
