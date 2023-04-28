@@ -6,14 +6,20 @@ import 'package:provider/provider.dart';
 
 import '../../cart_provider.dart';
 import '../../models/menu_model.dart';
-import '../../models/product_model.dart';
 import '../../models/topping_model.dart';
 import '../widgets/custom_appbar.dart';
 
-class ProductPage extends StatelessWidget {
+class ProductPage extends StatefulWidget {
   const ProductPage({super.key, required this.product});
 
   final ProductModel product;
+
+  @override
+  State<ProductPage> createState() => _ProductPageState();
+}
+
+class _ProductPageState extends State<ProductPage> {
+  List<int> myToppings = [];
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -27,7 +33,7 @@ class ProductPage extends StatelessWidget {
             ListView(
                 children: [
                   Hero(
-                      tag: product.title,
+                      tag: widget.product.title,
                       child: Container(
                           height: MediaQuery.of(context).size.width - 21,
                           width: MediaQuery.of(context).size.width - 21,
@@ -35,7 +41,7 @@ class ProductPage extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
-                                  image: NetworkImage(product.image),
+                                  image: NetworkImage(widget.product.image),
                                   fit: BoxFit.cover
                               )
                           )
@@ -52,7 +58,7 @@ class ProductPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                                product.title,
+                                widget.product.title,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 32,
@@ -62,7 +68,7 @@ class ProductPage extends StatelessWidget {
                             Padding(
                                 padding: const EdgeInsets.only(left: 52),
                                 child: Text(
-                                    product.text,
+                                    widget.product.text,
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 9,
@@ -104,22 +110,46 @@ class ProductPage extends StatelessWidget {
                             return ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 itemCount: toppings.length,
-                                itemBuilder: (context, index) => Column(
-                                    children: [
-                                      Image.network(
-                                          toppings[index].image,
-                                        height: 97,
-                                        width: 108
+                                itemBuilder: (context, index) => GestureDetector(
+                                  onTap: () {
+                                    if (myToppings.contains(index)) {
+                                      myToppings.remove(index);
+                                      setState(() {
+
+                                      });
+                                    }
+                                    else {
+                                      myToppings.add(index);
+                                      setState(() {
+
+                                      });
+                                    }
+                                  },
+                                  child: Container(
+                                      margin: const EdgeInsets.symmetric(horizontal: 10),
+                                      decoration: BoxDecoration(
+                                          border: Border.all(color: myToppings.contains(index)
+                                              ? Colors.black
+                                              : Colors.transparent)
                                       ),
-                                      Text(
-                                          toppings[index].title,
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 11,
-                                              color: Color(0xff000000)
-                                          )
+                                      child: Column(
+                                          children: [
+                                            Image.network(
+                                                toppings[index].image,
+                                                height: 97,
+                                                width: 108
+                                            ),
+                                            Text(
+                                                toppings[index].title,
+                                                style: const TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 11,
+                                                    color: Color(0xff000000)
+                                                )
+                                            )
+                                          ]
                                       )
-                                    ]
+                                  )
                                 )
                             );
                           }
@@ -158,7 +188,7 @@ class ProductPage extends StatelessWidget {
                         )
                       ),
                       GestureDetector(
-                          onTap: () => context.read<CartProvider>().addToCart(product),
+                          onTap: () => context.read<CartProvider>().addToCart(widget.product),
                           child: Container(
                               height: 40,
                               width: 140,

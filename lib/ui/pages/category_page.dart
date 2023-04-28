@@ -38,11 +38,11 @@ class _CategoryPageState extends State<CategoryPage> {
     getBanners();
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _controller.dispose();
+  //   super.dispose();
+  // }
 
   void getBanners() async {
     DataSnapshot dataSnapshot = await FirebaseDatabase

@@ -88,15 +88,6 @@ class CustomDrawer extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                            "Личный кабинет",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 20,
-                                color: Color(0xff000000)
-                            )
-                        ),
-                        const SizedBox(height: 3),
-                        const Text(
                             "Ярославль",
                             style: TextStyle(
                                 fontWeight: FontWeight.w400,

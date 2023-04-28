@@ -30,11 +30,11 @@ class _MainPageState extends State<MainPage> {
     getBanners();
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _controller.dispose();
+  //   super.dispose();
+  // }
 
   void getBanners() async {
     DataSnapshot dataSnapshot = await FirebaseDatabase
@@ -127,39 +127,39 @@ class _MainPageState extends State<MainPage> {
                         delegate: SliverChildBuilderDelegate((
                             BuildContext context,
                             int index
-                            ) => Container(
-                            alignment: Alignment.bottomCenter,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                image: DecorationImage(
-                                    image: NetworkImage(images[index]),
-                                    fit: BoxFit.cover
-                                )
-                            ),
-                            child: GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => MenuItemPage(menuItem: menu[index])));
-                                },
-                                child: Container(
-                                    height: 34,
-                                    width: 119,
-                                    margin: const EdgeInsets.only(bottom: 17),
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                        color: const Color(0xffFF451D),
-                                        borderRadius: BorderRadius.circular(200)
-                                    ),
-                                    child: Text(
-                                        menu[index],
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 16,
-                                            color: Color(0xffFFFFFF)
-                                        )
-                                    )
-                                )
-                            )
+                            ) => GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => MenuItemPage(menuItem: menu[index])));
+                          },
+                              child: Container(
+                              alignment: Alignment.bottomCenter,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  image: DecorationImage(
+                                      image: NetworkImage(images[index]),
+                                      fit: BoxFit.cover
+                                  )
+                              ),
+                              child: Container(
+                                  height: 34,
+                                  width: 119,
+                                  margin: const EdgeInsets.only(bottom: 17),
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                      color: const Color(0xffFF451D),
+                                      borderRadius: BorderRadius.circular(200)
+                                  ),
+                                  child: Text(
+                                      menu[index],
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 16,
+                                          color: Color(0xffFFFFFF)
+                                      )
+                                  )
+                              )
                         ),
+                            ),
                             childCount: menu.length
                         )
                     );
