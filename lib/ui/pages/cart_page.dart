@@ -4,19 +4,27 @@ import 'package:provider/provider.dart';
 
 import '../../cart_provider.dart';
 import '../../models/menu_model.dart';
+import '../../models/topping_model.dart';
 import '../widgets/custom_appbar.dart';
 
 class CartPage extends StatefulWidget {
-  const CartPage({super.key, required this.cart});
+  const CartPage({
+    super.key,
+    required this.cart,
+    required this.toppings
+  });
 
   final List<ProductModel> cart;
+  final List<ToppingModel> toppings;
 
   @override
   State<CartPage> createState() => _CartPageState();
 }
 
 class _CartPageState extends State<CartPage> {
-  List<ProductModel> newCart = [];
+  List<ProductModel> newProducts = [];
+  List<ToppingModel> newToppings = [];
+
   List<int> counts = [];
 
   bool isSelf = true;
@@ -29,26 +37,50 @@ class _CartPageState extends State<CartPage> {
   void initState() {
     super.initState();
     List<ProductModel> oldCart = widget.cart;
+    List<ToppingModel> oldToppings = widget.toppings;
     for (int i = 0; i < oldCart.length; i++) {
       total += int.parse(oldCart[i].price);
+    }
+    for (int i = 0; i < oldToppings.length; i++) {
+      total += int.parse(oldToppings[i].price);
     }
     if (oldCart.isNotEmpty) {
       oldCart.sort((a, b) => a.title.compareTo(b.title));
       if (oldCart.length == 1) {
-        newCart = [oldCart[0]];
-        counts = [1];
+        newProducts.add(oldCart[0]);
+        counts.add(1);
       } else {
         int count = 0;
         for (int i = 1; i < oldCart.length; i++) {
           count++;
           if (oldCart[i].title != oldCart[i - 1].title) {
-            newCart.add(oldCart[i - 1]);
+            newProducts.add(oldCart[i - 1]);
             counts.add(count);
             count = 0;
           }
         }
         count++;
-        newCart.add(oldCart[oldCart.length - 1]);
+        newProducts.add(oldCart[oldCart.length - 1]);
+        counts.add(count);
+      }
+    }
+    if (oldToppings.isNotEmpty) {
+      oldToppings.sort((a, b) => a.title.compareTo(b.title));
+      if (oldToppings.length == 1) {
+        newToppings.add(oldToppings[0]);
+        counts.add(1);
+      } else {
+        int count = 0;
+        for (int i = 1; i < oldToppings.length; i++) {
+          count++;
+          if (oldToppings[i].title != oldToppings[i - 1].title) {
+            newToppings.add(oldToppings[i - 1]);
+            counts.add(count);
+            count = 0;
+          }
+        }
+        count++;
+        newToppings.add(oldToppings[oldToppings.length - 1]);
         counts.add(count);
       }
     }
@@ -82,26 +114,30 @@ class _CartPageState extends State<CartPage> {
                           )
                       )
                   ),
-                  for (int i = 0; i < newCart.length; i++)
+                  for (int i = 0; i < newProducts.length; i++)
                     Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
+                          const SizedBox(width: 20),
+                          Expanded(
+                            child: Text(
+                                newProducts[i].title,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 20,
+                                    color: Color(0xff000000)
+                                )
+                            ),
+                          ),
+                          const SizedBox(width: 10),
                           Text(
-                              newCart[i].title,
+                              "${newProducts[i].price} р",
                               style: const TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 20,
                                   color: Color(0xff000000)
                               )
                           ),
-                          Text(
-                              "${newCart[i].price} р",
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 20,
-                                  color: Color(0xff000000)
-                              )
-                          ),
+                          const SizedBox(width: 20),
                           Container(
                               width: 120,
                               margin: const EdgeInsets.symmetric(vertical: 17),
@@ -112,10 +148,10 @@ class _CartPageState extends State<CartPage> {
                                         child: GestureDetector(
                                             onTap: () {
                                               counts[i]--;
-                                              context.read<CartProvider>().removeProduct(newCart[i]);
-                                              total -= int.parse(newCart[i].price);
+                                              context.read<CartProvider>().removeProduct(newProducts[i]);
+                                              total -= int.parse(newProducts[i].price);
                                               if (counts[i] == 0) {
-                                                newCart.removeAt(i);
+                                                newProducts.removeAt(i);
                                                 counts.removeAt(i);
                                               }
                                               setState(() {});
@@ -143,8 +179,8 @@ class _CartPageState extends State<CartPage> {
                                         child: GestureDetector(
                                             onTap: () {
                                               counts[i]++;
-                                              context.read<CartProvider>().addProduct(newCart[i]);
-                                              total += int.parse(newCart[i].price);
+                                              context.read<CartProvider>().addProduct(newProducts[i]);
+                                              total += int.parse(newProducts[i].price);
                                               setState(() {});
                                             },
                                             child: Container(
@@ -186,7 +222,122 @@ class _CartPageState extends State<CartPage> {
                                     )
                                   ]
                               )
-                          )
+                          ),
+                          const SizedBox(width: 20)
+                        ]
+                    ),
+                  for (int i = 0; i < newToppings.length; i++)
+                    Row(
+                        children: [
+                          const SizedBox(width: 20),
+                          Expanded(
+                            child: Text(
+                                newToppings[i].title,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 20,
+                                    color: Color(0xff000000)
+                                )
+                            )
+                          ),
+                          const SizedBox(width: 20),
+                          Text(
+                              "${newToppings[i].price} р",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 20,
+                                  color: Color(0xff000000)
+                              )
+                          ),
+                          const SizedBox(width: 20),
+                          Container(
+                              width: 120,
+                              margin: const EdgeInsets.symmetric(vertical: 17),
+                              child: Stack(
+                                  children: [
+                                    Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: GestureDetector(
+                                            onTap: () {
+                                              counts[newProducts.length + i]--;
+                                              context.read<CartProvider>().removeTopping(newToppings[i]);
+                                              total -= int.parse(newToppings[i].price);
+                                              if (counts[newProducts.length + i] == 0) {
+                                                newToppings.removeAt(i);
+                                                counts.removeAt(newProducts.length + i);
+                                              }
+                                              setState(() {});
+                                            },
+                                            child: Container(
+                                                height: 37,
+                                                width: 60,
+                                                alignment: Alignment.center,
+                                                decoration: BoxDecoration(
+                                                    borderRadius: const BorderRadius.only(
+                                                        topLeft: Radius.circular(37),
+                                                        bottomLeft: Radius.circular(37)
+                                                    ),
+                                                    border: Border.all(
+                                                        color: const Color(0xff000000)
+                                                    )
+                                                ),
+                                                child: const Icon(
+                                                    Icons.remove,
+                                                    color: Color(0xff000000)
+                                                )
+                                            )
+                                        )
+                                    ),
+                                    Align(
+                                        alignment: Alignment.centerRight,
+                                        child: GestureDetector(
+                                            onTap: () {
+                                              counts[newProducts.length + i]++;
+                                              context.read<CartProvider>().addTopping(newToppings[i]);
+                                              total += int.parse(newToppings[i].price);
+                                              setState(() {});
+                                            },
+                                            child: Container(
+                                                height: 37,
+                                                width: 60,
+                                                alignment: Alignment.center,
+                                                decoration: BoxDecoration(
+                                                    borderRadius: const BorderRadius.only(
+                                                        topRight: Radius.circular(37),
+                                                        bottomRight: Radius.circular(37)
+                                                    ),
+                                                    border: Border.all(color: const Color(0xff000000))
+                                                ),
+                                                child: const Icon(
+                                                    Icons.add,
+                                                    color: Color(0xff000000)
+                                                )
+                                            )
+                                        )
+                                    ),
+                                    Center(
+                                        child: Container(
+                                            height: 38,
+                                            width: 38,
+                                            alignment: Alignment.center,
+                                            decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Color(0xffFF451D)
+                                            ),
+                                            child: Text(
+                                                counts[newProducts.length + i].toString(),
+                                                style: const TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 24,
+                                                    color: Color(0xffFFFFFF)
+                                                )
+                                            )
+                                        )
+                                    )
+                                  ]
+                              )
+                          ),
+                          const SizedBox(width: 20),
                         ]
                     ),
                   Container(

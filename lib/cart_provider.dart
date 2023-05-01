@@ -1,25 +1,36 @@
 import 'package:flutter/foundation.dart';
 
 import 'models/menu_model.dart';
+import 'models/topping_model.dart';
 
 class CartProvider with ChangeNotifier, DiagnosticableTreeMixin {
-  final List<ProductModel> _cart = [];
+  final List<ProductModel> _products = [];
 
-  List<ProductModel> get cart => _cart;
+  List<ProductModel> get products => _products;
 
-  void addToCart(ProductModel product) {
-    _cart.add(product);
+  final List<ToppingModel> _toppings = [];
+
+  List<ToppingModel> get toppings => _toppings;
+
+  void addProduct(ProductModel product) {
+    _products.add(product);
+    notifyListeners();
+  }
+
+  void addTopping(ToppingModel topping) {
+    _toppings.add(topping);
     notifyListeners();
   }
 
   void removeProduct(ProductModel product) {
-    ProductModel removedProduct = _cart.firstWhere((element) => element.title == product.title);
-    _cart.remove(removedProduct);
+    ProductModel removedProduct = _products.firstWhere((element) => element.title == product.title);
+    _products.remove(removedProduct);
     notifyListeners();
   }
 
-  void addProduct(ProductModel product) {
-    _cart.add(product);
+  void removeTopping(ToppingModel topping) {
+    ToppingModel removedTopping = _toppings.firstWhere((element) => element.title == topping.title);
+    _toppings.remove(removedTopping);
     notifyListeners();
   }
 }

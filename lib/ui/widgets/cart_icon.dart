@@ -13,7 +13,10 @@ class CartIcon extends StatelessWidget {
           .of(context)
           .push(
           MaterialPageRoute(
-              builder: (context) => CartPage(cart: context.read<CartProvider>().cart)
+              builder: (context) => CartPage(
+                  cart: context.read<CartProvider>().products,
+                toppings: context.read<CartProvider>().toppings
+              )
           )
       ),
       child: Container(
@@ -32,7 +35,7 @@ class CartIcon extends StatelessWidget {
                       width: 31,
                     )
                 ),
-                if (context.watch<CartProvider>().cart.isNotEmpty)
+                if (context.watch<CartProvider>().products.isNotEmpty)
                   Align(
                       alignment: Alignment.topRight,
                       child: Container(
@@ -44,7 +47,7 @@ class CartIcon extends StatelessWidget {
                               shape: BoxShape.circle
                           ),
                           child: Text(
-                              context.watch<CartProvider>().cart.length.toString(),
+                              context.watch<CartProvider>().products.length.toString(),
                               style: const TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 14,

@@ -162,7 +162,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                                   )
                                               ),
                                               GestureDetector(
-                                                  onTap: () => context.read<CartProvider>().addToCart(product),
+                                                  onTap: () => context.read<CartProvider>().addProduct(product),
                                                   child: Container(
                                                       height: 40,
                                                       width: 120,
