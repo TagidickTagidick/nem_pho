@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:nem_pho/ui/widgets/custom_text_field.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +27,15 @@ class _CartPageState extends State<CartPage> {
   List<ToppingModel> newToppings = [];
 
   List<int> counts = [];
+
+  final TextEditingController streetController = TextEditingController();
+  final TextEditingController apartmentController = TextEditingController();
+  final TextEditingController entranceController = TextEditingController();
+  final TextEditingController floorController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController commentController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
 
   bool isSelf = true;
   bool isTime = true;
@@ -444,7 +454,10 @@ class _CartPageState extends State<CartPage> {
                                 ]
                             ),
                             const SizedBox(height: 18),
-                            const CustomTextField(hintText: "Например: улица Мира, 1"),
+                            CustomTextField(
+                              controller: streetController,
+                                hintText: "Например: улица Мира, 1"
+                            ),
                             const SizedBox(height: 10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -464,27 +477,38 @@ class _CartPageState extends State<CartPage> {
                               ]
                             ),
                             const SizedBox(height: 10),
-                            const CustomTextField(hintText: "№ квартиры /офиса"),
+                            CustomTextField(
+                              controller: apartmentController,
+                                hintText: "№ квартиры /офиса"
+                            ),
                             const SizedBox(height: 18),
                             Row(
-                              children: const [
+                              children: [
                                 Expanded(
                                   child: CustomTextField(
+                                    controller: entranceController,
                                       hintText: "Подъезд"
                                   )
                                 ),
                                 SizedBox(width: 19),
                                 Expanded(
                                     child: CustomTextField(
+                                      controller: floorController,
                                         hintText: "Этаж"
                                     )
                                 )
                               ]
                             ),
                             const SizedBox(height: 24),
-                            const CustomTextField(hintText: "Номер телефона"),
+                            CustomTextField(
+                              controller: phoneController,
+                                hintText: "Номер телефона"
+                            ),
                             const SizedBox(height: 24),
-                            const CustomTextField(hintText: "Введите ваше имя"),
+                            CustomTextField(
+                              controller: nameController,
+                                hintText: "Введите ваше имя"
+                            ),
                             const SizedBox(height: 24),
                             Stack(
                                 children: [
@@ -567,6 +591,7 @@ class _CartPageState extends State<CartPage> {
                                     )
                                 ),
                                 child: TextField(
+                                  controller: commentController,
                                     decoration: InputDecoration(
                                         border: InputBorder.none,
                                         hintText: "Комментарий курьеру",
@@ -686,9 +711,10 @@ class _CartPageState extends State<CartPage> {
                                       color: const Color(0xffF0B0B0)
                                   )
                               ),
-                              child: const TextField(
+                              child: TextField(
+                                controller: emailController,
                                 textAlignVertical: TextAlignVertical.bottom,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                     border: InputBorder.none,
                                     contentPadding: EdgeInsets.all(7.98),
                                     hintText: "Email",
@@ -808,24 +834,58 @@ class _CartPageState extends State<CartPage> {
                                 ]
                             ),
                             const SizedBox(height: 9),
-                            Opacity(
-                                opacity: total > 0 ? 1 : 0.5,
-                              child: Container(
-                                  height: 29,
-                                  width: double.infinity,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                      color: const Color(0xff19B80B),
-                                      borderRadius: BorderRadius.circular(200)
-                                  ),
-                                  child: const Text(
-                                      "Оформить заказ",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 16,
-                                          color: Color(0xffFFFFFF)
-                                      )
-                                  )
+                            GestureDetector(
+                              onTap: () {
+                                List<Map<String, dynamic>> productMaps = newProducts.map((product) =>
+                                {
+                                  "title": product.title,
+                                  "text": product.text,
+                                  "image": product.image,
+                                  "price": product.price,
+                                  "is_active": product.isActive ? 1 : 0,
+                                  "gramm": product.gramm,
+                                }
+                                ).toList();
+                                List<Map<String, dynamic>> toppingMaps = newToppings.map((topping) =>
+                                {
+                                  "title": topping.title,
+                                  "image": topping.image,
+                                  "price": topping.price,
+                                }
+                                ).toList();
+                                FirebaseDatabase.instance
+                                    .ref()
+                                    .child("orders/${DateTime.now().millisecondsSinceEpoch}")
+                                    .update({
+                                  "name": nameController.text,
+                                  "adress": '${streetController.text} ${apartmentController.text} ${entranceController.text} ${floorController.text}',
+                                  "comment": commentController.text,
+                                  "phone": phoneController.text,
+                                  "products": productMaps,
+                                  "toppings": toppingMaps,
+                                  "total": total,
+                                  "status": "Новый"
+                                });
+                              },
+                              child: Opacity(
+                                  opacity: total > 0 ? 1 : 0.5,
+                                child: Container(
+                                    height: 29,
+                                    width: double.infinity,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                        color: const Color(0xff19B80B),
+                                        borderRadius: BorderRadius.circular(200)
+                                    ),
+                                    child: const Text(
+                                        "Оформить заказ",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 16,
+                                            color: Color(0xffFFFFFF)
+                                        )
+                                    )
+                                ),
                               ),
                             )
                           ]
