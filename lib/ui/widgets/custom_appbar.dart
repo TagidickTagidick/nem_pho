@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'cart_icon.dart';
 
-class CustomAppBar extends StatelessWidget {
+class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   const CustomAppBar({super.key});
 
   @override
@@ -31,4 +31,8 @@ class CustomAppBar extends StatelessWidget {
         CartIcon()
       ]
   );
+
+  @override
+  // TODO: implement preferredSize
+  Size get preferredSize => const Size.fromHeight(50);
 }

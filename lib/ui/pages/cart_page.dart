@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:nem_pho/ui/pages/pay/first_stape.dart';
 import 'package:nem_pho/ui/widgets/custom_text_field.dart';
 import 'package:provider/provider.dart';
 
@@ -869,22 +870,27 @@ class _CartPageState extends State<CartPage> {
                               },
                               child: Opacity(
                                   opacity: total > 0 ? 1 : 0.5,
-                                child: Container(
-                                    height: 29,
-                                    width: double.infinity,
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                        color: const Color(0xff19B80B),
-                                        borderRadius: BorderRadius.circular(200)
-                                    ),
-                                    child: const Text(
-                                        "Оформить заказ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 16,
-                                            color: Color(0xffFFFFFF)
-                                        )
-                                    )
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => FirstStape()));
+                                  },
+                                  child: Container(
+                                      height: 29,
+                                      width: double.infinity,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          color: const Color(0xff19B80B),
+                                          borderRadius: BorderRadius.circular(200)
+                                      ),
+                                      child: const Text(
+                                          "Оформить заказ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 16,
+                                              color: Color(0xffFFFFFF)
+                                          )
+                                      )
+                                  ),
                                 ),
                               ),
                             )
