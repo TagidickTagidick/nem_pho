@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nem_pho/ui/pages/drawer/about_app.dart';
 import 'package:nem_pho/ui/pages/drawer/about_page.dart';
+import 'package:nem_pho/ui/pages/drawer/delivery_info_page.dart';
 import 'package:nem_pho/ui/pages/drawer/delivery_page.dart';
 import 'menu_tile.dart';
 
@@ -85,7 +86,7 @@ class CustomDrawer extends StatelessWidget {
                 const Divider(color: Color(0xffF0E0E0)),
                 GestureDetector(
                   onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const DeliveryPage())
+                      builder: (context) => const DeliveryInfoPage())
                   ),
                   child: const Padding(
                       padding: EdgeInsets.only(left: 39),

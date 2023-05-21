@@ -9,7 +9,8 @@ class TermUse extends StatelessWidget {
     body: SafeArea(
       child: SingleChildScrollView(
         child: Column(
-          children: [Container(
+          children: [
+            Container(
         margin: const EdgeInsets.symmetric(horizontal: 21),
           decoration: BoxDecoration(
               color: const Color(0xffF6F6F6),
