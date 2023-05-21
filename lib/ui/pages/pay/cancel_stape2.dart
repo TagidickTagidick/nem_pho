@@ -50,7 +50,18 @@ class CancelStape2 extends StatelessWidget {
                 ),
               ),
               PaymentDivider(),
-              Paymentdot(),
+              Container(
+                alignment: Alignment.center,
+                height: 26,
+                width: 26,
+                decoration: BoxDecoration(
+                  color: Color(0xffd9d9d9),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(Icons.close,
+                color: Color(0xffff451d),
+                ),
+              ),
               PaymentDivider(),
               Paymentdot(),
               PaymentDivider(),
@@ -233,16 +244,18 @@ class CancelStape2 extends StatelessWidget {
                       padding: EdgeInsets.only(
                           left: 82,
                           right: 35
-                      ),
-                      child: Text('УКАЖИТЕ ПРИЧИНУ ОТКАЗА',
-                        style: TextStyle(
+                      ), child: TextField(
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: "Комментарий курьеру",
+                      hintStyle: TextStyle(
                           fontWeight: FontWeight.w400,
-                          fontSize: 15,
-                          color: Color(0xff0000000,
-                          ),
-                        ),
+                          fontSize: 16,
+                          color: const Color(0xff000000).withOpacity(0.42)
+                      )
+                  )
+              ),
                       ),
-                    ),
                   ],
                 ),
               ),

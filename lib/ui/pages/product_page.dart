@@ -80,7 +80,7 @@ class _ProductPageState extends State<ProductPage> {
                           top: 45,
                           left: 36,
                           right: 24,
-                          bottom: 80
+                          bottom: 30
                       ),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

@@ -9,29 +9,17 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b6f293d-8a9f-442d-a8b9-0171887f3429" name="Changes" comment="Добавление топпингов">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/mir.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/ui/pages/pay/cancel_stape.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/ui/pages/pay/cancel_stape2.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/ui/pages/pay/final_stape.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/ui/pages/pay/first_stape.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/ui/pages/pay/payment_card.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/ui/pages/pay/payment_stape.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/ui/pages/pay/second_stape.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/ui/pages/pay/third_stape.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/ui/widgets/pay/payment_divider.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/ui/widgets/pay/payment_dot.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+    <list default="true" id="9b6f293d-8a9f-442d-a8b9-0171887f3429" name="Changes" comment="Страницы оплаты">
+      <change afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/about_app.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/terrm_use.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Podfile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/cart_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/cart_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/widgets/custom_appbar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/custom_appbar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/cancel_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/pay/cancel_stape.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/cancel_stape2.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/pay/cancel_stape2.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/second_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/pay/second_stape.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/product_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/product_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/widgets/custom_drawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/custom_drawer.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +132,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682931933909</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Страницы оплаты">
+      <created>1684350902220</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1684350902220</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -163,7 +158,8 @@
     <MESSAGE value="Корзина, самовывоз, топпинги" />
     <MESSAGE value="Видео" />
     <MESSAGE value="Добавление топпингов" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавление топпингов" />
+    <MESSAGE value="Страницы оплаты" />
+    <option name="LAST_COMMIT_MESSAGE" value="Страницы оплаты" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -187,6 +183,11 @@
           <url>file://$PROJECT_DIR$/lib/ui/pages/pay/first_stape.dart</url>
           <line>225</line>
           <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/ui/pages/pay/cancel_stape2.dart</url>
+          <line>42</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

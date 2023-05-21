@@ -592,17 +592,17 @@ class _CartPageState extends State<CartPage> {
                                     )
                                 ),
                                 child: TextField(
-                                  controller: commentController,
-                                    decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                        hintText: "Комментарий курьеру",
-                                        hintStyle: TextStyle(
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 16,
-                                            color: const Color(0xff000000).withOpacity(0.42)
-                                        )
-                                    )
-                                )
+                                controller: commentController,
+                                decoration: InputDecoration(
+  border: InputBorder.none,
+  hintText: "Комментарий курьеру",
+  hintStyle: TextStyle(
+  fontWeight: FontWeight.w400,
+  fontSize: 16,
+  color: const Color(0xff000000).withOpacity(0.42)
+  )
+  )
+  )
                             ),
                             const SizedBox(height: 48)
                           ]

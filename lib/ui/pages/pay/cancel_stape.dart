@@ -51,7 +51,23 @@ class CancelStape extends StatelessWidget {
                 ),
               ),
               PaymentDivider(),
-              Paymentdot(),
+              Container(
+                alignment: Alignment.center,
+                height: 26,
+                width: 26,
+                decoration: BoxDecoration(
+                  color: Color(0xffd9d9d9),
+                  shape: BoxShape.circle,
+                ),
+                child: Container(
+                  height: 19,
+                  width: 19,
+                  decoration: BoxDecoration(
+                    color: Color(0xffff451d),
+                    shape: BoxShape.circle,
+                  ),
+                ),
+              ),
               PaymentDivider(),
               Paymentdot(),
               PaymentDivider(),
