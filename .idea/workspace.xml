@@ -9,17 +9,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b6f293d-8a9f-442d-a8b9-0171887f3429" name="Changes" comment="Страницы оплаты">
-      <change afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/about_app.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/terrm_use.dart" afterDir="false" />
+    <list default="true" id="9b6f293d-8a9f-442d-a8b9-0171887f3429" name="Changes" comment="Пользовательское соглашение">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/cart_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/cart_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/cancel_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/pay/cancel_stape.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/cancel_stape2.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/pay/cancel_stape2.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/second_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/pay/second_stape.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/product_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/product_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/widgets/custom_drawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/custom_drawer.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/drawer/terrm_use.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/terrm_use.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +132,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684350902220</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Пользовательское соглашение">
+      <created>1684685461556</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1684685461556</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -159,7 +159,8 @@
     <MESSAGE value="Видео" />
     <MESSAGE value="Добавление топпингов" />
     <MESSAGE value="Страницы оплаты" />
-    <option name="LAST_COMMIT_MESSAGE" value="Страницы оплаты" />
+    <MESSAGE value="Пользовательское соглашение" />
+    <option name="LAST_COMMIT_MESSAGE" value="Пользовательское соглашение" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
