@@ -9,12 +9,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b6f293d-8a9f-442d-a8b9-0171887f3429" name="Changes" comment="Пользовательское соглашение">
-      <change afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/delivery_info_page.dart" afterDir="false" />
+    <list default="true" id="9b6f293d-8a9f-442d-a8b9-0171887f3429" name="Changes" comment="Условие доставки">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/drawer/terrm_use.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/terrm_use.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/widgets/custom_drawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/custom_drawer.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/drawer/delivery_info_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/delivery_info_page.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684687527628</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Условие доставки">
+      <created>1684700007630</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1684700007630</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -169,7 +174,8 @@
     <MESSAGE value="Добавление топпингов" />
     <MESSAGE value="Страницы оплаты" />
     <MESSAGE value="Пользовательское соглашение" />
-    <option name="LAST_COMMIT_MESSAGE" value="Пользовательское соглашение" />
+    <MESSAGE value="Условие доставки" />
+    <option name="LAST_COMMIT_MESSAGE" value="Условие доставки" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

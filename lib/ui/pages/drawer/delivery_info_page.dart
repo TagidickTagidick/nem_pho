@@ -64,12 +64,12 @@ class DeliveryInfoPage extends StatelessWidget {
                                   color: Color(0xff000000),
                                   fontWeight: FontWeight.w400,
                                 ),
-                                maxLines: 2,
                               ),
                             ),
                             Container(
                               height: 76,
                               width: 139,
+                              color: Color(0xffF6F6F6),
                               child: Padding(
                                 padding: const EdgeInsets.all(20.0),
                                 child: Center(
@@ -80,7 +80,6 @@ class DeliveryInfoPage extends StatelessWidget {
                                       fontWeight: FontWeight.w400,
                                       color: Colors.black,
                                     ),
-                                    maxLines: 2,
                                   ),
                                 ),
                               ),
@@ -104,13 +103,12 @@ class DeliveryInfoPage extends StatelessWidget {
                                   fontSize: 14,
                                   fontWeight: FontWeight.w400,
                                 ),
-                                maxLines: 2,
                               ),
                             ),
                             Container(
                               height: 76,
                               width: 139,
-                              color: Colors.amber,
+                              color: Color(0xffF6F6F6),
                               child: Padding(
                                 padding: const EdgeInsets.all(20.0),
                                 child: Center(
@@ -121,7 +119,6 @@ class DeliveryInfoPage extends StatelessWidget {
                                       fontWeight: FontWeight.w500,
                                       color: Colors.black,
                                     ),
-                                    maxLines: 2,
                                   ),
                                 ),
                               ),
@@ -144,12 +141,12 @@ class DeliveryInfoPage extends StatelessWidget {
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
                               ),
-                              maxLines: 2,
                             ),
                           ),
                           Container(
                             height: 76,
                             width: 139,
+                            color: Color(0xffF6F6F6),
                             child: const Padding(
                               padding: EdgeInsets.all(20.0),
                               child: Center(
@@ -160,7 +157,6 @@ class DeliveryInfoPage extends StatelessWidget {
                                     fontWeight: FontWeight.w400,
                                     color: Colors.black,
                                   ),
-                                  maxLines: 2,
                                 ),
                               ),
                             ),
@@ -182,12 +178,16 @@ class DeliveryInfoPage extends StatelessWidget {
                   children: [
                     // "Delivery Time" Plate
                     Container(
+                      color: Color(0xffF6F6F6),
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Row(
                           children: [
                             SizedBox(
                                 width: 40,
+                              child: Icon(
+                                Icons.history
+                              ),
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -200,7 +200,6 @@ class DeliveryInfoPage extends StatelessWidget {
                                     fontWeight: FontWeight.w600,
                                     color: Colors.black,
                                   ),
-                                  maxLines: 2,
                                 ),
                                 const SizedBox(
                                   height: 10,
@@ -229,6 +228,7 @@ class DeliveryInfoPage extends StatelessWidget {
                     ),
                     // "Delivery by courer" Plate
                     Container(
+                      color: Color(0xffF6F6F6),
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Row(
@@ -236,6 +236,9 @@ class DeliveryInfoPage extends StatelessWidget {
                             // Image.asset(Icon(), width: 40),
                             SizedBox(
                               width: 40,
+                              child: Icon(
+                                Icons.motorcycle
+                            ),
                               // child: Icon(MorePageIcons.car, size: 25,)
                             ),
                             const SizedBox(
@@ -252,7 +255,6 @@ class DeliveryInfoPage extends StatelessWidget {
                                     fontWeight: FontWeight.w600,
                                     color: Colors.black,
                                   ),
-                                  maxLines: 2,
                                 ),
                                 const SizedBox(
                                   height: 10,
@@ -282,12 +284,16 @@ class DeliveryInfoPage extends StatelessWidget {
 
                     // "Take away with 10% discount" Plate
                     Container(
+                      color: Color(0xffF6F6F6),
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Row(
                           children: [
                             SizedBox(
                               width: 40,
+                              child: Icon(
+                                  Icons.shopping_bag
+                              ),
                             ),
                             const SizedBox(
                               width: 16,
@@ -303,7 +309,6 @@ class DeliveryInfoPage extends StatelessWidget {
                                     fontWeight: FontWeight.w600,
                                     color: Colors.black,
                                   ),
-                                  maxLines: 2,
                                 ),
                                 const SizedBox(
                                   height: 10,
