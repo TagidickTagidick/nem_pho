@@ -14,7 +14,7 @@ class DeliveryInfoPage extends StatelessWidget {
               children: [
                 Align(
                     alignment: Alignment.centerRight,
-                    child: GestureDetector(
+                      child: GestureDetector(
                         onTap: () => Navigator.of(context).pop(),
                         child: const Padding(
                             padding: EdgeInsets.only(right: 10.69),
