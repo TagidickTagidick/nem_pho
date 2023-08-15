@@ -14,6 +14,7 @@ class ProductPage extends StatefulWidget {
 
   final ProductModel product;
 
+
   @override
   State<ProductPage> createState() => _ProductPageState();
 }
@@ -25,6 +26,8 @@ class _ProductPageState extends State<ProductPage> {
   int price = 0;
 
   bool isLoading = true;
+
+  bool isHalf = false;
 
   @override
   void initState() {
@@ -104,6 +107,76 @@ class _ProductPageState extends State<ProductPage> {
                                     )
                                 )
                             ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      isHalf = false;
+                                      setState(() {
+
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 38,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(30),
+                                          color: isHalf ? Color(0xFFFFFFFF) : Color(0xFFFF451D),
+                                        border: Border.all(
+                                          color: Color(0xFFF0B0B0),
+                                          width: 2,
+                                        )
+                                      ),
+                                      child:
+                                      Text('600 гр',
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                            color: Color(0xff000000)
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 4,
+                                ),
+                                Expanded(
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      isHalf= true;
+                                      setState(() {
+
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 38,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(30),
+                                          color: isHalf ? Color(0xFFFF451D) : Color(0xFFFFFFFF),
+                                        border: Border.all(
+                                          color: Color(0xFFF0B0B0),
+                                          width: 2,
+                                      ),),
+                                      child:
+                                      Text('800 гр',
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                            color: Color(0xff000000)
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                              ],
+                            ),
                             const SizedBox(height: 17),
                             // Text(
                             //     product.ml,
@@ -165,7 +238,7 @@ class _ProductPageState extends State<ProductPage> {
                                             toppings[index].title,
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.w400,
-                                                fontSize: 11,
+                                                fontSize: 14,
                                                 color: Color(0xff000000)
                                             )
                                         ),
@@ -173,7 +246,7 @@ class _ProductPageState extends State<ProductPage> {
                                             toppings[index].price,
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.w400,
-                                                fontSize: 11,
+                                                fontSize: 14,
                                                 color: Color(0xff000000)
                                             )
                                         )

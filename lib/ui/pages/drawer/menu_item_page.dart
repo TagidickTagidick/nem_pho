@@ -167,8 +167,11 @@ class _MenuItemPageState extends State<MenuItemPage> {
                                                     alignment: Alignment.center,
                                                     decoration: BoxDecoration(
                                                         borderRadius: BorderRadius.circular(200),
-                                                        color: const Color(0xffF7F3F3)
-                                                    ),
+                                                        color: const Color(0xffF7F3F3),
+                                                        border: Border.all(
+                                                          color: Color(0xFFF0B0B0),
+                                                          width: 2,
+                                                    ),),
                                                     child: const Text(
                                                         "Выбрать",
                                                         style: TextStyle(
