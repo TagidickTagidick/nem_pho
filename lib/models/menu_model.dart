@@ -28,7 +28,8 @@ class ProductModel {
     required this.image,
     required this.price,
     required this.isActive,
-    required this.gramm
+    required this.gramm,
+    required this.compound
   });
 
   final String title;
@@ -37,6 +38,7 @@ class ProductModel {
   final String price;
   final bool isActive;
   final List gramm;
+  final String compound;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
@@ -47,7 +49,8 @@ class ProductModel {
         isActive: json["is_active"] == 1
             ? true
             : false,
-        gramm: []
+        gramm: [],
+        compound: json["compound"] ?? "",
     );
   }
 }

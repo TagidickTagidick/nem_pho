@@ -194,6 +194,17 @@ class _ProductPageState extends State<ProductPage> {
                                     color: Color(0xff000000)
                                 )
                             ),
+                            Padding(
+                                padding: const EdgeInsets.only(left: 52),
+                                child: Text(
+                                    widget.product.compound,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 9,
+                                        color: Color(0xff000000)
+                                    )
+                                )
+                            ),
                             const SizedBox(height: 17),
                             // Text(
                             //     product.ml,
