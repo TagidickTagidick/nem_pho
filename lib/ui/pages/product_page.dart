@@ -177,6 +177,23 @@ class _ProductPageState extends State<ProductPage> {
 
                               ],
                             ),
+                            const SizedBox(height: 15),
+                            // Text(
+                            //     product.ml,
+                            //     style: const TextStyle(
+                            //         fontWeight: FontWeight.w400,
+                            //         fontSize: 11,
+                            //         color: Color(0xff000000)
+                            //     )
+                            // ),
+                            const Text(
+                                "Состав",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 12,
+                                    color: Color(0xff000000)
+                                )
+                            ),
                             const SizedBox(height: 17),
                             // Text(
                             //     product.ml,
@@ -218,14 +235,15 @@ class _ProductPageState extends State<ProductPage> {
                               child: Container(
                                   margin: const EdgeInsets.symmetric(horizontal: 10),
                                   decoration: BoxDecoration(
-                                    color: myToppings.contains(toppings[index])
-                                        ? const Color(0xffD9D9D9).withOpacity(0.9)
-                                        : Colors.transparent,
-                                    // border: Border.all(
-                                    //     color: myToppings.contains(index)
-                                    //     ? Colors.black
-                                    //     : Colors.transparent
-                                    // )
+                                      color: myToppings.contains(toppings[index])
+                                          ? const Color(0xffD9D9D9).withOpacity(0.9)
+                                          : Colors.transparent,
+                                      border: Border.all(
+                                        color: myToppings.contains(toppings[index])
+                                            ? Colors.red // измените цвет на красный
+                                            : Colors.transparent,
+                                      ),
+                                    borderRadius: myToppings.contains(toppings[index]) ? BorderRadius.circular(10.0) : null,
                                   ),
                                   child: Column(
                                       children: [
