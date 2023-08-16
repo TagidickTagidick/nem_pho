@@ -43,6 +43,7 @@ class _AboutAppState extends State<AboutApp> with SingleTickerProviderStateMixin
     });
     super.initState();
   }
+  int selectedIndex = -1;
 
   @override
   void dispose() {
@@ -102,8 +103,13 @@ class _AboutAppState extends State<AboutApp> with SingleTickerProviderStateMixin
                               ),
                               GestureDetector(
                                   onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => TermUse()));
-                              },
+                                    if (isExpanded) {
+                                      _controller.reverse();
+                                    } else {
+                                      _controller.forward();
+                                    }
+                                    isExpanded = !isExpanded;
+                                  },
                                   child: Row(
                                       children: [
                                         const SizedBox(width: 39),
@@ -125,6 +131,22 @@ class _AboutAppState extends State<AboutApp> with SingleTickerProviderStateMixin
                                         ),
                                         const SizedBox(width: 29.01)
                                       ]
+                                  )
+                              ),
+                              SizeTransition(
+                                  sizeFactor: _controller.view,
+                                  child: const Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 9,
+                                          horizontal: 31
+                                      ),
+                                      child: Text('Друг',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 11,
+                                              color: Color(0xff000000)
+                                          )
+                                      )
                                   )
                               ),
                               SizedBox(
@@ -162,7 +184,34 @@ class _AboutAppState extends State<AboutApp> with SingleTickerProviderStateMixin
                                       ]
                                   )
                               ),
-
+                              SizeTransition(
+                                  sizeFactor: _controller.view,
+                                  child: const Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 9,
+                                          horizontal: 31
+                                      ),
+                                      child: Text(
+                                          "Привет, друг!\n\n"
+                                              "17.01.2019 Открылось новое кафе NEM PHO национальной вьетнамской кухни.\n\n"
+                                              "Если вы любите восточную культуру, были в Азии, в частности во Вьетнаме, то вам обязательно стоит к нам зайти.\n\n"
+                                              "Если вам нравится азиатская кухня или просто любите вкусно поесть, то вам тоже непременно к нам.\n\n"
+                                              "Кафе NEM PHO подарит вам возможность:\n"
+                                              "🥢Попробовать традиционные вьетнамские блюда от вьетнамских поваров\n"
+                                              "🥢Всегда свежие, натуральные продукты\n"
+                                              "🥢Отзывчивый персонал\n"
+                                              "🥢Демократичные цены\n"
+                                              "🥢Различные акции\n"
+                                              "🥢Ваше мнение важно для нас\n"
+                                              "🥢Побыть туристом в маленьком Вьетнаме с большими вкусовыми колоритами",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 11,
+                                              color: Color(0xff000000)
+                                          )
+                                      )
+                                  )
+                              ),
                               SizedBox(
                                 height: 10,
                               ),
@@ -194,7 +243,7 @@ class _AboutAppState extends State<AboutApp> with SingleTickerProviderStateMixin
                                                 : Icons.keyboard_arrow_down,
                                             color: const Color(0xff000000)
                                         ),
-                                        const SizedBox(width: 29.01)
+                                        SizedBox(width: 29.01)
                                       ]
                                   )
                               ),

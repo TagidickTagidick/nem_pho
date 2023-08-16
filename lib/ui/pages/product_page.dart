@@ -260,13 +260,21 @@ class _ProductPageState extends State<ProductPage> {
                                                 color: Color(0xff000000)
                                             )
                                         ),
-                                        Text(
-                                            toppings[index].price,
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 14,
-                                                color: Color(0xff000000)
-                                            )
+                                        Row(
+                                          children: [
+                                            Text('+'),
+                                            SizedBox(
+                                              width: 2,
+                                            ),
+                                            Text(
+                                                toppings[index].price,
+                                                style: const TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 14,
+                                                    color: Color(0xff000000)
+                                                )
+                                            ),
+                                          ],
                                         )
                                       ]
                                   )

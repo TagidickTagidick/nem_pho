@@ -395,8 +395,11 @@ class _CartPageState extends State<CartPage> {
                                       height: 40,
                                       width: MediaQuery.of(context).size.width - 40,
                                       decoration: BoxDecoration(
-                                          color: const Color(0xffFF451D),
-                                          borderRadius: BorderRadius.circular(200)
+                                          color: const Color(0xffffffff),
+                                          borderRadius: BorderRadius.circular(200),
+                                        border:  Border.all(
+                                            color: const Color(0xffF0B0B0)
+                                        )
                                       )
                                   ),
                                   AnimatedAlign(
@@ -409,7 +412,7 @@ class _CartPageState extends State<CartPage> {
                                           height: 40,
                                           width: MediaQuery.of(context).size.width / 2.25,
                                           decoration: BoxDecoration(
-                                              color: const Color(0xffFFFFFF),
+                                              color: const Color(0xffFF451D),
                                               borderRadius: BorderRadius.circular(200),
                                               border: Border.all(
                                                   color: const Color(0xffF0B0B0)
@@ -431,8 +434,8 @@ class _CartPageState extends State<CartPage> {
                                                       fontWeight: FontWeight.w400,
                                                       fontSize: 16,
                                                       color: isSelf
-                                                          ? const Color(0xffFFFFFF)
-                                                          : const Color(0xff000000)
+                                                          ? const Color(0xff000000)
+                                                          : const Color(0xffffffff)
                                                   )
                                               )
                                           ),
@@ -444,8 +447,8 @@ class _CartPageState extends State<CartPage> {
                                                       fontWeight: FontWeight.w400,
                                                       fontSize: 16,
                                                       color: isSelf
-                                                          ? const Color(0xff000000)
-                                                          : const Color(0xffFFFFFF)
+                                                          ? const Color(0xffffffff)
+                                                          : const Color(0xff000000)
                                                   )
                                               )
                                           )
@@ -517,8 +520,11 @@ class _CartPageState extends State<CartPage> {
                                       height: 40,
                                       width: MediaQuery.of(context).size.width - 40,
                                       decoration: BoxDecoration(
-                                          color: const Color(0xffFF451D),
-                                          borderRadius: BorderRadius.circular(200)
+                                          color: const Color(0xffffffff),
+                                          borderRadius: BorderRadius.circular(200),
+                                        border: Border.all(
+                                          color: Color(0xffF0B0B0)
+                                        )
                                       )
                                   ),
                                   AnimatedAlign(
@@ -533,7 +539,7 @@ class _CartPageState extends State<CartPage> {
                                               ? 3
                                               : 2),
                                           decoration: BoxDecoration(
-                                              color: const Color(0xffFFFFFF),
+                                              color: const Color(0xffFF451D),
                                               borderRadius: BorderRadius.circular(200),
                                               border: Border.all(
                                                   color: const Color(0xffF0B0B0)
@@ -555,8 +561,8 @@ class _CartPageState extends State<CartPage> {
                                                         fontWeight: FontWeight.w400,
                                                         fontSize: 16,
                                                         color: isTime
-                                                            ? const Color(0xffFFFFFF)
-                                                            : const Color(0xff000000)
+                                                            ? const Color(0xff000000)
+                                                            : const Color(0xffFFFFFF)
                                                     )
                                                 )
                                             ),
@@ -568,8 +574,8 @@ class _CartPageState extends State<CartPage> {
                                                         fontWeight: FontWeight.w400,
                                                         fontSize: 16,
                                                         color: isTime
-                                                            ? const Color(0xff000000)
-                                                            : const Color(0xffFFFFFF)
+                                                            ? const Color(0xffFFFFFF)
+                                                            : const Color(0xff000000)
                                                     )
                                                 )
                                             )
@@ -637,8 +643,11 @@ class _CartPageState extends State<CartPage> {
                                       height: 40,
                                       width: MediaQuery.of(context).size.width - 80,
                                       decoration: BoxDecoration(
-                                          color: const Color(0xffFF451D),
-                                          borderRadius: BorderRadius.circular(200)
+                                          color: const Color(0xffffffff),
+                                          borderRadius: BorderRadius.circular(200),
+                                        border: Border.all(
+                                            color: const Color(0xffF0B0B0)
+                                        )
                                       )
                                   ),
                                   AnimatedAlign(
@@ -653,7 +662,7 @@ class _CartPageState extends State<CartPage> {
                                               ? 3
                                               : 2),
                                           decoration: BoxDecoration(
-                                              color: const Color(0xffFFFFFF),
+                                              color: const Color(0xffFF451D),
                                               borderRadius: BorderRadius.circular(200),
                                               border: Border.all(
                                                   color: const Color(0xffF0B0B0)
@@ -675,8 +684,8 @@ class _CartPageState extends State<CartPage> {
                                                       fontWeight: FontWeight.w400,
                                                       fontSize: 16,
                                                       color: isOnline
-                                                          ? const Color(0xffFFFFFF)
-                                                          : const Color(0xff000000)
+                                                          ? const Color(0xff000000)
+                                                          : const Color(0xffFFFFFF)
                                                   )
                                               )
                                           ),
@@ -688,8 +697,8 @@ class _CartPageState extends State<CartPage> {
                                                       fontWeight: FontWeight.w400,
                                                       fontSize: 16,
                                                       color: isOnline
-                                                          ? const Color(0xff000000)
-                                                          : const Color(0xffFFFFFF)
+                                                          ? const Color(0xffFFFFFF)
+                                                          : const Color(0xff000000)
                                                   )
                                               )
                                           )
