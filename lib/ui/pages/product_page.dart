@@ -225,73 +225,76 @@ class _ProductPageState extends State<ProductPage> {
                           ]
                       )
                   ),
-                  SizedBox(
-                      height: 137,
-                      child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: toppings.length,
-                          itemBuilder: (context, index) => GestureDetector(
-                              onTap: () {
-                                if (myToppings.contains(toppings[index])) {
-                                  myToppings.remove(toppings[index]);
-                                  price -= int.parse(toppings[index].price);
-                                  setState(() {});
-                                }
-                                else {
-                                  myToppings.add(toppings[index]);
-                                  price += int.parse(toppings[index].price);
-                                  setState(() {});
-                                }
-                              },
-                              child: Container(
-                                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                                  decoration: BoxDecoration(
-                                      color: myToppings.contains(toppings[index])
-                                          ? const Color(0xffD9D9D9).withOpacity(0.9)
-                                          : Colors.transparent,
-                                      border: Border.all(
+                  Scrollbar(
+                    isAlwaysShown: true,
+                    child: SizedBox(
+                        height: 137,
+                        child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: toppings.length,
+                            itemBuilder: (context, index) => GestureDetector(
+                                onTap: () {
+                                  if (myToppings.contains(toppings[index])) {
+                                    myToppings.remove(toppings[index]);
+                                    price -= int.parse(toppings[index].price);
+                                    setState(() {});
+                                  }
+                                  else {
+                                    myToppings.add(toppings[index]);
+                                    price += int.parse(toppings[index].price);
+                                    setState(() {});
+                                  }
+                                },
+                                child: Container(
+                                    margin: const EdgeInsets.symmetric(horizontal: 10),
+                                    decoration: BoxDecoration(
                                         color: myToppings.contains(toppings[index])
-                                            ? Colors.red // измените цвет на красный
+                                            ? const Color(0xffD9D9D9).withOpacity(0.9)
                                             : Colors.transparent,
-                                      ),
-                                    borderRadius: myToppings.contains(toppings[index]) ? BorderRadius.circular(10.0) : null,
-                                  ),
-                                  child: Column(
-                                      children: [
-                                        Image.network(
-                                            toppings[index].image,
-                                            height: 97,
-                                            width: 108
+                                        border: Border.all(
+                                          color: myToppings.contains(toppings[index])
+                                              ? Colors.red // измените цвет на красный
+                                              : Colors.transparent,
                                         ),
-                                        Text(
-                                            toppings[index].title,
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 14,
-                                                color: Color(0xff000000)
-                                            )
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text('+'),
-                                            SizedBox(
-                                              width: 2,
-                                            ),
-                                            Text(
-                                                toppings[index].price,
-                                                style: const TextStyle(
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 14,
-                                                    color: Color(0xff000000)
-                                                )
-                                            ),
-                                          ],
-                                        )
-                                      ]
-                                  )
-                              )
-                          )
-                      )
+                                      borderRadius: myToppings.contains(toppings[index]) ? BorderRadius.circular(10.0) : null,
+                                    ),
+                                    child: Column(
+                                        children: [
+                                          Image.network(
+                                              toppings[index].image,
+                                              height: 97,
+                                              width: 108
+                                          ),
+                                          Text(
+                                              toppings[index].title,
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 14,
+                                                  color: Color(0xff000000)
+                                              )
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text('+'),
+                                              SizedBox(
+                                                width: 2,
+                                              ),
+                                              Text(
+                                                  toppings[index].price,
+                                                  style: const TextStyle(
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: 14,
+                                                      color: Color(0xff000000)
+                                                  )
+                                              ),
+                                            ],
+                                          )
+                                        ]
+                                    )
+                                )
+                            )
+                        )
+                    ),
                   ),
                   const SizedBox(height: 78)
                 ]

@@ -12,8 +12,8 @@
     <list default="true" id="9b6f293d-8a9f-442d-a8b9-0171887f3429" name="Changes" comment="fix multidex">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/menu_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/menu_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/drawer/about_app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/about_app.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/topping_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/topping_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/drawer/about_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/about_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/product_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/product_page.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,6 +67,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
+    "flutter.view.tool.window.visible": "true",
     "io.flutter.reload.alreadyRun": "true",
     "last_opened_file_path": "C:/src/flutter/bin/cache/dart-sdk",
     "settings.editor.selected.configurable": "AndroidSdkUpdater",
@@ -190,7 +191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692214948471</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fix multidex">
+      <created>1692222789333</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1692222789333</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -218,11 +226,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/ui/pages/product_page.dart</url>
-          <line>245</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
           <url>file://$PROJECT_DIR$/lib/ui/pages/drawer/about_page.dart</url>
           <line>122</line>

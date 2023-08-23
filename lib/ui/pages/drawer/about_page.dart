@@ -225,7 +225,7 @@ class _AboutPageState extends State<AboutPage> with SingleTickerProviderStateMix
                                 left: 9
                             ),
                             child: Image.asset("images/drawer/drawer_icons.png")
-                        )
+                        ),
                       ]
                   )
               )
