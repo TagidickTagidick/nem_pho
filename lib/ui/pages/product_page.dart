@@ -226,7 +226,7 @@ class _ProductPageState extends State<ProductPage> {
                       )
                   ),
                   Scrollbar(
-                    isAlwaysShown: true,
+                    thumbVisibility: true,
                     child: SizedBox(
                         height: 137,
                         child: ListView.builder(

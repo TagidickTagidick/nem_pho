@@ -15,8 +15,8 @@ class ToppingModel {
     return ToppingModel(
         title: json["title"] ?? "",
         image: json["image"] ?? "",
-        price: json["price"].toString() ?? "",
-        gramm: json["gramm"] ?? "",
+        price: (json["price"] ?? "").toString(),
+        gramm: (json["gramm"] ?? "").toString(),
     );
   }
 }
