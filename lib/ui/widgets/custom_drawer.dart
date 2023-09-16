@@ -3,6 +3,8 @@ import 'package:nem_pho/ui/pages/drawer/about_app.dart';
 import 'package:nem_pho/ui/pages/drawer/about_page.dart';
 import 'package:nem_pho/ui/pages/drawer/delivery_info_page.dart';
 import 'package:nem_pho/ui/pages/drawer/delivery_page.dart';
+import 'package:nem_pho/ui/pages/profile_page2.dart';
+import '../pages/profile_page.dart';
 import 'menu_tile.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -35,16 +37,21 @@ class CustomDrawer extends StatelessWidget {
                     child: Image.asset("images/drawer/drawer_title.png")
                 ),
                 const MenuTile(),
-                const Padding(
-                    padding: EdgeInsets.only(left: 39),
-                    child: Text(
-                        "Акции",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20,
-                            color: Color(0xff000000)
-                        )
-                    )
+                GestureDetector(
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const ProfilePage2())
+                      ),
+                  child: const Padding(
+                      padding: EdgeInsets.only(left: 39),
+                      child: Text(
+                          "Акции",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 20,
+                              color: Color(0xff000000)
+                          )
+                      )
+                  ),
                 ),
                 const Divider(color: Color(0xffF0E0E0)),
                 GestureDetector(
@@ -99,6 +106,28 @@ class CustomDrawer extends StatelessWidget {
                           )
                       )
                   )
+                ),
+                const Divider(color: Color(0xffF0E0E0)),
+                GestureDetector(
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const ProfilePage())
+                    ),
+                    child: Container(
+                        color: Colors.transparent,
+                        padding: const EdgeInsets.only(left: 39),
+                        child: const Text(
+                            "Профиль",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 20,
+                                color: Color(0xff000000)
+                            )
+                        )
+                    )
+                ),
+                const Divider(color: Color(0xffF0E0E0)),
+                SizedBox(
+                  height: 10,
                 ),
                 Padding(
                     padding: const EdgeInsets.only(

@@ -9,17 +9,18 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b6f293d-8a9f-442d-a8b9-0171887f3429" name="Changes" comment="fix multidex">
+    <list default="true" id="912997e2-eaa7-4f83-87af-e7a147d5f857" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/models/auth_event.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/models/code_auth_event.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ui/pages/profile_page.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ui/pages/profile_page2.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Podfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Podfile.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/topping_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/topping_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/product_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/product_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/widgets/custom_drawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/custom_drawer.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,28 +37,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/android/app/build.gradle" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/android/build.gradle" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/ios/Runner/AppDelegate.swift" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/lib/firebase_options.dart" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/lib/main.dart" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/lib/models/menu_model.dart" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/lib/models/topping_model.dart" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/lib/ui/pages/drawer/about_page.dart" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/lib/ui/pages/drawer/delivery_page.dart" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/lib/ui/pages/main_page.dart" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/lib/ui/pages/product_page.dart" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/lib/ui/widgets/cart_icon.dart" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/lib/ui/widgets/custom_drawer.dart" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/lib/ui/widgets/menu_tile.dart" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/pubspec.yaml" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2MEhPjAZMFEk8hxkoo8IZyOsw19" />
+  <component name="ProjectId" id="2VUKIlnPa9PEBjhlY9nl3q4BGUI" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -65,30 +48,16 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
+    "flutter.view.tool.window.visible": "true",
     "io.flutter.reload.alreadyRun": "true",
-    "last_opened_file_path": "/Users/mindykfam/Desktop/Branches/Без названия/nem_pho",
-    "settings.editor.selected.configurable": "AndroidSdkUpdater",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/images" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/android/app/src/main/res" />
-      <recent name="$PROJECT_DIR$/images" />
-      <recent name="$PROJECT_DIR$/lib/ui/pages/drawer" />
-    </key>
-  </component>
   <component name="RunManager">
     <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
       <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
@@ -98,122 +67,13 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9b6f293d-8a9f-442d-a8b9-0171887f3429" name="Changes" comment="" />
-      <created>1677338629514</created>
+      <changelist id="912997e2-eaa7-4f83-87af-e7a147d5f857" name="Changes" comment="" />
+      <created>1694885146680</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1677338629514</updated>
+      <updated>1694885146680</updated>
     </task>
-    <task id="LOCAL-00001" summary="Последние изменения">
-      <created>1681505483162</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1681505483162</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Корзина, самовывоз, топпинги">
-      <created>1682436556662</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1682436556662</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Видео">
-      <created>1682665536387</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1682665536387</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Добавление топпингов">
-      <created>1682931933909</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1682931933909</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Страницы оплаты">
-      <created>1684350902220</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1684350902220</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Пользовательское соглашение">
-      <created>1684685461556</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1684685461556</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Пользовательское соглашение">
-      <created>1684687527628</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1684687527628</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Условие доставки">
-      <created>1684700007630</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1684700007630</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Условие доставки">
-      <created>1685046792990</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1685046792990</updated>
-    </task>
-    <task id="LOCAL-00010" summary="fix multidex">
-      <created>1689188980862</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1689188980863</updated>
-    </task>
-    <task id="LOCAL-00011" summary="fix multidex">
-      <created>1692121106568</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1692121106568</updated>
-    </task>
-    <task id="LOCAL-00012" summary="fix multidex">
-      <created>1692168864564</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1692168864564</updated>
-    </task>
-    <task id="LOCAL-00013" summary="fix multidex">
-      <created>1692214948471</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1692214948471</updated>
-    </task>
-    <task id="LOCAL-00014" summary="fix multidex">
-      <created>1692222789333</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1692222789333</updated>
-    </task>
-    <option name="localTasksCounter" value="15" />
     <servers />
-  </component>
-  <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ID_ORDER">
-      <list>
-        <option value="Default.Root" />
-        <option value="Default.Author" />
-        <option value="Default.Date" />
-        <option value="Default.Subject" />
-      </list>
-    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -227,25 +87,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Последние изменения" />
-    <MESSAGE value="Корзина, самовывоз, топпинги" />
-    <MESSAGE value="Видео" />
-    <MESSAGE value="Добавление топпингов" />
-    <MESSAGE value="Страницы оплаты" />
-    <MESSAGE value="Пользовательское соглашение" />
-    <MESSAGE value="Условие доставки" />
-    <MESSAGE value="fix multidex" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix multidex" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/ui/pages/drawer/about_page.dart</url>
-          <line>122</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>
