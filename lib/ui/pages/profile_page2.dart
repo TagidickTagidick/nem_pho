@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nem_pho/ui/pages/profile_page3.dart';
 import 'package:nem_pho/ui/widgets/custom_appbar.dart';
 
 class ProfilePage2 extends StatefulWidget {
@@ -525,23 +526,28 @@ class _ProfilePage2State extends State<ProfilePage2> {
                 padding: const EdgeInsets.only(
                   left: 25,
                 ),
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 2,
-                  ),
-                  alignment: Alignment.center,
-                  height: 24,
-                  width: 173,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Color(0xffFF451D),
-                  ),
-                  child: Text('Повторить',
-                    style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xffffffff)
+                child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage3()));
+                    },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 2,
+                    ),
+                    alignment: Alignment.center,
+                    height: 24,
+                    width: 173,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Color(0xffFF451D),
+                    ),
+                    child: Text('Повторить',
+                      style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xffffffff)
+                      ),
                     ),
                   ),
                 ),
