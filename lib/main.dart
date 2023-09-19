@@ -29,7 +29,7 @@ class App extends StatelessWidget {
             "/loading": (context) => const LoadingPage(),
             "/main": (context) => const MainPage()
           },
-          home: const MainPage()
+          home: const LoadingPage()
       )
     );
   }

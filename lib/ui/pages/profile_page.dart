@@ -54,11 +54,21 @@ class _ProfilePageState extends State<ProfilePage> {
             color: Color(0xffF3F3F3),
             alignment: Alignment.center,
             child: TextField(
-              maxLength: 18,
+              maxLength: 11,
               autofocus: true,
               textAlign: TextAlign.center,
               cursorHeight: 26,
-              cursorColor:Color(0xffff9900),
+              cursorColor: Color(0xffff9900),
+              onChanged: (value) {
+                if (value.length == 11) {
+                  showButton = true;
+                  setState(() {});
+                }
+                else {
+                  showButton = false;
+                  setState(() {});
+                }
+              },
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
                 border: InputBorder.none,
@@ -90,7 +100,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 16,
-                      color: Color(0xffffffff)
+                      color: Color(0xff000000)
                   ),
                 ),
                 SizedBox(
