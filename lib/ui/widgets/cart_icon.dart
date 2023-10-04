@@ -29,11 +29,10 @@ class CartIcon extends StatelessWidget {
               children: [
                 Align(
                     alignment: Alignment.bottomLeft,
-                    child: Image.asset(
-                      "images/cart.png",
-                      height: 31,
-                      width: 31,
-                    )
+                    child: Icon(
+                        Icons.shopping_cart_outlined,
+                      color: Colors.black,
+                    ),
                 ),
                 if (context.watch<CartProvider>().products.isNotEmpty)
                   Align(

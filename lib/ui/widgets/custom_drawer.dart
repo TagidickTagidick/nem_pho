@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nem_pho/ui/pages/drawer/about_app.dart';
 import 'package:nem_pho/ui/pages/drawer/about_page.dart';
 import 'package:nem_pho/ui/pages/drawer/delivery_info_page.dart';
-import 'package:nem_pho/ui/pages/drawer/delivery_page.dart';
-import 'package:nem_pho/ui/pages/profile_page2.dart';
-import '../pages/profile_page.dart';
+import '../pages/drawer/profile/profile_page.dart';
 import 'menu_tile.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -39,7 +37,7 @@ class CustomDrawer extends StatelessWidget {
                 const MenuTile(),
                 GestureDetector(
                       onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const ProfilePage2())
+                          builder: (context) => const ProfilePage())
                       ),
                   child: const Padding(
                       padding: EdgeInsets.only(left: 39),

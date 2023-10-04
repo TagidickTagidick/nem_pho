@@ -21,6 +21,7 @@ class MenuItemPage extends StatefulWidget {
 class _MenuItemPageState extends State<MenuItemPage> {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   final PageController _controller = PageController();
+  Timer? timer;
 
   List banners = [];
 
@@ -35,6 +36,7 @@ class _MenuItemPageState extends State<MenuItemPage> {
   @override
   void dispose() {
     _controller.dispose();
+    timer?.cancel();
     super.dispose();
   }
 
@@ -45,7 +47,7 @@ class _MenuItemPageState extends State<MenuItemPage> {
         .child("banners")
         .get();
     banners = dataSnapshot.value as List;
-    Timer.periodic(const Duration(seconds: 5), (timer) {
+    timer = Timer.periodic(const Duration(seconds: 5), (timer) {
       if (index == banners.length - 1) {
         index = 0;
         _controller.animateToPage(
