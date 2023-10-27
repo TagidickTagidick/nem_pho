@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nem_pho/ui/pages/drawer/We_have.dart';
 import 'package:nem_pho/ui/pages/drawer/combo_terms.dart';
+import 'package:nem_pho/ui/pages/drawer/dish_day.dart';
 
 class StockPage extends StatefulWidget {
   const StockPage({super.key});
@@ -61,15 +63,28 @@ class _StockPageState extends State<StockPage> {
             SizedBox(
               height: 36,
             ),
-            SizedBox(
-              height: 249,
-              width: double.infinity,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(0), // Здесь задайте нужный вам радиус скругления
-                child: Container(
-                  child: Image.asset(
-                    'images/Discount2.png',
-                    fit: BoxFit.cover,
+            GestureDetector(
+              onTap: (){
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  builder: (sheetContext) => Padding(
+                    padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+                    child: const WeHave(),
+                  ),
+                );
+              },
+              child: SizedBox(
+                height: 249,
+                width: double.infinity,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(0), // Здесь задайте нужный вам радиус скругления
+                  child: Container(
+                    child: Image.asset(
+                      'images/Discount2.png',
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
@@ -77,15 +92,28 @@ class _StockPageState extends State<StockPage> {
             SizedBox(
               height: 36,
             ),
-            SizedBox(
-              height: 249,
-              width: double.infinity,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(0), // Здесь задайте нужный вам радиус скругления
-                child: Container(
-                  child: Image.asset(
-                    'images/Discount3.png',
-                    fit: BoxFit.cover,
+            GestureDetector(
+              onTap: (){
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  builder: (sheetContext) => Padding(
+                    padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+                    child: const DishDay(),
+                  ),
+                );
+              },
+              child: SizedBox(
+                height: 249,
+                width: double.infinity,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(0), // Здесь задайте нужный вам радиус скругления
+                  child: Container(
+                    child: Image.asset(
+                      'images/Discount3.png',
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
