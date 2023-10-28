@@ -459,27 +459,32 @@ class _CartPageState extends State<CartPage> {
                             ),
                             const SizedBox(height: 18),
                             CustomTextField(
+                                controller: streetController,
+                                hintText: "Укажите район"
+                            ),
+                            const SizedBox(height: 18),
+                            CustomTextField(
                               controller: streetController,
-                                hintText: "Например: улица Мира, 1"
+                                hintText: "Укажите улицу"
                             ),
                             const SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Icon(
-                                    Icons.location_on,
-                                  color: Color(0xff000000)
-                                ),
-                                Text(
-                                  "Указать на карте",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 16,
-                                    color: const Color(0xff000000).withOpacity(0.42)
-                                  )
-                                )
-                              ]
-                            ),
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.center,
+                            //   children: [
+                            //     const Icon(
+                            //         Icons.location_on,
+                            //       color: Color(0xff000000)
+                            //     ),
+                            //     Text(
+                            //       "Указать на карте",
+                            //       style: TextStyle(
+                            //         fontWeight: FontWeight.w400,
+                            //         fontSize: 16,
+                            //         color: const Color(0xff000000).withOpacity(0.42)
+                            //       )
+                            //     )
+                            //   ]
+                            // ),
                             const SizedBox(height: 10),
                             CustomTextField(
                               controller: apartmentController,
@@ -795,30 +800,32 @@ class _CartPageState extends State<CartPage> {
                                 });
                               },
                               child: Opacity(
-                                  opacity: total > 0 ? 1 : 0.5,
+                                  opacity: total > 0 ? 1 : 1,
                                 child: GestureDetector(
                                   onTap: () {
                                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => FirstStape()));
                                   },
                                   child: Container(
-                                      height: 29,
+                                      height: 58,
                                       width: double.infinity,
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
-                                          color: const Color(0xff19B80B),
-                                          borderRadius: BorderRadius.circular(200)
+                                          color: const Color(0xffFFB627),
                                       ),
                                       child: const Text(
                                           "Оформить заказ",
                                           style: TextStyle(
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                              color: Color(0xffFFFFFF)
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 18,
+                                              color: Color(0xff000000)
                                           )
                                       )
                                   ),
                                 ),
                               ),
+                            ),
+                            SizedBox(
+                              height: 14,
                             )
                           ]
                       )
