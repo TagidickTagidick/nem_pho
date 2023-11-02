@@ -48,7 +48,6 @@
     "RunOnceActivity.cidr.known.project.marker": "true",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
-    "flutter.view.tool.window.visible": "true",
     "io.flutter.reload.alreadyRun": "true",
     "last_opened_file_path": "C:/Users/yarin/StudioProjects/nem_pho/images",
     "show.migrate.to.gradle.popup": "false"
@@ -136,6 +135,7 @@
     <MESSAGE value="Profile" />
     <MESSAGE value="fix loading" />
     <MESSAGE value="fix ios" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix ios" />
+    <MESSAGE value="add user" />
+    <option name="LAST_COMMIT_MESSAGE" value="add user" />
   </component>
 </project>
