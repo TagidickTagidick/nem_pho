@@ -23,13 +23,15 @@ class CartProvider with ChangeNotifier, DiagnosticableTreeMixin {
   }
 
   void removeProduct(ProductModel product) {
-    ProductModel removedProduct = _products.firstWhere((element) => element.title == product.title);
+    ProductModel removedProduct =
+        _products.firstWhere((element) => element.title == product.title);
     _products.remove(removedProduct);
     notifyListeners();
   }
 
   void removeTopping(ToppingModel topping) {
-    ToppingModel removedTopping = _toppings.firstWhere((element) => element.title == topping.title);
+    ToppingModel removedTopping =
+        _toppings.firstWhere((element) => element.title == topping.title);
     _toppings.remove(removedTopping);
     notifyListeners();
   }

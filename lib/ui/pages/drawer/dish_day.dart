@@ -7,13 +7,10 @@ class DishDay extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        decoration:BoxDecoration(
+        decoration: BoxDecoration(
             color: const Color(0xffF3F3F3),
-            border: Border.all(
-                color: const Color(0xffF8DFDF)
-            ),
-            borderRadius: BorderRadius.circular(20)
-        ),
+            border: Border.all(color: const Color(0xffF8DFDF)),
+            borderRadius: BorderRadius.circular(20)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,36 +27,31 @@ class DishDay extends StatelessWidget {
                         onTap: () => Navigator.of(context).pop(),
                         child: const Padding(
                             padding: EdgeInsets.only(right: 10.69),
-                            child: Icon(
-                                Icons.close,
-                                color: Color(0xffF66666),
-                                size: 43.2
-                            )
-                        )
-                    )
-                ),
+                            child: Icon(Icons.close,
+                                color: Color(0xffF66666), size: 43.2)))),
               ],
             ),
             SizedBox(
               height: 249,
               width: double.infinity,
               child: Container(
-                  child: Image.asset('images/Discount3.png',
-                    fit: BoxFit.cover,)
-              ),
-            ), SizedBox(
+                  child: Image.asset(
+                'images/Discount3.png',
+                fit: BoxFit.cover,
+              )),
+            ),
+            SizedBox(
               height: 24,
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                  left: 28
-              ),
-              child: Text('Блюдо дня',
+              padding: const EdgeInsets.only(left: 28),
+              child: Text(
+                'Блюдо дня',
                 style: TextStyle(
                     color: Color(0xff000000),
                     fontSize: 20,
-                    fontWeight: FontWeight.w700
-                ),),
+                    fontWeight: FontWeight.w700),
+              ),
             ),
             SizedBox(
               height: 42,
@@ -126,30 +118,29 @@ class DishDay extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height:
-              20,
+              height: 20,
             ),
             SizedBox(
               height: 249,
               width: double.infinity,
               child: Container(
-                  child: Image.asset('images/Лапша.png',
-                    fit: BoxFit.cover,)
-              ),
+                  child: Image.asset(
+                'images/Лапша.png',
+                fit: BoxFit.cover,
+              )),
             ),
             SizedBox(
               height: 14,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 60
+              padding: const EdgeInsets.symmetric(horizontal: 60),
+              child: Text(
+                'БУН ХАЙ САН',
+                style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 39,
+                    color: Colors.black),
               ),
-              child: Text('БУН ХАЙ САН',
-              style: TextStyle(
-                fontWeight: FontWeight.w400,
-                fontSize: 39,
-                color: Colors.black
-              ),),
             ),
             SizedBox(
               height: 14,

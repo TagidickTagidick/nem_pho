@@ -65,7 +65,8 @@ class DefaultFirebaseOptions {
     projectId: 'nem-pho-f7f90',
     databaseURL: 'https://nem-pho-f7f90-default-rtdb.firebaseio.com',
     storageBucket: 'nem-pho-f7f90.appspot.com',
-    iosClientId: '400483238383-26598p0i0jvuudj27iqcdflddbv4vlra.apps.googleusercontent.com',
+    iosClientId:
+        '400483238383-26598p0i0jvuudj27iqcdflddbv4vlra.apps.googleusercontent.com',
     iosBundleId: 'com.example.nemPho',
   );
 }

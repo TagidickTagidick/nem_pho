@@ -24,13 +24,9 @@ class App extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (_) => CartProvider()),
         ],
-      child: MaterialApp(
-          routes: {
-            "/loading": (context) => const LoadingPage(),
-            "/main": (context) => const MainPage()
-          },
-          home: const LoadingPage()
-      )
-    );
+        child: MaterialApp(routes: {
+          "/loading": (context) => const LoadingPage(),
+          "/main": (context) => const MainPage(),
+        }, home: const LoadingPage()));
   }
 }

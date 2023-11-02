@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nem_pho/ui/pages/pay/payment_stape.dart';
-import 'package:nem_pho/ui/widgets/custom_appbar.dart';
+import 'package:nem_pho/ui/widgets/custom/custom_appbar.dart';
 import 'package:nem_pho/ui/widgets/pay/payment_divider.dart';
 import 'package:nem_pho/ui/widgets/pay/payment_dot.dart';
 
@@ -208,11 +208,12 @@ class FirstStape extends StatelessWidget {
                           0xff000000,
                         ),
                       ),
+                    ),
+                    Icon(
+                      Icons.close,
+                      color: Color(
+                        0xfff76666,
                       ),
-            Icon(Icons.close,
-                color: Color(
-                  0xfff76666,
-                ),
                     )
                   ],
                 ),
@@ -221,7 +222,8 @@ class FirstStape extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => PaymentStape()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => PaymentStape()));
                   },
                   child: Container(
                     height: 49,
@@ -231,18 +233,17 @@ class FirstStape extends StatelessWidget {
                     ),
                     alignment: Alignment.center,
                     child: Text(
-                          "БАНКОВСКОЙ КАРТОЙ",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 16,
-                            color: Color(
-                              0xffffffff,
-                            ),
-                          ),
+                      "БАНКОВСКОЙ КАРТОЙ",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
+                        color: Color(
+                          0xffffffff,
+                        ),
+                      ),
                     ),
                   ),
                 ),
-
               ],
             ),
           ),

@@ -1,6 +1,10 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nem_pho/ui/pages/drawer/profile/profile_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../widgets/custom/mask_text_input_formatter.dart';
 
 class AuthorizationPage extends StatefulWidget {
   const AuthorizationPage({super.key});
@@ -10,70 +14,81 @@ class AuthorizationPage extends StatefulWidget {
 }
 
 class _AuthorizationPageState extends State<AuthorizationPage> {
-  bool showButton = false;
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+
+  bool canSignIn = false;
+
+  var maskFormatter = MaskTextInputFormatter(
+      mask: '+# (###) ###-##-##',
+      filter: {"#": RegExp(r'[0-9]')},
+      type: MaskAutoCompletionType.lazy);
+
+  void checkCanSignIn() {
+    if (_phoneController.text.length == 18 || _nameController.text.isNotEmpty) {
+      setState(() {
+        canSignIn = true;
+      });
+    } else {
+      setState(() {
+        canSignIn = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 76,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
+          const Padding(
+            padding: EdgeInsets.only(
               left: 33,
+              top: 76,
             ),
-            child: Text('Авторизация',
+            child: Text(
+              'Авторизация',
               style: TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 24,
-                  color: Color(0xff0000000)
-              ),),
-          ),
-          SizedBox(
-            height: 24,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 33,
+                  color: Color(0xff0000000)),
             ),
-            child: Text('введите номер мобильного телефона',
+          ),
+          const Padding(
+            padding: EdgeInsets.only(
+              left: 33,
+              top: 24,
+            ),
+            child: Text(
+              'введите номер мобильного телефона',
               style: TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 16,
-                  color: Color(0xff0000000)
-              ),),
+                  color: Color(0xff0000000)),
+            ),
           ),
-          SizedBox(
-            height: 7,
-          ),
+          const SizedBox(height: 7),
           Container(
             height: 63,
             width: double.infinity,
-            color: Color(0xffF3F3F3),
-            alignment: Alignment.center,
+            color: const Color(0xffF3F3F3),
+            padding: const EdgeInsets.only(
+              left: 36,
+            ),
             child: TextField(
-              maxLength: 11,
+              controller: _phoneController,
+              maxLength: 18,
               autofocus: true,
-              textAlign: TextAlign.center,
               cursorHeight: 26,
-              cursorColor: Color(0xffff9900),
+              cursorColor: const Color(0xffff9900),
               onChanged: (value) {
-                if (value.length == 11) {
-                  showButton = true;
-                  setState(() {});
-                }
-                else {
-                  showButton = false;
-                  setState(() {});
-                }
+                checkCanSignIn();
               },
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
                 border: InputBorder.none,
-                //hintText: '+7 (###) ###-##-##',
                 hintStyle: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 24,
@@ -82,165 +97,127 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
               style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 24,
-                  color: Color(0xffF0000008)
-              ),
+                  color: Color(0xff6D6D6D)),
+              inputFormatters: [maskFormatter],
             ),
           ),
-          SizedBox(
-            height: 116,
+          const Padding(
+            padding: EdgeInsets.only(
+              left: 33,
+              top: 24,
+            ),
+            child: Text(
+              'введите имя',
+              style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 16,
+                  color: Color(0xff0000000)),
+            ),
           ),
-          const SizedBox(
-            height: 28,
+          const SizedBox(height: 7),
+          Container(
+            height: 63,
+            width: double.infinity,
+            color: const Color(0xffF3F3F3),
+            padding: const EdgeInsets.only(
+              left: 36,
+            ),
+            child: TextField(
+              controller: _nameController,
+              maxLength: 18,
+              autofocus: true,
+              cursorHeight: 26,
+              cursorColor: const Color(0xffff9900),
+              onChanged: (value) {
+                checkCanSignIn();
+              },
+              keyboardType: TextInputType.name,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintStyle: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 24,
+                    color: Colors.white.withOpacity(0.3)),
+              ),
+              style: const TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 24,
+                  color: Color(0xff6D6D6D)),
+            ),
           ),
-          if (showButton)
-          Expanded(
-            child: Column(
-              children: <Widget>[
-                GestureDetector(
-                  onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage())),
-                  child: Text(
-                    'Получить код',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                        color: Color(0xff000000)
+          const SizedBox(height: 74),
+          if (canSignIn)
+            Expanded(
+              child: Column(
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () async {
+                      String phone = _phoneController.text.replaceAll(" ", "_");
+                      FirebaseDatabase.instance
+                          .ref()
+                          .child("users/$phone")
+                          .update({
+                        "phone": phone,
+                        "name": _nameController.text,
+                      });
+                      final prefs = await SharedPreferences.getInstance();
+                      prefs.setString(
+                        "phone",
+                        phone,
+                      );
+                      if (mounted) {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const ProfilePage(),
+                        ));
+                      }
+                    },
+                    child: Container(
+                      height: 50,
+                      alignment: Alignment.center,
+                      color: const Color(0xffF3F3F3),
+                      margin: const EdgeInsets.symmetric(horizontal: 32),
+                      child: const Text(
+                        'Войти',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                          color: Color(0xff000000),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 24,
-                ),
-                Center(
-                  child: Stack(
-                    alignment: Alignment.topCenter,
-                    children: <Widget>[
-                      Text(
-                        'Нажимая “получить код”, вы принимаете условия',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
+                  const SizedBox(height: 24),
+                  Center(
+                    child: Stack(
+                      alignment: Alignment.topCenter,
+                      children: <Widget>[
+                        Text(
+                          'Нажимая “получить код”, вы принимаете условия',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
                             color: Colors.black.withOpacity(0.7),
-                            fontSize: 12),
-                      ),
-                      CupertinoButton(
-                        onPressed: () {},
-                        borderRadius: BorderRadius.circular(5),
-                        child: Text(
-                          'Пользовательского соглашения',
-                          style: const TextStyle(
-                            color: Colors.black,
                             fontSize: 12,
                           ),
                         ),
-                      ),
-                    ],
+                        CupertinoButton(
+                          onPressed: () {},
+                          borderRadius: BorderRadius.circular(5),
+                          child: const Text(
+                            'Пользовательского соглашения',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                const Spacer(),
-                // Center(
-                //   child: Stack(
-                //     alignment: Alignment.topCenter,
-                //     children: <Widget>[
-                //       Text(
-                //         'Нажимая “получить код”, вы принимаете условия',
-                //         textAlign: TextAlign.center,
-                //         style: TextStyle(
-                //             color: Colors.white.withOpacity(0.7),
-                //             fontSize: 12),
-                //       ),
-                //       CupertinoButton(
-                //         onPressed: () {},
-                //         borderRadius: BorderRadius.circular(5),
-                //         child: Text(
-                //           'Пользовательского соглашения',
-                //           style: const TextStyle(
-                //             color: Colors.white,
-                //             fontSize: 12,
-                //           ),
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-              ],
-            ),
-          )
+                ],
+              ),
+            )
         ],
       ),
-
-    );
-  }
-
-  buildTextField(BuildContext context, state) {}
-}
-
-
-class PrimaryButton extends StatelessWidget {
-  const PrimaryButton({
-    super.key,
-    required this.onTap,
-    required this.child,
-    this.color = Colors.yellow,
-    this.height = 50,
-  });
-
-  factory PrimaryButton.icon(
-      {Key? key,
-        required VoidCallback? onTap,
-        required IconData icon,
-        required Widget label}) = _PrimaryButtonWithIcon;
-
-  final VoidCallback? onTap;
-  final Widget child;
-  final Color color;
-  final double height;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      width: double.infinity,
-      color: color,
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: onTap,
-          child: Align(alignment: Alignment.center, child: child),
-        ),
-      ),
-    );
-  }
-}
-class _PrimaryButtonWithIcon extends PrimaryButton {
-  _PrimaryButtonWithIcon({
-    super.key,
-    required super.onTap,
-    required IconData icon,
-    required Widget label,
-  }) : super(
-    child: _PrimaryButtonWithIconChild(
-      icon: icon,
-      label: label,
-    ),
-  );
-}
-
-class _PrimaryButtonWithIconChild extends StatelessWidget {
-  const _PrimaryButtonWithIconChild({required this.icon, required this.label});
-
-  final IconData icon;
-  final Widget label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(icon),
-        const SizedBox(
-          width: 5,
-        ),
-        label
-      ],
     );
   }
 }

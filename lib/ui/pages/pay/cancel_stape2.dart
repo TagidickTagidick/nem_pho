@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nem_pho/ui/widgets/custom_appbar.dart';
+import 'package:nem_pho/ui/widgets/custom/custom_appbar.dart';
 import 'package:nem_pho/ui/widgets/pay/payment_divider.dart';
 import 'package:nem_pho/ui/widgets/pay/payment_dot.dart';
 
@@ -58,8 +58,9 @@ class CancelStape2 extends StatelessWidget {
                   color: Color(0xffd9d9d9),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(Icons.close,
-                color: Color(0xffff451d),
+                child: Icon(
+                  Icons.close,
+                  color: Color(0xffff451d),
                 ),
               ),
               PaymentDivider(),
@@ -184,24 +185,27 @@ class CancelStape2 extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => CancelStape2()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => CancelStape2()));
             },
             child: Padding(
-              padding: EdgeInsets.only(left: 9,
-                  right: 9
-              ),
+              padding: EdgeInsets.only(left: 9, right: 9),
               child: Container(
                 height: 33,
-                color: Color(0xffF9C2BA,
-                ), alignment: Alignment.center,
+                color: Color(
+                  0xffF9C2BA,
+                ),
+                alignment: Alignment.center,
                 child: Column(
-                  mainAxisAlignment:MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('ОТМЕНИТЬ ЗАКАЗ',
+                    Text(
+                      'ОТМЕНИТЬ ЗАКАЗ',
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 13,
-                        color: Color(0xff000000,
+                        color: Color(
+                          0xff000000,
                         ),
                       ),
                     ),
@@ -215,17 +219,19 @@ class CancelStape2 extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => CancelStape2()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => CancelStape2()));
             },
             child: Padding(
-              padding: EdgeInsets.only(left: 9,
-                  right: 9
-              ),
+              padding: EdgeInsets.only(left: 9, right: 9),
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 21,),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 21,
+                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(200),
-                  color: Color(0xffffffff,
+                  color: Color(
+                    0xffffffff,
                   ),
                   boxShadow: [
                     BoxShadow(
@@ -241,21 +247,17 @@ class CancelStape2 extends StatelessWidget {
                 child: Row(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(
-                          left: 82,
-                          right: 35
-                      ), child: TextField(
-                  decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Комментарий курьеру",
-                      hintStyle: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16,
-                          color: const Color(0xff000000).withOpacity(0.42)
-                      )
-                  )
-              ),
-                      ),
+                      padding: EdgeInsets.only(left: 82, right: 35),
+                      child: TextField(
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Комментарий курьеру",
+                              hintStyle: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16,
+                                  color: const Color(0xff000000)
+                                      .withOpacity(0.42)))),
+                    ),
                   ],
                 ),
               ),

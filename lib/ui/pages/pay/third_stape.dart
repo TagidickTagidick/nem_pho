@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nem_pho/ui/widgets/custom_appbar.dart';
+import 'package:nem_pho/ui/widgets/custom/custom_appbar.dart';
 import 'package:nem_pho/ui/widgets/pay/payment_divider.dart';
 import 'package:nem_pho/ui/widgets/pay/payment_dot.dart';
 

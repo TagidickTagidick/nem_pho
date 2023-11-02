@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nem_pho/cart_provider.dart';
-import 'package:provider/provider.dart';
-
-import 'cart_icon.dart';
+import '../cart_icon.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
@@ -12,27 +9,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       backgroundColor: const Color(0xffFFFFFF),
       leading: GestureDetector(
-          onTap: () => Navigator.of(context).pop(),
-          child: const Icon(
-              Icons.arrow_back_ios,
-              color: Color(0xff000000)
-          )
-      ),
+          onTap: () => Navigator.of(context).popUntil((route) => route.isFirst),
+          child: const Icon(Icons.arrow_back_ios, color: Color(0xff000000))),
       centerTitle: false,
-      title: const Text(
-          "NEM PHO",
+      title: const Text("NEM PHO",
           style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 24,
-              color: Color(0xff000000)
-          )
-      ),
-      actions: const [
-        CartIcon()
-      ]
-  );
+              color: Color(0xff000000))),
+      actions: const [CartIcon()]);
 
   @override
-  // TODO: implement preferredSize
   Size get preferredSize => const Size.fromHeight(50);
 }

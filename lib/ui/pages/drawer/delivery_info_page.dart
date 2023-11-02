@@ -14,18 +14,12 @@ class DeliveryInfoPage extends StatelessWidget {
               children: [
                 Align(
                     alignment: Alignment.centerRight,
-                      child: GestureDetector(
+                    child: GestureDetector(
                         onTap: () => Navigator.of(context).pop(),
                         child: const Padding(
                             padding: EdgeInsets.only(right: 10.69),
-                            child: Icon(
-                                Icons.close,
-                                color: Color(0xffF66666),
-                                size: 43.2
-                            )
-                        )
-                    )
-                ),
+                            child: Icon(Icons.close,
+                                color: Color(0xffF66666), size: 43.2)))),
                 Center(
                   child: Column(
                     children: [
@@ -185,13 +179,12 @@ class DeliveryInfoPage extends StatelessWidget {
                           child: Row(
                             children: [
                               SizedBox(
-                                  width: 40,
-                                child: Icon(
-                                  Icons.history
-                                ),
+                                width: 40,
+                                child: Icon(Icons.history),
                               ),
                               Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const Text(
@@ -207,7 +200,7 @@ class DeliveryInfoPage extends StatelessWidget {
                                   ),
                                   SizedBox(
                                     width:
-                                    MediaQuery.of(context).size.width * 0.7,
+                                        MediaQuery.of(context).size.width * 0.7,
                                     child: const Text(
                                       'По Ярославлю - 45 минут, по остальной территории - не доставляем',
                                       style: TextStyle(
@@ -237,16 +230,15 @@ class DeliveryInfoPage extends StatelessWidget {
                               // Image.asset(Icon(), width: 40),
                               SizedBox(
                                 width: 40,
-                                child: Icon(
-                                  Icons.motorcycle
-                              ),
+                                child: Icon(Icons.motorcycle),
                                 // child: Icon(MorePageIcons.car, size: 25,)
                               ),
                               const SizedBox(
                                 width: 16,
                               ),
                               Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const Text(
@@ -262,7 +254,7 @@ class DeliveryInfoPage extends StatelessWidget {
                                   ),
                                   SizedBox(
                                     width:
-                                    MediaQuery.of(context).size.width * 0.7,
+                                        MediaQuery.of(context).size.width * 0.7,
                                     child: const Text(
                                       'Вы оплачиваете только заказ, доставка - бесплатная',
                                       style: TextStyle(
@@ -292,15 +284,14 @@ class DeliveryInfoPage extends StatelessWidget {
                             children: [
                               SizedBox(
                                 width: 40,
-                                child: Icon(
-                                    Icons.shopping_bag
-                                ),
+                                child: Icon(Icons.shopping_bag),
                               ),
                               const SizedBox(
                                 width: 16,
                               ),
                               Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const Text(
@@ -316,7 +307,7 @@ class DeliveryInfoPage extends StatelessWidget {
                                   ),
                                   SizedBox(
                                     width:
-                                    MediaQuery.of(context).size.width * 0.7,
+                                        MediaQuery.of(context).size.width * 0.7,
                                     child: const Text(
                                       '''Вы можете сами забрать заказ из ближайшего ресторана со скидкой в 10%.
 Время приготовления заказа - 15 минут.
@@ -350,4 +341,3 @@ class DeliveryInfoPage extends StatelessWidget {
     );
   }
 }
-

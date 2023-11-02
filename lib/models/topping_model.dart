@@ -1,10 +1,9 @@
 class ToppingModel {
-  ToppingModel({
-    required this.title,
-    required this.image,
-    required this.price,
-    required this.gramm
-  });
+  ToppingModel(
+      {required this.title,
+      required this.image,
+      required this.price,
+      required this.gramm});
 
   final String title;
   final String image;
@@ -13,10 +12,10 @@ class ToppingModel {
 
   factory ToppingModel.fromJson(Map<String, dynamic> json) {
     return ToppingModel(
-        title: json["title"] ?? "",
-        image: json["image"] ?? "",
-        price: (json["price"] ?? "").toString(),
-        gramm: (json["gramm"] ?? "").toString(),
+      title: json["title"] ?? "",
+      image: json["image"] ?? "",
+      price: (json["price"] ?? "").toString(),
+      gramm: (json["gramm"] ?? "").toString(),
     );
   }
 }

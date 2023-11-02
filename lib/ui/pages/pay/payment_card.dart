@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nem_pho/ui/pages/pay/first_stape.dart';
 import 'package:nem_pho/ui/pages/pay/payment_stape.dart';
-import 'package:nem_pho/ui/widgets/custom_appbar.dart';
+import 'package:nem_pho/ui/widgets/custom/custom_appbar.dart';
 
 class PaymentCard extends StatelessWidget {
   const PaymentCard({Key? key}) : super(key: key);
@@ -17,25 +16,28 @@ class PaymentCard extends StatelessWidget {
             height: 71,
           ),
           Padding(
-            padding: EdgeInsets.only(
-              left: 49
-            ),
-            child: Text('УКАЖИТЕ КАРТУ',
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 15,
-              color: Color(0xff000000,
+            padding: EdgeInsets.only(left: 49),
+            child: Text(
+              'УКАЖИТЕ КАРТУ',
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 15,
+                color: Color(
+                  0xff000000,
+                ),
               ),
-            ),
             ),
           ),
           SizedBox(
             height: 120,
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 21,),
+            padding: EdgeInsets.symmetric(
+              horizontal: 21,
+            ),
             decoration: BoxDecoration(
-              color: Color(0xffffffff,
+              color: Color(
+                0xffffffff,
               ),
               boxShadow: [
                 BoxShadow(
@@ -51,15 +53,14 @@ class PaymentCard extends StatelessWidget {
               children: [
                 Image.asset('images/mir.png'),
                 Padding(
-                  padding: EdgeInsets.only(
-                      left: 82,
-                      right: 35
-                  ),
-                  child: Text('mircard datacard cvc',
+                  padding: EdgeInsets.only(left: 82, right: 35),
+                  child: Text(
+                    'mircard datacard cvc',
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 15,
-                      color: Color(0xff0000000,
+                      color: Color(
+                        0xff0000000,
                       ),
                     ),
                   ),
@@ -72,24 +73,27 @@ class PaymentCard extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => PaymentStape()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => PaymentStape()));
             },
             child: Padding(
-              padding: EdgeInsets.only(left: 9,
-                  right: 9
-              ),
+              padding: EdgeInsets.only(left: 9, right: 9),
               child: Container(
                 height: 33,
-                color: Color(0xfffedb4c,
-                ), alignment: Alignment.center,
+                color: Color(
+                  0xfffedb4c,
+                ),
+                alignment: Alignment.center,
                 child: Column(
-                  mainAxisAlignment:MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('ВЫБРАТЬ ДАННУЮ КАРТУ',
+                    Text(
+                      'ВЫБРАТЬ ДАННУЮ КАРТУ',
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 13,
-                        color: Color(0xff000000,
+                        color: Color(
+                          0xff000000,
                         ),
                       ),
                     ),
