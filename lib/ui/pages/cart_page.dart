@@ -434,19 +434,6 @@ class _CartPageState extends State<CartPage> {
                             textInputType: TextInputType.number,
                           ),
                           const SizedBox(height: 10),
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Icon(Icons.location_on,
-                                    color: Color(0xff000000)),
-                                Text("Указать на карте",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 16,
-                                        color: const Color(0xff000000)
-                                            .withOpacity(0.42)))
-                              ]),
-                          const SizedBox(height: 10),
                           CustomTextField(
                             controller: apartmentController,
                             hintText: "№ квартиры /офиса",
