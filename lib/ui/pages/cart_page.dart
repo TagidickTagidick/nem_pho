@@ -430,6 +430,12 @@ class _CartPageState extends State<CartPage> {
                           const SizedBox(height: 18),
                           CustomTextField(
                             controller: streetController,
+                            hintText: "Укажите район",
+                            textInputType: TextInputType.number,
+                          ),
+                          const SizedBox(height: 10),
+                          CustomTextField(
+                            controller: streetController,
                             hintText: "Например: улица Мира, 1",
                             textInputType: TextInputType.number,
                           ),
@@ -612,7 +618,7 @@ class _CartPageState extends State<CartPage> {
                                     GestureDetector(
                                         onTap: () =>
                                             setState(() => isOnline = false),
-                                        child: Text("Наличными",
+                                        child: Text("Банковской картой",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 16,
@@ -623,7 +629,7 @@ class _CartPageState extends State<CartPage> {
                                     GestureDetector(
                                         onTap: () =>
                                             setState(() => isOnline = true),
-                                        child: Text("Онлайн",
+                                        child: Text("Наличными",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 16,
@@ -658,6 +664,12 @@ class _CartPageState extends State<CartPage> {
                                         color: Color(0xff000000)))
                               ]),
                           const SizedBox(height: 127),
+                          const Text('Минимальная сумма заказа от 900 р',
+                          style: TextStyle(
+                            fontSize: 9,
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xff000000)
+                          ),),
                           Row(
                               mainAxisAlignment:
                               MainAxisAlignment.spaceBetween,
@@ -746,19 +758,22 @@ class _CartPageState extends State<CartPage> {
                             child: Opacity(
                               opacity: total > 0 ? 1 : 0.5,
                               child: Container(
-                                  height: 29,
+                                  height: 39,
                                   width: double.infinity,
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
                                       color: const Color(0xff19B80B),
                                       borderRadius:
-                                      BorderRadius.circular(200)),
+                                      BorderRadius.circular(1)),
                                   child: const Text("Оформить заказ",
                                       style: TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 16,
                                           color: Color(0xffFFFFFF)))),
                             ),
+                          ),
+                          SizedBox(
+                            height: 10,
                           )
                         ]))
                   ]))));

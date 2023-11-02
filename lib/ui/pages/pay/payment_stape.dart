@@ -62,7 +62,7 @@ class PaymentStape extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'Отправить квитанцию',
+                  'C вами в ближайшее время свяжется оператор для подтверждения заказа',
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 15,
@@ -74,16 +74,6 @@ class PaymentStape extends StatelessWidget {
                 SizedBox(
                   height: 16,
                 ),
-                Text(
-                  'yarinmaru@gmail.com',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 15,
-                    color: Color(
-                      0xff000000,
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
@@ -93,67 +83,8 @@ class PaymentStape extends StatelessWidget {
           SizedBox(
             height: 19,
           ),
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 21,
-            ),
-            decoration: BoxDecoration(
-              color: Color(
-                0xffffffff,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  offset: Offset(0, 4),
-                  blurRadius: 4,
-                  color: Color(0xff000000).withOpacity(0.1),
-                ),
-              ],
-            ),
-            height: 48,
-            alignment: Alignment.center,
-            child: Row(
-              children: [
-                Image.asset('images/mir.png'),
-                Padding(
-                  padding: EdgeInsets.only(left: 82, right: 35),
-                  child: Text(
-                    'mircard datacard cvc',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 15,
-                      color: Color(
-                        0xff0000000,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
           SizedBox(
             height: 14,
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => PaymentCard()));
-            },
-            child: Padding(
-              padding: EdgeInsets.only(
-                left: 49,
-                right: 30,
-              ),
-              child: Text(
-                'Выбрать другую карту',
-                style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 13,
-                  color: Color(
-                    0xff1f63e7,
-                  ),
-                ),
-              ),
-            ),
           ),
           SizedBox(
             height: 10,

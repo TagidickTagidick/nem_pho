@@ -40,7 +40,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: AnimatedContainer(
                       duration: const Duration(milliseconds: 200),
                       height: 40,
-                      width: MediaQuery.of(context).size.width / 2.25,
+                      width: MediaQuery.of(context).size.width / 2.0,
                       decoration: BoxDecoration(
                           color: const Color(0xffFF451D),
                           borderRadius: BorderRadius.circular(200),

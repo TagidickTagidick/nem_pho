@@ -69,7 +69,7 @@ class FirstStape extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "ОЖИДАЕТ ОПЛАТЫ",
+                  "ОЖИДАЕТ",
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 20,
@@ -79,7 +79,7 @@ class FirstStape extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "ВАШ ЗАКАЗ ОЖИДАТ ОПЛАТЫ",
+                  "ВАШ ЗАКАЗ ОЖИДАТ ПОДТВРЕРЖДЕНИЯ",
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 14,
@@ -228,12 +228,12 @@ class FirstStape extends StatelessWidget {
                   child: Container(
                     height: 49,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(1),
                       color: Color(0xff343434),
                     ),
                     alignment: Alignment.center,
                     child: Text(
-                      "БАНКОВСКОЙ КАРТОЙ",
+                      "ПОДТВЕРДИТЬ ЗАКАЗ",
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 16,
