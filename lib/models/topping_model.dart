@@ -10,7 +10,7 @@ class ToppingModel {
   final String price;
   final String gramm;
 
-  factory ToppingModel.fromJson(Map<String, dynamic> json) {
+  factory ToppingModel.fromJson(Map json) {
     return ToppingModel(
       title: json["title"] ?? "",
       image: json["image"] ?? "",

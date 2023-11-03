@@ -89,6 +89,7 @@ class _ProfilePageState extends State<ProfilePage> {
             Expanded(
               child: PageView(
                 controller: _controller,
+                physics: const NeverScrollableScrollPhysics(),
                 children: const [
                   MyOrders(),
                   MyInfo(),

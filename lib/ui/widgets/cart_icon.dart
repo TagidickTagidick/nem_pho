@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nem_pho/ui/pages/cart_page.dart';
+import 'package:nem_pho/ui/pages/checkout/cart_page.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

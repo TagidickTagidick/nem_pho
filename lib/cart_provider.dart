@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
-
-import 'models/menu_model.dart';
+import 'models/product_model.dart';
 import 'models/topping_model.dart';
 
 class CartProvider with ChangeNotifier, DiagnosticableTreeMixin {
