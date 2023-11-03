@@ -32,7 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   decoration: BoxDecoration(
                       color: const Color(0xffffffff),
                       borderRadius: BorderRadius.circular(200),
-                      border: Border.all(color: const Color(0xffF0B0B0)))),
+                      border: Border.all(color: const Color(0xffF0B0B0),),),),
               AnimatedAlign(
                   alignment:
                       isStory ? Alignment.centerRight : Alignment.centerLeft,
@@ -44,7 +44,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       decoration: BoxDecoration(
                           color: const Color(0xffFF451D),
                           borderRadius: BorderRadius.circular(200),
-                          border: Border.all(color: const Color(0xffF0B0B0))))),
+                          border: Border.all(color: const Color(0xffF0B0B0),),),),),
               SizedBox(
                   height: 40,
                   child: Row(
@@ -82,7 +82,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     fontSize: 16,
                                     color: isStory
                                         ? const Color(0xffffffff)
-                                        : const Color(0xff000000))))
+                                        : const Color(0xff000000),),),),
                       ]))
             ]),
             const SizedBox(height: 27),

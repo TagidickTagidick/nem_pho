@@ -23,7 +23,7 @@ class _ChooseStreetPageState extends State<ChooseStreetPage> {
     'Кировский район,	Вишнёвая, ул.',
     'Кировский район,	Волжская, наб.',
     'Кировский район,	Волжский, спуск'
-    'Кировский район,	Волкова, ул.',
+        'Кировский район,	Волкова, ул.',
     'Кировский район,	Волкова, пл.',
     'Кировский район,	Володарского, ул.',
     'Кировский район,	Вольная, ул.',
@@ -116,7 +116,7 @@ class _ChooseStreetPageState extends State<ChooseStreetPage> {
     'Кировский район,	Флотская, ул.',
     'Кировский район,	Флотский, пер.',
     'Кировский район,	Флотский, спуск'
-    'Кировский район,	Фруктовая, ул.',
+        'Кировский район,	Фруктовая, ул.',
     'Кировский район,	Чайковского, ул.',
     'Кировский район,	Челюскинцев, пл.',
     'Кировский район,	Чехова, ул.',
@@ -1027,7 +1027,9 @@ class _ChooseStreetPageState extends State<ChooseStreetPage> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: const BackButton(color: Colors.black,),
+        leading: const BackButton(
+          color: Colors.black,
+        ),
       ),
       body: Column(
         children: [
@@ -1037,7 +1039,10 @@ class _ChooseStreetPageState extends State<ChooseStreetPage> {
             decoration: BoxDecoration(
               color: const Color(0xffFFFFFF),
               borderRadius: BorderRadius.circular(200),
-              border: Border.all(color: const Color(0xffF0B0B0),),),
+              border: Border.all(
+                color: const Color(0xffF0B0B0),
+              ),
+            ),
             child: TextField(
               controller: _controller,
               keyboardType: TextInputType.streetAddress,
@@ -1077,7 +1082,9 @@ class _ChooseStreetPageState extends State<ChooseStreetPage> {
                   ),
                   child: Text(searchStreets[index]),
                 ),
-              ),),)
+              ),
+            ),
+          )
         ],
       ),
     );

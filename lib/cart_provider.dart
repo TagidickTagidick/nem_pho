@@ -1,37 +1,56 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'models/product_model.dart';
-import 'models/topping_model.dart';
+import 'models/user_model.dart';
 
 class CartProvider with ChangeNotifier, DiagnosticableTreeMixin {
-  final List<ProductModel> _products = [];
+  UserModel? _userModel;
 
-  List<ProductModel> get products => _products;
+  UserModel? get userModel => _userModel;
 
-  final List<ToppingModel> _toppings = [];
+  String? _phone;
 
-  List<ToppingModel> get toppings => _toppings;
+  String? get phone => _phone;
 
-  void addProduct(ProductModel product) {
-    _products.add(product);
+  void getUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    _phone = prefs.getString('phone');
+    final snapshot = await FirebaseDatabase.instance
+        .ref("users/${prefs.getString('phone')}")
+        .get();
+    _userModel = UserModel.fromJson(snapshot.value as Map);
     notifyListeners();
   }
 
-  void addTopping(ToppingModel topping) {
-    _toppings.add(topping);
+  void addProduct(ProductModel product) {
+    userModel?.cart.add(product);
+    List cart = [];
+    for (var product in userModel!.cart) {
+      cart.add(product.toJson());
+    }
+    FirebaseDatabase.instance.ref().child('users/$phone').update({
+      "cart": cart
+    });
     notifyListeners();
   }
 
   void removeProduct(ProductModel product) {
     ProductModel removedProduct =
-        _products.firstWhere((element) => element.title == product.title);
-    _products.remove(removedProduct);
+    userModel!.cart.firstWhere((element) => element.title == product.title);
+    userModel!.cart.remove(removedProduct);
+    List cart = [];
+    for (var product in userModel!.cart) {
+      cart.add(product.toJson());
+    }
+    FirebaseDatabase.instance.ref().child('users/$phone').update({
+      "cart": cart
+    });
     notifyListeners();
   }
 
-  void removeTopping(ToppingModel topping) {
-    ToppingModel removedTopping =
-        _toppings.firstWhere((element) => element.title == topping.title);
-    _toppings.remove(removedTopping);
+  void clearProducts() {
+    userModel!.cart.clear();
     notifyListeners();
   }
 }

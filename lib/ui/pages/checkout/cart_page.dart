@@ -3,20 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:nem_pho/ui/pages/checkout/choose_street_page.dart';
 import 'package:nem_pho/ui/pages/pay/first_stape.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../../cart_provider.dart';
 import '../../../models/product_model.dart';
-import '../../../models/topping_model.dart';
 import '../../../models/user_model.dart';
 import '../../widgets/custom/custom_appbar.dart';
 import '../../widgets/custom/custom_text_field.dart';
 import '../../widgets/custom/mask_text_input_formatter.dart';
 
 class CartPage extends StatefulWidget {
-  const CartPage({super.key, required this.cart, required this.toppings});
-
-  final List<ProductModel> cart;
-  final List<ToppingModel> toppings;
+  const CartPage({super.key});
 
   @override
   State<CartPage> createState() => _CartPageState();
@@ -24,7 +19,6 @@ class CartPage extends StatefulWidget {
 
 class _CartPageState extends State<CartPage> {
   List<ProductModel> newProducts = [];
-  List<ToppingModel> newToppings = [];
 
   List<int> counts = [];
 
@@ -50,14 +44,16 @@ class _CartPageState extends State<CartPage> {
   bool isOnline = false;
 
   int total = 0;
-  bool isLoading = true;
   bool canCheckout = false;
 
   void checkCanCheckout() {
-    if ((total + (street.contains("Кировский") ? 0 : 200) >= 900) && street.isNotEmpty && apartmentController.text.isNotEmpty && nameController.text.isNotEmpty && phoneController.text.isNotEmpty) {
+    if ((total + (street.contains("Кировский") ? 0 : 200) >= 900) &&
+        street.isNotEmpty &&
+        apartmentController.text.isNotEmpty &&
+        nameController.text.isNotEmpty &&
+        phoneController.text.isNotEmpty) {
       canCheckout = true;
-    }
-    else {
+    } else {
       canCheckout = false;
     }
     setState(() {});
@@ -70,12 +66,7 @@ class _CartPageState extends State<CartPage> {
   }
 
   void getData() async {
-    final prefs = await SharedPreferences.getInstance();
-    final snapshot = await FirebaseDatabase.instance
-        .ref("users/${prefs.getString('phone')}")
-        .get();
-    userModel = UserModel.fromJson(snapshot.value as Map);
-    isLoading = false;
+    userModel = context.read<CartProvider>().userModel!;
     phoneController.text = userModel.phone.replaceAll("_", " ");
     nameController.text = userModel.name;
     street = userModel.street;
@@ -83,13 +74,9 @@ class _CartPageState extends State<CartPage> {
     entranceController.text = userModel.entrance;
     floorController.text = userModel.floor;
 
-    List<ProductModel> oldCart = widget.cart;
-    List<ToppingModel> oldToppings = widget.toppings;
+    List<ProductModel> oldCart = userModel.cart;
     for (int i = 0; i < oldCart.length; i++) {
       total += int.parse(oldCart[i].price);
-    }
-    for (int i = 0; i < oldToppings.length; i++) {
-      total += int.parse(oldToppings[i].price);
     }
     if (oldCart.isNotEmpty) {
       oldCart.sort((a, b) => a.title.compareTo(b.title));
@@ -111,253 +98,145 @@ class _CartPageState extends State<CartPage> {
         counts.add(count);
       }
     }
-    if (oldToppings.isNotEmpty) {
-      oldToppings.sort((a, b) => a.title.compareTo(b.title));
-      if (oldToppings.length == 1) {
-        newToppings.add(oldToppings[0]);
-        counts.add(1);
-      } else {
-        int count = 0;
-        for (int i = 1; i < oldToppings.length; i++) {
-          count++;
-          if (oldToppings[i].title != oldToppings[i - 1].title) {
-            newToppings.add(oldToppings[i - 1]);
-            counts.add(count);
-            count = 0;
-          }
-        }
-        count++;
-        newToppings.add(oldToppings[oldToppings.length - 1]);
-        counts.add(count);
-      }
-    }
     checkCanCheckout();
   }
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Scaffold(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Scaffold(
           backgroundColor: const Color(0xffFFFFFF),
-          appBar: const PreferredSize(
-              preferredSize: Size.fromHeight(60), child: CustomAppBar()),
-          body: isLoading
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : SingleChildScrollView(
+          appBar: const CustomAppBar(),
+          body: SingleChildScrollView(
                   child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       const Padding(
                           padding:
                               EdgeInsets.only(top: 10, left: 28, bottom: 7),
-                          child: Text("Корзина",
+                          child: Text(
+                              "Корзина",
                               style: TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 24,
-                                  color: Color(0xff000000)))),
+                                  color: Color(0xff000000),),),),
                       for (int i = 0; i < newProducts.length; i++)
-                        Row(children: [
-                          const SizedBox(width: 20),
-                          Expanded(
-                            child: Text(newProducts[i].title,
+                        Row(
+                          children: [
+                            const SizedBox(width: 20),
+                            Expanded(
+                              child: Text(newProducts[i].title,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 20,
+                                      color: Color(0xff000000))),
+                            ),
+                            const SizedBox(width: 10),
+                            Text("${newProducts[i].price} р",
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 20,
                                     color: Color(0xff000000))),
-                          ),
-                          const SizedBox(width: 10),
-                          Text("${newProducts[i].price} р",
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 20,
-                                  color: Color(0xff000000))),
-                          const SizedBox(width: 20),
-                          Container(
+                            const SizedBox(width: 20),
+                            Container(
                               width: 120,
                               margin: const EdgeInsets.symmetric(vertical: 17),
-                              child: Stack(children: [
-                                Align(
+                              child: Stack(
+                                children: [
+                                  Align(
                                     alignment: Alignment.centerLeft,
                                     child: GestureDetector(
-                                        onTap: () {
-                                          counts[i]--;
-                                          context
-                                              .read<CartProvider>()
-                                              .removeProduct(newProducts[i]);
-                                          total -=
-                                              int.parse(newProducts[i].price);
-                                          if (counts[i] == 0) {
-                                            newProducts.removeAt(i);
-                                            counts.removeAt(i);
-                                          }
-                                          checkCanCheckout();
-                                        },
-                                        child: Container(
-                                            height: 37,
-                                            width: 60,
-                                            alignment: Alignment.center,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    const BorderRadius.only(
-                                                        topLeft:
-                                                            Radius.circular(37),
-                                                        bottomLeft:
-                                                            Radius.circular(
-                                                                37)),
-                                                border: Border.all(
-                                                    color: const Color(
-                                                        0xff000000))),
-                                            child: const Icon(Icons.remove,
-                                                color: Color(0xff000000),),),),),
-                                Align(
+                                      onTap: () {
+                                        counts[i]--;
+                                        context
+                                            .read<CartProvider>()
+                                            .removeProduct(newProducts[i]);
+                                        total -=
+                                            int.parse(newProducts[i].price);
+                                        if (counts[i] == 0) {
+                                          newProducts.removeAt(i);
+                                          counts.removeAt(i);
+                                        }
+                                        checkCanCheckout();
+                                      },
+                                      child: Container(
+                                        height: 37,
+                                        width: 60,
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(37),
+                                                    bottomLeft:
+                                                        Radius.circular(37)),
+                                            border: Border.all(
+                                                color:
+                                                    const Color(0xff000000))),
+                                        child: const Icon(
+                                          Icons.remove,
+                                          color: Color(0xff000000),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
                                     alignment: Alignment.centerRight,
                                     child: GestureDetector(
-                                        onTap: () {
-                                          counts[i]++;
-                                          context
-                                              .read<CartProvider>()
-                                              .addProduct(newProducts[i]);
-                                          total +=
-                                              int.parse(newProducts[i].price);
-                                          checkCanCheckout();
-                                        },
-                                        child: Container(
-                                            height: 37,
-                                            width: 60,
-                                            alignment: Alignment.center,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    const BorderRadius.only(
-                                                        topRight:
-                                                            Radius.circular(37),
-                                                        bottomRight:
-                                                            Radius.circular(
-                                                                37)),
-                                                border: Border.all(
-                                                    color: const Color(
-                                                        0xff000000))),
-                                            child: const Icon(Icons.add,
-                                                color: Color(0xff000000),),),),),
-                                Center(
-                                    child: Container(
-                                        height: 38,
-                                        width: 38,
+                                      onTap: () {
+                                        counts[i]++;
+                                        context
+                                            .read<CartProvider>()
+                                            .addProduct(newProducts[i]);
+                                        total +=
+                                            int.parse(newProducts[i].price);
+                                        checkCanCheckout();
+                                      },
+                                      child: Container(
+                                        height: 37,
+                                        width: 60,
                                         alignment: Alignment.center,
-                                        decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Color(0xffFF451D)),
-                                        child: Text(counts[i].toString(),
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 24,
-                                                color: Color(0xffFFFFFF),),),),),
-                              ],),),
-                          const SizedBox(width: 20)
-                        ],),
-                      for (int i = 0; i < newToppings.length; i++)
-                        Row(children: [
-                          const SizedBox(width: 20),
-                          Expanded(
-                              child: Text(newToppings[i].title,
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 20,
-                                      color: Color(0xff000000),),),),
-                          const SizedBox(width: 20),
-                          Text("${newToppings[i].price} р",
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 20,
-                                  color: Color(0xff000000),),),
-                          const SizedBox(width: 20),
-                          Container(
-                              width: 120,
-                              margin: const EdgeInsets.symmetric(vertical: 17),
-                              child: Stack(children: [
-                                Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: GestureDetector(
-                                        onTap: () {
-                                          counts[newProducts.length + i]--;
-                                          context
-                                              .read<CartProvider>()
-                                              .removeTopping(newToppings[i]);
-                                          total -=
-                                              int.parse(newToppings[i].price);
-                                          if (counts[newProducts.length + i] ==
-                                              0) {
-                                            newToppings.removeAt(i);
-                                            counts.removeAt(
-                                                newProducts.length + i);
-                                          }
-                                          setState(() {});
-                                        },
-                                        child: Container(
-                                            height: 37,
-                                            width: 60,
-                                            alignment: Alignment.center,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    const BorderRadius.only(
-                                                        topLeft:
-                                                            Radius.circular(37),
-                                                        bottomLeft:
-                                                            Radius.circular(
-                                                                37)),
-                                                border: Border.all(
-                                                    color: const Color(
-                                                        0xff000000))),
-                                            child: const Icon(Icons.remove,
-                                                color: Color(0xff000000),),),),),
-                                Align(
-                                    alignment: Alignment.centerRight,
-                                    child: GestureDetector(
-                                        onTap: () {
-                                          counts[newProducts.length + i]++;
-                                          context
-                                              .read<CartProvider>()
-                                              .addTopping(newToppings[i]);
-                                          total +=
-                                              int.parse(newToppings[i].price);
-                                          setState(() {});
-                                        },
-                                        child: Container(
-                                            height: 37,
-                                            width: 60,
-                                            alignment: Alignment.center,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    const BorderRadius.only(
-                                                        topRight:
-                                                            Radius.circular(37),
-                                                        bottomRight:
-                                                            Radius.circular(
-                                                                37)),
-                                                border: Border.all(
-                                                    color: const Color(
-                                                        0xff000000))),
-                                            child: const Icon(Icons.add,
-                                                color: Color(0xff000000),),),),),
-                                Center(
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                                    topRight:
+                                                        Radius.circular(37),
+                                                    bottomRight:
+                                                        Radius.circular(37)),
+                                            border: Border.all(
+                                                color:
+                                                    const Color(0xff000000))),
+                                        child: const Icon(
+                                          Icons.add,
+                                          color: Color(0xff000000),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Center(
                                     child: Container(
-                                        height: 38,
-                                        width: 38,
-                                        alignment: Alignment.center,
-                                        decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Color(0xffFF451D)),
-                                        child: Text(
-                                            counts[newProducts.length + i]
-                                                .toString(),
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 24,
-                                                color: Color(0xffFFFFFF)))))
-                              ])),
-                          const SizedBox(width: 20),
-                        ]),
+                                      height: 38,
+                                      width: 38,
+                                      alignment: Alignment.center,
+                                      decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Color(0xffFF451D)),
+                                      child: Text(
+                                        counts[i].toString(),
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 24,
+                                          color: Color(0xffFFFFFF),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(width: 20)
+                          ],
+                        ),
                       Container(
                           margin: const EdgeInsets.only(
                               top: 15, left: 14, right: 6),
@@ -368,16 +247,22 @@ class _CartPageState extends State<CartPage> {
                               borderRadius: BorderRadius.circular(20)),
                           child: Column(children: [
                             Row(children: [
-                              Text(isSelf ? "Самовывоз: " : "Доставка: ",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 20,
-                                      color: Color(0xff000000),),),
-                              Text("Ярославль",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 20,
-                                      color: Color(0xff000000),),)
+                              Text(
+                                isSelf ? "Самовывоз: " : "Доставка: ",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 20,
+                                  color: Color(0xff000000),
+                                ),
+                              ),
+                              Text(
+                                "Ярославль",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 20,
+                                  color: Color(0xff000000),
+                                ),
+                              )
                             ]),
                             const SizedBox(height: 10),
                             Stack(children: [
@@ -428,45 +313,56 @@ class _CartPageState extends State<CartPage> {
                                                         : const Color(
                                                             0xffffffff)))),
                                         GestureDetector(
-                                            onTap: () =>
-                                                setState(() => isSelf = true),
-                                            child: Text("Забрать самому",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 16,
-                                                    color: isSelf
-                                                        ? const Color(
-                                                            0xffffffff)
-                                                        : const Color(
-                                                            0xff000000),),),),
+                                          onTap: () =>
+                                              setState(() => isSelf = true),
+                                          child: Text(
+                                            "Забрать самому",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 16,
+                                              color: isSelf
+                                                  ? const Color(0xffffffff)
+                                                  : const Color(0xff000000),
+                                            ),
+                                          ),
+                                        ),
                                       ]))
                             ]),
                             const SizedBox(height: 18),
                             GestureDetector(
                               onTap: () async {
-                                final result = await Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ChooseStreetPage()));
+                                final result = await Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const ChooseStreetPage()));
                                 if (result != null) {
                                   street = result;
                                   checkCanCheckout();
                                 }
-  },
+                              },
                               child: Container(
                                 height: 38,
                                 width: double.infinity,
                                 alignment: Alignment.centerLeft,
                                 padding: const EdgeInsets.only(left: 22),
                                 decoration: BoxDecoration(
-                                    color: const Color(0xffFFFFFF),
-                                    borderRadius: BorderRadius.circular(200),
-                                    border: Border.all(
-                                        color: const Color(0xffF0B0B0),),),
+                                  color: const Color(0xffFFFFFF),
+                                  borderRadius: BorderRadius.circular(200),
+                                  border: Border.all(
+                                    color: const Color(0xffF0B0B0),
+                                  ),
+                                ),
                                 child: Text(
-                                  street.isEmpty ? "Укажите улицу и район" : street,
+                                  street.isEmpty
+                                      ? "Укажите улицу и район"
+                                      : street,
                                   style: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 16,
-                                    color: street.isEmpty ? const Color(0xff000000)
-                                        .withOpacity(0.42) : Colors.black,
+                                    color: street.isEmpty
+                                        ? const Color(0xff000000)
+                                            .withOpacity(0.42)
+                                        : Colors.black,
                                   ),
                                 ),
                               ),
@@ -481,44 +377,50 @@ class _CartPageState extends State<CartPage> {
                               },
                             ),
                             const SizedBox(height: 18),
-                            Row(children: [
-                              Expanded(
+                            Row(
+                              children: [
+                                Expanded(
+                                    child: CustomTextField(
+                                  controller: entranceController,
+                                  hintText: "Подъезд",
+                                  textInputType: TextInputType.number,
+                                )),
+                                const SizedBox(width: 19),
+                                Expanded(
                                   child: CustomTextField(
-                                controller: entranceController,
-                                hintText: "Подъезд",
-                                textInputType: TextInputType.number,
-                              )),
-                              const SizedBox(width: 19),
-                              Expanded(
-                                  child: CustomTextField(
-                                controller: floorController,
-                                hintText: "Этаж",
-                                textInputType: TextInputType.number,
-                              ),),
-                            ],),
+                                    controller: floorController,
+                                    hintText: "Этаж",
+                                    textInputType: TextInputType.number,
+                                  ),
+                                ),
+                              ],
+                            ),
                             const SizedBox(height: 24),
                             Container(
-                                padding: const EdgeInsets.only(left: 22),
-                                decoration: BoxDecoration(
-                                    color: const Color(0xffFFFFFF),
-                                    borderRadius: BorderRadius.circular(200),
-                                    border: Border.all(
-                                        color: const Color(0xffF0B0B0),),),
-                                child: TextField(
-                                  controller: phoneController,
-                                  onChanged: (value) {
-                                    checkCanCheckout();
-                                  },
-                                  decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      hintText: "Номер телефона",
-                                      hintStyle: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 16,
-                                          color: const Color(0xff000000)
-                                              .withOpacity(0.42))),
-                                  inputFormatters: [maskFormatter],
-                                ),),
+                              padding: const EdgeInsets.only(left: 22),
+                              decoration: BoxDecoration(
+                                color: const Color(0xffFFFFFF),
+                                borderRadius: BorderRadius.circular(200),
+                                border: Border.all(
+                                  color: const Color(0xffF0B0B0),
+                                ),
+                              ),
+                              child: TextField(
+                                controller: phoneController,
+                                onChanged: (value) {
+                                  checkCanCheckout();
+                                },
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: "Номер телефона",
+                                    hintStyle: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 16,
+                                        color: const Color(0xff000000)
+                                            .withOpacity(0.42))),
+                                inputFormatters: [maskFormatter],
+                              ),
+                            ),
                             const SizedBox(height: 24),
                             CustomTextField(
                               controller: nameController,
@@ -539,23 +441,24 @@ class _CartPageState extends State<CartPage> {
                                       border: Border.all(
                                           color: const Color(0xffF0B0B0)))),
                               AnimatedAlign(
-                                  alignment: isTime
-                                      ? Alignment.centerRight
-                                      : Alignment.centerLeft,
+                                alignment: isTime
+                                    ? Alignment.centerRight
+                                    : Alignment.centerLeft,
+                                duration: const Duration(milliseconds: 200),
+                                child: AnimatedContainer(
                                   duration: const Duration(milliseconds: 200),
-                                  child: AnimatedContainer(
-                                      duration:
-                                          const Duration(milliseconds: 200),
-                                      height: 40,
-                                      width: MediaQuery.of(context).size.width /
-                                          (isTime ? 3 : 2),
-                                      decoration: BoxDecoration(
-                                          color: const Color(0xffFF451D),
-                                          borderRadius:
-                                              BorderRadius.circular(200),
-                                          border: Border.all(
-                                              color:
-                                                  const Color(0xffF0B0B0),),),),),
+                                  height: 40,
+                                  width: MediaQuery.of(context).size.width /
+                                      (isTime ? 3 : 2),
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xffFF451D),
+                                    borderRadius: BorderRadius.circular(200),
+                                    border: Border.all(
+                                      color: const Color(0xffF0B0B0),
+                                    ),
+                                  ),
+                                ),
+                              ),
                               SizedBox(
                                   height: 40,
                                   child: Row(
@@ -618,9 +521,10 @@ class _CartPageState extends State<CartPage> {
                               style: TextStyle(
                                   fontWeight: FontWeight.w700, fontSize: 20))),
                       Padding(
-                          padding: const EdgeInsets.only(
-                              top: 10, left: 40, right: 40, bottom: 20),
-                          child: Column(children: [
+                        padding: const EdgeInsets.only(
+                            top: 10, left: 40, right: 40, bottom: 20),
+                        child: Column(
+                          children: [
                             Stack(children: [
                               Container(
                                   height: 40,
@@ -690,22 +594,28 @@ class _CartPageState extends State<CartPage> {
                                     color: Color(0xff000000))),
                             const SizedBox(height: 12),
                             Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                      "Доставка",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 12,
-                                          color: Color(0xff000000),),),
-                                  Text(
-                                    street.contains("Кировский") ? "Бесплатно" : "200 р",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 12,
-                                          color: Color(0xff000000),),),
-                                ],),
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Доставка",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 12,
+                                    color: Color(0xff000000),
+                                  ),
+                                ),
+                                Text(
+                                  street.contains("Кировский")
+                                      ? "Бесплатно"
+                                      : "200 р",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 12,
+                                    color: Color(0xff000000),
+                                  ),
+                                ),
+                              ],
+                            ),
                             const SizedBox(height: 127),
                             const Text(
                               'Минимальная сумма заказа от 900 р',
@@ -723,7 +633,8 @@ class _CartPageState extends State<CartPage> {
                                           fontWeight: FontWeight.w700,
                                           fontSize: 20,
                                           color: Color(0xff000000))),
-                                  Text("${total + (street.contains("Кировский") ? 0 : 200)}р",
+                                  Text(
+                                      "${total + (street.contains("Кировский") ? 0 : 200)}р",
                                       style: const TextStyle(
                                           fontWeight: FontWeight.w700,
                                           fontSize: 20,
@@ -733,26 +644,10 @@ class _CartPageState extends State<CartPage> {
                             GestureDetector(
                               onTap: () {
                                 if (canCheckout) {
-                                  List<Map<String, dynamic>> productMaps =
-                                      newProducts
-                                          .map((product) => {
-                                                "title": product.title,
-                                                "text": product.text,
-                                                "image": product.image,
-                                                "price": product.price,
-                                                "is_active":
-                                                    product.isActive ? 1 : 0,
-                                                "gramm": product.gramm,
-                                              })
-                                          .toList();
-                                  List<Map<String, dynamic>> toppingMaps =
-                                      newToppings
-                                          .map((topping) => {
-                                                "title": topping.title,
-                                                "image": topping.image,
-                                                "price": topping.price,
-                                              })
-                                          .toList();
+                                  List products = [];
+                                  for (var product in newProducts) {
+                                    products.add(product.toJson());
+                                  }
                                   FirebaseDatabase.instance
                                       .ref()
                                       .child(
@@ -763,15 +658,15 @@ class _CartPageState extends State<CartPage> {
                                     "name": nameController.text,
                                     "phone": phoneController.text,
                                     "comment": commentController.text,
-                                    "products": productMaps,
-                                    "toppings": toppingMaps,
+                                    "products": products,
                                     "total": total,
                                     "status": "Новый",
-                                    "delivery": street.contains("Кировский") ? 0 : 200,
+                                    "delivery":
+                                        street.contains("Кировский") ? 0 : 200,
                                   });
                                   FirebaseDatabase.instance
                                       .ref()
-                                      .child("users/${userModel.phone}")
+                                      .child("users/${context.read<CartProvider>().phone}")
                                       .update({
                                     "name": nameController.text,
                                     "phone": phoneController.text,
@@ -784,42 +679,54 @@ class _CartPageState extends State<CartPage> {
                                   FirebaseDatabase.instance
                                       .ref()
                                       .child(
-                                          "users/${userModel.phone}/orders/${DateTime.now().millisecondsSinceEpoch}")
+                                          "users/${context.read<CartProvider>().phone}/orders/${DateTime.now().millisecondsSinceEpoch}")
                                       .update({
                                     "adress":
                                         '$street ${apartmentController.text} ${entranceController.text} ${floorController.text}',
                                     "name": nameController.text,
                                     "phone": phoneController.text,
                                     "comment": commentController.text,
-                                    "products": productMaps,
-                                    "toppings": toppingMaps,
+                                    "products": products,
                                     "total": total,
                                     "status": "Новый",
-                                    "delivery": street.contains("Кировский") ? 0 : 200,
+                                    "delivery":
+                                        street.contains("Кировский") ? 0 : 200,
                                   });
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) =>
-                                          const FirstStape(),),);
+                                  context.read<CartProvider>().clearProducts();
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => const FirstStape(),
+                                    ),
+                                  );
                                 }
                               },
                               child: Opacity(
                                 opacity: canCheckout ? 1 : 0.5,
                                 child: Container(
-                                    height: 39,
-                                    width: double.infinity,
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                        color: const Color(0xff19B80B),
-                                        borderRadius: BorderRadius.circular(1)),
-                                    child: const Text(
-                                      "Оформить заказ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 16,
-                                            color: Color(0xffFFFFFF),),),),
+                                  height: 39,
+                                  width: double.infinity,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                      color: const Color(0xff19B80B),
+                                      borderRadius: BorderRadius.circular(1)),
+                                  child: const Text(
+                                    "Оформить заказ",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 16,
+                                      color: Color(0xffFFFFFF),
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                             const SizedBox(height: 10),
-                          ],),),
-                    ],),),),);
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+        ),
+      );
 }

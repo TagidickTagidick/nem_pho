@@ -1,5 +1,3 @@
-import 'package:nem_pho/models/topping_model.dart';
-
 import 'product_model.dart';
 
 class UserModel {
@@ -13,6 +11,7 @@ class UserModel {
     required this.entrance,
     required this.floor,
     required this.orders,
+    required this.cart,
   });
 
   final String name;
@@ -24,6 +23,7 @@ class UserModel {
   final String entrance;
   final String floor;
   final List<OrderModel> orders;
+  final List<ProductModel> cart;
 
   factory UserModel.fromJson(Map<dynamic, dynamic> json) {
     List<OrderModel> orders = [];
@@ -31,6 +31,13 @@ class UserModel {
       (json['orders'] as Map).forEach((key, value) {
         orders.add(OrderModel.fromJson(value, int.parse(key)));
       });
+    }
+    List<ProductModel> cart = [];
+    if (json['cart'] != null) {
+      List jsonCart = json['cart'] as List;
+      for (int i = 0; i < jsonCart.length; i++) {
+        cart.add(ProductModel.fromJson(jsonCart[i]));
+      }
     }
     return UserModel(
       name: json["name"],
@@ -42,6 +49,7 @@ class UserModel {
       entrance: json["entrance"] ?? "",
       floor: json["floor"] ?? "",
       orders: orders,
+      cart: cart,
     );
   }
 }
@@ -55,7 +63,6 @@ class OrderModel {
     required this.id,
     required this.delivery,
     required this.products,
-    required this.toppings,
   });
 
   final String date;
@@ -65,7 +72,6 @@ class OrderModel {
   final int id;
   final int delivery;
   final List<ProductModel> products;
-  final List<ToppingModel> toppings;
 
   factory OrderModel.fromJson(Map<dynamic, dynamic> json, int timestamp) {
     DateTime dateTime = DateTime.fromMicrosecondsSinceEpoch(timestamp * 1000);
@@ -81,10 +87,6 @@ class OrderModel {
             : (json['products'] as List<dynamic>)
                 .map((productJson) => ProductModel.fromJson(productJson))
                 .toList(),
-        toppings: json['toppings'] == null
-            ? []
-            : (json['toppings'] as List<dynamic>)
-                .map((toppingJson) => ToppingModel.fromJson(toppingJson))
-                .toList());
+    );
   }
 }

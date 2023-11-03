@@ -60,128 +60,134 @@ class _MenuItemPageState extends State<MenuItemPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      key: _key,
-      appBar: const PreferredSize(
-          preferredSize: Size.fromHeight(60), child: CustomAppBar()),
-      drawer: const CustomDrawer(),
-      body: CustomScrollView(slivers: [
-        SliverToBoxAdapter(
-            child: SizedBox(
-                height: 179,
-                child: PageView.builder(
-                  controller: _controller,
-                  itemCount: banners.length,
-                  itemBuilder: (context, index) => CachedNetworkImage(
-                    imageUrl: banners[index],
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) => const CustomShimmer(
-                      height: 179,
-                      width: double.infinity,
-                    ),
-                  ),
-                ))),
-        SliverPadding(
-            padding:
-                const EdgeInsets.only(top: 13, left: 18, right: 10, bottom: 17),
-            sliver: StreamBuilder(
-                stream: FirebaseDatabase.instance
-                    .ref("menu/${widget.menuItem}")
-                    .onValue,
-                builder: (context, AsyncSnapshot<DatabaseEvent> snapshot) {
-                  if (snapshot.hasData) {
-                    List<ProductModel> menu = [];
-                    Map<String, dynamic> data =
-                        jsonDecode(jsonEncode(snapshot.data?.snapshot.value));
-                    data.remove("image");
-                    for (var item in data.values) {
-                      menu.add(ProductModel.fromJson(item));
-                    }
-                    return SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                          (BuildContext context, int index) {
-                        return GestureDetector(
-                            onTap: () => Navigator.of(context).push(
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        ProductPage(product: menu[index]))),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 3,
-                              ),
-                              child: Row(children: [
-                                Hero(
-                                  tag: menu[index].title,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: CachedNetworkImage(
-                                      imageUrl: menu[index].image,
-                                      fit: BoxFit.cover,
-                                      height: 185,
-                                      width: 179,
-                                      placeholder: (context, url) =>
-                                          const CustomShimmer(
+        key: _key,
+        appBar: const PreferredSize(
+            preferredSize: Size.fromHeight(60), child: CustomAppBar()),
+        drawer: const CustomDrawer(),
+        body: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+                child: SizedBox(
+                    height: 179,
+                    child: PageView.builder(
+                      controller: _controller,
+                      itemCount: banners.length,
+                      itemBuilder: (context, index) => CachedNetworkImage(
+                        imageUrl: banners[index],
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) => const CustomShimmer(
+                          height: 179,
+                          width: double.infinity,
+                        ),
+                      ),
+                    ))),
+            SliverPadding(
+              padding: const EdgeInsets.only(
+                  top: 13, left: 18, right: 10, bottom: 17,),
+              sliver: StreamBuilder(
+                  stream: FirebaseDatabase.instance
+                      .ref("menu/${widget.menuItem}")
+                      .onValue,
+                  builder: (context, AsyncSnapshot<DatabaseEvent> snapshot) {
+                    if (snapshot.hasData) {
+                      List<ProductModel> menu = [];
+                      Map<String, dynamic> data =
+                          jsonDecode(jsonEncode(snapshot.data?.snapshot.value));
+                      data.remove("image");
+                      for (var item in data.values) {
+                        menu.add(ProductModel.fromJson(item));
+                      }
+                      return SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                            (BuildContext context, int index) {
+                          return GestureDetector(
+                              onTap: () => Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          ProductPage(product: menu[index]))),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 3,
+                                ),
+                                child: Row(children: [
+                                  Hero(
+                                    tag: menu[index].title,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: CachedNetworkImage(
+                                        imageUrl: menu[index].image,
+                                        fit: BoxFit.cover,
                                         height: 185,
                                         width: 179,
+                                        placeholder: (context, url) =>
+                                            const CustomShimmer(
+                                          height: 185,
+                                          width: 179,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                const SizedBox(width: 18),
-                                Expanded(
-                                    child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                      Text(menu[index].title,
-                                          style: const TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w700,
-                                              color: Color(0xff000000))),
-                                      Text(menu[index].text,
-                                          style: const TextStyle(
-                                              fontSize: 9,
-                                              fontWeight: FontWeight.w400,
-                                              color: Color(0xff000000))),
-                                      const SizedBox(height: 38),
-                                      Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                  const SizedBox(width: 18),
+                                  Expanded(
+                                      child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
-                                            Text("${menu[index].price} Р",
-                                                style: const TextStyle(
-                                                    fontWeight: FontWeight.w700,
-                                                    fontSize: 16,
-                                                    color: Color(0xff000000))),
-                                            Container(
-                                                height: 40,
-                                                width: 100,
-                                                alignment: Alignment.center,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          200),
-                                                  color:
-                                                      const Color(0xffF7F3F3),
-                                                  border: Border.all(
-                                                    color: Color(0xFFF0B0B0),
-                                                    width: 2,
+                                        Text(menu[index].title,
+                                            style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w700,
+                                                color: Color(0xff000000))),
+                                        Text(menu[index].text,
+                                            style: const TextStyle(
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.w400,
+                                                color: Color(0xff000000))),
+                                        const SizedBox(height: 38),
+                                        Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text("${menu[index].price} Р",
+                                                  style: const TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      fontSize: 16,
+                                                      color:
+                                                          Color(0xff000000))),
+                                              Container(
+                                                  height: 40,
+                                                  width: 100,
+                                                  alignment: Alignment.center,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            200),
+                                                    color:
+                                                        const Color(0xffF7F3F3),
+                                                    border: Border.all(
+                                                      color: Color(0xFFF0B0B0),
+                                                      width: 2,
+                                                    ),
                                                   ),
-                                                ),
-                                                child: const Text("Выбрать",
-                                                    style: TextStyle(
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        color:
-                                                            Color(0xff000000))))
-                                          ])
-                                    ]))
-                              ]),
-                            ));
-                      }, childCount: menu.length),
-                    );
-                  }
-                  return SliverToBoxAdapter(child: Container());
-                }))
-      ]));
+                                                  child: const Text("Выбрать",
+                                                      style: TextStyle(
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: Color(
+                                                              0xff000000))))
+                                            ])
+                                      ]))
+                                ]),
+                              ));
+                        }, childCount: menu.length),
+                      );
+                    }
+                    return SliverToBoxAdapter(child: Container());
+                  }),
+            ),
+          ],
+        ),
+      );
 }

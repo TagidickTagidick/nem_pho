@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
+
+import '../../cart_provider.dart';
 
 class LoadingPage extends StatefulWidget {
   const LoadingPage({super.key});
@@ -18,8 +21,13 @@ class _LoadingPageState extends State<LoadingPage>
   @override
   void initState() {
     super.initState();
+    getData();
+  }
+
+  void getData() {
+    context.read<CartProvider>().getUserData();
     controller =
-        AnimationController(duration: const Duration(seconds: 1), vsync: this);
+        AnimationController(duration: const Duration(seconds: 1), vsync: this,);
     SchedulerBinding.instance.addPostFrameCallback((_) {
       alpha =
           Tween<double>(begin: 0, end: MediaQuery.of(context).size.width - 93)
@@ -29,7 +37,7 @@ class _LoadingPageState extends State<LoadingPage>
       });
       controller.forward().then((value) =>
           Future.delayed(const Duration(milliseconds: 500)).then(
-              (value) => Navigator.of(context).pushReplacementNamed("/main")));
+                  (value) => Navigator.of(context).pushReplacementNamed("/main")));
     });
   }
 

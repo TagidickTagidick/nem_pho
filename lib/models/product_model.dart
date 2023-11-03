@@ -5,7 +5,6 @@ class ProductModel {
       required this.image,
       required this.price,
       required this.isActive,
-      required this.gramm,
       required this.compound});
 
   final String title;
@@ -13,7 +12,6 @@ class ProductModel {
   final String image;
   final String price;
   final bool isActive;
-  final List gramm;
   final String compound;
 
   factory ProductModel.fromJson(Map json) {
@@ -23,8 +21,14 @@ class ProductModel {
       image: json["image"] ?? "",
       price: json["price"].toString(),
       isActive: json["is_active"] == 1 ? true : false,
-      gramm: [],
       compound: json["compound"] ?? "",
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'title': title,
+        'text': text,
+        'image': image,
+        'price': price,
+      };
 }

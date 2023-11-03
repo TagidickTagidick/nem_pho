@@ -21,12 +21,16 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => CartProvider()),
-        ],
-        child: MaterialApp(routes: {
+      providers: [
+        ChangeNotifierProvider(create: (_) => CartProvider()),
+      ],
+      child: MaterialApp(
+        routes: {
           "/loading": (context) => const LoadingPage(),
           "/main": (context) => const MainPage(),
-        }, home: const LoadingPage()));
+        },
+        home: const LoadingPage(),
+      ),
+    );
   }
 }
