@@ -75,7 +75,9 @@ class _MyOrdersState extends State<MyOrders> {
               Expanded(
                 child: ListView.builder(
                   itemCount: userModel.orders.length,
-                  itemBuilder: (context, index) => MyOrder(orderModel: userModel.orders[index],),
+                  itemBuilder: (context, index) => MyOrder(
+                    orderModel: userModel.orders[index],
+                  ),
                 ),
               ),
             ],

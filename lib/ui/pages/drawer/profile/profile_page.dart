@@ -27,24 +27,33 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(height: 24),
             Stack(children: [
               Container(
-                  height: 40,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: const Color(0xffffffff),
-                      borderRadius: BorderRadius.circular(200),
-                      border: Border.all(color: const Color(0xffF0B0B0),),),),
+                height: 40,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: const Color(0xffffffff),
+                  borderRadius: BorderRadius.circular(200),
+                  border: Border.all(
+                    color: const Color(0xffF0B0B0),
+                  ),
+                ),
+              ),
               AnimatedAlign(
-                  alignment:
-                      isStory ? Alignment.centerRight : Alignment.centerLeft,
+                alignment:
+                    isStory ? Alignment.centerRight : Alignment.centerLeft,
+                duration: const Duration(milliseconds: 200),
+                child: AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
-                  child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 200),
-                      height: 40,
-                      width: MediaQuery.of(context).size.width / 2.0,
-                      decoration: BoxDecoration(
-                          color: const Color(0xffFF451D),
-                          borderRadius: BorderRadius.circular(200),
-                          border: Border.all(color: const Color(0xffF0B0B0),),),),),
+                  height: 40,
+                  width: MediaQuery.of(context).size.width / 2.0,
+                  decoration: BoxDecoration(
+                    color: const Color(0xffFF451D),
+                    borderRadius: BorderRadius.circular(200),
+                    border: Border.all(
+                      color: const Color(0xffF0B0B0),
+                    ),
+                  ),
+                ),
+              ),
               SizedBox(
                   height: 40,
                   child: Row(
@@ -68,21 +77,25 @@ class _ProfilePageState extends State<ProfilePage> {
                                         ? const Color(0xff000000)
                                         : const Color(0xffffffff)))),
                         GestureDetector(
-                            onTap: () {
-                              _controller.animateToPage(
-                                1,
-                                duration: const Duration(milliseconds: 250),
-                                curve: Curves.ease,
-                              );
-                              setState(() => isStory = true);
-                            },
-                            child: Text("Данные",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 16,
-                                    color: isStory
-                                        ? const Color(0xffffffff)
-                                        : const Color(0xff000000),),),),
+                          onTap: () {
+                            _controller.animateToPage(
+                              1,
+                              duration: const Duration(milliseconds: 250),
+                              curve: Curves.ease,
+                            );
+                            setState(() => isStory = true);
+                          },
+                          child: Text(
+                            "Данные",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                              color: isStory
+                                  ? const Color(0xffffffff)
+                                  : const Color(0xff000000),
+                            ),
+                          ),
+                        ),
                       ]))
             ]),
             const SizedBox(height: 27),

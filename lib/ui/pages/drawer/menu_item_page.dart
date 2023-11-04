@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -67,29 +68,36 @@ class _MenuItemPageState extends State<MenuItemPage> {
         body: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
-                child: SizedBox(
-                    height: 179,
-                    child: PageView.builder(
-                      controller: _controller,
-                      itemCount: banners.length,
-                      itemBuilder: (context, index) => CachedNetworkImage(
-                        imageUrl: banners[index],
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) => const CustomShimmer(
-                          height: 179,
-                          width: double.infinity,
-                        ),
-                      ),
-                    ))),
+              child: SizedBox(
+                height: 179,
+                child: PageView.builder(
+                  controller: _controller,
+                  itemCount: banners.length,
+                  itemBuilder: (context, index) => CachedNetworkImage(
+                    imageUrl: banners[index],
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => const CustomShimmer(
+                      height: 179,
+                      width: double.infinity,
+                    ),
+                  ),
+                ),
+              ),
+            ),
             SliverPadding(
               padding: const EdgeInsets.only(
-                  top: 13, left: 18, right: 10, bottom: 17,),
+                top: 13,
+                left: 18,
+                right: 10,
+                bottom: 17,
+              ),
               sliver: StreamBuilder(
                   stream: FirebaseDatabase.instance
                       .ref("menu/${widget.menuItem}")
                       .onValue,
                   builder: (context, AsyncSnapshot<DatabaseEvent> snapshot) {
                     if (snapshot.hasData) {
+                      log("фыфвыф ${snapshot.data?.snapshot.value}");
                       List<ProductModel> menu = [];
                       Map<String, dynamic> data =
                           jsonDecode(jsonEncode(snapshot.data?.snapshot.value));

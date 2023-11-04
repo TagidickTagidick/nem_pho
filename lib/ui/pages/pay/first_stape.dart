@@ -1,11 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:nem_pho/ui/pages/pay/payment_stape.dart';
+import 'package:nem_pho/models/product_model.dart';
+import 'package:nem_pho/ui/pages/pay/second_stape.dart';
 import 'package:nem_pho/ui/widgets/custom/custom_appbar.dart';
 import 'package:nem_pho/ui/widgets/pay/payment_divider.dart';
 import 'package:nem_pho/ui/widgets/pay/payment_dot.dart';
+import 'package:provider/provider.dart';
 
-class FirstStape extends StatelessWidget {
+import '../../../cart_provider.dart';
+
+class FirstStape extends StatefulWidget {
   const FirstStape({Key? key}) : super(key: key);
+
+  @override
+  State<FirstStape> createState() => _FirstStapeState();
+}
+
+class _FirstStapeState extends State<FirstStape> {
+  List<ProductModel> newProducts = [];
+
+  List<int> counts = [];
+
+  @override
+  void initState() {
+    List<ProductModel> oldCart = context.read<CartProvider>().userModel!.cart;
+    if (oldCart.isNotEmpty) {
+      oldCart.sort((a, b) => a.title.compareTo(b.title));
+      if (oldCart.length == 1) {
+        newProducts.add(oldCart[0]);
+        counts.add(1);
+      } else {
+        int count = 0;
+        for (int i = 1; i < oldCart.length; i++) {
+          count++;
+          if (oldCart[i].title != oldCart[i - 1].title) {
+            newProducts.add(oldCart[i - 1]);
+            counts.add(count);
+            count = 0;
+          }
+        }
+        count++;
+        newProducts.add(oldCart[oldCart.length - 1]);
+        counts.add(count);
+      }
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,71 +143,38 @@ class FirstStape extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 47,
-              right: 35,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "ФО БО",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 20,
-                    color: Color(
-                      0xff000000,
+          for (int i = 0; i < newProducts.length; i++)
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 47,
+                right: 35,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    newProducts[i].title,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 20,
+                      color: Color(
+                        0xff000000,
+                      ),
                     ),
                   ),
-                ),
-                Text(
-                  "1*300 Р",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 14,
-                    color: Color(
-                      0xff000000,
+                  Text(
+                    "${counts[i]}*${newProducts[i].price} р",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                      color: Color(
+                        0xff000000,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            height: 35,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 47,
-              right: 35,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "БУН ЧА",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 20,
-                    color: Color(
-                      0xff000000,
-                    ),
-                  ),
-                ),
-                Text(
-                  "1*350 Р",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 14,
-                    color: Color(
-                      0xff000000,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
           SizedBox(
             height: 27,
           ),
@@ -220,10 +226,23 @@ class FirstStape extends StatelessWidget {
                 SizedBox(
                   height: 16.73,
                 ),
+                Text(
+                  "C вами в ближайшее время свяжется оператор для подтверждения заказа",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 15,
+                    color: Color(
+                      0xff000000,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 16.73,
+                ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => PaymentStape()));
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => SecondStape()));
                   },
                   child: Container(
                     height: 49,

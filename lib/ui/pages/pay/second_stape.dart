@@ -4,9 +4,14 @@ import 'package:nem_pho/ui/widgets/custom/custom_appbar.dart';
 import 'package:nem_pho/ui/widgets/pay/payment_divider.dart';
 import 'package:nem_pho/ui/widgets/pay/payment_dot.dart';
 
-class SecondStape extends StatelessWidget {
+class SecondStape extends StatefulWidget {
   const SecondStape({Key? key}) : super(key: key);
 
+  @override
+  State<SecondStape> createState() => _SecondStapeState();
+}
+
+class _SecondStapeState extends State<SecondStape> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

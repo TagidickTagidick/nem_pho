@@ -9,24 +9,25 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="912997e2-eaa7-4f83-87af-e7a147d5f857" name="Changes" comment="add street">
-      <change afterPath="$PROJECT_DIR$/lib/ui/widgets/drawer/profile/my_order.dart" afterDir="false" />
+    <list default="true" id="912997e2-eaa7-4f83-87af-e7a147d5f857" name="Changes" comment="add cart">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/cart_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cart_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/product_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/product_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/topping_model.dart" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/user_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/user_model.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/category_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/category_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/checkout/cart_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/checkout/cart_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/checkout/choose_street_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/checkout/choose_street_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/drawer/menu_item_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/menu_item_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/drawer/profile/authorization_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/profile/authorization_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/drawer/profile/profile_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/profile/profile_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/loading_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/loading_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/main_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/main_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/first_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/pay/first_stape.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/second_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/pay/second_stape.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/product_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/product_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/widgets/cart_icon.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/cart_icon.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/widgets/custom/custom_appbar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/custom/custom_appbar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/widgets/drawer/profile/my_order.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/drawer/profile/my_order.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/widgets/drawer/profile/my_orders.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/drawer/profile/my_orders.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,7 +142,14 @@
       <option name="project" value="LOCAL" />
       <updated>1698997289546</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="add cart">
+      <created>1699024017170</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1699024017170</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -163,22 +171,7 @@
     <MESSAGE value="fix ios" />
     <MESSAGE value="add user" />
     <MESSAGE value="add street" />
-    <option name="LAST_COMMIT_MESSAGE" value="add street" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/ui/pages/pay/payment_stape.dart</url>
-          <line>12</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/ui/pages/pay/payment_stape.dart</url>
-          <line>122</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="add cart" />
+    <option name="LAST_COMMIT_MESSAGE" value="add cart" />
   </component>
 </project>

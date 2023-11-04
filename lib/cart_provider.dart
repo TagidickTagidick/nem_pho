@@ -13,13 +13,15 @@ class CartProvider with ChangeNotifier, DiagnosticableTreeMixin {
 
   String? get phone => _phone;
 
-  void getUserData() async {
+  Future<void> getUserData() async {
     final prefs = await SharedPreferences.getInstance();
     _phone = prefs.getString('phone');
-    final snapshot = await FirebaseDatabase.instance
-        .ref("users/${prefs.getString('phone')}")
-        .get();
-    _userModel = UserModel.fromJson(snapshot.value as Map);
+    if (_phone != null) {
+      final snapshot = await FirebaseDatabase.instance
+          .ref("users/${prefs.getString('phone')}")
+          .get();
+      _userModel = UserModel.fromJson(snapshot.value as Map);
+    }
     notifyListeners();
   }
 
@@ -29,28 +31,33 @@ class CartProvider with ChangeNotifier, DiagnosticableTreeMixin {
     for (var product in userModel!.cart) {
       cart.add(product.toJson());
     }
-    FirebaseDatabase.instance.ref().child('users/$phone').update({
-      "cart": cart
-    });
+    FirebaseDatabase.instance
+        .ref()
+        .child('users/$phone')
+        .update({"cart": cart});
     notifyListeners();
   }
 
   void removeProduct(ProductModel product) {
     ProductModel removedProduct =
-    userModel!.cart.firstWhere((element) => element.title == product.title);
+        userModel!.cart.firstWhere((element) => element.title == product.title);
     userModel!.cart.remove(removedProduct);
     List cart = [];
     for (var product in userModel!.cart) {
       cart.add(product.toJson());
     }
-    FirebaseDatabase.instance.ref().child('users/$phone').update({
-      "cart": cart
-    });
+    FirebaseDatabase.instance
+        .ref()
+        .child('users/$phone')
+        .update({"cart": cart});
     notifyListeners();
   }
 
   void clearProducts() {
     userModel!.cart.clear();
+    FirebaseDatabase.instance.ref().child('users/$phone').update({
+      "cart": [],
+    });
     notifyListeners();
   }
 }

@@ -26,8 +26,10 @@ class _LoadingPageState extends State<LoadingPage>
 
   void getData() {
     context.read<CartProvider>().getUserData();
-    controller =
-        AnimationController(duration: const Duration(seconds: 1), vsync: this,);
+    controller = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    );
     SchedulerBinding.instance.addPostFrameCallback((_) {
       alpha =
           Tween<double>(begin: 0, end: MediaQuery.of(context).size.width - 93)
@@ -37,7 +39,7 @@ class _LoadingPageState extends State<LoadingPage>
       });
       controller.forward().then((value) =>
           Future.delayed(const Duration(milliseconds: 500)).then(
-                  (value) => Navigator.of(context).pushReplacementNamed("/main")));
+              (value) => Navigator.of(context).pushReplacementNamed("/main")));
     });
   }
 

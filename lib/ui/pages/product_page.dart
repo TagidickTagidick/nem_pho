@@ -30,7 +30,6 @@ class _ProductPageState extends State<ProductPage> {
   @override
   void initState() {
     super.initState();
-    price = int.parse(widget.product.price);
     getToppings();
   }
 
@@ -106,16 +105,15 @@ class _ProductPageState extends State<ProductPage> {
                         SizedBox(
                           height: 5,
                         ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: GestureDetector(
+                        widget.product.gramm.length == 1
+                            ? GestureDetector(
                                 onTap: () {
                                   isHalf = false;
                                   setState(() {});
                                 },
                                 child: Container(
                                   height: 38,
+                                  width: 100,
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(30),
@@ -135,43 +133,75 @@ class _ProductPageState extends State<ProductPage> {
                                     ),
                                   ),
                                 ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 4,
-                            ),
-                            Expanded(
-                              child: GestureDetector(
-                                onTap: () {
-                                  isHalf = true;
-                                  setState(() {});
-                                },
-                                child: Container(
-                                  height: 38,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: isHalf
-                                        ? Color(0xFFFF451D)
-                                        : Color(0xFFFFFFFF),
-                                    border: Border.all(
-                                      color: Color(0xFFF0B0B0),
-                                      width: 2,
+                              )
+                            : Row(
+                                children: [
+                                  Expanded(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        isHalf = false;
+                                        setState(() {});
+                                      },
+                                      child: Container(
+                                        height: 38,
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            color: isHalf
+                                                ? Color(0xFFFFFFFF)
+                                                : Color(0xFFFF451D),
+                                            border: Border.all(
+                                              color: Color(0xFFF0B0B0),
+                                              width: 2,
+                                            )),
+                                        child: Text(
+                                          '600 гр',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                            color: Color(0xff000000),
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                  child: Text(
-                                    '800 гр',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                      color: Color(0xff000000),
+                                  SizedBox(
+                                    width: 4,
+                                  ),
+                                  Expanded(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        isHalf = true;
+                                        setState(() {});
+                                      },
+                                      child: Container(
+                                        height: 38,
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                          color: isHalf
+                                              ? Color(0xFFFF451D)
+                                              : Color(0xFFFFFFFF),
+                                          border: Border.all(
+                                            color: Color(0xFFF0B0B0),
+                                            width: 2,
+                                          ),
+                                        ),
+                                        child: Text(
+                                          '800 гр',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                            color: Color(0xff000000),
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
+                                ],
                               ),
-                            ),
-                          ],
-                        ),
                         const SizedBox(height: 15),
                         // Text(
                         //     product.ml,
@@ -280,11 +310,14 @@ class _ProductPageState extends State<ProductPage> {
                                 SizedBox(
                                   width: 2,
                                 ),
-                                Text(toppings[index].price,
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14,
-                                        color: Color(0xff000000))),
+                                Text(
+                                  toppings[index].price,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                    color: Color(0xff000000),
+                                  ),
+                                ),
                               ],
                             ),
                           ],
@@ -316,7 +349,7 @@ class _ProductPageState extends State<ProductPage> {
                       color: const Color(0xffFF451D),
                       borderRadius: BorderRadius.circular(200)),
                   child: Text(
-                    "Добавить $price",
+                    "Добавить ${int.parse(isHalf ? widget.product.price2! : widget.product.price) + price}",
                     style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 16,

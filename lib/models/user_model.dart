@@ -76,17 +76,17 @@ class OrderModel {
   factory OrderModel.fromJson(Map<dynamic, dynamic> json, int timestamp) {
     DateTime dateTime = DateTime.fromMicrosecondsSinceEpoch(timestamp * 1000);
     return OrderModel(
-        date: "${dateTime.day}.${dateTime.month}.${dateTime.year}",
-        adress: json['adress'],
-        total: json['total'],
-        status: json['status'],
-        id: timestamp,
-        delivery: json['delivery'],
-        products: json['products'] == null
-            ? []
-            : (json['products'] as List<dynamic>)
-                .map((productJson) => ProductModel.fromJson(productJson))
-                .toList(),
+      date: "${dateTime.day}.${dateTime.month}.${dateTime.year}",
+      adress: json['adress'],
+      total: json['total'],
+      status: json['status'],
+      id: timestamp,
+      delivery: json['delivery'],
+      products: json['products'] == null
+          ? []
+          : (json['products'] as List<dynamic>)
+              .map((productJson) => ProductModel.fromJson(productJson))
+              .toList(),
     );
   }
 }

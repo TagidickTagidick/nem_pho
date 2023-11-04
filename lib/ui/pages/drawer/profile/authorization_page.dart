@@ -2,8 +2,10 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nem_pho/ui/pages/drawer/profile/profile_page.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../cart_provider.dart';
 import '../../../widgets/custom/mask_text_input_formatter.dart';
 
 class AuthorizationPage extends StatefulWidget {
@@ -140,9 +142,10 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
                     color: Colors.white.withOpacity(0.3)),
               ),
               style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 24,
-                  color: Color(0xff6D6D6D)),
+                fontWeight: FontWeight.w600,
+                fontSize: 24,
+                color: Color(0xff6D6D6D),
+              ),
             ),
           ),
           const SizedBox(height: 74),
@@ -166,9 +169,14 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
                         phone,
                       );
                       if (mounted) {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const ProfilePage(),
-                        ));
+                        await context
+                            .read<CartProvider>()
+                            .getUserData()
+                            .then((value) {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const ProfilePage(),
+                          ));
+                        });
                       }
                     },
                     child: Container(

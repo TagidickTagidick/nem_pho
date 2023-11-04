@@ -19,11 +19,13 @@ class _CartIconState extends State<CartIcon> {
         onTap: () async {
           final prefs = await SharedPreferences.getInstance();
           if (mounted) {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => prefs.getString('phone') == null
-                  ? const AuthorizationPage()
-                  : const CartPage(),
-            ),);
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => prefs.getString('phone') == null
+                    ? const AuthorizationPage()
+                    : const CartPage(),
+              ),
+            );
           }
         },
         child: Container(
@@ -38,7 +40,8 @@ class _CartIconState extends State<CartIcon> {
                   color: Colors.black,
                 ),
               ),
-              if (context.watch<CartProvider>().userModel!.cart.isNotEmpty)
+              if (context.watch<CartProvider>().phone != null &&
+                  context.watch<CartProvider>().userModel!.cart.isNotEmpty)
                 Align(
                   alignment: Alignment.topRight,
                   child: Container(
@@ -48,7 +51,12 @@ class _CartIconState extends State<CartIcon> {
                     decoration: const BoxDecoration(
                         color: Color(0xffFF451D), shape: BoxShape.circle),
                     child: Text(
-                      context.watch<CartProvider>().userModel!.cart.length.toString(),
+                      context
+                          .watch<CartProvider>()
+                          .userModel!
+                          .cart
+                          .length
+                          .toString(),
                       style: const TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 14,

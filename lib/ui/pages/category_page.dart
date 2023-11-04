@@ -91,32 +91,34 @@ class _CategoryPageState extends State<CategoryPage> {
                             Row(
                               children: [
                                 Hero(
-                                    tag: product.title,
-                                    child: GestureDetector(
-                                        onTap: () => Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    ProductPage(
-                                                        product: product))),
-                                        child: Stack(children: [
-                                          Container(
-                                              height: 180,
-                                              width: 180,
-                                              margin:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 4),
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                  image: DecorationImage(
-                                                      image: AssetImage(
-                                                          "images/${product.image}.png"),
-                                                      fit: BoxFit.cover))),
-                                          Align(
-                                              alignment: Alignment.topLeft,
-                                              child:
-                                                  Image.asset("images/hit.png"))
-                                        ],),),),
+                                  tag: product.title,
+                                  child: GestureDetector(
+                                    onTap: () => Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                ProductPage(product: product))),
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                            height: 180,
+                                            width: 180,
+                                            margin: const EdgeInsets.symmetric(
+                                                vertical: 4),
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                image: DecorationImage(
+                                                    image: AssetImage(
+                                                        "images/${product.image}.png"),
+                                                    fit: BoxFit.cover))),
+                                        Align(
+                                            alignment: Alignment.topLeft,
+                                            child:
+                                                Image.asset("images/hit.png"))
+                                      ],
+                                    ),
+                                  ),
+                                ),
                                 const SizedBox(width: 18),
                                 Expanded(
                                   child: Column(
