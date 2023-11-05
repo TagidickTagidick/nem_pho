@@ -9,7 +9,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="912997e2-eaa7-4f83-87af-e7a147d5f857" name="Changes" comment="add drawer" />
+    <list default="true" id="912997e2-eaa7-4f83-87af-e7a147d5f857" name="Changes" comment="fix add to cart">
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/user_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/user_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/widgets/drawer/profile/my_order.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/drawer/profile/my_order.dart" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -99,7 +104,14 @@
       <option name="project" value="LOCAL" />
       <updated>1698422616316</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fix add to cart">
+      <created>1699174634812</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1699174634812</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -120,6 +132,7 @@
     <MESSAGE value="fix loading" />
     <MESSAGE value="fix ios" />
     <MESSAGE value="add drawer" />
-    <option name="LAST_COMMIT_MESSAGE" value="add drawer" />
+    <MESSAGE value="fix add to cart" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix add to cart" />
   </component>
 </project>
