@@ -9,11 +9,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="912997e2-eaa7-4f83-87af-e7a147d5f857" name="Changes" comment="fix add to cart">
+    <list default="true" id="912997e2-eaa7-4f83-87af-e7a147d5f857" name="Changes" comment="fix order type">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/user_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/user_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/widgets/drawer/profile/my_order.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/drawer/profile/my_order.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/cart_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cart_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/widgets/drawer/profile/my_info.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/drawer/profile/my_info.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699174634812</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="fix order type">
+      <created>1699190551996</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1699190551996</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -133,6 +140,7 @@
     <MESSAGE value="fix ios" />
     <MESSAGE value="add drawer" />
     <MESSAGE value="fix add to cart" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix add to cart" />
+    <MESSAGE value="fix order type" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix order type" />
   </component>
 </project>

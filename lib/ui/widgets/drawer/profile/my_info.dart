@@ -1,8 +1,10 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../cart_provider.dart';
 import '../../../../models/user_model.dart';
 
 class MyInfo extends StatefulWidget {
@@ -146,7 +148,7 @@ class _MyInfoState extends State<MyInfo> {
                   left: 18,
                 ),
                 child: Text(
-                  'Дата рождение',
+                  'Дата рождения',
                   style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
@@ -280,6 +282,96 @@ class _MyInfoState extends State<MyInfo> {
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
                         color: Color(0xff000000)),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 100,
+              ),
+              Center(
+                child: GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                        context: context,
+                        builder: (context) => Container(
+                          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 46),
+                          child: Container(
+                            height: 135,
+                            padding:
+                            const EdgeInsets.only(top: 23, left: 16, right: 16, bottom: 16),
+                            decoration: BoxDecoration(
+                                color: Colors.white, borderRadius: BorderRadius.circular(20)),
+                            child: Column(
+                              children: [
+                                Text("Вы действительно хотите выйти?",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 20,
+                                        color: Colors.black,),),
+                                const SizedBox(height: 24),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          context.read<CartProvider>().clearData();
+                                          Navigator.of(context).popUntil((route) => route.isFirst);
+                                        },
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          padding: const EdgeInsets.symmetric(vertical: 14.5),
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(30),
+                                              color: const Color(0xffE8E8E8),
+                                          ),
+                                          child: Text("Да",
+                                              style: TextStyle(
+                                                  fontStyle: FontStyle.normal,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 16,
+                                                  color: Colors.black,),),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Expanded(
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          padding: const EdgeInsets.symmetric(vertical: 14.5),
+                                          decoration: BoxDecoration(
+                                            // border: Border.all(color: color.main),
+                                              borderRadius: BorderRadius.circular(30),
+                                              color: const Color(0xffF15959)
+                                          ),
+                                          child: Text("Нет",
+                                              style: TextStyle(
+                                                  fontStyle: FontStyle.normal,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 16,
+                                                  color: Colors.white,),),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                    );
+                  },
+                  child: Text(
+                    'Удалить аккаунт',
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xFF808080)),
                   ),
                 ),
               ),
