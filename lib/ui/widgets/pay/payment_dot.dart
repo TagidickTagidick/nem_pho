@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Paymentdot extends StatelessWidget {
-  const Paymentdot({Key? key}) : super(key: key);
+class PaymentDot extends StatelessWidget {
+  const PaymentDot({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

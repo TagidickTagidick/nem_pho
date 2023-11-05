@@ -17,10 +17,12 @@ class CartProvider with ChangeNotifier, DiagnosticableTreeMixin {
     final prefs = await SharedPreferences.getInstance();
     _phone = prefs.getString('phone');
     if (_phone != null) {
-      final snapshot = await FirebaseDatabase.instance
-          .ref("users/${prefs.getString('phone')}")
-          .get();
-      _userModel = UserModel.fromJson(snapshot.value as Map);
+      await Future.delayed(const Duration(seconds: 1)).then((value) async {
+        final snapshot = await FirebaseDatabase.instance
+            .ref("users/$_phone")
+            .get();
+        _userModel = UserModel.fromJson(snapshot.value as Map);
+      });
     }
     notifyListeners();
   }

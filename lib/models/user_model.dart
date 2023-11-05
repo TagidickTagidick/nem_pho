@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'product_model.dart';
 
 class UserModel {
@@ -28,6 +30,7 @@ class UserModel {
   factory UserModel.fromJson(Map<dynamic, dynamic> json) {
     List<OrderModel> orders = [];
     if (json['orders'] != null) {
+      log("ффыв ${json["orders"]}");
       (json['orders'] as Map).forEach((key, value) {
         orders.add(OrderModel.fromJson(value, int.parse(key)));
       });
@@ -63,6 +66,8 @@ class OrderModel {
     required this.id,
     required this.delivery,
     required this.products,
+    required this.isSelf,
+    required this.isCash,
   });
 
   final String date;
@@ -72,12 +77,14 @@ class OrderModel {
   final int id;
   final int delivery;
   final List<ProductModel> products;
+  final bool isSelf;
+  final bool isCash;
 
   factory OrderModel.fromJson(Map<dynamic, dynamic> json, int timestamp) {
     DateTime dateTime = DateTime.fromMicrosecondsSinceEpoch(timestamp * 1000);
     return OrderModel(
       date: "${dateTime.day}.${dateTime.month}.${dateTime.year}",
-      adress: json['adress'],
+      adress: json['address'],
       total: json['total'],
       status: json['status'],
       id: timestamp,
@@ -87,6 +94,8 @@ class OrderModel {
           : (json['products'] as List<dynamic>)
               .map((productJson) => ProductModel.fromJson(productJson))
               .toList(),
+      isSelf: json["is_self"],
+      isCash: json["is_cash"],
     );
   }
 }

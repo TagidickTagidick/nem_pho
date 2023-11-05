@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nem_pho/cart_provider.dart';
+import 'package:nem_pho/ui/pages/pay/first_stape.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../models/user_model.dart';
@@ -216,7 +217,6 @@ class _MyOrderState extends State<MyOrder> with SingleTickerProviderStateMixin {
           child: Column(
             children: [
               Container(
-                height: 136,
                 width: double.infinity,
                 color: Color(0xFFF3F3F3),
                 child: Column(children: [
@@ -262,13 +262,10 @@ class _MyOrderState extends State<MyOrder> with SingleTickerProviderStateMixin {
                     style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w400,
-                        color: Color(0xFF000000)),
+                        color: Color(0xFF000000),),
                   ),
                   SizedBox(
                     height: 5,
-                  ),
-                  Column(
-                    children: [],
                   ),
                   for (int i = 0; i < widget.orderModel.products.length; i++)
                     Padding(
@@ -402,7 +399,8 @@ class _MyOrderState extends State<MyOrder> with SingleTickerProviderStateMixin {
                 padding: const EdgeInsets.only(
                   left: 25,
                 ),
-                child: GestureDetector(
+                child: widget.orderModel.status == "Готов"
+                    ? GestureDetector(
                   onTap: () {
                     for (var product in widget.orderModel.products) {
                       context.read<CartProvider>().addProduct(product);
@@ -431,7 +429,46 @@ class _MyOrderState extends State<MyOrder> with SingleTickerProviderStateMixin {
                       ),
                     ),
                   ),
-                ),
+                ) : GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => FirstStape(
+                        street: '',
+                        apartment: '',
+                        entrance: '',
+                        floor: '',
+                        name: '',
+                        phone: '',
+                        comment: '',
+                        total: 0,
+                        delivery: 0,
+                        id: widget.orderModel.id,
+                        isSelf: widget.orderModel.isSelf,
+                        isCash: widget.orderModel.isCash,
+                      ),),);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 2,
+                    ),
+                    alignment: Alignment.center,
+                    height: 24,
+                    width: 173,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Color(0xffFF451D),
+                    ),
+                    child: Text(
+                      'Посмотреть информацию',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xffffffff),
+                      ),
+                    ),
+                  ),
+                )
               ),
             ],
           ),

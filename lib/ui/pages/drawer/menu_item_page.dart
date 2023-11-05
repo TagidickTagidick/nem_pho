@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -97,7 +96,6 @@ class _MenuItemPageState extends State<MenuItemPage> {
                       .onValue,
                   builder: (context, AsyncSnapshot<DatabaseEvent> snapshot) {
                     if (snapshot.hasData) {
-                      log("фыфвыф ${snapshot.data?.snapshot.value}");
                       List<ProductModel> menu = [];
                       Map<String, dynamic> data =
                           jsonDecode(jsonEncode(snapshot.data?.snapshot.value));

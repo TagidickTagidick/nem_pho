@@ -64,9 +64,9 @@ class CancelStape2 extends StatelessWidget {
                 ),
               ),
               PaymentDivider(),
-              Paymentdot(),
+              PaymentDot(),
               PaymentDivider(),
-              Paymentdot(),
+              PaymentDot(),
             ],
           ),
           SizedBox(

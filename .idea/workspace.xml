@@ -9,26 +9,26 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="912997e2-eaa7-4f83-87af-e7a147d5f857" name="Changes" comment="add cart">
+    <list default="true" id="912997e2-eaa7-4f83-87af-e7a147d5f857" name="Changes" comment="add payment">
+      <change afterPath="$PROJECT_DIR$/lib/ui/widgets/pay/payment_dot_enabled.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/cart_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cart_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/product_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/product_model.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/user_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/user_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/category_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/category_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/checkout/cart_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/checkout/cart_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/checkout/choose_street_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/checkout/choose_street_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/drawer/menu_item_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/menu_item_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/drawer/profile/authorization_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/profile/authorization_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/drawer/profile/profile_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/profile/profile_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/loading_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/loading_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/cancel_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/pay/cancel_stape.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/cancel_stape2.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/pay/cancel_stape2.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/final_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/pay/final_stape.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/first_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/pay/first_stape.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/second_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/pay/second_stape.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/product_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/product_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/widgets/cart_icon.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/cart_icon.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/third_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/pay/third_stape.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/widgets/custom/custom_appbar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/custom/custom_appbar.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/widgets/drawer/profile/my_order.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/drawer/profile/my_order.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/widgets/drawer/profile/my_orders.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/drawer/profile/my_orders.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/widgets/pay/payment_dot.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/pay/payment_dot.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,20 +56,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;ScreenRecorder.SavePath&quot;: &quot;D:\\Developer&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Developer&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "ScreenRecorder.SavePath": "D:\\Developer",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "io.flutter.reload.alreadyRun": "true",
+    "last_opened_file_path": "D:/Developer/nem_pho_web",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\yarin\StudioProjects\nem_pho\images" />
@@ -149,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699024017170</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add delivery">
+      <created>1699066270177</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1699066270177</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -172,6 +179,8 @@
     <MESSAGE value="add user" />
     <MESSAGE value="add street" />
     <MESSAGE value="add cart" />
-    <option name="LAST_COMMIT_MESSAGE" value="add cart" />
+    <MESSAGE value="add delivery" />
+    <MESSAGE value="add payment" />
+    <option name="LAST_COMMIT_MESSAGE" value="add payment" />
   </component>
 </project>

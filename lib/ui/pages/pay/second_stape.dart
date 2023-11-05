@@ -74,9 +74,9 @@ class _SecondStapeState extends State<SecondStape> {
                 ),
               ),
               PaymentDivider(),
-              Paymentdot(),
+              PaymentDot(),
               PaymentDivider(),
-              Paymentdot(),
+              PaymentDot(),
             ],
           ),
           SizedBox(

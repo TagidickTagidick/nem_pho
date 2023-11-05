@@ -18,7 +18,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: const CustomAppBar(isLogin: true,),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 7),
         child: Column(
@@ -75,7 +75,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     fontSize: 16,
                                     color: isStory
                                         ? const Color(0xff000000)
-                                        : const Color(0xffffffff)))),
+                                        : const Color(0xffffffff),),),),
                         GestureDetector(
                           onTap: () {
                             _controller.animateToPage(

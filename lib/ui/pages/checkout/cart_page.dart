@@ -1,7 +1,7 @@
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:nem_pho/ui/pages/checkout/choose_street_page.dart';
 import 'package:nem_pho/ui/pages/pay/first_stape.dart';
+import 'package:nem_pho/ui/widgets/custom/custom_appbar.dart';
 import 'package:provider/provider.dart';
 import '../../../cart_provider.dart';
 import '../../../models/product_model.dart';
@@ -40,7 +40,7 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
 
   bool isSelf = true;
   bool isTime = true;
-  bool isOnline = false;
+  bool isCash = false;
 
   int total = 0;
   bool canCheckout = false;
@@ -136,27 +136,7 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: Scaffold(
           backgroundColor: const Color(0xffFFFFFF),
-          appBar: AppBar(
-            elevation: 0,
-            backgroundColor: const Color(0xffFFFFFF),
-            leading: GestureDetector(
-              onTap: () =>
-                  Navigator.of(context).popUntil((route) => route.isFirst),
-              child: const Icon(
-                Icons.arrow_back_ios,
-                color: Color(0xff000000),
-              ),
-            ),
-            centerTitle: false,
-            title: const Text(
-              "NEM PHO",
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 24,
-                color: Color(0xff000000),
-              ),
-            ),
-          ),
+          appBar: const CustomAppBar(isCart: false),
           body: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -685,7 +665,7 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                                   border: Border.all(
                                       color: const Color(0xffF0B0B0)))),
                           AnimatedAlign(
-                            alignment: isOnline
+                            alignment: isCash
                                 ? Alignment.centerRight
                                 : Alignment.centerLeft,
                             duration: const Duration(milliseconds: 200),
@@ -693,7 +673,7 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                               duration: const Duration(milliseconds: 200),
                               height: 40,
                               width: MediaQuery.of(context).size.width /
-                                  (isOnline ? 3 : 2),
+                                  (isCash ? 3 : 2),
                               decoration: BoxDecoration(
                                 color: const Color(0xffFF451D),
                                 borderRadius: BorderRadius.circular(200),
@@ -710,26 +690,26 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 GestureDetector(
-                                  onTap: () => setState(() => isOnline = false),
+                                  onTap: () => setState(() => isCash = false),
                                   child: Text(
                                     "Банковской картой",
                                     style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 16,
-                                      color: isOnline
+                                      color: isCash
                                           ? const Color(0xff000000)
                                           : const Color(0xffFFFFFF),
                                     ),
                                   ),
                                 ),
                                 GestureDetector(
-                                  onTap: () => setState(() => isOnline = true),
+                                  onTap: () => setState(() => isCash = true),
                                   child: Text(
                                     "Наличными",
                                     style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 16,
-                                      color: isOnline
+                                      color: isCash
                                           ? const Color(0xffFFFFFF)
                                           : const Color(0xff000000),
                                     ),
@@ -803,63 +783,23 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                       const SizedBox(height: 9),
                       GestureDetector(
                         onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const FirstStape(),
-                            ),
-                          );
                           if (canCheckout) {
-                            FirebaseDatabase.instance
-                                .ref()
-                                .child(
-                                    "orders/${DateTime.now().millisecondsSinceEpoch}")
-                                .update({
-                              "adress":
-                                  '$street ${apartmentController.text} ${entranceController.text} ${floorController.text}',
-                              "name": nameController.text,
-                              "phone": phoneController.text,
-                              "comment": commentController.text,
-                              "products":
-                                  context.read<CartProvider>().userModel!.cart,
-                              "total": total,
-                              "status": "Новый",
-                              "delivery":
-                                  neighbourhood == "Кировский" ? 0 : 200,
-                            });
-                            FirebaseDatabase.instance
-                                .ref()
-                                .child(
-                                    "users/${context.read<CartProvider>().phone}")
-                                .update({
-                              "name": nameController.text,
-                              "phone": phoneController.text,
-                              "street": street,
-                              "apartment": apartmentController.text,
-                              "entrance": entranceController.text,
-                              "floor": floorController.text,
-                              "comment": commentController.text,
-                            });
-                            FirebaseDatabase.instance
-                                .ref()
-                                .child(
-                                    "users/${context.read<CartProvider>().phone}/orders/${DateTime.now().millisecondsSinceEpoch}")
-                                .update({
-                              "adress":
-                                  '$street ${apartmentController.text} ${entranceController.text} ${floorController.text}',
-                              "name": nameController.text,
-                              "phone": phoneController.text,
-                              "comment": commentController.text,
-                              "products":
-                                  context.read<CartProvider>().userModel!.cart,
-                              "total": total,
-                              "status": "Новый",
-                              "delivery":
-                                  neighbourhood == "Кировский" ? 0 : 200,
-                            });
-                            context.read<CartProvider>().clearProducts();
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => const FirstStape(),
+                                builder: (context) => FirstStape(
+                                  street: street,
+                                  apartment: apartmentController.text,
+                                  entrance: entranceController.text,
+                                  floor: floorController.text,
+                                  name: nameController.text,
+                                  phone: phoneController.text,
+                                  comment: commentController.text,
+                                  total: total,
+                                  delivery: neighbourhood == "Кировский" ? 0 : 200,
+                                  id: 0,
+                                  isSelf: isSelf,
+                                  isCash: isCash,
+                                ),
                               ),
                             );
                           }
