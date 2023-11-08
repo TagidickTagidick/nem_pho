@@ -692,7 +692,7 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                                 GestureDetector(
                                   onTap: () => setState(() => isCash = false),
                                   child: Text(
-                                    "Банковской картой",
+                                    "Переводом СБП",
                                     style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 16,

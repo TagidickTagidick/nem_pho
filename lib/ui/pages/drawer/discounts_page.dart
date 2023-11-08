@@ -90,34 +90,34 @@ class _StockPageState extends State<StockPage> {
               SizedBox(
                 height: 36,
               ),
-              GestureDetector(
-                onTap: () {
-                  showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    backgroundColor: Colors.transparent,
-                    builder: (sheetContext) => Padding(
-                      padding: EdgeInsets.only(
-                          top: MediaQuery.of(context).padding.top),
-                      child: const DishDay(),
-                    ),
-                  );
-                },
-                child: SizedBox(
-                  height: 249,
-                  width: double.infinity,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(
-                        0), // Здесь задайте нужный вам радиус скругления
-                    child: Container(
-                      child: Image.asset(
-                        'images/Discount3.png',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              // GestureDetector(
+              //   onTap: () {
+              //     showModalBottomSheet(
+              //       context: context,
+              //       isScrollControlled: true,
+              //       backgroundColor: Colors.transparent,
+              //       builder: (sheetContext) => Padding(
+              //         padding: EdgeInsets.only(
+              //             top: MediaQuery.of(context).padding.top),
+              //         child: const DishDay(),
+              //       ),
+              //     );
+              //   },
+              //   child: SizedBox(
+              //     height: 249,
+              //     width: double.infinity,
+              //     child: ClipRRect(
+              //       borderRadius: BorderRadius.circular(
+              //           0), // Здесь задайте нужный вам радиус скругления
+              //       child: Container(
+              //         child: Image.asset(
+              //           'images/Discount3.png',
+              //           fit: BoxFit.cover,
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
               SizedBox(
                 height: 36,
               ),
