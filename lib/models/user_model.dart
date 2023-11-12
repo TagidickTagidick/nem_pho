@@ -30,7 +30,9 @@ class UserModel {
   factory UserModel.fromJson(Map<dynamic, dynamic> json) {
     List<OrderModel> orders = [];
     if (json['orders'] != null) {
-      (json['orders'] as Map).forEach((key, value) {
+      Map jsonOrders = (json['orders'] as Map);
+      jsonOrders = Map.fromEntries(jsonOrders.entries.toList()..sort((e1, e2) => e2.key.compareTo(e1.key)));
+      jsonOrders.forEach((key, value) {
         orders.add(OrderModel.fromJson(value, int.parse(key)));
       });
     }

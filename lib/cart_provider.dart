@@ -43,6 +43,16 @@ class CartProvider with ChangeNotifier, DiagnosticableTreeMixin {
     notifyListeners();
   }
 
+  void clearData() async {
+    FirebaseDatabase.instance
+        .ref("users/$_phone").remove();
+    _phone = null;
+    _userModel = null;
+    notifyListeners();
+    final prefs = await SharedPreferences.getInstance();
+    prefs.clear();
+  }
+
   void addProduct(ProductModel product) {
     userModel?.cart.add(product);
     List cart = [];

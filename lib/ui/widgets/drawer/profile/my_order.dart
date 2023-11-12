@@ -75,6 +75,7 @@ class _MyOrderState extends State<MyOrder> with SingleTickerProviderStateMixin {
               const SizedBox(
                 height: 5,
               ),
+              if (!widget.orderModel.isSelf)
               Padding(
                 padding: const EdgeInsets.only(
                   left: 25,
@@ -102,6 +103,66 @@ class _MyOrderState extends State<MyOrder> with SingleTickerProviderStateMixin {
                           fontWeight: FontWeight.w400,
                           color: Color(0xFF000000),
                         ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 25,
+                  right: 25,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Тип доставки:',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xFF7B7A7A),
+                      ),
+                    ),
+                    Text(
+                      widget.orderModel.isSelf ? "Самовывоз" : "Доставка",
+                      style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xFF000000),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 25,
+                  right: 25,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Тип оплаты:',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xFF7B7A7A),
+                      ),
+                    ),
+                    Text(
+                      widget.orderModel.isCash ? "Наличными" : "Картой",
+                      style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xFF000000),
                       ),
                     ),
                   ],

@@ -3,10 +3,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../cart_provider.dart';
 import '../../models/product_model.dart';
 import '../widgets/custom/custom_shimmer.dart';
 import '../widgets/custom/custom_appbar.dart';
+import 'drawer/profile/authorization_page.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key, required this.product});
@@ -334,13 +336,25 @@ class _ProductPageState extends State<ProductPage> {
               left: 25,
               right: 25,
               child: GestureDetector(
-                onTap: () {
-                  for (var topping in myToppings) {
-                    context.read<CartProvider>().addProduct(topping);
+                onTap: () async {
+                  final prefs = await SharedPreferences.getInstance();
+                  if (mounted) {
+                    if (prefs.getString('phone') == null) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const AuthorizationPage(),
+                        ),
+                      );
+                    }
+                    else {
+                      for (var topping in myToppings) {
+                        context.read<CartProvider>().addProduct(topping);
+                      }
+                      context.read<CartProvider>().addProduct(widget.product);
+                      Navigator.of(context).pop();
+                    }
                   }
-                  context.read<CartProvider>().addProduct(widget.product);
-                  Navigator.of(context).pop();
-                },
+                    },
                 child: Container(
                   height: 40,
                   width: double.infinity,
