@@ -27,7 +27,7 @@ class _MainPageState extends State<MainPage> {
           backgroundColor: const Color(0xffFFFFFF),
           leading: GestureDetector(
               onTap: () => _key.currentState?.openDrawer(),
-              child: const Icon(Icons.menu, color: Color(0xff000000))),
+              child: const Icon(Icons.menu, color: Color(0xff000000),),),
           centerTitle: false,
           title: const Text("NEM PHO",
               style: TextStyle(
