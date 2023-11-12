@@ -72,7 +72,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               const Divider(color: Color(0xffF0E0E0)),
               GestureDetector(
                   onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const DeliveryInfoPage(),
+                        builder: (context) => const DeliveryPage(),
                       )),
                   child: const Padding(
                       padding: EdgeInsets.only(left: 39),

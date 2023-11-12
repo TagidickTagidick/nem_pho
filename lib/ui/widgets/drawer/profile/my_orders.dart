@@ -13,7 +13,6 @@ class MyOrders extends StatefulWidget {
 }
 
 class _MyOrdersState extends State<MyOrders> {
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
@@ -22,7 +21,8 @@ class _MyOrdersState extends State<MyOrders> {
             .onValue,
         builder: (context, AsyncSnapshot<DatabaseEvent> snapshot) {
           if (snapshot.hasData) {
-            UserModel userModel = UserModel.fromJson(snapshot.data?.snapshot.value as Map);
+            UserModel userModel =
+                UserModel.fromJson(snapshot.data?.snapshot.value as Map);
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -68,7 +68,6 @@ class _MyOrdersState extends State<MyOrders> {
           return Center(
             child: CircularProgressIndicator(),
           );
-          }
-        );
+        });
   }
 }

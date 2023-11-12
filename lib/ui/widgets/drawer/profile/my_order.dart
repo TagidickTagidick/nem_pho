@@ -260,9 +260,10 @@ class _MyOrderState extends State<MyOrder> with SingleTickerProviderStateMixin {
                   Text(
                     'Ваш заказ:',
                     style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFF000000),),
+                      fontSize: 13,
+                      fontWeight: FontWeight.w400,
+                      color: Color(0xFF000000),
+                    ),
                   ),
                   SizedBox(
                     height: 5,
@@ -396,80 +397,84 @@ class _MyOrderState extends State<MyOrder> with SingleTickerProviderStateMixin {
                 height: 13,
               ),
               Padding(
-                padding: const EdgeInsets.only(
-                  left: 25,
-                ),
-                child: widget.orderModel.status == "Готов"
-                    ? GestureDetector(
-                  onTap: () {
-                    for (var product in widget.orderModel.products) {
-                      context.read<CartProvider>().addProduct(product);
-                    }
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const CartPage()));
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 2,
-                    ),
-                    alignment: Alignment.center,
-                    height: 24,
-                    width: 173,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Color(0xffFF451D),
-                    ),
-                    child: Text(
-                      'Повторить',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xffffffff),
-                      ),
-                    ),
+                  padding: const EdgeInsets.only(
+                    left: 25,
                   ),
-                ) : GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => FirstStape(
-                        street: '',
-                        apartment: '',
-                        entrance: '',
-                        floor: '',
-                        name: '',
-                        phone: '',
-                        comment: '',
-                        total: 0,
-                        delivery: 0,
-                        id: widget.orderModel.id,
-                        isSelf: widget.orderModel.isSelf,
-                        isCash: widget.orderModel.isCash,
-                      ),),);
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 2,
-                    ),
-                    alignment: Alignment.center,
-                    height: 24,
-                    width: 173,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Color(0xffFF451D),
-                    ),
-                    child: Text(
-                      'Посмотреть информацию',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xffffffff),
-                      ),
-                    ),
-                  ),
-                )
-              ),
+                  child: widget.orderModel.status == "Готов"
+                      ? GestureDetector(
+                          onTap: () {
+                            for (var product in widget.orderModel.products) {
+                              context.read<CartProvider>().addProduct(product);
+                            }
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const CartPage()));
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 2,
+                            ),
+                            alignment: Alignment.center,
+                            height: 24,
+                            width: 173,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color(0xffFF451D),
+                            ),
+                            child: Text(
+                              'Повторить',
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xffffffff),
+                              ),
+                            ),
+                          ),
+                        )
+                      : GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => CheckoutPage(
+                                  street: '',
+                                  flat: '',
+                                  office: '',
+                                  entrance: '',
+                                  floor: '',
+                                  name: '',
+                                  phone: '',
+                                  comment: '',
+                                  total: 0,
+                                  delivery: 0,
+                                  id: widget.orderModel.id,
+                                  isSelf: widget.orderModel.isSelf,
+                                  isCash: widget.orderModel.isCash,
+                                ),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 2,
+                            ),
+                            alignment: Alignment.center,
+                            height: 24,
+                            width: 173,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color(0xffFF451D),
+                            ),
+                            child: Text(
+                              'Посмотреть информацию',
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xffffffff),
+                              ),
+                            ),
+                          ),
+                        )),
             ],
           ),
         ),

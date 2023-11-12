@@ -9,26 +9,29 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="912997e2-eaa7-4f83-87af-e7a147d5f857" name="Changes" comment="add payment">
-      <change afterPath="$PROJECT_DIR$/lib/ui/widgets/pay/payment_dot_enabled.dart" afterDir="false" />
+    <list default="true" id="912997e2-eaa7-4f83-87af-e7a147d5f857" name="Changes" comment="add checkout">
+      <change afterPath="$PROJECT_DIR$/lib/ui/widgets/custom/banners/custom_banner.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ui/widgets/custom/banners/custom_banners.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ui/widgets/not_working.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/cart_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cart_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/user_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/user_model.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/checkout/cart_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/checkout/cart_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/drawer/delivery_info_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/delivery_info_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/drawer/delivery_page.dart" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/drawer/menu_item_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/menu_item_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/drawer/profile/authorization_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/profile/authorization_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/drawer/profile/profile_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/profile/profile_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/cancel_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/pay/cancel_stape.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/cancel_stape2.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/pay/cancel_stape2.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/final_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/pay/final_stape.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/loading_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/loading_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/main_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/main_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/first_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/pay/first_stape.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/second_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/pay/second_stape.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/third_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/pay/third_stape.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/product_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/product_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/widgets/custom/custom_appbar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/custom/custom_appbar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/widgets/custom/custom_drawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/custom/custom_drawer.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/widgets/drawer/profile/my_order.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/drawer/profile/my_order.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/widgets/drawer/profile/my_orders.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/drawer/profile/my_orders.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/widgets/pay/payment_dot.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/pay/payment_dot.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +69,7 @@
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
     "io.flutter.reload.alreadyRun": "true",
-    "last_opened_file_path": "D:/Developer/nem_pho_web",
+    "last_opened_file_path": "D:/Developer/voices-mobile",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
@@ -75,6 +78,7 @@
       <recent name="C:\Users\yarin\StudioProjects\nem_pho\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Developer\nem_pho\lib\ui\widgets\custom\banners" />
       <recent name="D:\Developer\nem_pho\lib\ui\pages\checkout" />
     </key>
   </component>
@@ -156,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699066270177</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add checkout">
+      <created>1699172915366</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1699172915366</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -181,6 +192,7 @@
     <MESSAGE value="add cart" />
     <MESSAGE value="add delivery" />
     <MESSAGE value="add payment" />
-    <option name="LAST_COMMIT_MESSAGE" value="add payment" />
+    <MESSAGE value="add checkout" />
+    <option name="LAST_COMMIT_MESSAGE" value="add checkout" />
   </component>
 </project>

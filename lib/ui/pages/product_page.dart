@@ -125,7 +125,7 @@ class _ProductPageState extends State<ProductPage> {
                                         width: 2,
                                       )),
                                   child: Text(
-                                    '600 гр',
+                                    '${widget.product.gramm.first} гр',
                                     style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600,
@@ -156,7 +156,7 @@ class _ProductPageState extends State<ProductPage> {
                                               width: 2,
                                             )),
                                         child: Text(
-                                          '600 гр',
+                                          '${widget.product.gramm.first} гр',
                                           style: TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
@@ -190,7 +190,7 @@ class _ProductPageState extends State<ProductPage> {
                                           ),
                                         ),
                                         child: Text(
-                                          '800 гр',
+                                          '${widget.product.gramm.last} гр',
                                           style: TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,

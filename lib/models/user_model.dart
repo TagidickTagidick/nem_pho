@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'product_model.dart';
 
 class UserModel {
@@ -9,7 +7,8 @@ class UserModel {
     required this.dateOfBirth,
     required this.sex,
     required this.street,
-    required this.apartment,
+    required this.flat,
+    required this.office,
     required this.entrance,
     required this.floor,
     required this.orders,
@@ -21,7 +20,8 @@ class UserModel {
   final String dateOfBirth;
   final bool? sex;
   final String street;
-  final String apartment;
+  final String flat;
+  final String office;
   final String entrance;
   final String floor;
   final List<OrderModel> orders;
@@ -30,7 +30,6 @@ class UserModel {
   factory UserModel.fromJson(Map<dynamic, dynamic> json) {
     List<OrderModel> orders = [];
     if (json['orders'] != null) {
-      log("ффыв ${json["orders"]}");
       (json['orders'] as Map).forEach((key, value) {
         orders.add(OrderModel.fromJson(value, int.parse(key)));
       });
@@ -48,7 +47,8 @@ class UserModel {
       dateOfBirth: json["date_of_birth"] ?? "Не выбрано",
       sex: json["sex"],
       street: json["street"] ?? "",
-      apartment: json["apartment"] ?? "",
+      flat: json["flat"] ?? "",
+      office: json["office"] ?? "",
       entrance: json["entrance"] ?? "",
       floor: json["floor"] ?? "",
       orders: orders,

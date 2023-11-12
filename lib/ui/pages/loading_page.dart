@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:nem_pho/ui/pages/main_page.dart';
 import 'package:provider/provider.dart';
 
 import '../../cart_provider.dart';
@@ -38,8 +39,10 @@ class _LoadingPageState extends State<LoadingPage>
         setState(() {});
       });
       controller.forward().then((value) =>
-          Future.delayed(const Duration(milliseconds: 500)).then(
-              (value) => Navigator.of(context).pushReplacementNamed("/main")));
+          Future.delayed(const Duration(milliseconds: 500)).then((value) =>
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => const MainPage(),
+              ))));
     });
   }
 

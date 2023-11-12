@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:nem_pho/ui/pages/loading_page.dart';
-import 'package:nem_pho/ui/pages/main_page.dart';
 import 'package:provider/provider.dart';
 
 import 'cart_provider.dart';
@@ -25,11 +24,10 @@ class App extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => CartProvider()),
       ],
       child: MaterialApp(
-        routes: {
-          "/loading": (context) => const LoadingPage(),
-          "/main": (context) => const MainPage(),
-        },
-        home: const LoadingPage(),
+        home: MediaQuery(
+          data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+          child: const LoadingPage(),
+        ),
       ),
     );
   }

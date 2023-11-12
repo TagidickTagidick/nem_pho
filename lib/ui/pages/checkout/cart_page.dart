@@ -8,6 +8,7 @@ import '../../../models/product_model.dart';
 import '../../../models/user_model.dart';
 import '../../widgets/custom/custom_text_field.dart';
 import '../../widgets/custom/mask_text_input_formatter.dart';
+import '../../widgets/not_working.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -23,7 +24,8 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
 
   late UserModel userModel;
 
-  final TextEditingController apartmentController = TextEditingController();
+  final TextEditingController flatController = TextEditingController();
+  final TextEditingController officeController = TextEditingController();
   final TextEditingController entranceController = TextEditingController();
   final TextEditingController floorController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
@@ -70,7 +72,8 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
     } else {
       if ((total + (neighbourhood == "Кировский" ? 0 : 200) >= 900) &&
           street.isNotEmpty &&
-          apartmentController.text.isNotEmpty &&
+          (flatController.text.isNotEmpty ||
+              officeController.text.isNotEmpty) &&
           nameController.text.isNotEmpty &&
           phoneController.text.isNotEmpty) {
         canCheckout = true;
@@ -100,7 +103,8 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
     phoneController.text = userModel.phone.replaceAll("_", " ");
     nameController.text = userModel.name;
     street = userModel.street;
-    apartmentController.text = userModel.apartment;
+    flatController.text = userModel.flat;
+    officeController.text = userModel.office;
     entranceController.text = userModel.entrance;
     floorController.text = userModel.floor;
 
@@ -157,18 +161,24 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                     children: [
                       const SizedBox(width: 20),
                       Expanded(
-                        child: Text(newProducts[i].title,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 20,
-                                color: Color(0xff000000))),
+                        child: Text(
+                          newProducts[i].title,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 20,
+                            color: Color(0xff000000),
+                          ),
+                        ),
                       ),
                       const SizedBox(width: 10),
-                      Text("${newProducts[i].price} р",
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 20,
-                              color: Color(0xff000000))),
+                      Text(
+                        "${newProducts[i].price} р",
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 20,
+                          color: Color(0xff000000),
+                        ),
+                      ),
                       const SizedBox(width: 20),
                       Container(
                         width: 120,
@@ -272,24 +282,26 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                       borderRadius: BorderRadius.circular(20)),
                   child: Column(
                     children: [
-                      Row(children: [
-                        Text(
-                          isSelf ? "Самовывоз: " : "Доставка: ",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20,
-                            color: Color(0xff000000),
+                      Row(
+                        children: [
+                          Text(
+                            isSelf ? "Самовывоз: " : "Доставка: ",
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 20,
+                              color: Color(0xff000000),
+                            ),
                           ),
-                        ),
-                        Text(
-                          "Ярославль",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20,
-                            color: Color(0xff000000),
-                          ),
-                        )
-                      ]),
+                          const Text(
+                            "Ярославль",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 20,
+                              color: Color(0xff000000),
+                            ),
+                          )
+                        ],
+                      ),
                       const SizedBox(height: 10),
                       Stack(
                         children: [
@@ -471,23 +483,41 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                               ),
                             ),
                             const SizedBox(height: 10),
-                            CustomTextField(
-                              controller: apartmentController,
-                              hintText: "№ квартиры /офиса",
-                              textInputType: TextInputType.number,
-                              onChanged: (value) {
-                                checkCanCheckout();
-                              },
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: CustomTextField(
+                                    controller: flatController,
+                                    hintText: "№ квартиры",
+                                    textInputType: TextInputType.number,
+                                    onChanged: (value) {
+                                      checkCanCheckout();
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(width: 19),
+                                Expanded(
+                                  child: CustomTextField(
+                                    controller: officeController,
+                                    hintText: "№ офиса",
+                                    textInputType: TextInputType.number,
+                                    onChanged: (value) {
+                                      checkCanCheckout();
+                                    },
+                                  ),
+                                ),
+                              ],
                             ),
                             const SizedBox(height: 18),
                             Row(
                               children: [
                                 Expanded(
-                                    child: CustomTextField(
-                                  controller: entranceController,
-                                  hintText: "Подъезд",
-                                  textInputType: TextInputType.number,
-                                )),
+                                  child: CustomTextField(
+                                    controller: entranceController,
+                                    hintText: "Подъезд",
+                                    textInputType: TextInputType.number,
+                                  ),
+                                ),
                                 const SizedBox(width: 19),
                                 Expanded(
                                   child: CustomTextField(
@@ -517,13 +547,14 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                             checkCanCheckout();
                           },
                           decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "Номер телефона",
-                              hintStyle: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 16,
-                                  color: const Color(0xff000000)
-                                      .withOpacity(0.42))),
+                            border: InputBorder.none,
+                            hintText: "Номер телефона",
+                            hintStyle: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                              color: const Color(0xff000000).withOpacity(0.42),
+                            ),
+                          ),
                           inputFormatters: [maskFormatter],
                         ),
                       ),
@@ -541,73 +572,79 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                         sizeFactor: _deliveryController.view,
                         child: Column(
                           children: [
-                            Stack(children: [
-                              Container(
-                                height: 40,
-                                width: MediaQuery.of(context).size.width - 40,
-                                decoration: BoxDecoration(
-                                  color: const Color(0xffffffff),
-                                  borderRadius: BorderRadius.circular(200),
-                                  border: Border.all(
-                                    color: const Color(0xffF0B0B0),
-                                  ),
-                                ),
-                              ),
-                              AnimatedAlign(
-                                alignment: isTime
-                                    ? Alignment.centerRight
-                                    : Alignment.centerLeft,
-                                duration: const Duration(milliseconds: 200),
-                                child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
+                            Stack(
+                              children: [
+                                Container(
                                   height: 40,
-                                  width: MediaQuery.of(context).size.width /
-                                      (isTime ? 3 : 2),
+                                  width: MediaQuery.of(context).size.width - 40,
                                   decoration: BoxDecoration(
-                                    color: const Color(0xffFF451D),
+                                    color: const Color(0xffffffff),
                                     borderRadius: BorderRadius.circular(200),
                                     border: Border.all(
                                       color: const Color(0xffF0B0B0),
                                     ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(
+                                AnimatedAlign(
+                                  alignment: isTime
+                                      ? Alignment.centerRight
+                                      : Alignment.centerLeft,
+                                  duration: const Duration(milliseconds: 200),
+                                  child: AnimatedContainer(
+                                    duration: const Duration(milliseconds: 200),
+                                    height: 40,
+                                    width: MediaQuery.of(context).size.width /
+                                        (isTime ? 3 : 2),
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xffFF451D),
+                                      borderRadius: BorderRadius.circular(200),
+                                      border: Border.all(
+                                        color: const Color(0xffF0B0B0),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
                                   height: 40,
                                   child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        GestureDetector(
-                                            onTap: () =>
-                                                setState(() => isTime = false),
-                                            child: Text("Как можно быстрее",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 16,
-                                                    color: isTime
-                                                        ? const Color(
-                                                            0xff000000)
-                                                        : const Color(
-                                                            0xffFFFFFF)))),
-                                        GestureDetector(
-                                          onTap: () =>
-                                              setState(() => isTime = true),
-                                          child: Text(
-                                            "Ко времени",
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                              color: isTime
-                                                  ? const Color(0xffFFFFFF)
-                                                  : const Color(0xff000000),
-                                            ),
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () =>
+                                            setState(() => isTime = false),
+                                        child: Text(
+                                          "Как можно быстрее",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 16,
+                                            color: isTime
+                                                ? const Color(0xff000000)
+                                                : const Color(0xffFFFFFF),
                                           ),
                                         ),
-                                      ]))
-                            ]),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () =>
+                                            setState(() => isTime = true),
+                                        child: Text(
+                                          "Ко времени",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 16,
+                                            color: isTime
+                                                ? const Color(0xffFFFFFF)
+                                                : const Color(0xff000000),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                             const SizedBox(height: 24),
                             Container(
                               height: 77,
@@ -781,21 +818,23 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                         ],
                       ),
                       const SizedBox(height: 9),
-                      GestureDetector(
+                      context.watch<CartProvider>().isWorking ? GestureDetector(
                         onTap: () {
                           if (canCheckout) {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => FirstStape(
+                                builder: (context) => CheckoutPage(
                                   street: street,
-                                  apartment: apartmentController.text,
+                                  flat: flatController.text,
+                                  office: officeController.text,
                                   entrance: entranceController.text,
                                   floor: floorController.text,
                                   name: nameController.text,
                                   phone: phoneController.text,
                                   comment: commentController.text,
                                   total: total,
-                                  delivery: neighbourhood == "Кировский" ? 0 : 200,
+                                  delivery:
+                                      neighbourhood == "Кировский" ? 0 : 200,
                                   id: 0,
                                   isSelf: isSelf,
                                   isCash: isCash,
@@ -823,7 +862,7 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                             ),
                           ),
                         ),
-                      ),
+                      ) : const NotWorking(),
                       const SizedBox(height: 10),
                     ],
                   ),

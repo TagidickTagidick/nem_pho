@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import '../cart_icon.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({super.key, this.isLogin, this.isCart,});
+  const CustomAppBar({
+    super.key,
+    this.isLogin,
+    this.isCart,
+  });
 
   final bool? isLogin;
   final bool? isCart;
@@ -12,7 +16,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         elevation: 0,
         backgroundColor: const Color(0xffFFFFFF),
         leading: GestureDetector(
-            onTap: () => isLogin == null ? Navigator.of(context).pop() : Navigator.of(context).popUntil((route) => route.isFirst),
+            onTap: () => isLogin == null
+                ? Navigator.of(context).pop()
+                : Navigator.of(context).popUntil((route) => route.isFirst),
             child: const Icon(Icons.arrow_back_ios, color: Color(0xff000000))),
         centerTitle: false,
         title: const Text(

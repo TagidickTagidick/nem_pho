@@ -5,6 +5,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:nem_pho/ui/pages/product_page.dart';
 import '../../../models/product_model.dart';
+import '../../widgets/custom/banners/custom_banners.dart';
 import '../../widgets/custom/custom_shimmer.dart';
 import '../../widgets/custom/custom_appbar.dart';
 import '../../widgets/custom/custom_drawer.dart';
@@ -47,12 +48,17 @@ class _MenuItemPageState extends State<MenuItemPage> {
     timer = Timer.periodic(const Duration(seconds: 5), (timer) {
       if (index == banners.length - 1) {
         index = 0;
-        _controller.animateToPage(0,
-            duration: const Duration(milliseconds: 500), curve: Curves.ease);
+        _controller.animateToPage(
+          0,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.ease,
+        );
       } else {
         index++;
         _controller.nextPage(
-            duration: const Duration(milliseconds: 500), curve: Curves.ease);
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.ease,
+        );
       }
     });
     setState(() {});
@@ -66,23 +72,7 @@ class _MenuItemPageState extends State<MenuItemPage> {
         drawer: const CustomDrawer(),
         body: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(
-              child: SizedBox(
-                height: 179,
-                child: PageView.builder(
-                  controller: _controller,
-                  itemCount: banners.length,
-                  itemBuilder: (context, index) => CachedNetworkImage(
-                    imageUrl: banners[index],
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) => const CustomShimmer(
-                      height: 179,
-                      width: double.infinity,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            const CustomBanners(),
             SliverPadding(
               padding: const EdgeInsets.only(
                 top: 13,

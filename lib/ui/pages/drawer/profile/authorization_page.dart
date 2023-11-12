@@ -169,12 +169,15 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
                         phone,
                       );
                       if (mounted) {
-                        await context
-                            .read<CartProvider>()
-                            .getUserData();
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const ProfilePage(),
-                        ));
+                        await context.read<CartProvider>().getIsWorking();
+                        if (mounted) {
+                          await context.read<CartProvider>().getUserData();
+                          if (mounted) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const ProfilePage(),
+                            ));
+                          }
+                        }
                       }
                     },
                     child: Container(
