@@ -51,6 +51,7 @@ class _MainPageState extends State<MainPage> {
               sliver: StreamBuilder(
                 stream: FirebaseDatabase.instance.ref("menu").onValue,
                 builder: (context, AsyncSnapshot<DatabaseEvent> snapshot) {
+                  print(snapshot.data);
                   if (snapshot.hasData) {
                     List<String> menu = [];
                     List<String> images = [];
