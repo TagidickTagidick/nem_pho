@@ -8,7 +8,7 @@ class NotWorking extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return context.watch<CartProvider>().isWorking ? const SizedBox() : const SizedBox(
-      height: 50,
+      height: 60,
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

@@ -14,7 +14,7 @@ class CartProvider with ChangeNotifier {
 
   String? get phone => _phone;
 
-  bool _isWorking = false;
+  bool _isWorking = true;
 
   bool get isWorking => _isWorking;
 
@@ -22,6 +22,8 @@ class CartProvider with ChangeNotifier {
     final time = await NTP.now();
     DateTime startTime = DateTime(time.year, time.month, time.day, 11, 30);
     DateTime endTime = DateTime(time.year, time.month, time.day, 20, 30);
+    print('startTime: $startTime');
+    print('endTime: $endTime');
     if (time.isAfter(startTime) && time.isBefore(endTime)) {
       _isWorking = true;
     } else {
