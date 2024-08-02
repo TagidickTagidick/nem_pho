@@ -5,7 +5,7 @@ import 'models/product_model.dart';
 import 'models/user_model.dart';
 import 'package:ntp/ntp.dart';
 
-class CartProvider with ChangeNotifier, DiagnosticableTreeMixin {
+class CartProvider with ChangeNotifier {
   UserModel? _userModel;
 
   UserModel? get userModel => _userModel;

@@ -3,12 +3,12 @@ import 'package:nem_pho/ui/pages/checkout/choose_street_page.dart';
 import 'package:nem_pho/ui/pages/pay/first_stape.dart';
 import 'package:nem_pho/ui/widgets/custom/custom_appbar.dart';
 import 'package:provider/provider.dart';
-import '../../../cart_provider.dart';
-import '../../../models/product_model.dart';
-import '../../../models/user_model.dart';
-import '../../widgets/custom/custom_text_field.dart';
-import '../../widgets/custom/mask_text_input_formatter.dart';
-import '../../widgets/not_working.dart';
+import '../../cart_provider.dart';
+import '../../models/product_model.dart';
+import '../../models/user_model.dart';
+import '../../ui/widgets/custom/custom_text_field.dart';
+import '../../ui/widgets/custom/mask_text_input_formatter.dart';
+import '../../ui/widgets/not_working.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});

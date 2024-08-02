@@ -4,7 +4,7 @@ import 'package:nem_pho/ui/pages/pay/first_stape.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../models/user_model.dart';
-import '../../../pages/checkout/cart_page.dart';
+import '../../../../presentation/cart_page/cart_page.dart';
 
 class MyOrder extends StatefulWidget {
   const MyOrder({

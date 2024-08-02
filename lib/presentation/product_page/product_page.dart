@@ -6,9 +6,9 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../cart_provider.dart';
 import '../../models/product_model.dart';
-import '../widgets/custom/custom_shimmer.dart';
-import '../widgets/custom/custom_appbar.dart';
-import 'drawer/profile/authorization_page.dart';
+import '../../ui/widgets/custom/custom_shimmer.dart';
+import '../../ui/widgets/custom/custom_appbar.dart';
+import '../../ui/pages/drawer/profile/authorization_page.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key, required this.product});

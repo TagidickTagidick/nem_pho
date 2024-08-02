@@ -2,12 +2,12 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:nem_pho/ui/pages/product_page.dart';
+import 'package:nem_pho/presentation/product_page/product_page.dart';
 import 'package:nem_pho/ui/widgets/custom/custom_appbar.dart';
 import 'package:provider/provider.dart';
 import '../../cart_provider.dart';
 import '../../models/product_model.dart';
-import '../widgets/custom/custom_shimmer.dart';
+import '../../ui/widgets/custom/custom_shimmer.dart';
 
 class CategoryPage extends StatefulWidget {
   const CategoryPage(
