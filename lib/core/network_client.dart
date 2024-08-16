@@ -1,7 +1,9 @@
 import 'dart:convert';
-import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:nem_pho/core/storage_service.dart';
+import 'package:nem_pho/core/utils/custom_log.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 import 'models/error_model.dart';
 
@@ -15,10 +17,15 @@ abstract class NetworkClient {
 
 class INetworkClient extends NetworkClient {
 
+  final Talker talker = Talker();
   final IStorageService _storageService = StorageService();
-  final dio = Dio();
+  final Dio dio = Dio();
   final String baseUrl = 'https://nem-pho-backend.onrender.com/';
 
+  String getPrettyJSONString(Map<String, dynamic> jsonObject) {
+    const encoder = JsonEncoder.withIndent('\t');
+    return encoder.convert(jsonObject);
+  }
 
   @override
   Future<Map<String, dynamic>> post(String url, Map<String, dynamic> body) async {
@@ -28,7 +35,7 @@ class INetworkClient extends NetworkClient {
       Response response = await dio.post(
         '$baseUrl$url',
         data: body,
-        options: Options (
+        options: Options(
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
             'Authorization': 'Bearer $accessToken'
@@ -38,7 +45,7 @@ class INetworkClient extends NetworkClient {
       logResponse(response.statusCode!, response.data, 'post', url);
       switch (response.statusCode) {
         case 200:
-          return jsonDecode(response.data);
+          return response.data;
         case 401:
           await refresh();
           logRequest('post', url);
@@ -46,7 +53,7 @@ class INetworkClient extends NetworkClient {
           Response response = await dio.post(
             '$baseUrl$url',
             data: body,
-            options: Options (
+            options: Options(
               headers: <String, String>{
                 'Content-Type': 'application/json; charset=UTF-8',
                 'Authorization': 'Bearer $accessToken'
@@ -56,7 +63,7 @@ class INetworkClient extends NetworkClient {
           logResponse(response.statusCode!, response.data, 'post', url);
           switch (response.statusCode) {
             case 200:
-              return jsonDecode(response.data);
+              return response.data;
             default:
               throw ErrorModel(
                   statusCode: response.statusCode!,
@@ -81,7 +88,7 @@ class INetworkClient extends NetworkClient {
       final accessToken = await _storageService.getAccessToken();
       Response response = await dio.get(
         '$baseUrl$url',
-        options: Options (
+        options: Options(
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
             'Authorization': 'Bearer $accessToken'
@@ -91,14 +98,14 @@ class INetworkClient extends NetworkClient {
       logResponse(response.statusCode!, response.data, 'get', url);
       switch (response.statusCode) {
         case 200:
-          return jsonDecode(response.data);
+          return response.data;
         case 401:
           await refresh();
           logRequest('get', url);
           final accessToken = await _storageService.getAccessToken();
           Response response = await dio.get(
             '$baseUrl$url',
-            options: Options (
+            options: Options(
               headers: <String, String>{
                 'Content-Type': 'application/json; charset=UTF-8',
                 'Authorization': 'Bearer $accessToken'
@@ -108,7 +115,7 @@ class INetworkClient extends NetworkClient {
           logResponse(response.statusCode!, response.data, 'get', url);
           switch (response.statusCode) {
             case 200:
-              return jsonDecode(response.data);
+              return response.data;
             default:
               throw ErrorModel(
                   statusCode: response.statusCode!,
@@ -133,7 +140,7 @@ class INetworkClient extends NetworkClient {
       final accessToken = await _storageService.getAccessToken();
       Response response = await dio.delete(
         '$baseUrl$url',
-        options: Options (
+        options: Options(
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
             'Authorization': 'Bearer $accessToken'
@@ -143,14 +150,14 @@ class INetworkClient extends NetworkClient {
       logResponse(response.statusCode!, response.data, 'delete', url);
       switch (response.statusCode) {
         case 200:
-          return jsonDecode(response.data);
+          return response.data;
         case 401:
           await refresh();
           logRequest('delete', url);
           final accessToken = await _storageService.getAccessToken();
           Response response = await dio.delete(
             '$baseUrl$url',
-            options: Options (
+            options: Options(
               headers: <String, String>{
                 'Content-Type': 'application/json; charset=UTF-8',
                 'Authorization': 'Bearer $accessToken'
@@ -160,7 +167,7 @@ class INetworkClient extends NetworkClient {
           logResponse(response.statusCode!, response.data, 'delete', url);
           switch (response.statusCode) {
             case 200:
-              return jsonDecode(response.data);
+              return response.data;
             default:
               throw ErrorModel(
                   statusCode: response.statusCode!,
@@ -185,7 +192,7 @@ class INetworkClient extends NetworkClient {
       final accessToken = await _storageService.getAccessToken();
       Response response = await dio.patch(
         '$baseUrl$url',
-        options: Options (
+        options: Options(
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
             'Authorization': 'Bearer $accessToken'
@@ -195,13 +202,13 @@ class INetworkClient extends NetworkClient {
       logResponse(response.statusCode!, response.data, 'patch', url);
       switch (response.statusCode) {
         case 200:
-          return jsonDecode(response.data);
+          return response.data;
         case 401:
           await refresh();
           logRequest('patch', url);
           Response response = await dio.patch(
             '$baseUrl$url',
-            options: Options (
+            options: Options(
               headers: <String, String>{
                 'Content-Type': 'application/json; charset=UTF-8',
                 'Authorization': 'Bearer $accessToken'
@@ -211,7 +218,7 @@ class INetworkClient extends NetworkClient {
           logResponse(response.statusCode!, response.data, 'patch', url);
           switch (response.statusCode) {
             case 200:
-              return jsonDecode(response.data);
+              return response.data;
             default:
               throw ErrorModel(
                   statusCode: response.statusCode!,
@@ -246,8 +253,8 @@ class INetworkClient extends NetworkClient {
       logResponse(response.statusCode!, response.data, 'post', 'refresh');
       if (response.statusCode == 200) {
         await _storageService.setToken(
-          jsonDecode(response.data)['payload']['access_token'],
-          jsonDecode(response.data)['payload']['refresh_token'],
+          response.data['payload']['access_token'],
+          response.data['payload']['refresh_token'],
         );
       } else {
         throw ErrorModel(
@@ -261,25 +268,27 @@ class INetworkClient extends NetworkClient {
   }
 
   void logRequest(String type, String url) {
-    log('');
-    log('----------------');
-    log('Request:$baseUrl$url');
-    log('type: $type');
-    log('----------------');
-    log('');
+    talker.logTyped(CustomLog(
+        '\nType: $type'
+            '\nurl: $baseUrl$url',
+        'REQUEST',
+        015
+    ));
   }
 
   void logResponse(
       int statusCode,
-      String body,
+      Map<String, dynamic> body,
       String type,
       String url
       ) {
-    log('----------------');
-    log('type: $type');
-    log('Request:$baseUrl$url');
-    log('status: $statusCode');
-    log('body: $body');
-    log('----------------');
+    talker.logTyped(CustomLog(
+        '\nType: $type'
+            '\nurl: $baseUrl$url'
+            '\nStatus: $statusCode'
+            '\nBody: ${getPrettyJSONString(body)}',
+        'RESPONSE',
+        statusCode == 200 ? 046 : 009
+    ));
   }
 }

@@ -4,11 +4,18 @@ import 'package:sqflite/sqflite.dart';
 abstract class IStorageService {
   Future<void> initializeDataBase();
   Future<void> setToken(String accessToken, String refreshToken);
-  Future<String> getAccessToken();
-  Future<String> getRefreshToken();
+  Future<String?> getAccessToken();
+  Future<String?> getRefreshToken();
 }
 
 class StorageService extends IStorageService {
+  static final StorageService _singleton = StorageService._internal();
+
+  factory StorageService() {
+    return _singleton;
+  }
+
+  StorageService._internal();
 
   late final Database? database;
 
@@ -38,14 +45,14 @@ class StorageService extends IStorageService {
   }
 
   @override
-  Future<String> getAccessToken() async {
+  Future<String?> getAccessToken() async {
     final List<Map<String, dynamic>> userMaps = await database!.query('user');
-    return userMaps.first['access_token'];
+    return userMaps.firstOrNull?['access_token'];
   }
 
   @override
-  Future<String> getRefreshToken() async {
+  Future<String?> getRefreshToken() async {
     final List<Map<String, dynamic>> userMaps = await database!.query('user');
-    return userMaps.first['refresh_token'];
+    return userMaps.firstOrNull?['refresh_token'];
   }
 }
