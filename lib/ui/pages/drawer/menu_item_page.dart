@@ -5,7 +5,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:nem_pho/presentation/product_page/product_page.dart';
 import '../../../models/product_model.dart';
-import '../../widgets/custom/banners/custom_banners.dart';
 import '../../widgets/custom/custom_shimmer.dart';
 import '../../widgets/custom/custom_appbar.dart';
 import '../../widgets/custom/custom_drawer.dart';
@@ -72,7 +71,7 @@ class _MenuItemPageState extends State<MenuItemPage> {
         drawer: const CustomDrawer(),
         body: CustomScrollView(
           slivers: [
-            const CustomBanners(),
+            // const CustomBanners(),
             SliverPadding(
               padding: const EdgeInsets.only(
                 top: 13,

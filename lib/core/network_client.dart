@@ -42,6 +42,7 @@ class INetworkClient extends NetworkClient {
           },
         ),
       );
+      print(response.data);
       logResponse(response.statusCode!, response.data, 'post', url);
       switch (response.statusCode) {
         case 200:

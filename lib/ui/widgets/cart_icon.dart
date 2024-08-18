@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../cart_provider.dart';
-import '../pages/drawer/profile/authorization_page.dart';
+import '../../presentation/authorization_page/authorization_page.dart';
 
 class CartIcon extends StatefulWidget {
   const CartIcon({super.key});

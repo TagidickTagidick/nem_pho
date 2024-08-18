@@ -16,4 +16,12 @@ class MenuModel {
         name: json['name']
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'image': image,
+      'name': name
+    };
+  }
 }

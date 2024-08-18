@@ -1,12 +1,9 @@
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nem_pho/ui/pages/drawer/profile/profile_page.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../cart_provider.dart';
-import '../../../widgets/custom/mask_text_input_formatter.dart';
+import '../../ui/widgets/custom/mask_text_input_formatter.dart';
+import 'authorization_provider.dart';
 
 class AuthorizationPage extends StatefulWidget {
   const AuthorizationPage({super.key});
@@ -55,7 +52,8 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
               style: TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 24,
-                  color: Color(0xff0000000)),
+                  color: Color(0xff000000)
+              ),
             ),
           ),
           const Padding(
@@ -68,7 +66,8 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
               style: TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 16,
-                  color: Color(0xff0000000)),
+                  color: Color(0xff000000)
+              ),
             ),
           ),
           const SizedBox(height: 7),
@@ -155,30 +154,31 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
                 children: <Widget>[
                   GestureDetector(
                     onTap: () async {
-                      String phone = _phoneController.text.replaceAll(" ", "_");
-                      FirebaseDatabase.instance
-                          .ref()
-                          .child("users/$phone")
-                          .update({
-                        "phone": phone,
-                        "name": _nameController.text,
-                      });
-                      final prefs = await SharedPreferences.getInstance();
-                      prefs.setString(
-                        "phone",
-                        phone,
-                      );
-                      if (mounted) {
-                        await context.read<CartProvider>().getIsWorking();
-                        if (mounted) {
-                          await context.read<CartProvider>().getUserData();
-                          if (mounted) {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const ProfilePage(),
-                            ));
-                          }
-                        }
-                      }
+                      context.read<AuthorizationProvider>().register(_phoneController.text.replaceAll(" ", "_"));
+                      // String phone = _phoneController.text.replaceAll(" ", "_");
+                      // FirebaseDatabase.instance
+                      //     .ref()
+                      //     .child("users/$phone")
+                      //     .update({
+                      //   "phone": phone,
+                      //   "name": _nameController.text,
+                      // });
+                      // final prefs = await SharedPreferences.getInstance();
+                      // prefs.setString(
+                      //   "phone",
+                      //   phone,
+                      // );
+                      // if (mounted) {
+                      //   await context.read<CartProvider>().getIsWorking();
+                      //   if (mounted) {
+                      //     await context.read<CartProvider>().getUserData();
+                      //     if (mounted) {
+                      //       Navigator.of(context).push(MaterialPageRoute(
+                      //         builder: (context) => const ProfilePage(),
+                      //       ));
+                      //     }
+                      //   }
+                      // }
                     },
                     child: Container(
                       height: 50,

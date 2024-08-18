@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nem_pho/ui/pages/drawer/about_app.dart';
 import 'package:nem_pho/ui/pages/drawer/about_page.dart';
 import 'package:nem_pho/ui/pages/drawer/delivery_info_page.dart';
 import 'package:nem_pho/ui/pages/drawer/discounts_page.dart';
-import 'package:nem_pho/ui/pages/drawer/profile/authorization_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../pages/drawer/profile/profile_page.dart';
 import '../menu_tile.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -86,11 +85,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   onTap: () async {
                     final prefs = await SharedPreferences.getInstance();
                     if (mounted) {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => prefs.getString('phone') == null
-                            ? const AuthorizationPage()
-                            : const ProfilePage(),
-                      ));
+                      context.push('/authorization_page');
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //   builder: (context) => prefs.getString('phone') == null
+                      //       ? const AuthorizationPage()
+                      //       : const ProfilePage(),
+                      // ));
                     }
                   },
                   child: Container(

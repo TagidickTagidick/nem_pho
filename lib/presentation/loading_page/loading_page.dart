@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:go_router/go_router.dart';
+import 'package:nem_pho/presentation/loading_page/models/banner_model.dart';
 import 'package:nem_pho/presentation/loading_page/loading_provider.dart';
+import 'package:nem_pho/presentation/main_page/main_parameters.dart';
 import 'package:provider/provider.dart';
+
+import 'models/menu_model.dart';
 
 class LoadingPage extends StatefulWidget {
   const LoadingPage({super.key});
@@ -18,6 +23,12 @@ class _LoadingPageState extends State<LoadingPage> with SingleTickerProviderStat
   void initState() {
     super.initState();
     getData();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   void progressLoader(double begin, double end) {
@@ -45,16 +56,21 @@ class _LoadingPageState extends State<LoadingPage> with SingleTickerProviderStat
       progressLoader(1, 2);
       await context.read<LoadingProvider>().getVersions();
       progressLoader(2, 3);
-      await context.read<LoadingProvider>().getBanners();
+      final List<BannerModel> banners = await context.read<LoadingProvider>().getBanners();
       progressLoader(3, 4);
-      await context.read<LoadingProvider>().getMenu();
+      final List<MenuModel> menu = await context.read<LoadingProvider>().getMenu();
+      if (menu.isEmpty) {
+        context.push('/error_page');
+      }
       progressLoader(4, 5);
-      // controller.forward().then((value) =>
-      //     Future.delayed(const Duration(milliseconds: 500)).then((value) =>
-      //         Navigator.of(context).pushReplacement(MaterialPageRoute(
-      //           builder: (context) => const MainPage(),
-      //         )))
-      // );
+      await context.read<LoadingProvider>().getUser();
+      context.push(
+          '/main_page',
+          extra: MainParameters(
+              menu: menu,
+              banners: banners
+          )
+      );
     });
   }
 

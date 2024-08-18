@@ -9,22 +9,20 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="912997e2-eaa7-4f83-87af-e7a147d5f857" name="Changes" comment="add network_client, add versions, add health_check, add storage_service">
-      <change afterPath="$PROJECT_DIR$/lib/core/models/banner_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/core/models/menu_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/core/utils/custom_log.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+    <list default="true" id="912997e2-eaa7-4f83-87af-e7a147d5f857" name="Changes" comment="add loading">
+      <change afterPath="$PROJECT_DIR$/lib/presentation/main_page/main_parameters.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/presentation/main_page/widgets/main_page_body.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/models/error_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/models/error_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/network_client.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/network_client.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/storage_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/storage_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/presentation/loading_page/loading_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/loading_page/loading_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/presentation/loading_page/loading_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/loading_page/loading_provider.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/presentation/loading_page/loading_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/loading_page/loading_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/main_page/main_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/main_page/main_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/pages/drawer/menu_item_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/pages/drawer/menu_item_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/widgets/custom/banners/custom_banners.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/widgets/custom/banners/custom_banners.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +70,7 @@
     "git-widget-placeholder": "main",
     "io.flutter.reload.alreadyRun": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/DIGMA/Documents/voices/voices-mobile",
+    "last_opened_file_path": "C:/Users/DIGMA/Documents/PleasClub 1/PleasureClub",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.2",
@@ -160,7 +158,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722629992754</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add loading">
+      <option name="closed" value="true" />
+      <created>1723834982716</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1723834982716</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -184,6 +190,7 @@
     <MESSAGE value="fix add to cart" />
     <MESSAGE value="fix order type" />
     <MESSAGE value="add network_client, add versions, add health_check, add storage_service" />
-    <option name="LAST_COMMIT_MESSAGE" value="add network_client, add versions, add health_check, add storage_service" />
+    <MESSAGE value="add loading" />
+    <option name="LAST_COMMIT_MESSAGE" value="add loading" />
   </component>
 </project>

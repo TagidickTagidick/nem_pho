@@ -1,8 +1,8 @@
-import 'package:nem_pho/core/models/banner_model.dart';
-import 'package:nem_pho/core/models/menu_model.dart';
+import 'package:nem_pho/presentation/loading_page/models/banner_model.dart';
 
 import '../../core/models/version_model.dart';
 import '../../core/network_client.dart';
+import 'models/menu_model.dart';
 
 abstract class ILoadingService {
   Future<bool> getHealthCheck();
@@ -40,7 +40,7 @@ class LoadingService extends ILoadingService {
     try {
       final NetworkClient networkClient = INetworkClient();
       final Map<String, dynamic> bannersMap = await networkClient.get('banners');
-      return await bannersMap['banners'].map<BannerModel>((json) =>
+      return await bannersMap['payload'].map<BannerModel>((json) =>
           BannerModel.fromJson(json)).toList();
     } catch(e) {
       return [];
@@ -49,12 +49,17 @@ class LoadingService extends ILoadingService {
 
   @override
   Future<List<MenuModel>> getMenu() async {
-    final NetworkClient networkClient = INetworkClient();
-    final Map<String, dynamic> menuMap = await networkClient.get('menu');
-    List<MenuModel> menu = [];
-    for(var i in menuMap['payload']) {
-      menu.add(MenuModel.fromJson(i));
+    try {
+      final NetworkClient networkClient = INetworkClient();
+      final Map<String, dynamic> menuMap = await networkClient.get('menu');
+      List<MenuModel> menu = [];
+      for(var i in menuMap['payload']) {
+        menu.add(MenuModel.fromJson(i));
+      }
+      return menu;
     }
-    return menu;
+    catch (_) {
+      rethrow;
+    }
   }
 }

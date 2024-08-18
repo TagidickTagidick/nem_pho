@@ -8,8 +8,8 @@ class ErrorModel {
   final ErrorType errorType;
 
   ErrorModel({
-    required this.statusCode,
-    required this.message,
+    this.statusCode = 200,
+    this.message = 'Что-то пошло не так',
     this.errorType = ErrorType.none
   });
 

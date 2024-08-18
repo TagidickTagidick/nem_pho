@@ -13,4 +13,11 @@ class BannerModel {
         url: json['url']
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'url': url
+    };
+  }
 }
