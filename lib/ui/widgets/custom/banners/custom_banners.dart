@@ -1,13 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:nem_pho/core/providers/common_provider.dart';
 import 'package:nem_pho/ui/widgets/custom/banners/custom_banner.dart';
-import '../../../../presentation/loading_page/models/banner_model.dart';
+import 'package:provider/provider.dart';
 import '../../../pages/drawer/delivery_info_page.dart';
 
 class CustomBanners extends StatefulWidget {
-  const CustomBanners({super.key, required this.banners});
-
-  final List<BannerModel> banners;
+  const CustomBanners({super.key});
 
   @override
   State<CustomBanners> createState() => _CustomBannersState();
@@ -27,7 +26,8 @@ class _CustomBannersState extends State<CustomBanners> {
 
   void _startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
-      if (index == widget.banners.length - 1) {
+      if (index == context.read<CommonProvider>().banners.length - 1) {
+        // widget.banners.length
         index = 0;
         _controller.animateToPage(
           0,
@@ -66,17 +66,18 @@ class _CustomBannersState extends State<CustomBanners> {
 
   @override
   Widget build(BuildContext context) {
+    final banners = context.watch<CommonProvider>().banners;
     return SliverToBoxAdapter(
       child: SizedBox(
         height: 179,
         child: PageView.builder(
           controller: _controller,
           allowImplicitScrolling: true,
-          itemCount: widget.banners.length,
+          itemCount: banners.length,
           itemBuilder: (BuildContext context, int index) {
             return CustomBanner(
               widget: const DeliveryPage(),
-              imageUrl: widget.banners[index].url,
+              imageUrl: banners[index].url,
             );
           },
         ),

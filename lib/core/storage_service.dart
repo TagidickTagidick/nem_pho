@@ -1,7 +1,7 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../presentation/loading_page/models/banner_model.dart';
+import 'models/banner_model.dart';
 
 abstract class IStorageService {
   Future<void> initializeDataBase();
@@ -21,10 +21,12 @@ class StorageService extends IStorageService {
 
   StorageService._internal();
 
-  late final Database? database;
+  Database? database;
 
   @override
   Future<void> initializeDataBase() async {
+    if (database != null) return;
+
     database = await openDatabase(
       join(await getDatabasesPath(), 'user.db', 'banners.db'),
       onCreate: (db, version) {
@@ -41,7 +43,9 @@ class StorageService extends IStorageService {
 
   @override
   Future<void> setToken(String accessToken, String refreshToken) async {
-    await database?.insert(
+    if (database == null) return;
+
+    await database!.insert(
         'user',
         {
           'access_token': accessToken,
@@ -53,18 +57,24 @@ class StorageService extends IStorageService {
 
   @override
   Future<String?> getAccessToken() async {
+    if (database == null) return null;
+
     final List<Map<String, dynamic>> userMaps = await database!.query('user');
     return userMaps.firstOrNull?['access_token'];
   }
 
   @override
   Future<String?> getRefreshToken() async {
+    if (database == null) return null;
+
     final List<Map<String, dynamic>> userMaps = await database!.query('user');
     return userMaps.firstOrNull?['refresh_token'];
   }
 
   @override
   Future<void> setBanners(List<BannerModel> banners) async {
+    if (database == null) return;
+
     for(var banner in banners) {
       await database?.insert(
           'banners',
@@ -75,6 +85,7 @@ class StorageService extends IStorageService {
 
   @override
   Future<List<BannerModel>> getBanners() async {
+    if (database == null) return [];
     final List<Map<String, dynamic>> bannersMaps = await database!.query('banners');
     List<BannerModel> banners = [];
     for(var banner in bannersMaps) {

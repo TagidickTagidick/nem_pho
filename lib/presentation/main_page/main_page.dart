@@ -44,7 +44,7 @@ class _MainPageState extends State<MainPage> {
     body: CustomScrollView(
       slivers: [
         const SliverToBoxAdapter(child: NotWorking()),
-        CustomBanners(banners: widget.mainParameters.banners),
+        const CustomBanners(),
         MainPageBody(menu: widget.mainParameters.menu)
       ],
     ),

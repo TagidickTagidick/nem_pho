@@ -20,6 +20,7 @@ class CustomShimmer extends StatelessWidget {
           height: height,
           color: Colors.grey,
           width: width,
-        ));
+        )
+    );
   }
 }

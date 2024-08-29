@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:nem_pho/presentation/loading_page/models/banner_model.dart';
+import 'package:nem_pho/core/models/version_model.dart';
+import 'package:nem_pho/core/network_client.dart';
 import 'package:nem_pho/core/storage_service.dart';
 import 'package:nem_pho/presentation/loading_page/loading_service.dart';
 
@@ -11,17 +12,18 @@ abstract class ILoadingProvider{
   Future<void> init();
   Future<void> getVersions();
   Future<void> getHealthCheck();
-  Future<List<BannerModel>> getBanners();
   Future<List<MenuModel>> getMenu();
   Future<void> getUser();
 }
 
 class LoadingProvider extends ILoadingProvider with ChangeNotifier {
-  final ILoadingService _loadingService = LoadingService();
+  final ILoadingService _loadingService = LoadingService(networkClient: NetworkClient());
   final IStorageService _storageService = StorageService();
+
   @override
   Future<void> init() async {
     try{
+      await NetworkClient().init();
       await _storageService.initializeDataBase();
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
@@ -32,33 +34,13 @@ class LoadingProvider extends ILoadingProvider with ChangeNotifier {
   }
 
   @override
-  Future<void> getVersions() async {
-    await _loadingService.getVersions();
+  Future<bool> getHealthCheck() async {
+    return await _loadingService.getHealthCheck();
   }
 
   @override
-  Future<void> getHealthCheck() async {
-    await _loadingService.getHealthCheck();
-  }
-
-  @override
-  Future<List<BannerModel>> getBanners() async {
-    final banners = await _loadingService.getBanners();
-
-    if (banners.isEmpty) {
-      final bannersFromStorage = await _storageService.getBanners();
-      if (bannersFromStorage.isEmpty) {
-        return [];
-      }
-      return bannersFromStorage;
-    }
-
-    final bannersFromStorage = await _storageService.getBanners();
-    if (bannersFromStorage.isEmpty) {
-      await _storageService.setBanners(banners);
-    }
-
-    return banners;
+  Future<List<VersionModel>> getVersions() async {
+    return await _loadingService.getVersions();
   }
 
   @override

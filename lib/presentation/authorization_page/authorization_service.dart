@@ -5,7 +5,7 @@ abstract class IAuthorizationService {
 }
 
 class AuthorizationService extends IAuthorizationService {
-  final NetworkClient _networkClient = INetworkClient();
+  final INetworkClient _networkClient = NetworkClient();
 
   @override
   Future<Map<String, dynamic>> register(String phone) async {

@@ -7,7 +7,7 @@ import 'package:talker_flutter/talker_flutter.dart';
 
 import 'models/error_model.dart';
 
-abstract class NetworkClient {
+abstract class INetworkClient {
   Future<Map<String, dynamic>> post(String url, Map<String, dynamic> body);
   Future<Map<String, dynamic>> get(String url);
   Future<Map<String, dynamic>> delete(String url);
@@ -15,34 +15,43 @@ abstract class NetworkClient {
   Future<void> refresh();
 }
 
-class INetworkClient extends NetworkClient {
+class NetworkClient extends INetworkClient {
+  static final NetworkClient _singleton = NetworkClient._internal();
+
+  factory NetworkClient() {
+    return _singleton;
+  }
+
+  NetworkClient._internal();
 
   final Talker talker = Talker();
   final IStorageService _storageService = StorageService();
   final Dio dio = Dio();
-  final String baseUrl = 'https://nem-pho-backend.onrender.com/';
 
   String getPrettyJSONString(Map<String, dynamic> jsonObject) {
     const encoder = JsonEncoder.withIndent('\t');
     return encoder.convert(jsonObject);
   }
 
+  Future<void> init() async {
+    final accessToken = await _storageService.getAccessToken();
+    dio.options = BaseOptions(
+      baseUrl: 'https://nem-pho-backend.onrender.com/',
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer $accessToken'
+      },
+    );
+  }
+
   @override
   Future<Map<String, dynamic>> post(String url, Map<String, dynamic> body) async {
     try {
       logRequest('post', url);
-      final accessToken = await _storageService.getAccessToken();
       Response response = await dio.post(
-        '$baseUrl$url',
+        url,
         data: body,
-        options: Options(
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-            'Authorization': 'Bearer $accessToken'
-          },
-        ),
       );
-      print(response.data);
       logResponse(response.statusCode!, response.data, 'post', url);
       switch (response.statusCode) {
         case 200:
@@ -50,16 +59,9 @@ class INetworkClient extends NetworkClient {
         case 401:
           await refresh();
           logRequest('post', url);
-          final accessToken = await _storageService.getAccessToken();
           Response response = await dio.post(
-            '$baseUrl$url',
+            url,
             data: body,
-            options: Options(
-              headers: <String, String>{
-                'Content-Type': 'application/json; charset=UTF-8',
-                'Authorization': 'Bearer $accessToken'
-              },
-            ),
           );
           logResponse(response.statusCode!, response.data, 'post', url);
           switch (response.statusCode) {
@@ -86,15 +88,8 @@ class INetworkClient extends NetworkClient {
   Future<Map<String, dynamic>> get(String url) async {
     try {
       logRequest('get', url);
-      final accessToken = await _storageService.getAccessToken();
       Response response = await dio.get(
-        '$baseUrl$url',
-        options: Options(
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-            'Authorization': 'Bearer $accessToken'
-          },
-        ),
+        url,
       );
       logResponse(response.statusCode!, response.data, 'get', url);
       switch (response.statusCode) {
@@ -103,15 +98,8 @@ class INetworkClient extends NetworkClient {
         case 401:
           await refresh();
           logRequest('get', url);
-          final accessToken = await _storageService.getAccessToken();
           Response response = await dio.get(
-            '$baseUrl$url',
-            options: Options(
-              headers: <String, String>{
-                'Content-Type': 'application/json; charset=UTF-8',
-                'Authorization': 'Bearer $accessToken'
-              },
-            ),
+            url,
           );
           logResponse(response.statusCode!, response.data, 'get', url);
           switch (response.statusCode) {
@@ -138,15 +126,8 @@ class INetworkClient extends NetworkClient {
   Future<Map<String, dynamic>> delete(String url) async {
     try {
       logRequest('delete', url);
-      final accessToken = await _storageService.getAccessToken();
       Response response = await dio.delete(
-        '$baseUrl$url',
-        options: Options(
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-            'Authorization': 'Bearer $accessToken'
-          },
-        ),
+        url,
       );
       logResponse(response.statusCode!, response.data, 'delete', url);
       switch (response.statusCode) {
@@ -155,15 +136,8 @@ class INetworkClient extends NetworkClient {
         case 401:
           await refresh();
           logRequest('delete', url);
-          final accessToken = await _storageService.getAccessToken();
           Response response = await dio.delete(
-            '$baseUrl$url',
-            options: Options(
-              headers: <String, String>{
-                'Content-Type': 'application/json; charset=UTF-8',
-                'Authorization': 'Bearer $accessToken'
-              },
-            ),
+            url,
           );
           logResponse(response.statusCode!, response.data, 'delete', url);
           switch (response.statusCode) {
@@ -190,15 +164,8 @@ class INetworkClient extends NetworkClient {
   Future<Map<String, dynamic>> patch(String url, Map<String, dynamic> body) async {
     try {
       logRequest('patch', url);
-      final accessToken = await _storageService.getAccessToken();
       Response response = await dio.patch(
-        '$baseUrl$url',
-        options: Options(
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-            'Authorization': 'Bearer $accessToken'
-          },
-        ),
+        url,
       );
       logResponse(response.statusCode!, response.data, 'patch', url);
       switch (response.statusCode) {
@@ -208,13 +175,7 @@ class INetworkClient extends NetworkClient {
           await refresh();
           logRequest('patch', url);
           Response response = await dio.patch(
-            '$baseUrl$url',
-            options: Options(
-              headers: <String, String>{
-                'Content-Type': 'application/json; charset=UTF-8',
-                'Authorization': 'Bearer $accessToken'
-              },
-            ),
+            url,
           );
           logResponse(response.statusCode!, response.data, 'patch', url);
           switch (response.statusCode) {
@@ -241,15 +202,8 @@ class INetworkClient extends NetworkClient {
   Future<void> refresh() async {
     try {
       logRequest('post', 'refresh');
-      final refreshToken = await _storageService.getRefreshToken();
       Response response = await dio.post(
-          '${baseUrl}refresh',
-          options: Options(
-            headers: <String, String>{
-              'Content-Type': 'application/json; charset=UTF-8',
-              'Authorization': 'Bearer $refreshToken'
-            },
-          )
+          'refresh',
       );
       logResponse(response.statusCode!, response.data, 'post', 'refresh');
       if (response.statusCode == 200) {
@@ -271,7 +225,7 @@ class INetworkClient extends NetworkClient {
   void logRequest(String type, String url) {
     talker.logTyped(CustomLog(
         '\nType: $type'
-            '\nurl: $baseUrl$url',
+        '\nurl: ${dio.options.baseUrl}$url',
         'REQUEST',
         015
     ));
@@ -285,7 +239,7 @@ class INetworkClient extends NetworkClient {
       ) {
     talker.logTyped(CustomLog(
         '\nType: $type'
-            '\nurl: $baseUrl$url'
+            '\nurl: ${dio.options.baseUrl}$url'
             '\nStatus: $statusCode'
             '\nBody: ${getPrettyJSONString(body)}',
         'RESPONSE',

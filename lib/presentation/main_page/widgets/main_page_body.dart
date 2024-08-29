@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../ui/widgets/custom/custom_shimmer.dart';
 import '../../loading_page/models/menu_model.dart';
@@ -34,6 +35,7 @@ class MainPageBody extends StatelessWidget {
                 (BuildContext context, int index) {
               return GestureDetector(
                 onTap: () {
+                  context.pushNamed('/category_page', pathParameters: {'id': menu[index].id.toString()});
                   // Navigator.of(context).push(MaterialPageRoute(
                   //     builder: (context) => MenuItemPage(
                   //         menuItem: menu[index]

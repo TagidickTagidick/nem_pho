@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nem_pho/presentation/loading_page/models/banner_model.dart';
 import 'package:nem_pho/presentation/loading_page/loading_provider.dart';
 import 'package:nem_pho/presentation/main_page/main_parameters.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/providers/common_provider.dart';
 import 'models/menu_model.dart';
 
 class LoadingPage extends StatefulWidget {
@@ -31,13 +30,16 @@ class _LoadingPageState extends State<LoadingPage> with SingleTickerProviderStat
     super.dispose();
   }
 
-  void progressLoader(double begin, double end) {
+  Future<dynamic> _progressLoader(double progress, Future<dynamic> onLoad) async {
     alpha = Tween<double>(
-        begin: begin * (MediaQuery.of(context).size.width - 93) / 5,
-        end: end * (MediaQuery.of(context).size.width - 93) / 5
+        begin: (progress - 1) * (MediaQuery.of(context).size.width - 93) / 5,
+        end: progress * (MediaQuery.of(context).size.width - 93) / 5
     ).animate(controller);
     controller.reset();
     controller.forward();
+    final onLoadValue = onLoad;
+    await Future.delayed(const Duration(milliseconds: 500));
+    return await onLoadValue;
   }
 
   void getData() async {
@@ -47,31 +49,40 @@ class _LoadingPageState extends State<LoadingPage> with SingleTickerProviderStat
       duration: const Duration(milliseconds: 500),
       vsync: this,
     );
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      controller.addListener(() {
-        setState(() {});
-      });
-      progressLoader(0, 1);
-      await context.read<LoadingProvider>().getHealthCheck();
-      progressLoader(1, 2);
-      await context.read<LoadingProvider>().getVersions();
-      progressLoader(2, 3);
-      final List<BannerModel> banners = await context.read<LoadingProvider>().getBanners();
-      progressLoader(3, 4);
-      final List<MenuModel> menu = await context.read<LoadingProvider>().getMenu();
-      if (menu.isEmpty) {
-        context.push('/error_page');
-      }
-      progressLoader(4, 5);
-      await context.read<LoadingProvider>().getUser();
+    controller.addListener(() {
+      setState(() {});
+    });
+    final healthCheck = mounted ? await _progressLoader(
+      1,
+      context.read<LoadingProvider>().getHealthCheck(),
+    ) : false;
+    final versions = mounted ? await _progressLoader(
+      2,
+      context.read<LoadingProvider>().getVersions(),
+    ) : [];
+    await _progressLoader(
+      3,
+      context.read<CommonProvider>().getBanners(),
+    );
+    final List<MenuModel> menu = mounted ? await _progressLoader(
+      4,
+      context.read<LoadingProvider>().getMenu(),
+    ) : [];
+    if (menu.isEmpty && mounted) {
+      context.push('/error_page');
+    }
+    final user = mounted ? await _progressLoader(
+        5,
+        context.read<LoadingProvider>().getUser()
+    ) : null;
+    if (mounted) {
       context.push(
           '/main_page',
           extra: MainParameters(
-              menu: menu,
-              banners: banners
+            menu: menu,
           )
       );
-    });
+    }
   }
 
   @override
