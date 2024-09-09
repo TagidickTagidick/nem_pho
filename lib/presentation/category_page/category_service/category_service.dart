@@ -1,5 +1,6 @@
-import 'package:nem_pho/core/network_client.dart';
-import '../models/product_model.dart';
+import '../../../core/network_client.dart';
+import '../../../core/models/product_model.dart';
+
 
 abstract class ICategoryService {
   Future<List<ProductModel>> getProducts(String id);

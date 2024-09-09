@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nem_pho/ui/widgets/custom/custom_shimmer.dart';
 import 'package:provider/provider.dart';
 
-import '../models/product_model.dart';
+import '../../../core/models/product_model.dart';
 import '../category_provider/category_provider.dart';
 
 class CategoryPageBody extends StatelessWidget {
@@ -10,7 +11,7 @@ class CategoryPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (context.read<CategoryProvider>().isLoading) {
+    if (context.watch<CategoryProvider>().isLoading) {
       return SliverPadding(
         padding: const EdgeInsets.only(
             top: 27,
@@ -26,7 +27,11 @@ class CategoryPageBody extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 10),
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
-                      child: CustomShimmer(width: MediaQuery.of(context).size.width - 36, height: 180)),
+                      child: CustomShimmer(
+                          width: MediaQuery.of(context).size.width - 36,
+                          height: 180
+                      )
+                  ),
                 ),
             ],
           ),
@@ -44,7 +49,7 @@ class CategoryPageBody extends StatelessWidget {
       sliver: SliverToBoxAdapter(
         child: Column(
           children: [
-            for (ProductModel product in context.watch()<CategoryProvider>().products)
+            for (ProductModel product in context.watch<CategoryProvider>().products)
               Row(
                 children: [
                   Hero(
@@ -63,7 +68,7 @@ class CategoryPageBody extends StatelessWidget {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   image: DecorationImage(
-                                      image: AssetImage("images/${product.image}.png"),
+                                      image: NetworkImage(product.image),
                                       fit: BoxFit.cover
                                   )
                               )
@@ -108,10 +113,9 @@ class CategoryPageBody extends StatelessWidget {
                                     color: Color(0xff000000)
                                 )
                             ),
-                            GestureDetector(
-                              // onTap: () => context
-                              //     .read<CartProvider>()
-                              //     .addProduct(product),
+                            GestureDetector(onTap: () {
+                              context.push('/product_page/:id');
+                            },
                               child: Container(
                                 height: 40,
                                 width: 120,

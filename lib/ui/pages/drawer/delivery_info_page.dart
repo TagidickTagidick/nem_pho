@@ -20,20 +20,20 @@ class DeliveryPage extends StatelessWidget {
                             padding: EdgeInsets.only(right: 10.69),
                             child: Icon(Icons.close,
                                 color: Color(0xffF66666), size: 43.2)))),
-                Center(
+                const Center(
                   child: Column(
                     children: [
-                      const SizedBox(
+                      SizedBox(
                         height: 22,
                       ),
                       Text(
                         "Условия доставки",
-                        style: const TextStyle(
+                        style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                             color: Colors.black),
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 40,
                       ),
                     ],

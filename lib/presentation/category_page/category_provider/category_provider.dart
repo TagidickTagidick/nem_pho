@@ -1,15 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:nem_pho/presentation/category_page/category_service/category_service.dart';
 
-import '../models/product_model.dart';
+import '../../../core/models/product_model.dart';
 
 abstract class ICategoryProvider {
   Future<void> getProducts(String id);
 }
 
 class CategoryProvider extends ICategoryProvider with ChangeNotifier {
+  CategoryProvider({
+    required ICategoryService categoryService
+}): _categoryService = categoryService;
   bool _isLoading = true;
-  final ICategoryService _categoryService = CategoryService();
+  final ICategoryService _categoryService;
   List<ProductModel> _products = [];
 
   bool get isLoading => _isLoading;
@@ -20,6 +23,7 @@ class CategoryProvider extends ICategoryProvider with ChangeNotifier {
     print("вывавы");
     _products = await _categoryService.getProducts(id);
     _isLoading = false;
+    print("фвррфвырфывфы");
     notifyListeners();
   }
 }
