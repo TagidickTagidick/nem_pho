@@ -6,12 +6,11 @@ import 'package:nem_pho/presentation/checkout_page/payment_divider.dart';
 import 'package:nem_pho/presentation/checkout_page/payment_dot.dart';
 import 'package:nem_pho/presentation/checkout_page/payment_dot_enabled.dart';
 import 'package:provider/provider.dart';
-
-import '../../cart_provider.dart';
+import 'package:nem_pho/cart_provider.dart';
 
 class CheckoutPage extends StatefulWidget {
   const CheckoutPage({
-    Key? key,
+    super.key,
     required this.street,
     required this.flat,
     required this.office,
@@ -25,7 +24,7 @@ class CheckoutPage extends StatefulWidget {
     required this.id,
     required this.isSelf,
     required this.isCash,
-  }) : super(key: key);
+  });
 
   final String street;
   final String flat;

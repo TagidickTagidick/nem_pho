@@ -1,6 +1,6 @@
-import '../../presentation/loading_page/models/menu_model.dart';
-import '../models/banner_model.dart';
-import 'network_client.dart';
+import 'package:nem_pho/presentation/loading_page/models/menu_model.dart';
+import 'package:nem_pho/core/models/banner_model.dart';
+import 'package:nem_pho/core/services/network_client.dart';
 
 abstract class ICommonService {
   Future<List<BannerModel>> getBanners();

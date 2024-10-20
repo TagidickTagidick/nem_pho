@@ -1,5 +1,5 @@
 import 'package:nem_pho/core/models/product_model.dart';
-import '../../../core/services/network_client.dart';
+import 'package:nem_pho/core/services/network_client.dart';
 
 abstract class ICartService {
   Future<List<ProductModel>> getProducts(String id);

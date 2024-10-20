@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:nem_pho/core/models/banner_model.dart';
 import 'package:nem_pho/core/services/common_service.dart';
-
-import '../../presentation/loading_page/models/menu_model.dart';
-import '../services/storage_service.dart';
+import 'package:nem_pho/presentation/loading_page/models/menu_model.dart';
+import 'package:nem_pho/core/services/storage_service.dart';
 
 class CommonProvider extends ChangeNotifier {
   final ICommonService _commonService = CommonService();

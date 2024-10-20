@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:nem_pho/presentation/product_page/models/topping_model.dart';
-
-import '../../../core/models/product_model.dart';
-import '../product_service/product_service.dart';
+import 'package:nem_pho/core/models/product_model.dart';
+import 'package:nem_pho/presentation/product_page/product_service/product_service.dart';
 
 class ProductProvider extends ChangeNotifier {
   ProductProvider({

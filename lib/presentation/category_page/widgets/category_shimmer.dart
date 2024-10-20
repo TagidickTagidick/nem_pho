@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import '../../../core/widgets/custom/custom_shimmer.dart';
+import 'package:nem_pho/core/widgets/custom/custom_shimmer.dart';
 
 class CategoryShimmer extends StatelessWidget {
   const CategoryShimmer({super.key});

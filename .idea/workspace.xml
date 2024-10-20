@@ -9,53 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="912997e2-eaa7-4f83-87af-e7a147d5f857" name="Changes" comment="add directories, add many services and providers, fixed architecture">
-      <change afterPath="$PROJECT_DIR$/lib/core/services/push_notifications_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/widgets/drawer/custom_drawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/widgets/drawer/custom_drawer.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/authorization_page/authorization_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/authorization_page/authorization_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/authorization_page/authorization_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/authorization_page/authorization_provider/authorization_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/authorization_page/authorization_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/authorization_page/authorization_service/authorization_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/cart_page/cart_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/cart_page/cart_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/category_page/category_service/category_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/category_page/category_service/category_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/loading_page/loading_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/loading_page/loading_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/loading_page/loading_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/loading_page/loading_provider/loading_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/loading_page/loading_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/loading_page/loading_service/loading_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/main_page/main_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/main_page/main_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/product_page/product_service/product_mocks.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/product_page/product_service/product_mocks.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/product_page/product_service/product_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/product_page/product_service/product_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/profile_page/profile_provider/profile_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/profile_page/profile_provider/profile_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/promotions/promotions_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/promotions/widgets/combo_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/test_class.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/test_class.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/checkout/choose_street_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/checkout_page/choose_street_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/drawer/We_have.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/promotions/widgets/we_have_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/drawer/discounts_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/promotions/discounts_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/drawer/dish_day.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/drawer/menu_item_page.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/drawer/terrm_use.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/cancel_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/checkout_page/cancel_stape.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/cancel_stape2.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/checkout_page/cancel_stape2.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/final_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/checkout_page/final_stape.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/first_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/checkout_page/first_stape.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/payment_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/checkout_page/payment_card.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/payment_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/checkout_page/payment_stape.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/second_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/checkout_page/second_stape.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/pages/pay/third_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/checkout_page/third_stape.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/widgets/menu_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/widgets/drawer/menu_tile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/widgets/not_working.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/widgets/not_working.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/widgets/pay/payment_divider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/checkout_page/payment_divider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/widgets/pay/payment_dot.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/checkout_page/payment_dot.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/widgets/pay/payment_dot_enabled.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/checkout_page/payment_dot_enabled.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/widget_test.dart" afterDir="false" />
-    </list>
+    <list default="true" id="912997e2-eaa7-4f83-87af-e7a147d5f857" name="Changes" comment="add push_notifications" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -243,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729443895620</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="add push_notifications">
+      <option name="closed" value="true" />
+      <created>1729455333701</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1729455333701</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -272,6 +234,7 @@
     <MESSAGE value="add many things" />
     <MESSAGE value="..." />
     <MESSAGE value="add directories, add many services and providers, fixed architecture" />
-    <option name="LAST_COMMIT_MESSAGE" value="add directories, add many services and providers, fixed architecture" />
+    <MESSAGE value="add push_notifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="add push_notifications" />
   </component>
 </project>

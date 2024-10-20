@@ -61,7 +61,9 @@ class App extends StatelessWidget {
         path: '/profile_page',
         builder: (context, state) => ChangeNotifierProvider<ProfileProvider>(
             create:(_) => ProfileProvider(
-                profileService: ProfileService()
+                profileService: ProfileService(
+                    networkClient: NetworkClient()
+                )
             ),
             child: const ProfilePage()
         ),

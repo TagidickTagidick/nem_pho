@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nem_pho/presentation/profile_page/profile_provider/profile_provider.dart';
 import 'package:provider/provider.dart';
-import '../profile_models/user_model.dart';
+import 'package:nem_pho/presentation/profile_page/profile_models/user_model.dart';
 
 class MyOrders extends StatefulWidget {
   const MyOrders({super.key});

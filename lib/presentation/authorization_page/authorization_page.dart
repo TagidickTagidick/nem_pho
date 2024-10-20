@@ -2,10 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-
-import '../../core/providers/common_provider.dart';
-import '../../core/widgets/custom/mask_text_input_formatter.dart';
-import 'authorization_provider/authorization_provider.dart';
+import 'package:nem_pho/core/providers/common_provider.dart';
+import 'package:nem_pho/core/widgets/custom/mask_text_input_formatter.dart';
+import 'package:nem_pho/presentation/authorization_page/authorization_provider/authorization_provider.dart';
 
 class AuthorizationPage extends StatefulWidget {
   const AuthorizationPage({super.key});
@@ -155,12 +154,12 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
               child: Column(
                 children: <Widget>[
                   GestureDetector(onTap: () async {
-                      final bool success = await context.read<AuthorizationProvider>().register(_phoneController.text.replaceAll(" ", "_"));
-                      await context.read<CommonProvider>().getIsWorking();
-                      if(success) {
-                        context.push('/profile_page');
-                      }
-                    },
+                    final bool success = await context.read<AuthorizationProvider>().register(_phoneController.text.replaceAll(" ", "_"));
+                    await context.read<CommonProvider>().getIsWorking();
+                    if(success) {
+                      context.push('/profile_page');
+                    }
+                  },
                     child: Container(
                       height: 50,
                       alignment: Alignment.center,
