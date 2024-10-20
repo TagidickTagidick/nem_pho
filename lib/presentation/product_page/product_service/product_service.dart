@@ -8,7 +8,11 @@ abstract class IProductService {
 }
 
 class ProductService extends IProductService {
-  final INetworkClient _networkClient = NetworkClient();
+  ProductService({
+    required final INetworkClient networkClient
+  }): _networkClient = networkClient;
+
+  final INetworkClient _networkClient;
 
   @override
   Future<ProductModel> getProduct(String id) async {

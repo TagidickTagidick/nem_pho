@@ -2,12 +2,12 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:nem_pho/models/product_model.dart';
 import 'package:nem_pho/core/widgets/app_bar/custom_appbar.dart';
-import 'package:nem_pho/ui/widgets/pay/payment_divider.dart';
-import 'package:nem_pho/ui/widgets/pay/payment_dot.dart';
+import 'package:nem_pho/presentation/checkout_page/payment_divider.dart';
+import 'package:nem_pho/presentation/checkout_page/payment_dot.dart';
+import 'package:nem_pho/presentation/checkout_page/payment_dot_enabled.dart';
 import 'package:provider/provider.dart';
 
-import '../../../cart_provider.dart';
-import '../../widgets/pay/payment_dot_enabled.dart';
+import '../../cart_provider.dart';
 
 class CheckoutPage extends StatefulWidget {
   const CheckoutPage({

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class PromotionsPage extends StatelessWidget {
-  const PromotionsPage({super.key});
+class ComboPage extends StatelessWidget {
+  const ComboPage({super.key});
 
   @override
   Widget build(BuildContext context) {

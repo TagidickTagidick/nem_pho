@@ -1,13 +1,16 @@
-import '../../../core/models/product_model.dart';
-import '../../../core/services/network_client.dart';
-
+import 'package:nem_pho/core/models/product_model.dart';
+import 'package:nem_pho/core/services/network_client.dart';
 
 abstract class ICategoryService {
   Future<List<ProductModel>> getProducts(String id);
 }
 
 class CategoryService extends ICategoryService {
-  final INetworkClient _networkClient = NetworkClient();
+  CategoryService({
+    required final INetworkClient networkClient
+  }): _networkClient = networkClient;
+
+  final INetworkClient _networkClient;
 
   @override
   Future<List<ProductModel>> getProducts(String id) async {

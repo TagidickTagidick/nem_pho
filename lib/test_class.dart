@@ -70,9 +70,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter Socket.IO Demo'),
+        title: const Text('Flutter Socket.IO Demo'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Check your console for connection logs'),
       ),
     );

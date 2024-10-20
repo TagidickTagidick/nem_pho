@@ -3,7 +3,11 @@ import 'package:nem_pho/presentation/profile_page/profile_service/profile_servic
 import '../profile_models/user_model.dart';
 
 class ProfileProvider extends ChangeNotifier {
-  final IProfileService _profileService = ProfileService();
+  ProfileProvider({
+    required final IProfileService profileService
+  }): _profileService = profileService;
+
+  final IProfileService _profileService;
   UserModel user = UserModel.mock;
   bool _isLoading = false;
 

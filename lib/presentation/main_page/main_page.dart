@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nem_pho/core/providers/common_provider.dart';
 import 'package:nem_pho/presentation/main_page/widgets/main_page_body.dart';
-import 'package:nem_pho/ui/widgets/not_working.dart';
+import 'package:nem_pho/core/widgets/not_working.dart';
 import 'package:provider/provider.dart';
 import '../../core/widgets/banners/custom_banners.dart';
 import '../../core/widgets/app_bar/cart_icon.dart';

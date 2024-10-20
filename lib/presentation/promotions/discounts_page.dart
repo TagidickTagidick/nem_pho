@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nem_pho/ui/pages/drawer/We_have.dart';
-import 'package:nem_pho/presentation/promotions/promotions_page.dart';
+import 'package:nem_pho/presentation/promotions/widgets/combo_page.dart';
+import 'package:nem_pho/presentation/promotions/widgets/we_have_page.dart';
 
 class StockPage extends StatefulWidget {
   const StockPage({super.key});
@@ -35,7 +35,7 @@ class _StockPageState extends State<StockPage> {
                     builder: (sheetContext) => Padding(
                       padding: EdgeInsets.only(
                           top: MediaQuery.of(context).padding.top),
-                      child: const PromotionsPage(),
+                      child: const ComboPage(),
                     ),
                   );
                 },
@@ -66,7 +66,7 @@ class _StockPageState extends State<StockPage> {
                     builder: (sheetContext) => Padding(
                       padding: EdgeInsets.only(
                           top: MediaQuery.of(context).padding.top),
-                      child: const WeHave(),
+                      child: const WeHavePage(),
                     ),
                   );
                 },

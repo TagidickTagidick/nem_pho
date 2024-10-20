@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:nem_pho/ui/pages/checkout/choose_street_page.dart';
-import 'package:nem_pho/ui/pages/pay/first_stape.dart';
+import 'package:nem_pho/presentation/checkout_page/choose_street_page.dart';
 import 'package:nem_pho/core/widgets/app_bar/custom_appbar.dart';
 import 'package:provider/provider.dart';
 import '../../cart_provider.dart';
 import '../../core/widgets/custom/custom_text_field.dart';
 import '../../core/widgets/custom/mask_text_input_formatter.dart';
 import '../../models/product_model.dart';
-import '../../ui/widgets/not_working.dart';
+import '../../core/widgets/not_working.dart';
+import '../checkout_page/first_stape.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});

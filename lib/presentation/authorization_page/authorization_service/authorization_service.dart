@@ -1,4 +1,4 @@
-import '../../core/services/network_client.dart';
+import '../../../core/services/network_client.dart';
 
 abstract class IAuthorizationService {
   Future<Map<String, dynamic>> register(String phone);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nem_pho/ui/pages/pay/payment_stape.dart';
+import 'package:nem_pho/presentation/checkout_page/payment_stape.dart';
 import 'package:nem_pho/core/widgets/app_bar/custom_appbar.dart';
 
 class PaymentCard extends StatelessWidget {

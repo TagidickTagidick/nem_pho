@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:nem_pho/presentation/category_page/category_service/category_service.dart';
-
-import '../../../core/models/product_model.dart';
+import 'package:nem_pho/core/models/product_model.dart';
 
 abstract class ICategoryProvider {
   Future<void> getProducts(String id);
@@ -10,7 +9,7 @@ abstract class ICategoryProvider {
 class CategoryProvider extends ICategoryProvider with ChangeNotifier {
   CategoryProvider({
     required ICategoryService categoryService
-}): _categoryService = categoryService;
+  }): _categoryService = categoryService;
   bool _isLoading = true;
   final ICategoryService _categoryService;
   List<ProductModel> _products = [];

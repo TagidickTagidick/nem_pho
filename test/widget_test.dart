@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:nem_pho/core/network_client.dart';
-import 'package:nem_pho/presentation/loading_page/loading_service.dart';
+import 'package:nem_pho/core/services/network_client.dart';
+import 'package:nem_pho/presentation/loading_page/loading_service/loading_service.dart';
 
 import 'widget_test.mocks.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class WeHave extends StatelessWidget {
-  const WeHave({super.key});
+class WeHavePage extends StatelessWidget {
+  const WeHavePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +15,7 @@ class WeHave extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 14,
-            ),
+            const SizedBox(height: 14),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

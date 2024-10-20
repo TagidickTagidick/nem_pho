@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../core/providers/common_provider.dart';
 import '../../core/widgets/custom/mask_text_input_formatter.dart';
-import 'authorization_provider.dart';
+import 'authorization_provider/authorization_provider.dart';
 
 class AuthorizationPage extends StatefulWidget {
   const AuthorizationPage({super.key});

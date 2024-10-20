@@ -4,9 +4,9 @@ import 'package:nem_pho/core/providers/common_provider.dart';
 import 'package:nem_pho/presentation/about_app_page/about_app_page.dart';
 import 'package:nem_pho/presentation/about_us/about_us.dart';
 import 'package:nem_pho/presentation/delivery_page/delivery_page.dart';
-import 'package:nem_pho/ui/pages/drawer/discounts_page.dart';
+import 'package:nem_pho/presentation/promotions/discounts_page.dart';
 import 'package:provider/provider.dart';
-import '../../../ui/widgets/menu_tile.dart';
+import 'menu_tile.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({super.key});

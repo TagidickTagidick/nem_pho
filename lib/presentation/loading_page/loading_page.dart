@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nem_pho/presentation/loading_page/loading_provider.dart';
+import 'package:nem_pho/core/services/push_notifications_service.dart';
+import 'package:nem_pho/presentation/loading_page/loading_provider/loading_provider.dart';
 import 'package:provider/provider.dart';
-
-import '../../core/providers/common_provider.dart';
+import 'package:nem_pho/core/providers/common_provider.dart';
 
 class LoadingPage extends StatefulWidget {
   const LoadingPage({super.key});
@@ -50,6 +50,8 @@ class _LoadingPageState extends State<LoadingPage> with SingleTickerProviderStat
     controller.addListener(() {
       setState(() {});
     });
+    final IPushNotificationService _pushToken = PushNotificationService();
+    _pushToken.init();
     final healthCheck = mounted ? await _progressLoader(
       1,
       context.read<LoadingProvider>().getHealthCheck(),

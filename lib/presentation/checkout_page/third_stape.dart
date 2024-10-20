@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nem_pho/core/widgets/app_bar/custom_appbar.dart';
-import 'package:nem_pho/ui/widgets/pay/payment_divider.dart';
-import 'package:nem_pho/ui/widgets/pay/payment_dot.dart';
+import 'package:nem_pho/presentation/checkout_page/payment_divider.dart';
+import 'package:nem_pho/presentation/checkout_page/payment_dot.dart';
 
 class ThirdStape extends StatelessWidget {
   const ThirdStape({Key? key}) : super(key: key);

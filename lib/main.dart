@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nem_pho/core/services/network_client.dart';
+import 'package:nem_pho/core/services/storage_service.dart';
 import 'package:nem_pho/presentation/authorization_page/authorization_page.dart';
-import 'package:nem_pho/presentation/authorization_page/authorization_provider.dart';
+import 'package:nem_pho/presentation/authorization_page/authorization_provider/authorization_provider.dart';
+import 'package:nem_pho/presentation/authorization_page/authorization_service/authorization_service.dart';
 import 'package:nem_pho/presentation/cart_page/cart_page.dart';
 import 'package:nem_pho/presentation/category_page/category_page.dart';
 import 'package:nem_pho/presentation/category_page/category_provider/category_provider.dart';
 import 'package:nem_pho/presentation/category_page/category_service/category_service.dart';
 import 'package:nem_pho/presentation/loading_page/loading_page.dart';
-import 'package:nem_pho/presentation/loading_page/loading_provider.dart';
+import 'package:nem_pho/presentation/loading_page/loading_provider/loading_provider.dart';
+import 'package:nem_pho/presentation/loading_page/loading_service/loading_service.dart';
 import 'package:nem_pho/presentation/main_page/main_page.dart';
 import 'package:nem_pho/presentation/product_page/product_page.dart';
 import 'package:nem_pho/presentation/product_page/product_provider/product_provider.dart';
 import 'package:nem_pho/presentation/product_page/product_service/product_service.dart';
 import 'package:nem_pho/presentation/profile_page/profile_page.dart';
 import 'package:nem_pho/presentation/profile_page/profile_provider/profile_provider.dart';
-
+import 'package:nem_pho/presentation/profile_page/profile_service/profile_service.dart';
 import 'package:provider/provider.dart';
-import 'cart_provider.dart';
-import 'core/providers/common_provider.dart';
+import 'package:nem_pho/cart_provider.dart';
+import 'package:nem_pho/core/providers/common_provider.dart';
 
 void main() async {
   runApp(App());
@@ -32,7 +36,10 @@ class App extends StatelessWidget {
         path: '/',
         builder: (context, state) =>
             ChangeNotifierProvider<LoadingProvider>(
-                create:(_) => LoadingProvider(),
+                create:(_) => LoadingProvider(
+                    loadingService: LoadingService(networkClient: NetworkClient()),
+                    storageService: StorageService()
+                ),
                 child: const LoadingPage()
             ),
       ),
@@ -43,14 +50,19 @@ class App extends StatelessWidget {
       GoRoute(
         path: '/authorization_page',
         builder: (context, state) => ChangeNotifierProvider<AuthorizationProvider>(
-            create:(_) => AuthorizationProvider(),
+            create:(_) => AuthorizationProvider(
+                authorizationService: AuthorizationService(),
+                storageService: StorageService()
+            ),
             child: const AuthorizationPage()
         ),
       ),
       GoRoute(
         path: '/profile_page',
         builder: (context, state) => ChangeNotifierProvider<ProfileProvider>(
-            create:(_) => ProfileProvider(),
+            create:(_) => ProfileProvider(
+                profileService: ProfileService()
+            ),
             child: const ProfilePage()
         ),
       ),
@@ -65,7 +77,11 @@ class App extends StatelessWidget {
         name: '/category_page',
         path: '/category_page/:id',
         builder: (context, state) => ChangeNotifierProvider<CategoryProvider>(
-            create:(_) => CategoryProvider(categoryService: CategoryService()),
+            create:(_) => CategoryProvider(
+                categoryService: CategoryService(
+                    networkClient: NetworkClient()
+                )
+            ),
             child: CategoryPage(id: state.pathParameters['id']!)
         ),
       ),
@@ -73,7 +89,11 @@ class App extends StatelessWidget {
         name: '/product_page',
         path: '/product_page/:id',
         builder: (context, state) => ChangeNotifierProvider<ProductProvider>(
-            create:(_) => ProductProvider(productService: ProductService()),
+            create:(_) => ProductProvider(
+                productService: ProductService(
+                    networkClient: NetworkClient()
+                )
+            ),
             child: ProductPage(id: state.pathParameters['id']!)
         ),
       ),
