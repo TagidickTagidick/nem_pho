@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import '../custom/custom_shimmer.dart';
+import 'package:nem_pho/core/widgets/custom/custom_shimmer.dart';
 
 class CustomBanner extends StatelessWidget {
   const CustomBanner({
@@ -14,10 +14,11 @@ class CustomBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+    return GestureDetector(onTap: () {
+      Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => widget,
-      )),
+      ));
+    },
       child: CachedNetworkImage(
         imageUrl: imageUrl,
         fit: BoxFit.cover,

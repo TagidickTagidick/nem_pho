@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../core/widgets/custom/custom_shimmer.dart';
+import 'package:nem_pho/core/widgets/custom/custom_shimmer.dart';
 
 class MainPageShimmer extends StatelessWidget {
   const MainPageShimmer({super.key});

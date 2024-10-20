@@ -1,11 +1,9 @@
 import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:nem_pho/core/services/storage_service.dart';
 import 'package:nem_pho/core/utils/custom_log.dart';
 import 'package:talker_flutter/talker_flutter.dart';
-
-import '../models/error_model.dart';
+import 'package:nem_pho/core/models/error_model.dart';
 
 abstract class INetworkClient {
   Future<Map<String, dynamic>> post(String url, Map<String, dynamic> body);
@@ -203,7 +201,7 @@ class NetworkClient extends INetworkClient {
     try {
       logRequest('post', 'refresh');
       Response response = await dio.post(
-          'refresh',
+        'refresh',
       );
       logResponse(response.statusCode!, response.data, 'post', 'refresh');
       if (response.statusCode == 200) {
@@ -229,8 +227,8 @@ class NetworkClient extends INetworkClient {
       ){
     talker.logTyped(CustomLog(
         '\nType: $type'
-        '\nurl: ${dio.options.baseUrl}$url'
-        '${body == null ? '' : '\nbody: $body'}',
+            '\nurl: ${dio.options.baseUrl}$url'
+            '${body == null ? '' : '\nbody: $body'}',
         'REQUEST',
         015
     ));

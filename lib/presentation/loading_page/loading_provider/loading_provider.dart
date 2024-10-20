@@ -4,8 +4,8 @@ import 'package:nem_pho/core/models/version_model.dart';
 import 'package:nem_pho/core/services/storage_service.dart';
 import 'package:nem_pho/presentation/loading_page/loading_service/loading_service.dart';
 
-import '../../../core/services/network_client.dart';
-import '../../../firebase_options.dart';
+import 'package:nem_pho/core/services/network_client.dart';
+import 'package:nem_pho/firebase_options.dart';
 
 class LoadingProvider extends ChangeNotifier {
   LoadingProvider({

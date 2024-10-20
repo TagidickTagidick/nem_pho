@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:nem_pho/presentation/product_page/product_provider/product_provider.dart';
 import 'package:provider/provider.dart';
-import '../../core/widgets/custom/custom_shimmer.dart';
-import '../../core/widgets/app_bar/custom_appbar.dart';
+import 'package:nem_pho/core/widgets/custom/custom_shimmer.dart';
+import 'package:nem_pho/core/widgets/app_bar/custom_appbar.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key, required this.id});

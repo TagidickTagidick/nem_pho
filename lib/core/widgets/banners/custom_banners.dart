@@ -4,7 +4,7 @@ import 'package:nem_pho/core/providers/common_provider.dart';
 import 'package:nem_pho/core/widgets/banners/custom_banner.dart';
 import 'package:nem_pho/core/widgets/custom/custom_shimmer.dart';
 import 'package:provider/provider.dart';
-import '../../../presentation/delivery_page/delivery_page.dart';
+import 'package:nem_pho/presentation/delivery_page/delivery_page.dart';
 
 class CustomBanners extends StatefulWidget {
   const CustomBanners({super.key});

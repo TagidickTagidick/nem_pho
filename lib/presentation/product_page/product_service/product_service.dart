@@ -1,6 +1,6 @@
 import 'package:nem_pho/core/models/product_model.dart';
 import 'package:nem_pho/presentation/product_page/models/topping_model.dart';
-import '../../../core/services/network_client.dart';
+import 'package:nem_pho/core/services/network_client.dart';
 
 abstract class IProductService {
   Future<ProductModel> getProduct(String id);
