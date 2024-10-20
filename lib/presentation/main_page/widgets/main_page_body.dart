@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/providers/common_provider.dart';
-import '../../../core/widgets/custom/custom_shimmer.dart';
-import 'main_page_shimmer.dart';
+import 'package:nem_pho/core/providers/common_provider.dart';
+import 'package:nem_pho/core/widgets/custom/custom_shimmer.dart';
+import 'package:nem_pho/presentation/main_page/widgets/main_page_shimmer.dart';
 
 class MainPageBody extends StatelessWidget {
   const MainPageBody({super.key});
@@ -35,10 +35,12 @@ class MainPageBody extends StatelessWidget {
           delegate: SliverChildBuilderDelegate(
             childCount: menu.length,
                 (BuildContext context, int index) {
-              return GestureDetector(
-                onTap: () {
-                  context.pushNamed('/category_page', pathParameters: {'id': menu[index].id.toString()});
-                },
+              return GestureDetector(onTap: () {
+                context.pushNamed(
+                    '/category_page',
+                    pathParameters: {'id': menu[index].id.toString()}
+                );
+              },
                 child: Stack(
                   children: [
                     Positioned(

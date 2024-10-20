@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nem_pho/presentation/category_page/widgets/category_shimmer.dart';
-import 'package:nem_pho/core/widgets/custom/custom_shimmer.dart';
 import 'package:provider/provider.dart';
-
-import '../../../core/models/product_model.dart';
-import '../category_provider/category_provider.dart';
+import 'package:nem_pho/core/models/product_model.dart';
+import 'package:nem_pho/presentation/category_page/category_provider/category_provider.dart';
 
 class CategoryPageBody extends StatelessWidget {
   const CategoryPageBody({super.key});

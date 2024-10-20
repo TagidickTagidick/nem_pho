@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:nem_pho/presentation/profile_page/profile_service/profile_service.dart';
-import '../profile_models/user_model.dart';
+import 'package:nem_pho/presentation/profile_page/profile_models/user_model.dart';
 
 class ProfileProvider extends ChangeNotifier {
   ProfileProvider({

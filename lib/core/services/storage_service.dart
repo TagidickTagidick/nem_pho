@@ -1,7 +1,6 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-
-import '../models/banner_model.dart';
+import 'package:nem_pho/core/models/banner_model.dart';
 
 abstract class IStorageService {
   Future<void> initializeDataBase();

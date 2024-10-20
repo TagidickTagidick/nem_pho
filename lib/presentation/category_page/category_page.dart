@@ -4,7 +4,7 @@ import 'package:nem_pho/presentation/category_page/category_provider/category_pr
 import 'package:nem_pho/presentation/category_page/widgets/category_page_body.dart';
 import 'package:nem_pho/core/widgets/app_bar/custom_appbar.dart';
 import 'package:provider/provider.dart';
-import '../../core/widgets/banners/custom_banners.dart';
+import 'package:nem_pho/core/widgets/banners/custom_banners.dart';
 
 class CategoryPage extends StatefulWidget {
   const CategoryPage({

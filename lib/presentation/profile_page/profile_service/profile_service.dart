@@ -1,12 +1,16 @@
 import 'package:nem_pho/presentation/profile_page/profile_models/user_model.dart';
-import '../../../core/services/network_client.dart';
+import 'package:nem_pho/core/services/network_client.dart';
 
 abstract class IProfileService {
   Future<UserModel> getUser();
 }
 
 class ProfileService extends IProfileService {
-  final INetworkClient _networkClient = NetworkClient();
+  ProfileService({
+    required final INetworkClient networkClient
+  }): _networkClient = networkClient;
+
+  final INetworkClient _networkClient;
 
   @override
   Future<UserModel> getUser() async {
