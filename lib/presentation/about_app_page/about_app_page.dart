@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:nem_pho/ui/widgets/drawer/about_app_tile.dart';
+import 'package:nem_pho/presentation/about_app_page/widgets/about_app_tile.dart';
 import 'package:video_player/video_player.dart';
 
-class AboutApp extends StatefulWidget {
-  const AboutApp({super.key});
+class AboutAppPage extends StatefulWidget {
+  const AboutAppPage({super.key});
 
   @override
-  State<AboutApp> createState() => _AboutAppState();
+  State<AboutAppPage> createState() => _AboutAppState();
 }
 
-class _AboutAppState extends State<AboutApp>
+class _AboutAppState extends State<AboutAppPage>
     with SingleTickerProviderStateMixin {
   bool isExpanded = true;
 

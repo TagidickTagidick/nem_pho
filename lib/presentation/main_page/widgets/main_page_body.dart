@@ -1,21 +1,23 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
-import '../../../ui/widgets/custom/custom_shimmer.dart';
-import '../../loading_page/models/menu_model.dart';
+import '../../../core/providers/common_provider.dart';
+import '../../../core/widgets/custom/custom_shimmer.dart';
+import 'main_page_shimmer.dart';
 
 class MainPageBody extends StatelessWidget {
-
-  final List<MenuModel> menu;
-
-  const MainPageBody({
-    required this.menu,
-    super.key
-  });
+  const MainPageBody({super.key});
 
   @override
   Widget build(BuildContext context) {
+    if (context.watch<CommonProvider>().isLoading) {
+      return const MainPageShimmer();
+    }
+
+    final menu = context.read<CommonProvider>().menu;
+
     return SliverPadding(
         padding: const EdgeInsets.only(
           top: 10,
@@ -36,11 +38,6 @@ class MainPageBody extends StatelessWidget {
               return GestureDetector(
                 onTap: () {
                   context.pushNamed('/category_page', pathParameters: {'id': menu[index].id.toString()});
-                  // Navigator.of(context).push(MaterialPageRoute(
-                  //     builder: (context) => MenuItemPage(
-                  //         menuItem: menu[index]
-                  //     )
-                  // ));
                 },
                 child: Stack(
                   children: [

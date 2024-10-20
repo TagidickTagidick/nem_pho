@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nem_pho/presentation/loading_page/loading_provider.dart';
-import 'package:nem_pho/presentation/main_page/main_parameters.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/providers/common_provider.dart';
-import 'models/menu_model.dart';
 
 class LoadingPage extends StatefulWidget {
   const LoadingPage({super.key});
@@ -64,11 +62,11 @@ class _LoadingPageState extends State<LoadingPage> with SingleTickerProviderStat
       3,
       context.read<CommonProvider>().getBanners(),
     );
-    final List<MenuModel> menu = mounted ? await _progressLoader(
+    await _progressLoader(
       4,
-      context.read<LoadingProvider>().getMenu(),
-    ) : [];
-    if (menu.isEmpty && mounted) {
+      context.read<CommonProvider>().getMenu(),
+    );
+    if (mounted) {
       context.push('/error_page');
     }
     final user = mounted ? await _progressLoader(
@@ -76,12 +74,7 @@ class _LoadingPageState extends State<LoadingPage> with SingleTickerProviderStat
         context.read<LoadingProvider>().getUser()
     ) : null;
     if (mounted) {
-      context.push(
-          '/main_page',
-          extra: MainParameters(
-            menu: menu,
-          )
-      );
+      context.push('/main_page');
     }
   }
 

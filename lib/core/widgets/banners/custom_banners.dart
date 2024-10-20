@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:nem_pho/core/providers/common_provider.dart';
-import 'package:nem_pho/ui/widgets/custom/banners/custom_banner.dart';
+import 'package:nem_pho/core/widgets/banners/custom_banner.dart';
+import 'package:nem_pho/core/widgets/custom/custom_shimmer.dart';
 import 'package:provider/provider.dart';
-import '../../../pages/drawer/delivery_info_page.dart';
+import '../../../presentation/delivery_page/delivery_page.dart';
 
 class CustomBanners extends StatefulWidget {
   const CustomBanners({super.key});
@@ -27,7 +28,6 @@ class _CustomBannersState extends State<CustomBanners> {
   void _startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
       if (index == context.read<CommonProvider>().banners.length - 1) {
-        // widget.banners.length
         index = 0;
         _controller.animateToPage(
           0,
@@ -67,6 +67,17 @@ class _CustomBannersState extends State<CustomBanners> {
   @override
   Widget build(BuildContext context) {
     final banners = context.watch<CommonProvider>().banners;
+
+    if (context.read<CommonProvider>().isBannersLoading) {
+      return SliverToBoxAdapter(
+        child: CustomShimmer(
+            width: MediaQuery.of(context).size.width,
+            height: 179
+        ),
+      );
+    }
+    //if (banners.isEmpty) return const SliverToBoxAdapter(child: SizedBox());
+
     return SliverToBoxAdapter(
       child: SizedBox(
         height: 179,

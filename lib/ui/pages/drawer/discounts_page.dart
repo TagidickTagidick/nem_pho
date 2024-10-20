@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nem_pho/ui/pages/drawer/We_have.dart';
-import 'package:nem_pho/ui/pages/drawer/combo_terms.dart';
-import 'package:nem_pho/ui/pages/drawer/dish_day.dart';
+import 'package:nem_pho/presentation/promotions/promotions_page.dart';
 
 class StockPage extends StatefulWidget {
   const StockPage({super.key});
@@ -37,7 +35,7 @@ class _StockPageState extends State<StockPage> {
                     builder: (sheetContext) => Padding(
                       padding: EdgeInsets.only(
                           top: MediaQuery.of(context).padding.top),
-                      child: const ComboTerms(),
+                      child: const PromotionsPage(),
                     ),
                   );
                 },

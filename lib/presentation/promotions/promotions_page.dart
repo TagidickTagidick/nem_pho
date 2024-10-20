@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ComboTerms extends StatelessWidget {
-  const ComboTerms({super.key});
+class PromotionsPage extends StatelessWidget {
+  const PromotionsPage({super.key});
 
   @override
   Widget build(BuildContext context) {

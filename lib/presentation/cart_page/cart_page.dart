@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:nem_pho/ui/pages/checkout/choose_street_page.dart';
 import 'package:nem_pho/ui/pages/pay/first_stape.dart';
-import 'package:nem_pho/ui/widgets/custom/custom_appbar.dart';
+import 'package:nem_pho/core/widgets/app_bar/custom_appbar.dart';
 import 'package:provider/provider.dart';
 import '../../cart_provider.dart';
+import '../../core/widgets/custom/custom_text_field.dart';
+import '../../core/widgets/custom/mask_text_input_formatter.dart';
 import '../../models/product_model.dart';
-import '../../models/user_model.dart';
-import '../../ui/widgets/custom/custom_text_field.dart';
-import '../../ui/widgets/custom/mask_text_input_formatter.dart';
 import '../../ui/widgets/not_working.dart';
 
 class CartPage extends StatefulWidget {
@@ -21,8 +20,6 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
   List<ProductModel> newProducts = [];
 
   List<int> counts = [];
-
-  late UserModel userModel;
 
   final TextEditingController flatController = TextEditingController();
   final TextEditingController officeController = TextEditingController();
@@ -95,45 +92,45 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
       duration: const Duration(milliseconds: 200),
       vsync: this,
     );
-    getData();
+    //getData();
   }
 
-  void getData() async {
-    userModel = context.read<CartProvider>().userModel!;
-    phoneController.text = userModel.phone.replaceAll("_", " ");
-    nameController.text = userModel.name;
-    street = userModel.street;
-    flatController.text = userModel.flat;
-    officeController.text = userModel.office;
-    entranceController.text = userModel.entrance;
-    floorController.text = userModel.floor;
-
-    List<ProductModel> oldCart = userModel.cart;
-    for (int i = 0; i < oldCart.length; i++) {
-      total += int.parse(oldCart[i].price);
-    }
-    if (oldCart.isNotEmpty) {
-      oldCart.sort((a, b) => a.title.compareTo(b.title));
-      if (oldCart.length == 1) {
-        newProducts.add(oldCart[0]);
-        counts.add(1);
-      } else {
-        int count = 0;
-        for (int i = 1; i < oldCart.length; i++) {
-          count++;
-          if (oldCart[i].title != oldCart[i - 1].title) {
-            newProducts.add(oldCart[i - 1]);
-            counts.add(count);
-            count = 0;
-          }
-        }
-        count++;
-        newProducts.add(oldCart[oldCart.length - 1]);
-        counts.add(count);
-      }
-    }
-    checkCanCheckout();
-  }
+  // void getData() async {
+  //   userModel = context.read<CartProvider>().userModel!;
+  //   phoneController.text = userModel.phone.replaceAll("_", " ");
+  //   nameController.text = userModel.name;
+  //   street = userModel.street;
+  //   flatController.text = userModel.flat;
+  //   officeController.text = userModel.office;
+  //   entranceController.text = userModel.entrance;
+  //   floorController.text = userModel.floor;
+  //
+  //   List<ProductModel> oldCart = userModel.cart;
+  //   for (int i = 0; i < oldCart.length; i++) {
+  //     total += int.parse(oldCart[i].price);
+  //   }
+  //   if (oldCart.isNotEmpty) {
+  //     oldCart.sort((a, b) => a.title.compareTo(b.title));
+  //     if (oldCart.length == 1) {
+  //       newProducts.add(oldCart[0]);
+  //       counts.add(1);
+  //     } else {
+  //       int count = 0;
+  //       for (int i = 1; i < oldCart.length; i++) {
+  //         count++;
+  //         if (oldCart[i].title != oldCart[i - 1].title) {
+  //           newProducts.add(oldCart[i - 1]);
+  //           counts.add(count);
+  //           count = 0;
+  //         }
+  //       }
+  //       count++;
+  //       newProducts.add(oldCart[oldCart.length - 1]);
+  //       counts.add(count);
+  //     }
+  //   }
+  //   checkCanCheckout();
+  // }
 
   @override
   Widget build(BuildContext context) => GestureDetector(

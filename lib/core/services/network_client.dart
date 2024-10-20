@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:nem_pho/core/storage_service.dart';
+import 'package:nem_pho/core/services/storage_service.dart';
 import 'package:nem_pho/core/utils/custom_log.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
-import 'models/error_model.dart';
+import '../models/error_model.dart';
 
 abstract class INetworkClient {
   Future<Map<String, dynamic>> post(String url, Map<String, dynamic> body);
@@ -47,7 +47,7 @@ class NetworkClient extends INetworkClient {
   @override
   Future<Map<String, dynamic>> post(String url, Map<String, dynamic> body) async {
     try {
-      logRequest('post', url);
+      logRequest('post', url, body: body);
       Response response = await dio.post(
         url,
         data: body,
@@ -163,7 +163,7 @@ class NetworkClient extends INetworkClient {
   @override
   Future<Map<String, dynamic>> patch(String url, Map<String, dynamic> body) async {
     try {
-      logRequest('patch', url);
+      logRequest('patch', url, body: body);
       Response response = await dio.patch(
         url,
       );
@@ -222,10 +222,15 @@ class NetworkClient extends INetworkClient {
     }
   }
 
-  void logRequest(String type, String url) {
+  void logRequest(
+      String type,
+      String url,
+      {Map<String, dynamic>? body}
+      ){
     talker.logTyped(CustomLog(
         '\nType: $type'
-        '\nurl: ${dio.options.baseUrl}$url',
+        '\nurl: ${dio.options.baseUrl}$url'
+        '${body == null ? '' : '\nbody: $body'}',
         'REQUEST',
         015
     ));

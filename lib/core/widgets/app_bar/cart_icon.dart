@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nem_pho/presentation/cart_page/cart_page.dart';
+import 'package:go_router/go_router.dart';
+import 'package:nem_pho/core/providers/common_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../cart_provider.dart';
-import '../../presentation/authorization_page/authorization_page.dart';
+import '../../../cart_provider.dart';
 
 class CartIcon extends StatefulWidget {
   const CartIcon({super.key});
@@ -15,19 +14,10 @@ class CartIcon extends StatefulWidget {
 
 class _CartIconState extends State<CartIcon> {
   @override
-  Widget build(BuildContext context) => GestureDetector(
-    onTap: () async {
-      final prefs = await SharedPreferences.getInstance();
-      if (mounted) {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => prefs.getString('phone') == null
-                ? const AuthorizationPage()
-                : const CartPage(),
-          ),
-        );
-      }
-    },
+  Widget build(BuildContext context) => GestureDetector(onTap: () async {
+    final bool checkUser = await context.read<CommonProvider>().checkIsAuthorized();
+    context.push(checkUser ? '/cart_page' : '/authorization_page');
+  },
     child: Container(
       width: 50,
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
@@ -40,8 +30,8 @@ class _CartIconState extends State<CartIcon> {
               color: Colors.black,
             ),
           ),
-          if (context.watch<CartProvider>().phone != null &&
-              context.watch<CartProvider>().userModel!.cart.isNotEmpty)
+          if (context.watch<CartProvider>().phone != null
+              && context.watch<CartProvider>().userModel!.cart.isNotEmpty)
             Align(
               alignment: Alignment.topRight,
               child: Container(

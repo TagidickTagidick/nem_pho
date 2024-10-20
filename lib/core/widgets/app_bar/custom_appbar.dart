@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../cart_icon.dart';
+import 'cart_icon.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({

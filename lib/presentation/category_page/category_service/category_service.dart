@@ -1,5 +1,5 @@
-import '../../../core/network_client.dart';
 import '../../../core/models/product_model.dart';
+import '../../../core/services/network_client.dart';
 
 
 abstract class ICategoryService {
@@ -11,7 +11,7 @@ class CategoryService extends ICategoryService {
 
   @override
   Future<List<ProductModel>> getProducts(String id) async {
-    final productsMap = await _networkClient.get('menu/$id');
+    final Map<String, dynamic> productsMap = await _networkClient.get('menu/$id/products');
     return ProductModel.listFromJson(productsMap);
   }
 }

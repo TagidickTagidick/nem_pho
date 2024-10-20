@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nem_pho/ui/pages/drawer/about_app.dart';
-import 'package:nem_pho/ui/pages/drawer/about_page.dart';
-import 'package:nem_pho/ui/pages/drawer/delivery_info_page.dart';
+import 'package:nem_pho/core/providers/common_provider.dart';
+import 'package:nem_pho/presentation/about_app_page/about_app_page.dart';
+import 'package:nem_pho/presentation/about_us/about_us.dart';
+import 'package:nem_pho/presentation/delivery_page/delivery_page.dart';
 import 'package:nem_pho/ui/pages/drawer/discounts_page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../menu_tile.dart';
+import 'package:provider/provider.dart';
+import '../../../ui/widgets/menu_tile.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({super.key});
@@ -56,7 +57,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             ),
             const Divider(color: Color(0xffF0E0E0)),
             GestureDetector(onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const AboutPage())
+                MaterialPageRoute(builder: (context) => const AboutUs())
             ),
                 child: Container(
                     color: Colors.transparent,
@@ -73,7 +74,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             ),
             const Divider(color: Color(0xffF0E0E0)),
             GestureDetector(onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const AboutApp())
+                MaterialPageRoute(builder: (context) => const AboutAppPage())
             ),
                 child: Container(
                     color: Colors.transparent,
@@ -108,14 +109,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
             ),
             const Divider(color: Color(0xffF0E0E0)),
             GestureDetector(onTap: () async {
-              final prefs = await SharedPreferences.getInstance();
-              if (mounted) {
+              if(await context.read<CommonProvider>().checkIsAuthorized()) {
+                context.push('/profile_page');
+              } else {
                 context.push('/authorization_page');
-                // Navigator.of(context).push(MaterialPageRoute(
-                //   builder: (context) => prefs.getString('phone') == null
-                //       ? const AuthorizationPage()
-                //       : const ProfilePage(),
-                // ));
               }
             },
                 child: Container(

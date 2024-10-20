@@ -4,9 +4,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import '../../../models/product_model.dart';
-import '../../widgets/custom/custom_shimmer.dart';
-import '../../widgets/custom/custom_appbar.dart';
-import '../../widgets/custom/custom_drawer.dart';
+import '../../../core/widgets/custom/custom_shimmer.dart';
+import '../../../core/widgets/app_bar/custom_appbar.dart';
+import '../../../core/widgets/drawer/custom_drawer.dart';
 
 class MenuItemPage extends StatefulWidget {
   const MenuItemPage({super.key, required this.menuItem});

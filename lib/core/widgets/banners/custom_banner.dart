@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import '../custom_shimmer.dart';
+import '../custom/custom_shimmer.dart';
 
 class CustomBanner extends StatelessWidget {
   const CustomBanner({

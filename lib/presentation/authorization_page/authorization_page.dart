@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-import '../../ui/widgets/custom/mask_text_input_formatter.dart';
+import '../../core/providers/common_provider.dart';
+import '../../core/widgets/custom/mask_text_input_formatter.dart';
 import 'authorization_provider.dart';
 
 class AuthorizationPage extends StatefulWidget {
@@ -152,33 +154,12 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
             Expanded(
               child: Column(
                 children: <Widget>[
-                  GestureDetector(
-                    onTap: () async {
-                      context.read<AuthorizationProvider>().register(_phoneController.text.replaceAll(" ", "_"));
-                      // String phone = _phoneController.text.replaceAll(" ", "_");
-                      // FirebaseDatabase.instance
-                      //     .ref()
-                      //     .child("users/$phone")
-                      //     .update({
-                      //   "phone": phone,
-                      //   "name": _nameController.text,
-                      // });
-                      // final prefs = await SharedPreferences.getInstance();
-                      // prefs.setString(
-                      //   "phone",
-                      //   phone,
-                      // );
-                      // if (mounted) {
-                      //   await context.read<CartProvider>().getIsWorking();
-                      //   if (mounted) {
-                      //     await context.read<CartProvider>().getUserData();
-                      //     if (mounted) {
-                      //       Navigator.of(context).push(MaterialPageRoute(
-                      //         builder: (context) => const ProfilePage(),
-                      //       ));
-                      //     }
-                      //   }
-                      // }
+                  GestureDetector(onTap: () async {
+                      final bool success = await context.read<AuthorizationProvider>().register(_phoneController.text.replaceAll(" ", "_"));
+                      await context.read<CommonProvider>().getIsWorking();
+                      if(success) {
+                        context.push('/profile_page');
+                      }
                     },
                     child: Container(
                       height: 50,

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nem_pho/ui/widgets/custom/custom_shimmer.dart';
+import 'package:nem_pho/presentation/category_page/widgets/category_shimmer.dart';
+import 'package:nem_pho/core/widgets/custom/custom_shimmer.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/models/product_model.dart';
@@ -12,33 +13,8 @@ class CategoryPageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (context.watch<CategoryProvider>().isLoading) {
-      return SliverPadding(
-        padding: const EdgeInsets.only(
-            top: 27,
-            left: 26,
-            right: 10,
-            bottom: 27
-        ),
-        sliver: SliverToBoxAdapter(
-          child: Column(
-            children: [
-              for (int i = 0; i < 6; i++)
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: CustomShimmer(
-                          width: MediaQuery.of(context).size.width - 36,
-                          height: 180
-                      )
-                  ),
-                ),
-            ],
-          ),
-        ),
-      );
+      return const CategoryShimmer();
     }
-
     return SliverPadding(
       padding: const EdgeInsets.only(
           top: 27,
@@ -114,7 +90,7 @@ class CategoryPageBody extends StatelessWidget {
                                 )
                             ),
                             GestureDetector(onTap: () {
-                              context.push('/product_page/:id');
+                              context.push('/product_page/${product.id}');
                             },
                               child: Container(
                                 height: 40,

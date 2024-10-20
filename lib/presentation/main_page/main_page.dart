@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:nem_pho/presentation/main_page/main_parameters.dart';
+import 'package:nem_pho/core/providers/common_provider.dart';
 import 'package:nem_pho/presentation/main_page/widgets/main_page_body.dart';
 import 'package:nem_pho/ui/widgets/not_working.dart';
-import '../../ui/widgets/custom/banners/custom_banners.dart';
-import '../../ui/widgets/cart_icon.dart';
-import '../../ui/widgets/custom/custom_drawer.dart';
+import 'package:provider/provider.dart';
+import '../../core/widgets/banners/custom_banners.dart';
+import '../../core/widgets/app_bar/cart_icon.dart';
+import '../../core/widgets/drawer/custom_drawer.dart';
 
+///Главная страница
 class MainPage extends StatefulWidget {
-  const MainPage({super.key, required this.mainParameters});
-
-  final MainParameters mainParameters;
+  const MainPage({super.key});
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -18,6 +18,17 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
 
+  ///Открывает левую плашку приложения
+  void _openDrawer() {
+    _key.currentState?.openDrawer();
+  }
+
+  ///Обновление экрана
+  Future<void> _refresh() async {
+    context.read<CommonProvider>().getBanners();
+    context.read<CommonProvider>().getMenu();
+  }
+
   @override
   Widget build(BuildContext context) => Scaffold(
     key: _key,
@@ -25,8 +36,10 @@ class _MainPageState extends State<MainPage> {
       elevation: 0,
       backgroundColor: const Color(0xffFFFFFF),
       leading: GestureDetector(
-        onTap: () => _key.currentState?.openDrawer(),
-        child: const Icon(Icons.menu, color: Color(0xff000000),
+        onTap: _openDrawer,
+        child: const Icon(
+          Icons.menu,
+          color: Color(0xff000000),
         ),
       ),
       centerTitle: false,
@@ -41,12 +54,15 @@ class _MainPageState extends State<MainPage> {
       actions: const [CartIcon()],
     ),
     drawer: const CustomDrawer(),
-    body: CustomScrollView(
-      slivers: [
-        const SliverToBoxAdapter(child: NotWorking()),
-        const CustomBanners(),
-        MainPageBody(menu: widget.mainParameters.menu)
-      ],
+    body: RefreshIndicator(
+      onRefresh: _refresh,
+      child: const CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(child: NotWorking()),
+          CustomBanners(),
+          MainPageBody()
+        ],
+      ),
     ),
   );
 }

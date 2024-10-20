@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'models/product_model.dart';
 import 'models/user_model.dart';
-import 'package:ntp/ntp.dart';
 
 class CartProvider with ChangeNotifier {
   UserModel? _userModel;
@@ -19,11 +18,9 @@ class CartProvider with ChangeNotifier {
   bool get isWorking => _isWorking;
 
   Future<void> getIsWorking() async {
-    final time = await NTP.now();
+    final time = DateTime.now();
     DateTime startTime = DateTime(time.year, time.month, time.day, 11, 30);
     DateTime endTime = DateTime(time.year, time.month, time.day, 20, 30);
-    print('startTime: $startTime');
-    print('endTime: $endTime');
     if (time.isAfter(startTime) && time.isBefore(endTime)) {
       _isWorking = true;
     } else {
@@ -32,18 +29,18 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getUserData() async {
-    final prefs = await SharedPreferences.getInstance();
-    _phone = prefs.getString('phone');
-    if (_phone != null) {
-      await Future.delayed(const Duration(seconds: 1)).then((value) async {
-        final snapshot =
-            await FirebaseDatabase.instance.ref("users/$_phone").get();
-        _userModel = UserModel.fromJson(snapshot.value as Map);
-      });
-    }
-    notifyListeners();
-  }
+  // Future<void> getUserData() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   _phone = prefs.getString('phone');
+  //   if (_phone != null) {
+  //     await Future.delayed(const Duration(seconds: 1)).then((value) async {
+  //       final snapshot =
+  //       await FirebaseDatabase.instance.ref("users/$_phone").get();
+  //       _userModel = UserModel.fromJson(snapshot.value as Map);
+  //     });
+  //   }
+  //   notifyListeners();
+  // }
 
   void clearData() async {
     FirebaseDatabase.instance
@@ -70,7 +67,7 @@ class CartProvider with ChangeNotifier {
 
   void removeProduct(ProductModel product) {
     ProductModel removedProduct =
-        userModel!.cart.firstWhere((element) => element.title == product.title);
+    userModel!.cart.firstWhere((element) => element.title == product.title);
     userModel!.cart.remove(removedProduct);
     List cart = [];
     for (var product in userModel!.cart) {

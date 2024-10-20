@@ -1,11 +1,9 @@
 import '../../core/models/version_model.dart';
-import '../../core/network_client.dart';
-import 'models/menu_model.dart';
+import '../../core/services/network_client.dart';
 
 abstract class ILoadingService {
   Future<bool> getHealthCheck();
   Future<List<VersionModel>> getVersions();
-  Future<List<MenuModel>> getMenu();
 }
 
 class LoadingService extends ILoadingService {
@@ -33,21 +31,6 @@ class LoadingService extends ILoadingService {
           VersionModel.fromJson(json)).toList();
     } catch (e) {
       return [];
-    }
-  }
-
-  @override
-  Future<List<MenuModel>> getMenu() async {
-    try {
-      final Map<String, dynamic> menuMap = await _networkClient.get('menu');
-      List<MenuModel> menu = [];
-      for(var i in menuMap['payload']) {
-        menu.add(MenuModel.fromJson(i));
-      }
-      return menu;
-    }
-    catch (_) {
-      rethrow;
     }
   }
 }

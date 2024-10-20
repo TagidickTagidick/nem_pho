@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nem_pho/ui/pages/drawer/about_app.dart';
+import 'package:nem_pho/presentation/about_app_page/about_app_page.dart';
 
 class TermUse extends StatelessWidget {
   const TermUse({Key? key}) : super(key: key);
@@ -45,7 +45,7 @@ class TermUse extends StatelessWidget {
                       GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => AboutApp()));
+                                builder: (context) => const AboutAppPage()));
                           },
                           child: Row(children: [
                             const SizedBox(width: 39),

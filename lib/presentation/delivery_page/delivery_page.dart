@@ -7,35 +7,38 @@ class DeliveryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xffffffff),
+        color: const Color(0xffffffff),
         child: SingleChildScrollView(
           child: SafeArea(
             child: Column(
               children: [
                 Align(
                     alignment: Alignment.centerRight,
-                    child: GestureDetector(
-                        onTap: () => Navigator.of(context).pop(),
+                    child: GestureDetector(onTap: () =>
+                        Navigator.of(context).pop(),
                         child: const Padding(
                             padding: EdgeInsets.only(right: 10.69),
-                            child: Icon(Icons.close,
-                                color: Color(0xffF66666), size: 43.2)))),
+                            child: Icon(
+                                Icons.close,
+                                color: Color(0xffF66666),
+                                size: 43.2
+                            )
+                        )
+                    )
+                ),
                 const Center(
                   child: Column(
                     children: [
-                      SizedBox(
-                        height: 22,
-                      ),
+                      SizedBox(height: 22),
                       Text(
                         "Условия доставки",
                         style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
-                            color: Colors.black),
+                            color: Colors.black
+                        ),
                       ),
-                      SizedBox(
-                        height: 40,
-                      ),
+                      SizedBox(height: 40),
                     ],
                   ),
                 ),
@@ -46,84 +49,76 @@ class DeliveryPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Container(
-                          child: Column(
-                            children: [
-                              const SizedBox(
-                                height: 48,
-                                width: 139,
-                                child: Text(
-                                  'Принимаем заказы',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Color(0xff000000),
-                                    fontWeight: FontWeight.w400,
-                                  ),
+                        Column(
+                          children: [
+                            const SizedBox(
+                              height: 48,
+                              width: 139,
+                              child: Text(
+                                'Принимаем заказы',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Color(0xff000000),
+                                  fontWeight: FontWeight.w400,
                                 ),
                               ),
-                              Container(
-                                height: 76,
-                                width: 139,
-                                color: Color(0xffF6F6F6),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: Center(
-                                    child: Text(
-                                      'с 11:00 до 21:00',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.black,
-                                      ),
+                            ),
+                            Container(
+                              height: 76,
+                              width: 139,
+                              color: const Color(0xffF6F6F6),
+                              child: const Padding(
+                                padding: EdgeInsets.all(20.0),
+                                child: Center(
+                                  child: Text(
+                                    'с 11:00 до 21:00',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black,
                                     ),
                                   ),
                                 ),
-                              )
-                            ],
-                          ),
+                              ),
+                            )
+                          ],
                         ),
-                        const SizedBox(
-                          width: 14,
-                        ),
-                        Container(
-                          child: Column(
-                            children: [
-                              const SizedBox(
-                                height: 48,
-                                width: 139,
-                                child: Text(
-                                  'Минимальная сумма',
-                                  style: TextStyle(
-                                    color: Color(0xff000000),
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
-                                  ),
+                        const SizedBox(width: 14),
+                        Column(
+                          children: [
+                            const SizedBox(
+                              height: 48,
+                              width: 139,
+                              child: Text(
+                                'Минимальная сумма',
+                                style: TextStyle(
+                                  color: Color(0xff000000),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
                                 ),
                               ),
-                              Container(
-                                height: 76,
-                                width: 139,
-                                color: Color(0xffF6F6F6),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: Center(
-                                    child: Text(
-                                      '500 ₽',
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.black,
-                                      ),
+                            ),
+                            Container(
+                              height: 76,
+                              width: 139,
+                              color: const Color(0xffF6F6F6),
+                              child: const Padding(
+                                padding: EdgeInsets.all(20.0),
+                                child: Center(
+                                  child: Text(
+                                    '500 ₽',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black,
                                     ),
                                   ),
                                 ),
-                              )
-                            ],
-                          ),
+                              ),
+                            )
+                          ],
                         ),
-                        const SizedBox(
-                          width: 14,
-                        ),
+                        const SizedBox(width: 14),
                         Column(
                           children: [
                             const SizedBox(
@@ -141,7 +136,7 @@ class DeliveryPage extends StatelessWidget {
                             Container(
                               height: 76,
                               width: 139,
-                              color: Color(0xffF6F6F6),
+                              color: const Color(0xffF6F6F6),
                               child: const Padding(
                                 padding: EdgeInsets.all(20.0),
                                 child: Center(
@@ -162,10 +157,7 @@ class DeliveryPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 22,
-                ),
-
+                const SizedBox(height: 22),
                 // Middle Page content
                 Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -173,18 +165,17 @@ class DeliveryPage extends StatelessWidget {
                     children: [
                       // "Delivery Time" Plate
                       Container(
-                        color: Color(0xffF6F6F6),
+                        color: const Color(0xffF6F6F6),
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: Row(
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 width: 40,
                                 child: Icon(Icons.history),
                               ),
                               Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const Text(
@@ -195,12 +186,9 @@ class DeliveryPage extends StatelessWidget {
                                       color: Colors.black,
                                     ),
                                   ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
+                                  const SizedBox(height: 10),
                                   SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.7,
+                                    width: MediaQuery.of(context).size.width * 0.7,
                                     child: const Text(
                                       'По Ярославлю - 45 минут, по остальной территории - не доставляем',
                                       style: TextStyle(
@@ -217,28 +205,24 @@ class DeliveryPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 5,
-                      ),
+                      const SizedBox(height: 5),
                       // "Delivery by courer" Plate
                       Container(
-                        color: Color(0xffF6F6F6),
+                        color: const Color(0xffF6F6F6),
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: Row(
                             children: [
                               // Image.asset(Icon(), width: 40),
-                              SizedBox(
+                              const SizedBox(
                                 width: 40,
                                 child: Icon(Icons.motorcycle),
-                                // child: Icon(MorePageIcons.car, size: 25,)
                               ),
                               const SizedBox(
                                 width: 16,
                               ),
                               Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const Text(
@@ -249,12 +233,9 @@ class DeliveryPage extends StatelessWidget {
                                       color: Colors.black,
                                     ),
                                   ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
+                                  const SizedBox(height: 10),
                                   SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.7,
+                                    width: MediaQuery.of(context).size.width * 0.7,
                                     child: const Text(
                                       'Вы оплачиваете только заказ, доставка - бесплатная',
                                       style: TextStyle(
@@ -262,7 +243,6 @@ class DeliveryPage extends StatelessWidget {
                                         fontSize: 16,
                                         fontWeight: FontWeight.w400,
                                       ),
-                                      // maxLines: 2,
                                     ),
                                   ),
                                 ],
@@ -271,27 +251,21 @@ class DeliveryPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-
+                      const SizedBox(height: 5),
                       // "Take away with 10% discount" Plate
                       Container(
-                        color: Color(0xffF6F6F6),
+                        color: const Color(0xffF6F6F6),
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: Row(
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 width: 40,
                                 child: Icon(Icons.shopping_bag),
                               ),
-                              const SizedBox(
-                                width: 16,
-                              ),
+                              const SizedBox(width: 16),
                               Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const Text(
@@ -302,12 +276,9 @@ class DeliveryPage extends StatelessWidget {
                                       color: Colors.black,
                                     ),
                                   ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
+                                  const SizedBox(height: 10),
                                   SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.7,
+                                    width: MediaQuery.of(context).size.width * 0.7,
                                     child: const Text(
                                       '''Вы можете сами забрать заказ из ближайшего ресторана со скидкой в 10%.
 Время приготовления заказа - 15 минут.
@@ -327,9 +298,7 @@ class DeliveryPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 22,
-                      ),
+                      const SizedBox(height: 22),
                     ],
                   ),
                 )

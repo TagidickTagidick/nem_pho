@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nem_pho/ui/pages/pay/payment_card.dart';
 import 'package:nem_pho/ui/pages/pay/second_stape.dart';
-import 'package:nem_pho/ui/widgets/custom/custom_appbar.dart';
+import 'package:nem_pho/core/widgets/app_bar/custom_appbar.dart';
 
 class PaymentStape extends StatelessWidget {
   const PaymentStape({Key? key}) : super(key: key);

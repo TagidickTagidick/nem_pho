@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-class AboutPage extends StatefulWidget {
-  const AboutPage({super.key});
+class AboutUs extends StatefulWidget {
+  const AboutUs({super.key});
 
   @override
-  State<AboutPage> createState() => _AboutPageState();
+  State<AboutUs> createState() => _AboutPageState();
 }
 
-class _AboutPageState extends State<AboutPage>
+class _AboutPageState extends State<AboutUs>
     with SingleTickerProviderStateMixin {
   bool isExpanded = true;
 

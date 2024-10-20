@@ -3,9 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../../cart_provider.dart';
-import '../../../../models/user_model.dart';
+import '../../../cart_provider.dart';
 
 class MyInfo extends StatefulWidget {
   const MyInfo({super.key});
@@ -19,7 +17,6 @@ bool isStory = false;
 bool isExpanded = true;
 
 class _MyInfoState extends State<MyInfo> {
-  late final UserModel userModel;
 
   bool isLoading = true;
 
@@ -49,23 +46,23 @@ class _MyInfoState extends State<MyInfo> {
                 Material(
                   child: GestureDetector(
                     onTap: () {
-                      if (isSex) {
-                        FirebaseDatabase.instance
-                            .ref()
-                            .child("users/${userModel.phone}")
-                            .update({
-                          "sex": _sex,
-                        });
-                      } else {
-                        FirebaseDatabase.instance
-                            .ref()
-                            .child("users/${userModel.phone}")
-                            .update({
-                          "date_of_birth": _dateOfBirth,
-                        });
-                      }
-                      setState(() {});
-                      Navigator.of(context).pop();
+                      // if (isSex) {
+                      //   FirebaseDatabase.instance
+                      //       .ref()
+                      //       .child("users/${userModel.phone}")
+                      //       .update({
+                      //     "sex": _sex,
+                      //   });
+                      // } else {
+                      //   FirebaseDatabase.instance
+                      //       .ref()
+                      //       .child("users/${userModel.phone}")
+                      //       .update({
+                      //     "date_of_birth": _dateOfBirth,
+                      //   });
+                      // }
+                      // setState(() {});
+                      // Navigator.of(context).pop();
                     },
                     child: Container(
                       height: 56,
@@ -86,25 +83,6 @@ class _MyInfoState extends State<MyInfo> {
             )),
       ),
     );
-  }
-
-  @override
-  void initState() {
-    getData();
-    super.initState();
-  }
-
-  void getData() async {
-    final prefs = await SharedPreferences.getInstance();
-    final snapshot = await FirebaseDatabase.instance
-        .ref("users/${prefs.getString('phone')}")
-        .get();
-    userModel = UserModel.fromJson(snapshot.value as Map);
-    isLoading = false;
-    _nameController.text = userModel.name;
-    _dateOfBirth = userModel.dateOfBirth;
-    _sex = userModel.sex;
-    setState(() {});
   }
 
   @override

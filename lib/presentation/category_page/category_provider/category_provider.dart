@@ -20,10 +20,16 @@ class CategoryProvider extends ICategoryProvider with ChangeNotifier {
 
   @override
   Future<void> getProducts(String id) async {
-    print("вывавы");
     _products = await _categoryService.getProducts(id);
     _isLoading = false;
-    print("фвррфвырфывфы");
+    notifyListeners();
+  }
+
+  Future<void> refresh(String id) async {
+    _isLoading = true;
+    notifyListeners();
+    _products = await _categoryService.getProducts(id);
+    _isLoading = false;
     notifyListeners();
   }
 }
