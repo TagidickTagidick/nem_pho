@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nem_pho/presentation/profile_page/profile_provider/profile_provider.dart';
+import 'package:nem_pho/presentation/profile_page/widgets/custom_text_field.dart';
+import 'package:nem_pho/presentation/profile_page/widgets/save_button.dart';
 import 'package:provider/provider.dart';
-import 'package:nem_pho/cart_provider.dart';
+import 'package:nem_pho/core/services/sheet_service.dart';
+import 'package:nem_pho/core/utils/formatter.dart';
 
 class MyInfo extends StatefulWidget {
   const MyInfo({super.key});
@@ -12,364 +16,216 @@ class MyInfo extends StatefulWidget {
 
 class _MyInfoState extends State<MyInfo> {
 
-  bool isLoading = true;
-
   final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _streetController = TextEditingController();
+  final TextEditingController _floorController = TextEditingController();
   String _dateOfBirth = '';
   bool? _sex;
 
-  void _showDialog(Widget child, bool isSex) {
-    showCupertinoModalPopup<void>(
-      context: context,
-      builder: (BuildContext context) => Container(
-        height: 302,
-        padding: const EdgeInsets.only(top: 6.0),
-        margin: EdgeInsets.only(
-          bottom: MediaQuery.of(context).viewInsets.bottom,
-        ),
-        decoration: const BoxDecoration(
-            color: Color(0xffF3F3F3),
-            borderRadius: BorderRadius.vertical(top: Radius.circular(40))),
-        child: SafeArea(
-            top: false,
-            child: Column(
-              children: [
-                Expanded(
-                  child: child,
-                ),
-                Material(
-                  child: GestureDetector(
-                    onTap: () {
-                      // if (isSex) {
-                      //   FirebaseDatabase.instance
-                      //       .ref()
-                      //       .child("users/${userModel.phone}")
-                      //       .update({
-                      //     "sex": _sex,
-                      //   });
-                      // } else {
-                      //   FirebaseDatabase.instance
-                      //       .ref()
-                      //       .child("users/${userModel.phone}")
-                      //       .update({
-                      //     "date_of_birth": _dateOfBirth,
-                      //   });
-                      // }
-                      // setState(() {});
-                      // Navigator.of(context).pop();
-                    },
-                    child: Container(
-                      height: 56,
-                      width: double.infinity,
-                      color: const Color(0xffFFB627),
-                      alignment: Alignment.center,
-                      child: const Text(
-                        "Сохранить",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 18,
-                            color: Color(0xFF000000)),
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            )),
-      ),
-    );
+  bool get canSave {
+    final user = context.read<ProfileProvider>().user;
+    if (user == null) return false;
+    final bool nameChanged = _nameController.text != user.name;
+    final bool birthdayChange = _dateOfBirth != user.birthday;
+    final bool streetChange = _streetController.text != user.street;
+    final bool floorChange = int.parse(_floorController.text) != user.floor;
+    final bool sexChange = Formatter.convertSex(_sex) != (user.sex ?? 'Не выбрано');
+    return nameChanged || birthdayChange || sexChange || streetChange || floorChange;
+  }
+
+  @override
+  void initState() {
+    _nameController.text = context.read<ProfileProvider>().user?.name ?? "";
+    _nameController.addListener(() {
+      setState(() {});
+    });
+    _streetController.addListener(() {
+      setState(() {});
+    });
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return isLoading
-        ? const Center(
-      child: CircularProgressIndicator(),
-    )
-        : Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          height: 10,
-        ),
-        SizedBox(
-          height: 40,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(
-            left: 18,
-          ),
-          child: Text(
-            'Имя',
-            style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                color: Color(0xFF808080)),
-          ),
-        ),
-        SizedBox(
-          height: 2,
-        ),
-        _buildTextField(
-          controller: _nameController,
-        ),
-        SizedBox(
-          height: 16,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(
-            left: 18,
-          ),
-          child: Text(
-            'Дата рождения',
-            style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                color: Color(0xFF808080)),
-          ),
-        ),
-        SizedBox(
-          height: 2,
-        ),
-        GestureDetector(
-          onTap: () {
-            _dateOfBirth =
-            '${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}';
-            _showDialog(
-              CupertinoDatePicker(
-                initialDateTime: DateTime.now(),
-                mode: CupertinoDatePickerMode.date,
-                use24hFormat: true,
-                onDateTimeChanged: (DateTime newDate) {
-                  _dateOfBirth =
-                  '${newDate.day}.${newDate.month}.${newDate.year}';
-                },
-              ),
-              false,
-            );
-          },
-          child: Container(
-            height: 61,
-            width: double.infinity,
-            color: Color(0xffF3F3F3),
-            child: Container(
-              height: 60,
-              color: const Color(0xffF3F3F3),
-              width: double.infinity,
-              alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.only(
-                left: 10,
-              ),
-              child: Text(
-                _dateOfBirth,
-                style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16,
-                    color: Color(0xff000000)),
-              ),
-            ),
-          ),
-        ),
-        SizedBox(
-          height: 16,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(
-            left: 18,
-          ),
-          child: Text(
-            'Пол',
-            style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                color: Color(0xFF808080)),
-          ),
-        ),
-        SizedBox(
-          height: 2,
-        ),
-        GestureDetector(
-          onTap: () {
-            _sex = true;
-            _showDialog(
-              CupertinoPicker(
-                magnification: 1.22,
-                squeeze: 1.2,
-                useMagnifier: true,
-                itemExtent: 32.0,
-                // This sets the initial item.
-                scrollController: FixedExtentScrollController(
-                  initialItem: 0,
-                ),
-                onSelectedItemChanged: (int selectedItem) {
-                  switch (selectedItem) {
-                    case 0:
-                      _sex = true;
-                      break;
-                    case 1:
-                      _sex = false;
-                      break;
-                    case 2:
-                      _sex = null;
-                      break;
-                  }
-                },
-                children: const [
-                  Center(
-                      child: Text(
-                        "Мужской",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16,
-                            color: Color(0xff000000)),
-                      )),
-                  Center(
-                    child: Text(
-                      "Женский",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                          color: Color(0xff000000)),
-                    ),
-                  ),
-                ],
-              ),
-              true,
-            );
-          },
-          child: Container(
-            height: 60,
-            color: const Color(0xffF3F3F3),
-            width: double.infinity,
-            alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.only(
-              left: 10,
-            ),
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 50),
+          const Padding(
+            padding: EdgeInsets.only(left: 18),
             child: Text(
-              switch (_sex) {
-                true => 'Мужской',
-                false => 'Женский',
-                null => 'Не выбрано',
-              },
-              style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16,
-                  color: Color(0xff000000)),
-            ),
-          ),
-        ),
-        SizedBox(
-          height: 100,
-        ),
-        Center(
-          child: GestureDetector(
-            onTap: () {
-              showModalBottomSheet(
-                  context: context,
-                  builder: (context) => Container(
-                    padding: const EdgeInsets.only(left: 16, right: 16, bottom: 46),
-                    child: Container(
-                      height: 135,
-                      padding:
-                      const EdgeInsets.only(top: 23, left: 16, right: 16, bottom: 16),
-                      decoration: BoxDecoration(
-                          color: Colors.white, borderRadius: BorderRadius.circular(20)),
-                      child: Column(
-                        children: [
-                          Text("Вы действительно хотите выйти?",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                              color: Colors.black,),),
-                          const SizedBox(height: 24),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    context.read<CartProvider>().clearData();
-                                    Navigator.of(context).popUntil((route) => route.isFirst);
-                                  },
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                    padding: const EdgeInsets.symmetric(vertical: 14.5),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(30),
-                                      color: const Color(0xffE8E8E8),
-                                    ),
-                                    child: Text("Да",
-                                      style: TextStyle(
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16,
-                                        color: Colors.black,),),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 8),
-                              Expanded(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                    padding: const EdgeInsets.symmetric(vertical: 14.5),
-                                    decoration: BoxDecoration(
-                                      // border: Border.all(color: color.main),
-                                        borderRadius: BorderRadius.circular(30),
-                                        color: const Color(0xffF15959)
-                                    ),
-                                    child: Text("Нет",
-                                      style: TextStyle(
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16,
-                                        color: Colors.white,),),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  )
-              );
-            },
-            child: Text(
-              'Удалить аккаунт',
+              'Имя',
               style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
                   color: Color(0xFF808080)),
             ),
           ),
-        ),
-      ],
+          const SizedBox(height: 2),
+          CustomTextField(textEditingController: _nameController),
+          const SizedBox(height: 16),
+          const Padding(
+            padding: EdgeInsets.only(left: 18),
+            child: Text(
+              'Дата рождения',
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF808080)
+              ),
+            ),
+          ),
+          const SizedBox(height: 2),
+          GestureDetector(onTap: () {
+            _dateOfBirth =
+            '${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}';
+            SheetService.showDatePicker(
+                context,
+                onChanged: (newDate) {
+                  _dateOfBirth =
+                  '${newDate.day}.${newDate.month}.${newDate.year}';
+                  print(newDate.month);
+                  setState(() {});
+                }
+            );
+          },
+            child: Container(
+              height: 61,
+              width: double.infinity,
+              color: const Color(0xffF3F3F3),
+              child: Container(
+                height: 60,
+                color: const Color(0xffF3F3F3),
+                width: double.infinity,
+                alignment: Alignment.centerLeft,
+                padding: const EdgeInsets.only(left: 10),
+                child: Text(
+                  _dateOfBirth,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                      color: Color(0xff000000)
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+          const Padding(
+            padding: EdgeInsets.only(left: 18),
+            child: Text(
+              'Пол',
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF808080)
+              ),
+            ),
+          ),
+          const SizedBox(height: 2),
+          GestureDetector(onTap: () {
+            _sex = true;
+            SheetService.showPicker(
+              context,
+              onSelectedItemChanged: (int selectedItem) {
+                switch (selectedItem) {
+                  case 0:
+                    _sex = true;
+                    break;
+                  case 1:
+                    _sex = false;
+                    break;
+                  case 2:
+                    _sex = null;
+                    break;
+                }
+                setState(() {});
+              },
+            );
+          },
+            child: Container(
+              height: 60,
+              color: const Color(0xffF3F3F3),
+              width: double.infinity,
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.only(left: 10),
+              child: Text(
+                Formatter.convertSex(_sex),
+                style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                    color: Color(0xff000000)
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+          const Padding(
+            padding: EdgeInsets.only(left: 18),
+            child: Text(
+              'Улица',
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF808080)
+              ),
+            ),
+          ),
+          const SizedBox(height: 2),
+          CustomTextField(textEditingController: _streetController),
+          const SizedBox(height: 16),
+          const Padding(
+            padding: EdgeInsets.only(left: 18),
+            child: Text(
+              'Этаж',
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF808080)
+              ),
+            ),
+          ),
+          const SizedBox(height: 2),
+          CustomTextField(
+              textEditingController: _floorController,
+            isNumber: true,
+          ),
+          const SizedBox(height: 100),
+          if (canSave)
+            GestureDetector(onTap: () {
+              context.read<ProfileProvider>().save(
+                  birthday: _dateOfBirth.isEmpty ? null : _dateOfBirth.replaceAll('.', '-'),
+                  name: _nameController.text.isEmpty ? null : _nameController.text,
+                  sex: Formatter.convertSex(_sex),
+                  street: _streetController.text.isEmpty ? null : _streetController.text
+              );
+            },
+                child: const SaveButton()
+            ),
+          const SizedBox(height: 100),
+          Center(
+            child: GestureDetector(onTap: () {
+              SheetService.showSheet(
+                  context,
+                  onTap:() {
+                    context.read<ProfileProvider>().deleteUser();
+                    Navigator.of(context).popUntil((route) => route.isFirst);
+                  }
+              );
+            },
+              child: const Text(
+                'Удалить аккаунт',
+                style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xFF808080)
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
-}
-
-Widget _buildTextField({
-  required TextEditingController controller,
-}) {
-  return Container(
-    height: 60,
-    color: Color(0xffF3F3F3),
-    child: TextField(
-      controller: controller,
-      style: const TextStyle(
-          fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xff000000)),
-      decoration: const InputDecoration(
-        contentPadding: EdgeInsets.symmetric(horizontal: 10),
-        border: InputBorder.none,
-        focusedBorder: InputBorder.none,
-        enabledBorder: InputBorder.none,
-        errorBorder: InputBorder.none,
-        disabledBorder: InputBorder.none,
-      ),
-    ),
-  );
 }

@@ -9,7 +9,37 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="912997e2-eaa7-4f83-87af-e7a147d5f857" name="Changes" comment="add push_notifications" />
+    <list default="true" id="912997e2-eaa7-4f83-87af-e7a147d5f857" name="Changes" comment="add push_notifications">
+      <change afterPath="$PROJECT_DIR$/lib/core/constants/storage_constants.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/core/services/receiving_service.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/core/services/sheet_service.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/core/utils/formatter.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/presentation/profile_page/widgets/custom_text_field.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/presentation/profile_page/widgets/save_button.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/providers/common_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/providers/common_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/services/common_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/services/common_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/services/network_client.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/services/network_client.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/services/storage_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/services/storage_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/authorization_page/authorization_provider/authorization_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/authorization_page/authorization_provider/authorization_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/authorization_page/authorization_service/authorization_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/authorization_page/authorization_service/authorization_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/loading_page/loading_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/loading_page/loading_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/loading_page/loading_provider/loading_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/loading_page/loading_provider/loading_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/loading_page/loading_service/loading_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/loading_page/loading_service/loading_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/profile_page/profile_models/user_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/profile_page/profile_models/user_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/profile_page/profile_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/profile_page/profile_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/profile_page/profile_provider/profile_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/profile_page/profile_provider/profile_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/profile_page/profile_service/profile_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/profile_page/profile_service/profile_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/profile_page/widgets/my_info.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/profile_page/widgets/my_info.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/profile_page/widgets/my_orders.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/profile_page/widgets/my_orders.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/profile_page/widgets/profile_tabs.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/profile_page/widgets/profile_tabs.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,7 +84,7 @@
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;refactor/push__service&quot;,
     &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/DIGMA/Documents/voices/voices-mobile&quot;,

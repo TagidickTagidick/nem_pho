@@ -1,3 +1,4 @@
+import 'package:nem_pho/core/services/storage_service.dart';
 import 'package:nem_pho/presentation/loading_page/models/menu_model.dart';
 import 'package:nem_pho/core/models/banner_model.dart';
 import 'package:nem_pho/core/services/network_client.dart';
@@ -5,10 +6,21 @@ import 'package:nem_pho/core/services/network_client.dart';
 abstract class ICommonService {
   Future<List<BannerModel>> getBanners();
   Future<List<MenuModel>> getMenu();
+  Future<List<BannerModel>> getBannersFromStorage();
+  Future<void> setBannersToStorage(List<BannerModel> banners);
+  Future<String?> getAccessTokenFromStorage();
 }
 
 class CommonService extends ICommonService {
-  final INetworkClient _networkClient = NetworkClient();
+  CommonService({
+    required final INetworkClient networkClient,
+    required final IStorageService storageService
+  }): _networkClient = networkClient,
+        _storageService = storageService;
+
+  final INetworkClient _networkClient;
+  final IStorageService _storageService;
+
   @override
   Future<List<BannerModel>> getBanners() async {
     try {
@@ -34,5 +46,20 @@ class CommonService extends ICommonService {
     catch (_) {
       rethrow;
     }
+  }
+
+  @override
+  Future<List<BannerModel>> getBannersFromStorage() async {
+    return await _storageService.getBanners();
+  }
+
+  @override
+  Future<void> setBannersToStorage(List<BannerModel> banners) async {
+    _storageService.setBanners(banners);
+  }
+
+  @override
+  Future<String?> getAccessTokenFromStorage() async {
+    return await _storageService.getAccessToken();
   }
 }

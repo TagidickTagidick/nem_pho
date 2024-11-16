@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:nem_pho/core/models/banner_model.dart';
 import 'package:nem_pho/core/services/common_service.dart';
 import 'package:nem_pho/presentation/loading_page/models/menu_model.dart';
-import 'package:nem_pho/core/services/storage_service.dart';
 
 class CommonProvider extends ChangeNotifier {
-  final ICommonService _commonService = CommonService();
-  final IStorageService _storageService = StorageService();
+  CommonProvider({
+    required final ICommonService commonService
+  }): _commonService = commonService;
+  final ICommonService _commonService;
+
   List<MenuModel> _menu = [];
   bool _isLoading = false;
 
@@ -25,7 +27,7 @@ class CommonProvider extends ChangeNotifier {
     notifyListeners();
     _banners = await _commonService.getBanners();
     if (banners.isEmpty) {
-      final bannersFromStorage = await _storageService.getBanners();
+      final bannersFromStorage = await _commonService.getBannersFromStorage();
       if (bannersFromStorage.isEmpty) {
         _banners = [];
         notifyListeners();
@@ -34,9 +36,9 @@ class CommonProvider extends ChangeNotifier {
       notifyListeners();
     }
 
-    final bannersFromStorage = await _storageService.getBanners();
+    final bannersFromStorage = await _commonService.getBannersFromStorage();
     if (bannersFromStorage.isEmpty) {
-      await _storageService.setBanners(banners);
+      await _commonService.setBannersToStorage(banners);
     }
     _isBannersLoading = false;
     notifyListeners();
@@ -46,7 +48,7 @@ class CommonProvider extends ChangeNotifier {
 
   ///Проверяет авторизован пользователь или нет
   Future<bool> checkIsAuthorized() async {
-    final String? token = await _storageService.getAccessToken();
+    final String? token = await _commonService.getAccessTokenFromStorage();
     return token != null;
   }
 

@@ -19,18 +19,14 @@ class _ProfilePageState extends State<ProfilePage> {
   final PageController _controller = PageController();
 
   @override
-  void initState() {
-    context.read<ProfileProvider>().initUser();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+
     if(context.watch<ProfileProvider>().isLoading) {
       return const Scaffold(
         backgroundColor: Colors.indigo,
       );
     }
+
     return Scaffold(
       appBar: const CustomAppBar(
         isLogin: true,

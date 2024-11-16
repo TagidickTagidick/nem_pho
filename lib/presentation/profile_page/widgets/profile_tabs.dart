@@ -13,7 +13,7 @@ class ProfileTabs extends StatefulWidget {
 }
 
 class _ProfileTabsState extends State<ProfileTabs> {
-  bool isOrders = true;
+  bool isMyInfo = false;
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
@@ -30,7 +30,7 @@ class _ProfileTabsState extends State<ProfileTabs> {
       ),
       AnimatedAlign(
         alignment:
-        isOrders ? Alignment.centerRight : Alignment.centerLeft,
+        isMyInfo ? Alignment.centerRight : Alignment.centerLeft,
         duration: const Duration(milliseconds: 200),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
@@ -57,14 +57,14 @@ class _ProfileTabsState extends State<ProfileTabs> {
                     duration: const Duration(milliseconds: 250),
                     curve: Curves.ease,
                   );
-                  setState(() => isOrders = false);
+                  setState(() => isMyInfo = false);
                 },
                   child: Text(
                     "Мои заказы",
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 16,
-                      color: isOrders
+                      color: isMyInfo
                           ? const Color(0xff000000)
                           : const Color(0xffffffff),
                     ),
@@ -76,14 +76,14 @@ class _ProfileTabsState extends State<ProfileTabs> {
                     duration: const Duration(milliseconds: 250),
                     curve: Curves.ease,
                   );
-                  setState(() => isOrders = true);
+                  setState(() => isMyInfo = true);
                 },
                   child: Text(
                     "Данные",
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 16,
-                      color: isOrders
+                      color: isMyInfo
                           ? const Color(0xffffffff)
                           : const Color(0xff000000),
                     ),
