@@ -50,8 +50,8 @@ class _LoadingPageState extends State<LoadingPage> with SingleTickerProviderStat
     controller.addListener(() {
       setState(() {});
     });
-    final IPushNotificationService _pushToken = PushNotificationService();
-    _pushToken.init();
+    final IPushNotificationService pushToken = PushNotificationService();
+    pushToken.init();
     final healthCheck = mounted ? await _progressLoader(
       1,
       context.read<LoadingProvider>().getHealthCheck(),
@@ -69,7 +69,7 @@ class _LoadingPageState extends State<LoadingPage> with SingleTickerProviderStat
       context.read<CommonProvider>().getMenu(),
     );
     if (mounted) {
-      context.push('/error_page');
+      context.pushReplacement('/main_page');
     }
     final user = mounted ? await _progressLoader(
         5,

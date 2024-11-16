@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:nem_pho/core/services/storage_service.dart';
 import 'package:nem_pho/core/utils/custom_log.dart';
 import 'package:talker_flutter/talker_flutter.dart';
@@ -10,6 +11,7 @@ abstract class INetworkClient {
   Future<Map<String, dynamic>> get(String url);
   Future<Map<String, dynamic>> delete(String url);
   Future<Map<String, dynamic>> patch(String url, Map<String, dynamic> body);
+  Future<void> init();
   Future<void> refresh();
 }
 
@@ -23,7 +25,13 @@ class NetworkClient extends INetworkClient {
   NetworkClient._internal();
 
   final Talker talker = Talker();
-  final IStorageService _storageService = StorageService();
+  final IStorageService _storageService = StorageService(
+      storage: const FlutterSecureStorage(
+          aOptions: AndroidOptions(
+              encryptedSharedPreferences: true
+          )
+      )
+  );
   final Dio dio = Dio();
 
   String getPrettyJSONString(Map<String, dynamic> jsonObject) {
@@ -31,6 +39,7 @@ class NetworkClient extends INetworkClient {
     return encoder.convert(jsonObject);
   }
 
+  @override
   Future<void> init() async {
     final accessToken = await _storageService.getAccessToken();
     dio.options = BaseOptions(
@@ -39,6 +48,7 @@ class NetworkClient extends INetworkClient {
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': 'Bearer $accessToken'
       },
+      validateStatus: (_) => true,
     );
   }
 
@@ -89,11 +99,13 @@ class NetworkClient extends INetworkClient {
       Response response = await dio.get(
         url,
       );
-      logResponse(response.statusCode!, response.data, 'get', url);
+      print(response.data);
+      //logResponse(response.statusCode!, response.data, 'get', url);
       switch (response.statusCode) {
         case 200:
           return response.data;
         case 401:
+          print("рфрыврфы");
           await refresh();
           logRequest('get', url);
           Response response = await dio.get(
@@ -116,6 +128,7 @@ class NetworkClient extends INetworkClient {
           );
       }
     } catch (_) {
+
       rethrow;
     }
   }
@@ -164,7 +177,9 @@ class NetworkClient extends INetworkClient {
       logRequest('patch', url, body: body);
       Response response = await dio.patch(
         url,
+        data: body,
       );
+      print(response.data);
       logResponse(response.statusCode!, response.data, 'patch', url);
       switch (response.statusCode) {
         case 200:
@@ -174,6 +189,7 @@ class NetworkClient extends INetworkClient {
           logRequest('patch', url);
           Response response = await dio.patch(
             url,
+            data: body,
           );
           logResponse(response.statusCode!, response.data, 'patch', url);
           switch (response.statusCode) {
@@ -203,12 +219,14 @@ class NetworkClient extends INetworkClient {
       Response response = await dio.post(
         'refresh',
       );
+      print("рфврвфрырвфы ${response.data}");
       logResponse(response.statusCode!, response.data, 'post', 'refresh');
       if (response.statusCode == 200) {
         await _storageService.setToken(
           response.data['payload']['access_token'],
           response.data['payload']['refresh_token'],
         );
+        await init();
       } else {
         throw ErrorModel(
             statusCode: response.statusCode!,
@@ -228,7 +246,8 @@ class NetworkClient extends INetworkClient {
     talker.logTyped(CustomLog(
         '\nType: $type'
             '\nurl: ${dio.options.baseUrl}$url'
-            '${body == null ? '' : '\nbody: $body'}',
+            '${body == null ? '' : '\nbody: $body'}'
+            '${dio.options.headers}',
         'REQUEST',
         015
     ));

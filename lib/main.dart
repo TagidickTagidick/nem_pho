@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nem_pho/core/services/common_service.dart';
 import 'package:nem_pho/core/services/network_client.dart';
-import 'package:nem_pho/core/services/storage_service.dart';
+import 'package:nem_pho/core/services/receiving_service.dart';
 import 'package:nem_pho/presentation/authorization_page/authorization_page.dart';
 import 'package:nem_pho/presentation/authorization_page/authorization_provider/authorization_provider.dart';
 import 'package:nem_pho/presentation/authorization_page/authorization_service/authorization_service.dart';
@@ -22,6 +23,7 @@ import 'package:nem_pho/presentation/profile_page/profile_service/profile_servic
 import 'package:provider/provider.dart';
 import 'package:nem_pho/cart_provider.dart';
 import 'package:nem_pho/core/providers/common_provider.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   runApp(App());
@@ -37,8 +39,10 @@ class App extends StatelessWidget {
         builder: (context, state) =>
             ChangeNotifierProvider<LoadingProvider>(
                 create:(_) => LoadingProvider(
-                    loadingService: LoadingService(networkClient: NetworkClient()),
-                    storageService: StorageService()
+                  loadingService: LoadingService(
+                      networkClient: NetworkClient(),
+                      storageService: ReceivingService.getStorage()
+                  ),
                 ),
                 child: const LoadingPage()
             ),
@@ -51,8 +55,10 @@ class App extends StatelessWidget {
         path: '/authorization_page',
         builder: (context, state) => ChangeNotifierProvider<AuthorizationProvider>(
             create:(_) => AuthorizationProvider(
-                authorizationService: AuthorizationService(),
-                storageService: StorageService()
+              authorizationService: AuthorizationService(
+                  networkClient: NetworkClient(),
+                  storageService: ReceivingService.getStorage()
+              ),
             ),
             child: const AuthorizationPage()
         ),
@@ -61,10 +67,11 @@ class App extends StatelessWidget {
         path: '/profile_page',
         builder: (context, state) => ChangeNotifierProvider<ProfileProvider>(
             create:(_) => ProfileProvider(
-                profileService: ProfileService(
-                    networkClient: NetworkClient()
-                )
-            ),
+              profileService: ProfileService(
+                  networkClient: NetworkClient(),
+                  storageService: ReceivingService.getStorage()
+              ),
+            )..initUser(),
             child: const ProfilePage()
         ),
       ),
@@ -107,9 +114,28 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => CartProvider()),
-        ChangeNotifierProvider(create: (_) => CommonProvider()),
+        ChangeNotifierProvider(create: (_) => CommonProvider(
+            commonService: CommonService(
+                networkClient: NetworkClient(),
+                storageService: ReceivingService.getStorage()
+            ))
+        ),
       ],
       child: MaterialApp.router(
+        supportedLocales: const [Locale('ru')],
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        builder: (BuildContext context, Widget? child) {
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(
+              textScaler: TextScaler.noScaling,
+            ),
+            child: child!,
+          );
+        },
         routerConfig: router,
       ),
     );

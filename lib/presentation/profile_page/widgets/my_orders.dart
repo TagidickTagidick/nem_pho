@@ -13,7 +13,7 @@ class MyOrders extends StatefulWidget {
 class _MyOrdersState extends State<MyOrders> {
   @override
   Widget build(BuildContext context) {
-    final UserModel userModel = context.read<ProfileProvider>().user;
+    final UserModel userModel = context.read<ProfileProvider>().user!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -35,7 +35,8 @@ class _MyOrdersState extends State<MyOrders> {
         Padding(
           padding: const EdgeInsets.only(left: 25),
           child: Text(
-            userModel.phone,
+            '',
+            // userModel.phone,
             style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w400,

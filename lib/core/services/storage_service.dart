@@ -1,95 +1,75 @@
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:nem_pho/core/constants/storage_constants.dart';
 import 'package:nem_pho/core/models/banner_model.dart';
 
 abstract class IStorageService {
-  Future<void> initializeDataBase();
   Future<void> setToken(String accessToken, String refreshToken);
   Future<String?> getAccessToken();
   Future<String?> getRefreshToken();
   Future<void> setBanners(List<BannerModel> banners);
   Future<List<BannerModel>> getBanners();
+  Future<void> clear();
 }
 
 class StorageService extends IStorageService {
-  static final StorageService _singleton = StorageService._internal();
+  StorageService({
+    required final FlutterSecureStorage storage
+  }): _storage = storage;
 
-  factory StorageService() {
-    return _singleton;
-  }
-
-  StorageService._internal();
-
-  Database? database;
-
-  @override
-  Future<void> initializeDataBase() async {
-    if (database != null) return;
-
-    database = await openDatabase(
-      join(await getDatabasesPath(), 'user.db', 'banners.db'),
-      onCreate: (db, version) {
-        db.execute(
-            'CREATE TABLE user(id INT, access_token TEXT, refresh_token TEXT)'
-        );
-        db.execute(
-            'CREATE TABLE banners(id INT, url TEXT)'
-        );
-      },
-      version: 1,
-    );
-  }
+  final FlutterSecureStorage _storage;
 
   @override
   Future<void> setToken(String accessToken, String refreshToken) async {
-    if (database == null) return;
-
-    await database!.insert(
-        'user',
-        {
-          'access_token': accessToken,
-          'refresh_token': refreshToken
-        },
-        conflictAlgorithm: ConflictAlgorithm.replace
+    await _storage.write(
+        key: StorageConstants.accessToken,
+        value: accessToken
+    );
+    await _storage.write(
+        key: StorageConstants.refreshToken,
+        value: refreshToken
     );
   }
 
   @override
   Future<String?> getAccessToken() async {
-    if (database == null) return null;
-
-    final List<Map<String, dynamic>> userMaps = await database!.query('user');
-    return userMaps.firstOrNull?['access_token'];
+    return await _storage.read(
+        key: StorageConstants.accessToken
+    );
   }
 
   @override
   Future<String?> getRefreshToken() async {
-    if (database == null) return null;
-
-    final List<Map<String, dynamic>> userMaps = await database!.query('user');
-    return userMaps.firstOrNull?['refresh_token'];
+    return await _storage.read(
+        key: StorageConstants.refreshToken
+    );
   }
 
   @override
   Future<void> setBanners(List<BannerModel> banners) async {
-    if (database == null) return;
-
-    for(var banner in banners) {
-      await database?.insert(
-          'banners',
-          banner.toMap()
+    for (var banner in banners) {
+      await _storage.write(
+          key: StorageConstants.banners,
+          value: banner.toMap().toString()
       );
     }
   }
 
   @override
   Future<List<BannerModel>> getBanners() async {
-    if (database == null) return [];
-    final List<Map<String, dynamic>> bannersMaps = await database!.query('banners');
-    List<BannerModel> banners = [];
-    for(var banner in bannersMaps) {
-      banners.add(BannerModel.fromJson(banner));
-    }
-    return banners;
+    return [];
+    // final String? bannersString = await _storage.read(key: 'banners');
+    // if (bannersString == null) return [];
+    // final Map<>jsonDecode(bannersString);
+    // final List<Map<String, dynamic>> bannersMaps = await _storage.read(key: 'banners');
+    // List<BannerModel> banners = [];
+    // for(var banner in bannersMaps) {
+    //   banners.add(BannerModel.fromJson(banner));
+    // }
+    // return banners;
+  }
+
+  @override
+  Future<void> clear() async {
+    await _storage.deleteAll();
   }
 }
