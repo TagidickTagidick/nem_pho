@@ -43,7 +43,7 @@ class NetworkClient extends INetworkClient {
   Future<void> init() async {
     final accessToken = await _storageService.getAccessToken();
     dio.options = BaseOptions(
-      baseUrl: 'https://nem-pho-backend.onrender.com/',
+      baseUrl: 'https://tagidicktagidick-nem-pho-backend-806e.twc1.net.',
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': 'Bearer $accessToken'

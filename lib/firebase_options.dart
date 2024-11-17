@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -51,7 +48,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCJ8wJWERM00aXKF94W-879UU77Qn9sJwY',
-    appId: '1:400483238383:android:be4b67361de1abb4e4361a',
+    appId: '1:400483238383:android:455ab6aee859af8fe4361a',
     messagingSenderId: '400483238383',
     projectId: 'nem-pho-f7f90',
     databaseURL: 'https://nem-pho-f7f90-default-rtdb.firebaseio.com',
@@ -60,13 +57,22 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBMVY37c8OIfaZgz9HaoKGZuk_mGxQVTxM',
-    appId: '1:400483238383:ios:3a043e51f244ad15e4361a',
+    appId: '1:400483238383:ios:764a91094db0c164e4361a',
     messagingSenderId: '400483238383',
     projectId: 'nem-pho-f7f90',
     databaseURL: 'https://nem-pho-f7f90-default-rtdb.firebaseio.com',
     storageBucket: 'nem-pho-f7f90.appspot.com',
-    iosClientId:
-        '400483238383-26598p0i0jvuudj27iqcdflddbv4vlra.apps.googleusercontent.com',
-    iosBundleId: 'com.example.nemPho',
+    iosBundleId: 'nem.pho.nemPho',
   );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyCbvB-wOJL2eHYaWPoTeT92fQi8XEYYQbs',
+    appId: '1:400483238383:web:6add3ff74b619dcae4361a',
+    messagingSenderId: '400483238383',
+    projectId: 'nem-pho-f7f90',
+    authDomain: 'nem-pho-f7f90.firebaseapp.com',
+    databaseURL: 'https://nem-pho-f7f90-default-rtdb.firebaseio.com',
+    storageBucket: 'nem-pho-f7f90.appspot.com',
+  );
+
 }
