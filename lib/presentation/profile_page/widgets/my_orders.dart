@@ -22,7 +22,7 @@ class _MyOrdersState extends State<MyOrders> {
             left: 25,
           ),
           child: Text(
-            "Горячая Головяшкина",
+            "",
             style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w400,

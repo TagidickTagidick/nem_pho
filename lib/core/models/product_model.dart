@@ -1,31 +1,39 @@
+import 'package:nem_pho/presentation/product_page/models/topping_model.dart';
+
 class ProductModel {
   final int id;
   final int price;
   final String image;
   final String title;
-  final bool? isTopping;
   final String description;
   final String? composition;
+  final List<ToppingModel> toppings;
 
   ProductModel({
     required this.id,
     required this.image,
     required this.title,
     required this.price,
-    this.isTopping,
     required this.description,
     this.composition,
+    required this.toppings,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
-        id: json['id'],
-        image: json['image'],
-        title: json['title'],
-        price: json['price'],
-        description: json['description'],
-        composition: json['composition'],
-        isTopping: json['is_topping']
+      id: json['id'],
+      image: json['image'],
+      title: json['title'],
+      price: json['price'],
+      description: json['description'],
+      composition: json['composition'],
+      toppings: json['toppings'] == null
+          ? []
+          : List<ToppingModel>.from(
+              json['toppings'].map(
+                (x) => ToppingModel.fromJson(x),
+              ),
+            ),
     );
   }
 
@@ -48,6 +56,6 @@ class ProductModel {
     title: 'ФО БО',
     description: 'ФУ бо',
     price: 500,
-    isTopping: true,
+    toppings: [],
   );
 }

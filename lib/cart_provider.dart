@@ -1,6 +1,4 @@
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'models/product_model.dart';
 import 'models/user_model.dart';
 
@@ -42,49 +40,39 @@ class CartProvider with ChangeNotifier {
   //   notifyListeners();
   // }
 
-  void clearData() async {
-    FirebaseDatabase.instance
-        .ref("users/$_phone").remove();
-    _phone = null;
-    _userModel = null;
-    notifyListeners();
-    final prefs = await SharedPreferences.getInstance();
-    prefs.clear();
-  }
-
   void addProduct(ProductModel product) {
-    userModel?.cart.add(product);
-    List cart = [];
-    for (var product in userModel!.cart) {
-      cart.add(product.toJson());
-    }
-    FirebaseDatabase.instance
-        .ref()
-        .child('users/$phone')
-        .update({"cart": cart});
-    notifyListeners();
+    // userModel?.cart.add(product);
+    // List cart = [];
+    // for (var product in userModel!.cart) {
+    //   cart.add(product.toJson());
+    // }
+    // FirebaseDatabase.instance
+    //     .ref()
+    //     .child('users/$phone')
+    //     .update({"cart": cart});
+    // notifyListeners();
   }
 
   void removeProduct(ProductModel product) {
-    ProductModel removedProduct =
-    userModel!.cart.firstWhere((element) => element.title == product.title);
-    userModel!.cart.remove(removedProduct);
-    List cart = [];
-    for (var product in userModel!.cart) {
-      cart.add(product.toJson());
-    }
-    FirebaseDatabase.instance
-        .ref()
-        .child('users/$phone')
-        .update({"cart": cart});
-    notifyListeners();
+    // ProductModel removedProduct =
+    // userModel!.cart.firstWhere((element) => element.title == product.title);
+    // userModel!.cart.remove(removedProduct);
+    // List cart = [];
+    // for (var product in userModel!.cart) {
+    //   cart.add(product.toJson());
+    // }
+    // FirebaseDatabase.instance
+    //     .ref()
+    //     .child('users/$phone')
+    //     .update({"cart": cart});
+    // notifyListeners();
   }
 
   void clearProducts() {
-    userModel!.cart.clear();
-    FirebaseDatabase.instance.ref().child('users/$phone').update({
-      "cart": [],
-    });
-    notifyListeners();
+    // userModel!.cart.clear();
+    // FirebaseDatabase.instance.ref().child('users/$phone').update({
+    //   "cart": [],
+    // });
+    // notifyListeners();
   }
 }

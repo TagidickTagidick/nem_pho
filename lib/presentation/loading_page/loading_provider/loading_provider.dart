@@ -2,8 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:nem_pho/core/models/version_model.dart';
 import 'package:nem_pho/presentation/loading_page/loading_service/loading_service.dart';
-
 import 'package:nem_pho/firebase_options.dart';
+import 'package:nem_pho/core/services/appmetrica_service.dart';
 
 class LoadingProvider extends ChangeNotifier {
   LoadingProvider({
@@ -18,6 +18,7 @@ class LoadingProvider extends ChangeNotifier {
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );
+      AppMetricaService().init();
     } catch(e) {
       print(e);
     }

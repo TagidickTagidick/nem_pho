@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:nem_pho/core/widgets/custom/custom_shimmer.dart';
 import 'package:nem_pho/core/widgets/app_bar/custom_appbar.dart';
 
+import '../authorization_page/authorization_page.dart';
+
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key, required this.id});
   final String id;
@@ -230,6 +232,7 @@ class _ProductPageState extends State<ProductPage> {
                     //         color: Color(0xff000000)
                     //     )
                     // ),
+                    if (product.toppings.isNotEmpty)
                     const Text(
                       "Добавьте топпинги",
                       style: TextStyle(
@@ -319,6 +322,11 @@ class _ProductPageState extends State<ProductPage> {
             right: 25,
             child: GestureDetector(
               onTap: () async {
+                Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const AuthorizationPage(),
+                          ),
+                        );
                 // final prefs = await SharedPreferences.getInstance();
                 // if (mounted) {
                 //   if (prefs.getString('phone') == null) {

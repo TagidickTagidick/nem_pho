@@ -34,7 +34,7 @@ class NetworkClient extends INetworkClient {
   );
   final Dio dio = Dio();
 
-  String getPrettyJSONString(Map<String, dynamic> jsonObject) {
+  String _getPrettyJSONString(Map<String, dynamic> jsonObject) {
     const encoder = JsonEncoder.withIndent('\t');
     return encoder.convert(jsonObject);
   }
@@ -43,7 +43,7 @@ class NetworkClient extends INetworkClient {
   Future<void> init() async {
     final accessToken = await _storageService.getAccessToken();
     dio.options = BaseOptions(
-      baseUrl: 'https://tagidicktagidick-nem-pho-backend-806e.twc1.net.',
+      baseUrl: 'https://nikolyamba-nem-pho-backend-64d9.twc1.net/',
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': 'Bearer $accessToken'
@@ -99,8 +99,7 @@ class NetworkClient extends INetworkClient {
       Response response = await dio.get(
         url,
       );
-      print(response.data);
-      //logResponse(response.statusCode!, response.data, 'get', url);
+      logResponse(response.statusCode!, response.data, 'get', url);
       switch (response.statusCode) {
         case 200:
           return response.data;
@@ -263,7 +262,7 @@ class NetworkClient extends INetworkClient {
         '\nType: $type'
             '\nurl: ${dio.options.baseUrl}$url'
             '\nStatus: $statusCode'
-            '\nBody: ${getPrettyJSONString(body)}',
+            '\nBody: ${_getPrettyJSONString(body)}',
         'RESPONSE',
         statusCode == 200 ? 046 : 009
     ));

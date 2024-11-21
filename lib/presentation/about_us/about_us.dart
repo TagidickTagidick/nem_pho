@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:install_referrer/install_referrer.dart';
 import 'package:video_player/video_player.dart';
 
 class AboutUs extends StatefulWidget {
@@ -42,6 +43,35 @@ class _AboutPageState extends State<AboutUs>
     _controller.dispose();
     _videoPlayerController.dispose();
     super.dispose();
+  }
+
+  String referrerToReadableString(InstallationAppReferrer referrer) {
+    switch (referrer) {
+      case InstallationAppReferrer.iosAppStore:
+        return "Apple - App Store";
+      case InstallationAppReferrer.iosTestFlight:
+        return "Apple - Test Flight";
+      case InstallationAppReferrer.iosDebug:
+        return "Apple - Debug";
+      case InstallationAppReferrer.androidGooglePlay:
+        return "Android - Google Play";
+      case InstallationAppReferrer.androidAmazonAppStore:
+        return "Android - Amazon App Store";
+      case InstallationAppReferrer.androidHuaweiAppGallery:
+        return "Android - Huawei App Gallery";
+      case InstallationAppReferrer.androidOppoAppMarket:
+        return "Android - Oppo App Market";
+      case InstallationAppReferrer.androidSamsungAppShop:
+        return "Android - Samsung App Shop";
+      case InstallationAppReferrer.androidVivoAppStore:
+        return "Android - Vivo App Store";
+      case InstallationAppReferrer.androidXiaomiAppStore:
+        return "Android - Xiaomi App Store";
+      case InstallationAppReferrer.androidManually:
+        return "Android - Manual installation";
+      case InstallationAppReferrer.androidDebug:
+        return "Android - Debug";
+    }
   }
 
   @override
@@ -91,6 +121,19 @@ class _AboutPageState extends State<AboutUs>
                     const SizedBox(width: 29.01)
                   ])),
               const Divider(color: Color(0xffF0E0E0)),
+            InstallReferrerDetectorBuilder(
+              builder: (BuildContext context, InstallationApp? app) {
+                if (app == null) {
+                  return const CircularProgressIndicator.adaptive();
+                } else {
+                  return Text(
+                    'Package name:\n${app.packageName ?? 'Unknown'}\n'
+                    'Referrer:\n${referrerToReadableString(app.referrer)}',
+                    textAlign: TextAlign.center,
+                  );
+                }
+              },
+            ),
               SizeTransition(
                   sizeFactor: _controller.view,
                   child: const Padding(

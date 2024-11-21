@@ -9,35 +9,35 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="912997e2-eaa7-4f83-87af-e7a147d5f857" name="Changes" comment="add push_notifications">
-      <change afterPath="$PROJECT_DIR$/.metadata" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/.idea/android.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/google-services.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/firebase.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/favicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/icons/Icon-192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/icons/Icon-512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/icons/Icon-maskable-192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/icons/Icon-maskable-512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/manifest.json" afterDir="false" />
+    <list default="true" id="912997e2-eaa7-4f83-87af-e7a147d5f857" name="Changes" comment="add web support">
+      <change afterPath="$PROJECT_DIR$/android/app/release/app-release.apk" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/release/output-metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/core/constants/api_keys.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/core/services/appmetrica_service.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.idea/other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/.idea/caches/deviceStreaming.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.idea/android.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/release/app-release.aab" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/release/app-release.aab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/release/app-release.aab" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/firebase_options.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/firebase_options.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/cart_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cart_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/models/product_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/models/product_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/services/network_client.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/services/network_client.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/about_us/about_us.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/about_us/about_us.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/cart_page/cart_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/cart_page/cart_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/category_page/widgets/category_page_body.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/category_page/widgets/category_page_body.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/checkout_page/first_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/checkout_page/first_stape.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/loading_page/loading_provider/loading_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/loading_page/loading_provider/loading_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/product_page/product_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/product_page/product_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/product_page/product_provider/product_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/product_page/product_provider/product_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/profile_page/widgets/my_orders.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/profile_page/widgets/my_orders.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +99,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Developer/test2/nem_pho&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Developer/test2/nem_pho/android&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
@@ -247,7 +247,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729455333701</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="add web support">
+      <option name="closed" value="true" />
+      <created>1731843136431</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1731843136431</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -277,6 +285,7 @@
     <MESSAGE value="..." />
     <MESSAGE value="add directories, add many services and providers, fixed architecture" />
     <MESSAGE value="add push_notifications" />
-    <option name="LAST_COMMIT_MESSAGE" value="add push_notifications" />
+    <MESSAGE value="add web support" />
+    <option name="LAST_COMMIT_MESSAGE" value="add web support" />
   </component>
 </project>

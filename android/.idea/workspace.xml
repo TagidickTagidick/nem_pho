@@ -5,34 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e48d0da-9685-4c87-aace-86456f6f1278" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../.metadata" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/android.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/google-services.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../firebase.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../web/favicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../web/icons/Icon-192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../web/icons/Icon-512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../web/icons/Icon-maskable-192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../web/icons/Icon-maskable-512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../web/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../web/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/release/app-release.apk" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/release/output-metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lib/core/constants/api_keys.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lib/core/services/appmetrica_service.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/../.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/../.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/android.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/release/app-release.aab" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/app-release.aab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/release/app-release.aab" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/firebase_options.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/firebase_options.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/cart_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/cart_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/core/models/product_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/core/models/product_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/core/services/network_client.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/core/services/network_client.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/about_us/about_us.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/about_us/about_us.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/cart_page/cart_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/cart_page/cart_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/category_page/widgets/category_page_body.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/category_page/widgets/category_page_body.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/checkout_page/first_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/checkout_page/first_stape.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/loading_page/loading_provider/loading_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/loading_page/loading_provider/loading_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/product_page/product_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/product_page/product_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/product_page/product_provider/product_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/product_page/product_provider/product_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/profile_page/widgets/my_orders.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/profile_page/widgets/my_orders.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,6 +65,7 @@
     <option name="KEY_STORE_PATH" value="D:\Developer\keystore_path.jks" />
     <option name="KEY_ALIAS" value="key0" />
     <option name="REMEMBER_PASSWORDS" value="true" />
+    <option name="BUILD_TARGET_KEY" value="apk" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -91,8 +92,11 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
+    &quot;ApkExportedModule&quot;: &quot;android.app&quot;,
     &quot;BundleExportedModule&quot;: &quot;android.app&quot;,
-    &quot;ExportBundle.BundlePathForandroid.app&quot;: &quot;D:\\Developer\\nem_pho\\android\\app&quot;,
+    &quot;ExportApk.ApkPathForandroid.app&quot;: &quot;D:\\Developer\\test2\\nem_pho\\android\\app&quot;,
+    &quot;ExportBundle.BundlePathForandroid.app&quot;: &quot;D:\\Developer\\test2\\nem_pho\\android\\app&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
@@ -103,16 +107,13 @@
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Developer/test2/nem_pho&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Developer/keystore_path.jks&quot;,
     &quot;memory.settings.postsync.last.time.stamp&quot;: &quot;1721750133031&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;ExportApk.BuildVariants&quot;: [
       &quot;release&quot;
-    ],
-    &quot;kotlin-gradle-user-dirs&quot;: [
-      &quot;C:\\Users\\tagid\\.gradle&quot;
     ]
   }
 }</component>

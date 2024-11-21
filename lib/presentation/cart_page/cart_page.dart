@@ -7,7 +7,6 @@ import 'package:nem_pho/core/widgets/custom/custom_text_field.dart';
 import 'package:nem_pho/core/widgets/custom/mask_text_input_formatter.dart';
 import 'package:nem_pho/models/product_model.dart';
 import 'package:nem_pho/core/widgets/not_working.dart';
-import 'package:nem_pho/presentation/checkout_page/first_stape.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -817,28 +816,28 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                   const SizedBox(height: 9),
                   context.watch<CartProvider>().isWorking ? GestureDetector(
                     onTap: () {
-                      if (canCheckout) {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => CheckoutPage(
-                              street: street,
-                              flat: flatController.text,
-                              office: officeController.text,
-                              entrance: entranceController.text,
-                              floor: floorController.text,
-                              name: nameController.text,
-                              phone: phoneController.text,
-                              comment: commentController.text,
-                              total: total,
-                              delivery:
-                              neighbourhood == "Кировский" ? 0 : 200,
-                              id: 0,
-                              isSelf: isSelf,
-                              isCash: isCash,
-                            ),
-                          ),
-                        );
-                      }
+                      // if (canCheckout) {
+                      //   Navigator.of(context).push(
+                      //     MaterialPageRoute(
+                      //       builder: (context) => CheckoutPage(
+                      //         street: street,
+                      //         flat: flatController.text,
+                      //         office: officeController.text,
+                      //         entrance: entranceController.text,
+                      //         floor: floorController.text,
+                      //         name: nameController.text,
+                      //         phone: phoneController.text,
+                      //         comment: commentController.text,
+                      //         total: total,
+                      //         delivery:
+                      //         neighbourhood == "Кировский" ? 0 : 200,
+                      //         id: 0,
+                      //         isSelf: isSelf,
+                      //         isCash: isCash,
+                      //       ),
+                      //     ),
+                      //   );
+                      // }
                     },
                     child: Opacity(
                       opacity: canCheckout ? 1 : 0.5,
