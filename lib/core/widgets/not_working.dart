@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:nem_pho/cart_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:nem_pho/core/providers/common_provider.dart';
 
 class NotWorking extends StatelessWidget {
   const NotWorking({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return context.watch<CartProvider>().isWorking ? const SizedBox() : const SizedBox(
+    return context.watch<CommonProvider>().isWorking ? const SizedBox() : const SizedBox(
       height: 60,
       width: double.infinity,
       child: Column(

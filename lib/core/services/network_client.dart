@@ -97,7 +97,7 @@ class NetworkClient extends INetworkClient {
     try {
       logRequest('get', url);
       Response response = await dio.get(
-        url,
+        url
       );
       logResponse(response.statusCode!, response.data, 'get', url);
       switch (response.statusCode) {
@@ -215,10 +215,17 @@ class NetworkClient extends INetworkClient {
   Future<void> refresh() async {
     try {
       logRequest('post', 'refresh');
+      final refreshToken = await _storageService.getRefreshToken();
       Response response = await dio.post(
         'refresh',
+        options: Options(
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $refreshToken'
+          },
+          validateStatus: (_) => true,
+        )
       );
-      print("рфврвфрырвфы ${response.data}");
       logResponse(response.statusCode!, response.data, 'post', 'refresh');
       if (response.statusCode == 200) {
         await _storageService.setToken(

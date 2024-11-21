@@ -71,10 +71,10 @@ class _LoadingPageState extends State<LoadingPage> with SingleTickerProviderStat
     if (mounted) {
       context.pushReplacement('/main_page');
     }
-    final user = mounted ? await _progressLoader(
+    await _progressLoader(
         5,
-        context.read<LoadingProvider>().getUser()
-    ) : null;
+        context.read<CommonProvider>().getBasket()
+    );
     if (mounted) {
       context.push('/main_page');
     }

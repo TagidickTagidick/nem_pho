@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:nem_pho/core/models/banner_model.dart';
+import 'package:nem_pho/core/models/product_model.dart';
 import 'package:nem_pho/core/services/common_service.dart';
 import 'package:nem_pho/presentation/loading_page/models/menu_model.dart';
 
@@ -21,6 +22,9 @@ class CommonProvider extends ChangeNotifier {
   bool get isWorking => _isWorking;
   List<MenuModel> get menu => _menu;
   bool get isLoading => _isLoading;
+
+  List<ProductModel> _basket = [];
+  List<ProductModel> get basket => _basket;
 
   Future<List<BannerModel>> getBanners() async {
     _isBannersLoading = true;
@@ -69,6 +73,20 @@ class CommonProvider extends ChangeNotifier {
     notifyListeners();
     _menu = await _commonService.getMenu();
     _isLoading = false;
+    notifyListeners();
+  }
+
+  Future<void> getBasket() async {
+    final isUser = await _commonService.checkIsUser();
+    if (isUser) {
+      _basket = await _commonService.getBasket();
+      notifyListeners();
+    }
+  }
+
+  void addProductToBasket(ProductModel product) async {
+    await _commonService.addProductToBasket(product.id);
+    _basket.add(product);
     notifyListeners();
   }
 }

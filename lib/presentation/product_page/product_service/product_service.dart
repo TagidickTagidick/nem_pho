@@ -1,4 +1,5 @@
 import 'package:nem_pho/core/models/product_model.dart';
+import 'package:nem_pho/core/services/storage_service.dart';
 import 'package:nem_pho/presentation/product_page/models/topping_model.dart';
 import 'package:nem_pho/core/services/network_client.dart';
 
@@ -9,7 +10,7 @@ abstract class IProductService {
 
 class ProductService extends IProductService {
   ProductService({
-    required final INetworkClient networkClient
+    required final INetworkClient networkClient,
   }): _networkClient = networkClient;
 
   final INetworkClient _networkClient;

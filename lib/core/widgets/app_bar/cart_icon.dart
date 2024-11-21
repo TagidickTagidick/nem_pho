@@ -5,7 +5,9 @@ import 'package:provider/provider.dart';
 import 'package:nem_pho/cart_provider.dart';
 
 class CartIcon extends StatefulWidget {
-  const CartIcon({super.key});
+  const CartIcon({super.key, this.cartKey});
+
+  final Key? cartKey;
 
   @override
   State<CartIcon> createState() => _CartIconState();
@@ -22,15 +24,15 @@ class _CartIconState extends State<CartIcon> {
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
       child: Stack(
         children: [
-          const Align(
+          Align(
             alignment: Alignment.bottomLeft,
             child: Icon(
+              key: widget.cartKey,
               Icons.shopping_cart_outlined,
               color: Colors.black,
             ),
           ),
-          if (context.watch<CartProvider>().phone != null
-              && context.watch<CartProvider>().userModel!.cart.isNotEmpty)
+          if (context.watch<CommonProvider>().basket.isNotEmpty)
             Align(
               alignment: Alignment.topRight,
               child: Container(
@@ -42,7 +44,7 @@ class _CartIconState extends State<CartIcon> {
                   shape: BoxShape.circle,
                 ),
                 child: Text(
-                  context.watch<CartProvider>().userModel!.cart.length.toString(),
+                  context.watch<CommonProvider>().basket.length.toString(),
                   style: const TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 14,

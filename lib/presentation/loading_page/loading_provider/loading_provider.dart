@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:nem_pho/core/models/version_model.dart';
+import 'package:nem_pho/core/services/common_service.dart';
 import 'package:nem_pho/presentation/loading_page/loading_service/loading_service.dart';
 import 'package:nem_pho/firebase_options.dart';
 import 'package:nem_pho/core/services/appmetrica_service.dart';
@@ -8,9 +9,12 @@ import 'package:nem_pho/core/services/appmetrica_service.dart';
 class LoadingProvider extends ChangeNotifier {
   LoadingProvider({
     required final ILoadingService loadingService,
-  }): _loadingService = loadingService;
+    required final ICommonService commonService,
+  }): _loadingService = loadingService,
+  _commonService = commonService;
 
   final ILoadingService _loadingService;
+  final ICommonService _commonService;
 
   Future<void> init() async {
     try{
@@ -30,12 +34,5 @@ class LoadingProvider extends ChangeNotifier {
 
   Future<List<VersionModel>> getVersions() async {
     return await _loadingService.getVersions();
-  }
-
-  Future<void> getUser() async {
-    final accessToken = await _loadingService.getAccessToken();
-    if(accessToken != null) {
-      //TODO: Колян когда-нибудь доделает
-    }
   }
 }

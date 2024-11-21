@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:nem_pho/core/services/common_service.dart';
 import 'package:nem_pho/presentation/category_page/category_service/category_service.dart';
 import 'package:nem_pho/core/models/product_model.dart';
 
@@ -8,10 +9,11 @@ abstract class ICategoryProvider {
 
 class CategoryProvider extends ICategoryProvider with ChangeNotifier {
   CategoryProvider({
-    required ICategoryService categoryService
+    required final ICategoryService categoryService
   }): _categoryService = categoryService;
   bool _isLoading = true;
   final ICategoryService _categoryService;
+
   List<ProductModel> _products = [];
 
   bool get isLoading => _isLoading;

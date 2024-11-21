@@ -1,16 +1,20 @@
 import 'package:flutter/cupertino.dart';
+import 'package:nem_pho/core/services/common_service.dart';
 import 'package:nem_pho/presentation/product_page/models/topping_model.dart';
 import 'package:nem_pho/core/models/product_model.dart';
 import 'package:nem_pho/presentation/product_page/product_service/product_service.dart';
 
 class ProductProvider extends ChangeNotifier {
   ProductProvider({
-    required IProductService productService
-  }): _productService = productService;
+    required IProductService productService,
+    required ICommonService commonService,
+  }): _productService = productService,
+  _commonService = commonService;
 
   int _price = 0;
   bool _isLoading = true;
   final IProductService _productService;
+  final ICommonService _commonService;
   late final ProductModel _product;
   final List<ToppingModel> _toppings = [];
   final List<ToppingModel> _myToppings = [];
@@ -43,5 +47,9 @@ class ProductProvider extends ChangeNotifier {
       _price += _toppings[index].price;
     }
     notifyListeners();
+  }
+
+  Future<bool> checkUser() async {
+    return await _commonService.checkIsUser();
   }
 }

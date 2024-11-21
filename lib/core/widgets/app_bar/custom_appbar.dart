@@ -6,10 +6,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     this.isLogin,
     this.isCart,
+    this.cartKey,
   });
 
   final bool? isLogin;
   final bool? isCart;
+  final Key? cartKey;
 
   @override
   Widget build(BuildContext context) => AppBar(
@@ -29,7 +31,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             color: Color(0xff000000),
           ),
         ),
-        actions: isCart == null ? [const CartIcon()] : null,
+        actions: isCart == null ? [CartIcon(cartKey: cartKey)] : null,
       );
 
   @override

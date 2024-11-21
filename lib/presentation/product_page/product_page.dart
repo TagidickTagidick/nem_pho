@@ -1,10 +1,17 @@
+import 'package:add_to_cart_animation/add_to_cart_animation.dart';
+import 'package:add_to_cart_animation/add_to_cart_icon.dart';
+import 'package:add_to_cart_animation/drag_to_cart_animation_options.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:nem_pho/core/widgets/app_bar/cart_icon.dart';
 import 'package:nem_pho/presentation/product_page/product_provider/product_provider.dart';
+import 'package:nem_pho/presentation/product_page/widgets/product_button.dart';
 import 'package:provider/provider.dart';
 import 'package:nem_pho/core/widgets/custom/custom_shimmer.dart';
 import 'package:nem_pho/core/widgets/app_bar/custom_appbar.dart';
 
+import '../../core/providers/common_provider.dart';
 import '../authorization_page/authorization_page.dart';
 
 class ProductPage extends StatefulWidget {
@@ -16,8 +23,12 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-
   bool isHalf = false;
+
+  GlobalKey<CartIconKey> cartKey = GlobalKey<CartIconKey>();
+  late Function(GlobalKey) runAddToCartAnimation;
+  var _cartQuantityItems = 0;
+  final GlobalKey widgetKey = GlobalKey();
 
   @override
   void initState() {
@@ -41,330 +52,355 @@ class _ProductPageState extends State<ProductPage> {
     final toppings = provider.toppings;
     final myToppings = provider.myToppings;
 
-    return Scaffold(
-      backgroundColor: const Color(0xffFFFFFF),
-      appBar: const PreferredSize(
-          preferredSize: Size.fromHeight(60),
-          child: CustomAppBar()
+    return AddToCartAnimation(
+      cartKey: cartKey,
+      height: 30,
+      width: 30,
+      opacity: 0.85,
+      dragAnimation: const DragToCartAnimationOptions(
+        rotation: true,
       ),
-      body: Stack(
-        children: [
-          ListView(
-            children: [
-              Hero(
-                tag: product.image,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.5),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: CachedNetworkImage(
-                      imageUrl: product.image,
-                      fit: BoxFit.cover,
-                      height: MediaQuery.of(context).size.width - 21,
-                      width: MediaQuery.of(context).size.width - 21,
-                      placeholder: (context, url) => CustomShimmer(
-                        height: MediaQuery.of(context).size.width - 21,
-                        width: MediaQuery.of(context).size.width - 21,
+      jumpAnimation: const JumpAnimationOptions(),
+      createAddToCartAnimation: (runAddToCartAnimation) {
+        // You can run the animation by addToCartAnimationMethod, just pass trough the the global key of  the image as parameter
+        this.runAddToCartAnimation = runAddToCartAnimation;
+      },
+      child: Scaffold(
+        backgroundColor: const Color(0xffFFFFFF),
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(60),
+            child: CustomAppBar(cartKey: cartKey)
+        ),
+        body: Stack(
+          children: [
+            ListView(
+              children: [
+                Hero(
+                  tag: product.image,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.5),
+                    child: Container(
+                      key: widgetKey,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: CachedNetworkImage(
+                          imageUrl: product.image,
+                          fit: BoxFit.cover,
+                          height: MediaQuery.of(context).size.width - 21,
+                          width: MediaQuery.of(context).size.width - 21,
+                          placeholder: (context, url) => CustomShimmer(
+                            height: MediaQuery.of(context).size.width - 21,
+                            width: MediaQuery.of(context).size.width - 21,
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 45,
-                  left: 36,
-                  right: 24,
-                  bottom: 30,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      product.title,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 32,
-                        color: Color(0xff000000),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 52),
-                      child: Text(
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 45,
+                    left: 36,
+                    right: 24,
+                    bottom: 30,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
                         product.title,
                         style: const TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 9,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 32,
                           color: Color(0xff000000),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 5),
-                    // product.gramm.length == 1
-                    //     ? GestureDetector(
-                    //   onTap: () {
-                    //     isHalf = false;
-                    //     setState(() {});
-                    //   },
-                    //   child: Container(
-                    //     height: 38,
-                    //     width: 100,
-                    //     alignment: Alignment.center,
-                    //     decoration: BoxDecoration(
-                    //         borderRadius: BorderRadius.circular(30),
-                    //         color: isHalf
-                    //             ? Color(0xFFFFFFFF)
-                    //             : Color(0xFFFF451D),
-                    //         border: Border.all(
-                    //           color: Color(0xFFF0B0B0),
-                    //           width: 2,
-                    //         )),
-                    //     child: Text(
-                    //       '${widget.product.gramm.first} гр',
-                    //       style: const TextStyle(
-                    //         fontSize: 12,
-                    //         fontWeight: FontWeight.w600,
-                    //         color: Color(0xff000000),
-                    //       ),
-                    //     ),
-                    //   ),
-                    // )
-                    //     : Row(
-                    //   children: [
-                    //     Expanded(
-                    //       child: GestureDetector(
-                    //         onTap: () {
-                    //           isHalf = false;
-                    //           setState(() {});
-                    //         },
-                    //         child: Container(
-                    //           height: 38,
-                    //           alignment: Alignment.center,
-                    //           decoration: BoxDecoration(
-                    //               borderRadius:
-                    //               BorderRadius.circular(30),
-                    //               color: isHalf
-                    //                   ? Color(0xFFFFFFFF)
-                    //                   : Color(0xFFFF451D),
-                    //               border: Border.all(
-                    //                 color: Color(0xFFF0B0B0),
-                    //                 width: 2,
-                    //               )),
-                    //           child: Text(
-                    //             '${widget.product.gramm.first} гр',
-                    //             style: TextStyle(
-                    //               fontSize: 12,
-                    //               fontWeight: FontWeight.w600,
-                    //               color: Color(0xff000000),
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     const SizedBox(width: 4),
-                    //     Expanded(
-                    //       child: GestureDetector(
-                    //         onTap: () {
-                    //           isHalf = true;
-                    //           setState(() {});
-                    //         },
-                    //         child: Container(
-                    //           height: 38,
-                    //           alignment: Alignment.center,
-                    //           decoration: BoxDecoration(
-                    //             borderRadius:
-                    //             BorderRadius.circular(30),
-                    //             color: isHalf
-                    //                 ? Color(0xFFFF451D)
-                    //                 : Color(0xFFFFFFFF),
-                    //             border: Border.all(
-                    //               color: Color(0xFFF0B0B0),
-                    //               width: 2,
-                    //             ),
-                    //           ),
-                    //           child: Text(
-                    //             '${widget.product.gramm.last} гр',
-                    //             style: TextStyle(
-                    //               fontSize: 12,
-                    //               fontWeight: FontWeight.w600,
-                    //               color: Color(0xff000000),
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-                    const SizedBox(height: 15),
-                    // Text(
-                    //     product.ml,
-                    //     style: const TextStyle(
-                    //         fontWeight: FontWeight.w400,
-                    //         fontSize: 11,
-                    //         color: Color(0xff000000)
-                    //     )
-                    // ),
-                    const Text(
-                      "Состав",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 12,
-                        color: Color(0xff000000),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 52),
-                      child: Text(
-                        product.composition ?? "",
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 9,
-                          color: Color(0xff000000),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 17),
-                    // Text(
-                    //     product.ml,
-                    //     style: const TextStyle(
-                    //         fontWeight: FontWeight.w400,
-                    //         fontSize: 11,
-                    //         color: Color(0xff000000)
-                    //     )
-                    // ),
-                    if (product.toppings.isNotEmpty)
-                    const Text(
-                      "Добавьте топпинги",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 12,
-                        color: Color(0xff000000),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(height: 10),
-              SizedBox(
-                height: 137,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: toppings.length,
-                  itemBuilder: (context, index) =>
-                      GestureDetector(onTap: () {
-                        context.read<ProductProvider>().onTapTopping(index);
-                      },
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 10),
-                          decoration: BoxDecoration(
-                            color: myToppings.contains(toppings[index])
-                                ? const Color(0xffD9D9D9).withOpacity(0.9)
-                                : Colors.transparent,
-                            border: Border.all(
-                              color: myToppings.contains(toppings[index])
-                                  ? Colors.red // измените цвет на красный
-                                  : Colors.transparent,
-                            ),
-                            borderRadius: myToppings.contains(toppings[index])
-                                ? BorderRadius.circular(10.0)
-                                : null,
+                      Padding(
+                        padding: const EdgeInsets.only(left: 52),
+                        child: Text(
+                          product.title,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 9,
+                            color: Color(0xff000000),
                           ),
-                          child: Column(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: CachedNetworkImage(
-                                  imageUrl: toppings[index].image,
-                                  fit: BoxFit.cover,
-                                  height: 97,
-                                  width: 108,
-                                  placeholder: (context, url) =>
-                                  const CustomShimmer(
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      // product.gramm.length == 1
+                      //     ? GestureDetector(
+                      //   onTap: () {
+                      //     isHalf = false;
+                      //     setState(() {});
+                      //   },
+                      //   child: Container(
+                      //     height: 38,
+                      //     width: 100,
+                      //     alignment: Alignment.center,
+                      //     decoration: BoxDecoration(
+                      //         borderRadius: BorderRadius.circular(30),
+                      //         color: isHalf
+                      //             ? Color(0xFFFFFFFF)
+                      //             : Color(0xFFFF451D),
+                      //         border: Border.all(
+                      //           color: Color(0xFFF0B0B0),
+                      //           width: 2,
+                      //         )),
+                      //     child: Text(
+                      //       '${widget.product.gramm.first} гр',
+                      //       style: const TextStyle(
+                      //         fontSize: 12,
+                      //         fontWeight: FontWeight.w600,
+                      //         color: Color(0xff000000),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // )
+                      //     : Row(
+                      //   children: [
+                      //     Expanded(
+                      //       child: GestureDetector(
+                      //         onTap: () {
+                      //           isHalf = false;
+                      //           setState(() {});
+                      //         },
+                      //         child: Container(
+                      //           height: 38,
+                      //           alignment: Alignment.center,
+                      //           decoration: BoxDecoration(
+                      //               borderRadius:
+                      //               BorderRadius.circular(30),
+                      //               color: isHalf
+                      //                   ? Color(0xFFFFFFFF)
+                      //                   : Color(0xFFFF451D),
+                      //               border: Border.all(
+                      //                 color: Color(0xFFF0B0B0),
+                      //                 width: 2,
+                      //               )),
+                      //           child: Text(
+                      //             '${widget.product.gramm.first} гр',
+                      //             style: TextStyle(
+                      //               fontSize: 12,
+                      //               fontWeight: FontWeight.w600,
+                      //               color: Color(0xff000000),
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //     const SizedBox(width: 4),
+                      //     Expanded(
+                      //       child: GestureDetector(
+                      //         onTap: () {
+                      //           isHalf = true;
+                      //           setState(() {});
+                      //         },
+                      //         child: Container(
+                      //           height: 38,
+                      //           alignment: Alignment.center,
+                      //           decoration: BoxDecoration(
+                      //             borderRadius:
+                      //             BorderRadius.circular(30),
+                      //             color: isHalf
+                      //                 ? Color(0xFFFF451D)
+                      //                 : Color(0xFFFFFFFF),
+                      //             border: Border.all(
+                      //               color: Color(0xFFF0B0B0),
+                      //               width: 2,
+                      //             ),
+                      //           ),
+                      //           child: Text(
+                      //             '${widget.product.gramm.last} гр',
+                      //             style: TextStyle(
+                      //               fontSize: 12,
+                      //               fontWeight: FontWeight.w600,
+                      //               color: Color(0xff000000),
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
+                      const SizedBox(height: 15),
+                      // Text(
+                      //     product.ml,
+                      //     style: const TextStyle(
+                      //         fontWeight: FontWeight.w400,
+                      //         fontSize: 11,
+                      //         color: Color(0xff000000)
+                      //     )
+                      // ),
+                      const Text(
+                        "Состав",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 12,
+                          color: Color(0xff000000),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 52),
+                        child: Text(
+                          product.composition ?? "",
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 9,
+                            color: Color(0xff000000),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 17),
+                      // Text(
+                      //     product.ml,
+                      //     style: const TextStyle(
+                      //         fontWeight: FontWeight.w400,
+                      //         fontSize: 11,
+                      //         color: Color(0xff000000)
+                      //     )
+                      // ),
+                      if (product.toppings.isNotEmpty)
+                      const Text(
+                        "Добавьте топпинги",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 12,
+                          color: Color(0xff000000),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 10),
+                SizedBox(
+                  height: 137,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: toppings.length,
+                    itemBuilder: (context, index) =>
+                        GestureDetector(onTap: () {
+                          context.read<ProductProvider>().onTapTopping(index);
+                        },
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 10),
+                            decoration: BoxDecoration(
+                              color: myToppings.contains(toppings[index])
+                                  ? const Color(0xffD9D9D9).withOpacity(0.9)
+                                  : Colors.transparent,
+                              border: Border.all(
+                                color: myToppings.contains(toppings[index])
+                                    ? Colors.red // измените цвет на красный
+                                    : Colors.transparent,
+                              ),
+                              borderRadius: myToppings.contains(toppings[index])
+                                  ? BorderRadius.circular(10.0)
+                                  : null,
+                            ),
+                            child: Column(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: CachedNetworkImage(
+                                    imageUrl: toppings[index].image,
+                                    fit: BoxFit.cover,
                                     height: 97,
                                     width: 108,
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                  toppings[index].title,
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14,
-                                      color: Color(0xff000000)
-                                  )
-                              ),
-                              Row(
-                                children: [
-                                  const Text('+'),
-                                  const SizedBox(width: 2),
-                                  Text(
-                                    toppings[index].price.toString(),
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14,
-                                      color: Color(0xff000000),
+                                    placeholder: (context, url) =>
+                                    const CustomShimmer(
+                                      height: 97,
+                                      width: 108,
                                     ),
                                   ),
-                                ],
-                              ),
-                            ],
+                                ),
+                                Text(
+                                    toppings[index].title,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                        color: Color(0xff000000)
+                                    )
+                                ),
+                                Row(
+                                  children: [
+                                    const Text('+'),
+                                    const SizedBox(width: 2),
+                                    Text(
+                                      toppings[index].price.toString(),
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                        color: Color(0xff000000),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 78)
-            ],
-          ),
-          Positioned(
-            bottom: 38,
-            left: 25,
-            right: 25,
-            child: GestureDetector(
-              onTap: () async {
-                Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const AuthorizationPage(),
-                          ),
-                        );
-                // final prefs = await SharedPreferences.getInstance();
-                // if (mounted) {
-                //   if (prefs.getString('phone') == null) {
-                //     Navigator.of(context).push(
-                //       MaterialPageRoute(
-                //         builder: (context) => const AuthorizationPage(),
-                //       ),
-                //     );
-                //   }
-                //   else {
-                //     for (var topping in myToppings) {
-                //       context.read<CartProvider>().addProduct(topping);
-                //     }
-                //     context.read<CartProvider>().addProduct(widget.product);
-                //     Navigator.of(context).pop();
-                //   }
-                // }
-              },
-              child: Container(
-                height: 40,
-                width: double.infinity,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    color: const Color(0xffFF451D),
-                    borderRadius: BorderRadius.circular(200)
-                ),
-                child: Text(
-                  "Добавить $price",
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 16,
-                    color: Color(0xffFFFFFF),
+                const SizedBox(height: 78)
+              ],
+            ),
+            Positioned(
+              bottom: 38,
+              left: 25,
+              right: 25,
+              child: GestureDetector(
+                onTap: () async {
+                  if (await context.read<ProductProvider>().checkUser()) {
+                    if (context.mounted) {
+                      await runAddToCartAnimation(widgetKey);
+                      await cartKey.currentState!
+                          .runCartAnimation((++_cartQuantityItems).toString());
+                      context.read<CommonProvider>().addProductToBasket(provider.product);
+                    }
+                  }
+                  else {
+                    if (context.mounted) {
+                      context.push('/authorization_page');
+                    }
+                  }
+                  // final prefs = await SharedPreferences.getInstance();
+                  // if (mounted) {
+                  //   if (prefs.getString('phone') == null) {
+                  //     Navigator.of(context).push(
+                  //       MaterialPageRoute(
+                  //         builder: (context) => const AuthorizationPage(),
+                  //       ),
+                  //     );
+                  //   }
+                  //   else {
+                  //     for (var topping in myToppings) {
+                  //       context.read<CartProvider>().addProduct(topping);
+                  //     }
+                  //     context.read<CartProvider>().addProduct(widget.product);
+                  //     Navigator.of(context).pop();
+                  //   }
+                  // }
+                },
+                child: Container(
+                  height: 40,
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      color: const Color(0xffFF451D),
+                      borderRadius: BorderRadius.circular(200)
+                  ),
+                  child: Text(
+                    "Добавить ${context.read<ProductProvider>().price}",
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16,
+                      color: Color(0xffFFFFFF),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

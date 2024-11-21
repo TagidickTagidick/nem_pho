@@ -7,6 +7,8 @@ import 'package:nem_pho/presentation/authorization_page/authorization_page.dart'
 import 'package:nem_pho/presentation/authorization_page/authorization_provider/authorization_provider.dart';
 import 'package:nem_pho/presentation/authorization_page/authorization_service/authorization_service.dart';
 import 'package:nem_pho/presentation/cart_page/cart_page.dart';
+import 'package:nem_pho/presentation/cart_page/cart_provider/cart_provider.dart';
+import 'package:nem_pho/presentation/cart_page/cart_service/cart_service.dart';
 import 'package:nem_pho/presentation/category_page/category_page.dart';
 import 'package:nem_pho/presentation/category_page/category_provider/category_provider.dart';
 import 'package:nem_pho/presentation/category_page/category_service/category_service.dart';
@@ -21,7 +23,6 @@ import 'package:nem_pho/presentation/profile_page/profile_page.dart';
 import 'package:nem_pho/presentation/profile_page/profile_provider/profile_provider.dart';
 import 'package:nem_pho/presentation/profile_page/profile_service/profile_service.dart';
 import 'package:provider/provider.dart';
-import 'package:nem_pho/cart_provider.dart';
 import 'package:nem_pho/core/providers/common_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -43,6 +44,10 @@ class App extends StatelessWidget {
                       networkClient: NetworkClient(),
                       storageService: ReceivingService.getStorage()
                   ),
+                  commonService: CommonService(
+                      networkClient: NetworkClient(),
+                      storageService: ReceivingService.getStorage()
+                  )
                 ),
                 child: const LoadingPage()
             ),
@@ -78,7 +83,13 @@ class App extends StatelessWidget {
       GoRoute(
         path: '/cart_page',
         builder: (context, state) => ChangeNotifierProvider<CartProvider>(
-            create:(_) => CartProvider(),
+            create:(_) => CartProvider(
+                cartService: CartService(),
+                commonService: CommonService(
+                    networkClient: NetworkClient(),
+                    storageService: ReceivingService.getStorage()
+                )
+            )..getProducts(),
             child: const CartPage()
         ),
       ),
@@ -100,8 +111,12 @@ class App extends StatelessWidget {
         builder: (context, state) => ChangeNotifierProvider<ProductProvider>(
             create:(_) => ProductProvider(
                 productService: ProductService(
-                    networkClient: NetworkClient()
-                )
+                    networkClient: NetworkClient(),
+                ),
+              commonService: CommonService(
+                  networkClient: NetworkClient(),
+                  storageService: ReceivingService.getStorage(),
+              )
             ),
             child: ProductPage(id: state.pathParameters['id']!)
         ),
@@ -113,7 +128,6 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => CartProvider()),
         ChangeNotifierProvider(create: (_) => CommonProvider(
             commonService: CommonService(
                 networkClient: NetworkClient(),

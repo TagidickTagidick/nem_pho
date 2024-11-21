@@ -2,6 +2,8 @@ import 'package:nem_pho/core/models/version_model.dart';
 import 'package:nem_pho/core/services/network_client.dart';
 import 'package:nem_pho/core/services/storage_service.dart';
 
+import '../../../core/models/product_model.dart';
+
 abstract class ILoadingService {
   Future<bool> getHealthCheck();
   Future<List<VersionModel>> getVersions();

@@ -1,3 +1,4 @@
+import 'package:add_to_cart_animation/add_to_cart_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:nem_pho/core/providers/common_provider.dart';
 import 'package:nem_pho/presentation/category_page/category_provider/category_provider.dart';
@@ -5,6 +6,7 @@ import 'package:nem_pho/presentation/category_page/widgets/category_page_body.da
 import 'package:nem_pho/core/widgets/app_bar/custom_appbar.dart';
 import 'package:provider/provider.dart';
 import 'package:nem_pho/core/widgets/banners/custom_banners.dart';
+import 'package:nem_pho/core/models/product_model.dart';
 
 class CategoryPage extends StatefulWidget {
   const CategoryPage({
@@ -22,6 +24,10 @@ class _CategoryPageState extends State<CategoryPage> {
 
   int index = 0;
 
+  GlobalKey<CartIconKey> cartKey = GlobalKey<CartIconKey>();
+  late Function(GlobalKey) runAddToCartAnimation;
+  var _cartQuantityItems = 0;
+
   @override
   void initState() {
     super.initState();
@@ -34,21 +40,47 @@ class _CategoryPageState extends State<CategoryPage> {
   //   super.dispose();
   // }
 
+  void listClick(GlobalKey widgetKey, ProductModel product) async {
+    await runAddToCartAnimation(widgetKey);
+    try {
+      await cartKey.currentState!
+          .runCartAnimation((++_cartQuantityItems).toString());
+    }
+    catch (e) {
+
+    }
+    context.read<CommonProvider>().addProductToBasket(product);
+  }
+
   @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(60),
-        child: CustomAppBar()
+  Widget build(BuildContext context) => AddToCartAnimation(
+    cartKey: cartKey,
+    height: 30,
+    width: 30,
+    opacity: 0.85,
+    dragAnimation: const DragToCartAnimationOptions(
+      rotation: true,
     ),
-    body: RefreshIndicator(onRefresh: () async {
-      context.read<CategoryProvider>().refresh(widget.id);
-      context.read<CommonProvider>().getBanners();
+    jumpAnimation: const JumpAnimationOptions(),
+    createAddToCartAnimation: (runAddToCartAnimation) {
+      // You can run the animation by addToCartAnimationMethod, just pass trough the the global key of  the image as parameter
+      this.runAddToCartAnimation = runAddToCartAnimation;
     },
-      child: const CustomScrollView(
-        slivers: [
-          CustomBanners(),
-          CategoryPageBody()
-        ],
+    child: Scaffold(
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(60),
+          child: CustomAppBar(cartKey: cartKey)
+      ),
+      body: RefreshIndicator(onRefresh: () async {
+        context.read<CategoryProvider>().refresh(widget.id);
+        context.read<CommonProvider>().getBanners();
+      },
+        child: CustomScrollView(
+          slivers: [
+            CustomBanners(),
+            CategoryPageBody(onClick: listClick,)
+          ],
+        ),
       ),
     ),
   );

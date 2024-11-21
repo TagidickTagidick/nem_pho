@@ -54,6 +54,7 @@ dependencies:
   intl: ^0.19.0
   appmetrica_plugin: ^3.1.0
   install_referrer: ^1.2.1
+  add_to_cart_animation: ^2.0.4
 
 dev_dependencies:
   flutter_test:

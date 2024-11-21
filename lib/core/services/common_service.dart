@@ -3,12 +3,17 @@ import 'package:nem_pho/presentation/loading_page/models/menu_model.dart';
 import 'package:nem_pho/core/models/banner_model.dart';
 import 'package:nem_pho/core/services/network_client.dart';
 
+import 'package:nem_pho/core/models/product_model.dart';
+
 abstract class ICommonService {
   Future<List<BannerModel>> getBanners();
   Future<List<MenuModel>> getMenu();
   Future<List<BannerModel>> getBannersFromStorage();
   Future<void> setBannersToStorage(List<BannerModel> banners);
   Future<String?> getAccessTokenFromStorage();
+  Future<bool> checkIsUser();
+  Future<List<ProductModel>> getBasket();
+  Future<void> addProductToBasket(int productId);
 }
 
 class CommonService extends ICommonService {
@@ -61,5 +66,33 @@ class CommonService extends ICommonService {
   @override
   Future<String?> getAccessTokenFromStorage() async {
     return await _storageService.getAccessToken();
+  }
+
+  @override
+  Future<bool> checkIsUser() async {
+    final accessToken = await _storageService.getAccessToken();
+    return accessToken != null;
+  }
+
+  @override
+  Future<List<ProductModel>> getBasket() async {
+    try {
+      final Map<String, dynamic> basketMap = await _networkClient.get('basket');
+      return await basketMap['payload'].map<ProductModel>((json) =>
+          ProductModel.fromJson(json)).toList();
+    } catch (e) {
+      return [];
+    }
+  }
+
+  @override
+  Future<void> addProductToBasket(int productId) async {
+    await _networkClient.post(
+        '/basket',
+        {
+          'product_id': productId,
+          'topping_ids': [],
+        }
+    );
   }
 }
