@@ -10,4 +10,8 @@ class AppMetricaService extends IAppMetricaService {
   Future<void> init() async {
     AppMetrica.activate(AppMetricaConfig(ApiKeys.appMetricaKey));
   }
+
+  Future<void> sendEvent(String name) async {
+    AppMetrica.reportEventWithMap(name, {});
+  }
 }

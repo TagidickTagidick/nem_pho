@@ -89,6 +89,10 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
     //getData();
   }
 
+  void _initFields() {
+
+  }
+
   // void getData() async {
   //   userModel = context.read<CartProvider>().userModel!;
   //   phoneController.text = userModel.phone.replaceAll("_", " ");
@@ -191,18 +195,8 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                         children: [
                           Align(
                             alignment: Alignment.centerLeft,
-                            child: GestureDetector(
-                              onTap: () {
-                                counts[i]--;
-                                // context
-                                //     .read<CartProvider>()
-                                //     .removeProduct(newProducts[i]);
-                                // total -= int.parse(newProducts[i].price);
-                                // if (counts[i] == 0) {
-                                //   newProducts.removeAt(i);
-                                //   counts.removeAt(i);
-                                // }
-                                // checkCanCheckout();
+                            child: GestureDetector(onTap: () {
+                               context.read<CartProvider>().deleteProduct(newProducts[i], i);
                               },
                               child: Container(
                                 height: 37,
@@ -225,14 +219,8 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                           ),
                           Align(
                             alignment: Alignment.centerRight,
-                            child: GestureDetector(
-                              onTap: () {
-                                counts[i]++;
-                                // context
-                                //     .read<CartProvider>()
-                                //     .addProduct(newProducts[i]);
-                                // total += int.parse(newProducts[i].price);
-                                // checkCanCheckout();
+                            child: GestureDetector(onTap: () {
+                                context.read<CartProvider>().addProduct(newProducts[i], i);
                               },
                               child: Container(
                                 height: 37,

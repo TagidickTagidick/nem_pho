@@ -1,5 +1,5 @@
 class MenuModel {
-  final int id;
+  final String id;
   final String image;
   final String name;
 

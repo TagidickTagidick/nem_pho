@@ -1,7 +1,7 @@
 import 'package:nem_pho/presentation/product_page/models/topping_model.dart';
 
 class ProductModel {
-  final int id;
+  final String id;
   final int price;
   final String image;
   final String title;
@@ -30,10 +30,10 @@ class ProductModel {
       toppings: json['toppings'] == null
           ? []
           : List<ToppingModel>.from(
-              json['toppings'].map(
-                (x) => ToppingModel.fromJson(x),
-              ),
-            ),
+        json['toppings'].map(
+              (x) => ToppingModel.fromJson(x),
+        ),
+      ),
     );
   }
 
@@ -46,7 +46,7 @@ class ProductModel {
   }
 
   static ProductModel mock = ProductModel(
-    id: 1,
+    id: "1",
     image: 'https://firebasestorage.googleapis.com/v0/b/nem-pho-f7f'
         '90.appspot.com/o/%D0%94%D0%BE%D1'
         '%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0.png?alt='

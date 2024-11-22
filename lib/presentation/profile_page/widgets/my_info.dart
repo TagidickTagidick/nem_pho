@@ -19,30 +19,57 @@ class _MyInfoState extends State<MyInfo> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _streetController = TextEditingController();
   final TextEditingController _floorController = TextEditingController();
+  final TextEditingController _buildingController = TextEditingController();
   String _dateOfBirth = '';
   bool? _sex;
 
   bool get canSave {
     final user = context.read<ProfileProvider>().user;
     if (user == null) return false;
-    final bool nameChanged = _nameController.text != user.name;
-    final bool birthdayChange = _dateOfBirth != user.birthday;
-    final bool streetChange = _streetController.text != user.street;
-    final bool floorChange = int.parse(_floorController.text) != user.floor;
+
+    final bool nameChanged = _nameController.text != (user.name ?? '');
+    final bool birthdayChange = _dateOfBirth != (user.birthday ?? '');
+    final bool streetChange = _streetController.text != (user.street ?? '');
+
+    final int floorNumber = _floorController.text.isEmpty ? 0 : int.parse(_floorController.text);
+    final bool floorChange = floorNumber != (user.floor ?? 0);
+
+    final int buildingNumber = _buildingController.text.isEmpty ? 0 : int.parse(_buildingController.text);
+    final bool buildingChange = buildingNumber != (user.building ?? 0);
+
     final bool sexChange = Formatter.convertSex(_sex) != (user.sex ?? 'Не выбрано');
-    return nameChanged || birthdayChange || sexChange || streetChange || floorChange;
+
+    return nameChanged || birthdayChange || sexChange || streetChange || floorChange || buildingChange;
   }
 
   @override
   void initState() {
-    _nameController.text = context.read<ProfileProvider>().user?.name ?? "";
+    _initFields();
+    _initListeners();
+    super.initState();
+  }
+
+  void _initFields() {
+    final user = context.read<ProfileProvider>().user;
+
+    if (user == null) return;
+
+    _nameController.text = user.name ?? "";
+    _streetController.text = user.street ?? '';
+    _floorController.text = user.floor == null ? '' : user.floor.toString();
+
+  }
+
+  void _initListeners() {
     _nameController.addListener(() {
       setState(() {});
     });
     _streetController.addListener(() {
       setState(() {});
     });
-    super.initState();
+    _floorController.addListener(() {
+      setState(() {});
+    });
   }
 
   @override
@@ -188,17 +215,20 @@ class _MyInfoState extends State<MyInfo> {
           ),
           const SizedBox(height: 2),
           CustomTextField(
-              textEditingController: _floorController,
+            textEditingController: _floorController,
             isNumber: true,
           ),
           const SizedBox(height: 100),
           if (canSave)
             GestureDetector(onTap: () {
               context.read<ProfileProvider>().save(
-                  birthday: _dateOfBirth.isEmpty ? null : _dateOfBirth.replaceAll('.', '-'),
-                  name: _nameController.text.isEmpty ? null : _nameController.text,
-                  sex: Formatter.convertSex(_sex),
-                  street: _streetController.text.isEmpty ? null : _streetController.text
+                birthday: _dateOfBirth.isEmpty ? null : _dateOfBirth.replaceAll('.', '-'),
+                name: _nameController.text.isEmpty ? null : _nameController.text,
+                sex: Formatter.convertSex(_sex),
+                street: _streetController.text.isEmpty ? null : _streetController.text,
+                floor: _floorController.text.isEmpty ? null : int.parse(_floorController.text),
+                // building: _buildingController.text.isEmpty ? null : int.parse(_buildingController.text)
+                ///TODO: Колян мразь сделай номер здания ЧИСЛОМ
               );
             },
                 child: const SaveButton()

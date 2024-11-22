@@ -1,13 +1,17 @@
 import 'package:flutter/cupertino.dart';
+import 'package:nem_pho/core/services/common_service.dart';
 import 'package:nem_pho/presentation/profile_page/profile_service/profile_service.dart';
 import 'package:nem_pho/presentation/profile_page/profile_models/user_model.dart';
 
 class ProfileProvider extends ChangeNotifier {
   ProfileProvider({
     required final IProfileService profileService,
-  }): _profileService = profileService;
+    required final ICommonService commonService
+  }): _profileService = profileService,
+        _commonService = commonService;
 
   final IProfileService _profileService;
+  final ICommonService _commonService;
   UserModel? _user;
   bool _isLoading = false;
 
@@ -43,7 +47,7 @@ class ProfileProvider extends ChangeNotifier {
   Future<void> initUser() async {
     _isLoading = true;
     notifyListeners();
-    _user = await _profileService.getUser();
+    _user = await _commonService.getUser();
     _isLoading = false;
     notifyListeners();
   }

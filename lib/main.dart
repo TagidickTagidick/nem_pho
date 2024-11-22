@@ -40,14 +40,14 @@ class App extends StatelessWidget {
         builder: (context, state) =>
             ChangeNotifierProvider<LoadingProvider>(
                 create:(_) => LoadingProvider(
-                  loadingService: LoadingService(
-                      networkClient: NetworkClient(),
-                      storageService: ReceivingService.getStorage()
-                  ),
-                  commonService: CommonService(
-                      networkClient: NetworkClient(),
-                      storageService: ReceivingService.getStorage()
-                  )
+                    loadingService: LoadingService(
+                        networkClient: NetworkClient(),
+                        storageService: ReceivingService.getStorage()
+                    ),
+                    commonService: CommonService(
+                        networkClient: NetworkClient(),
+                        storageService: ReceivingService.getStorage()
+                    )
                 ),
                 child: const LoadingPage()
             ),
@@ -72,10 +72,14 @@ class App extends StatelessWidget {
         path: '/profile_page',
         builder: (context, state) => ChangeNotifierProvider<ProfileProvider>(
             create:(_) => ProfileProvider(
-              profileService: ProfileService(
-                  networkClient: NetworkClient(),
-                  storageService: ReceivingService.getStorage()
-              ),
+                profileService: ProfileService(
+                    networkClient: NetworkClient(),
+                    storageService: ReceivingService.getStorage()
+                ),
+                commonService: CommonService(
+                    networkClient: NetworkClient(),
+                    storageService: ReceivingService.getStorage()
+                )
             )..initUser(),
             child: const ProfilePage()
         ),
@@ -111,12 +115,12 @@ class App extends StatelessWidget {
         builder: (context, state) => ChangeNotifierProvider<ProductProvider>(
             create:(_) => ProductProvider(
                 productService: ProductService(
-                    networkClient: NetworkClient(),
+                  networkClient: NetworkClient(),
                 ),
-              commonService: CommonService(
+                commonService: CommonService(
                   networkClient: NetworkClient(),
                   storageService: ReceivingService.getStorage(),
-              )
+                )
             ),
             child: ProductPage(id: state.pathParameters['id']!)
         ),

@@ -4,8 +4,6 @@ import 'package:nem_pho/core/widgets/app_bar/custom_appbar.dart';
 import 'package:nem_pho/presentation/checkout_page/payment_divider.dart';
 import 'package:nem_pho/presentation/checkout_page/payment_dot.dart';
 import 'package:nem_pho/presentation/checkout_page/payment_dot_enabled.dart';
-import 'package:provider/provider.dart';
-import 'package:nem_pho/cart_provider.dart';
 
 class CheckoutPage extends StatefulWidget {
   const CheckoutPage({
@@ -35,7 +33,7 @@ class CheckoutPage extends StatefulWidget {
   final String comment;
   final int total;
   final int delivery;
-  final int id;
+  final String id;
   final bool isSelf;
   final bool isCash;
 

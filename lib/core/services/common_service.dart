@@ -2,8 +2,8 @@ import 'package:nem_pho/core/services/storage_service.dart';
 import 'package:nem_pho/presentation/loading_page/models/menu_model.dart';
 import 'package:nem_pho/core/models/banner_model.dart';
 import 'package:nem_pho/core/services/network_client.dart';
-
 import 'package:nem_pho/core/models/product_model.dart';
+import 'package:nem_pho/presentation/profile_page/profile_models/user_model.dart';
 
 abstract class ICommonService {
   Future<List<BannerModel>> getBanners();
@@ -13,7 +13,8 @@ abstract class ICommonService {
   Future<String?> getAccessTokenFromStorage();
   Future<bool> checkIsUser();
   Future<List<ProductModel>> getBasket();
-  Future<void> addProductToBasket(int productId);
+  Future<void> addProductToBasket(String productId);
+  Future<UserModel> getUser();
 }
 
 class CommonService extends ICommonService {
@@ -86,7 +87,7 @@ class CommonService extends ICommonService {
   }
 
   @override
-  Future<void> addProductToBasket(int productId) async {
+  Future<void> addProductToBasket(String productId) async {
     await _networkClient.post(
         '/basket',
         {
@@ -94,5 +95,12 @@ class CommonService extends ICommonService {
           'topping_ids': [],
         }
     );
+  }
+
+  @override
+  Future<UserModel> getUser() async {
+    Map<String, dynamic> user = await _networkClient.get('user');
+    final UserModel userModel = UserModel.fromJson(user['payload']);
+    return userModel;
   }
 }

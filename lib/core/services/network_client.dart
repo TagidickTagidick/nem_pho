@@ -271,7 +271,7 @@ class NetworkClient extends INetworkClient {
             '\nStatus: $statusCode'
             '\nBody: ${_getPrettyJSONString(body)}',
         'RESPONSE',
-        statusCode == 200 ? 046 : 009
+        statusCode >= 200 && statusCode <= 299 ? 046 : 009
     ));
   }
 }

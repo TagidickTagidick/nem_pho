@@ -13,7 +13,6 @@ abstract class IProfileService {
     String? sex,
     String? street,
   });
-  Future<UserModel> getUser();
   Future<void> deleteUser();
   Future<void> deleteStorage();
 }
@@ -61,13 +60,6 @@ class ProfileService extends IProfileService {
         }
     );
     final UserModel userModel = UserModel.fromJson(user);
-    return userModel;
-  }
-
-  @override
-  Future<UserModel> getUser() async {
-    Map<String, dynamic> user = await _networkClient.get('user');
-    final UserModel userModel = UserModel.fromJson(user['payload']);
     return userModel;
   }
 
