@@ -28,7 +28,7 @@ if (flutterVersionName == null) {
 android {
     namespace "nem.pho.nem_pho"
     compileSdkVersion 34
-    ndkVersion flutter.ndkVersion
+    ndkVersion "25.1.8937393"
 
     compileOptions {
         coreLibraryDesugaringEnabled true
