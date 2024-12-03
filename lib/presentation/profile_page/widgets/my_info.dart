@@ -20,6 +20,8 @@ class _MyInfoState extends State<MyInfo> {
   final TextEditingController _streetController = TextEditingController();
   final TextEditingController _floorController = TextEditingController();
   final TextEditingController _buildingController = TextEditingController();
+  final TextEditingController _entranceController = TextEditingController();
+  final TextEditingController _flatController = TextEditingController();
   String _dateOfBirth = '';
   bool? _sex;
 
@@ -34,12 +36,19 @@ class _MyInfoState extends State<MyInfo> {
     final int floorNumber = _floorController.text.isEmpty ? 0 : int.parse(_floorController.text);
     final bool floorChange = floorNumber != (user.floor ?? 0);
 
-    final int buildingNumber = _buildingController.text.isEmpty ? 0 : int.parse(_buildingController.text);
-    final bool buildingChange = buildingNumber != (user.building ?? 0);
+    final int entranceNumber = _entranceController.text.isEmpty ? 0 : int.parse(_entranceController.text);
+    final bool entranceChange = entranceNumber != (user.entrance ?? 0);
 
+    final int flatNumber = _flatController.text.isEmpty ? 0 : int.parse(_flatController.text);
+    final bool flatChange = flatNumber != (user.flat ?? 0);
+
+    final bool buildingChange = _buildingController.text != (user.building ?? '');
     final bool sexChange = Formatter.convertSex(_sex) != (user.sex ?? 'Не выбрано');
 
-    return nameChanged || birthdayChange || sexChange || streetChange || floorChange || buildingChange;
+    return nameChanged || birthdayChange
+        || sexChange || streetChange
+        || floorChange || buildingChange
+        || entranceChange || flatChange;
   }
 
   @override
@@ -51,13 +60,15 @@ class _MyInfoState extends State<MyInfo> {
 
   void _initFields() {
     final user = context.read<ProfileProvider>().user;
-
     if (user == null) return;
-
     _nameController.text = user.name ?? "";
     _streetController.text = user.street ?? '';
+    _buildingController.text = user.building ?? '';
+    _dateOfBirth = user.birthday == null ? '' : Formatter.convertDateOfBirth(user.birthday!);
+    _sex = user.sex == null ? null : (user.sex == 'Мужской');
     _floorController.text = user.floor == null ? '' : user.floor.toString();
-
+    _entranceController.text = user.entrance == null ? '' : user.entrance.toString();
+    _flatController.text = user.flat == null ? '' : user.flat.toString();
   }
 
   void _initListeners() {
@@ -70,6 +81,22 @@ class _MyInfoState extends State<MyInfo> {
     _floorController.addListener(() {
       setState(() {});
     });
+    _buildingController.addListener((){
+      setState(() {
+
+      });
+    });
+    _entranceController.addListener((){
+      setState(() {
+
+      });
+    });
+    _flatController.addListener((){
+      setState(() {
+
+      });
+    });
+
   }
 
   @override
@@ -205,6 +232,40 @@ class _MyInfoState extends State<MyInfo> {
           const Padding(
             padding: EdgeInsets.only(left: 18),
             child: Text(
+              'Дом',
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF808080)
+              ),
+            ),
+          ),
+          const SizedBox(height: 2),
+          CustomTextField(
+            textEditingController: _buildingController,
+            isNumber: false,
+          ),
+          SizedBox(height: 16),
+          const Padding(
+            padding: EdgeInsets.only(left: 18),
+            child: Text(
+              'Подъезд',
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF808080)
+              ),
+            ),
+          ),
+          const SizedBox(height: 2),
+          CustomTextField(
+            textEditingController: _entranceController,
+            isNumber: true,
+          ),
+          SizedBox(height: 16),
+          const Padding(
+            padding: EdgeInsets.only(left: 18),
+            child: Text(
               'Этаж',
               style: TextStyle(
                   fontSize: 14,
@@ -222,13 +283,14 @@ class _MyInfoState extends State<MyInfo> {
           if (canSave)
             GestureDetector(onTap: () {
               context.read<ProfileProvider>().save(
-                birthday: _dateOfBirth.isEmpty ? null : _dateOfBirth.replaceAll('.', '-'),
-                name: _nameController.text.isEmpty ? null : _nameController.text,
-                sex: Formatter.convertSex(_sex),
-                street: _streetController.text.isEmpty ? null : _streetController.text,
-                floor: _floorController.text.isEmpty ? null : int.parse(_floorController.text),
-                // building: _buildingController.text.isEmpty ? null : int.parse(_buildingController.text)
-                ///TODO: Колян мразь сделай номер здания ЧИСЛОМ
+                  birthday: _dateOfBirth.isEmpty ? null : _dateOfBirth.replaceAll('.', '-'),
+                  name: _nameController.text.isEmpty ? null : _nameController.text,
+                  sex: Formatter.convertSex(_sex),
+                  street: _streetController.text.isEmpty ? null : _streetController.text,
+                  floor: _floorController.text.isEmpty ? null : int.parse(_floorController.text),
+                  building: _buildingController.text.isEmpty ? null : _buildingController.text,
+                  entrance: _entranceController.text.isEmpty ? null : int.parse(_entranceController.text),
+                  flat: _flatController.text.isEmpty ? null : int.parse(_flatController.text)
               );
             },
                 child: const SaveButton()

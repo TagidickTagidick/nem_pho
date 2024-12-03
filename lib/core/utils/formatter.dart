@@ -6,4 +6,9 @@ class Formatter {
       null => 'Не выбрано',
     };
   }
+
+  static String convertDateOfBirth(String dateOfBirthday) {
+    final DateTime date = DateTime.parse(dateOfBirthday);
+    return '${date.day}.${date.month}.${date.year}';
+  }
 }
