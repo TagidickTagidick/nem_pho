@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nem_pho/core/models/product_model.dart';
 import 'package:nem_pho/core/widgets/custom/custom_shimmer.dart';
+import 'package:provider/provider.dart';
+
+import '../../product_page/product_provider/product_provider.dart';
 
 class CategoryProduct extends StatelessWidget {
   CategoryProduct({super.key, required this.product, required this.onClick});
@@ -59,8 +62,7 @@ class CategoryProduct extends StatelessWidget {
                 // ),
                 Align(
                     alignment: Alignment.topLeft,
-                    child: Image.asset("images/hit.png")
-                )
+                    child: Image.asset("images/hit.png"))
               ],
             ),
           ),
@@ -69,43 +71,43 @@ class CategoryProduct extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                    product.title,
+                Text(product.title,
                     style: const TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 16,
-                        color: Color(0xff000000)
-                    )
-                ),
-                Text(
-                    product.title,
+                        color: Color(0xff000000))),
+                Text(product.title,
                     style: const TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 9,
-                        color: Color(0xff000000)
-                    )
-                ),
+                        color: Color(0xff000000))),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                        "${product.price} р",
+                    Text("${product.prices?.firstOrNull?.amount} р",
                         style: const TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 16,
-                            color: Color(0xff000000)
-                        )
-                    ),
+                            color: Color(0xff000000))),
                     GestureDetector(
-                      onTap: () => onClick(widgetKey, product),
+                      onTap: () async {
+                        if (await context.read<ProductProvider>().checkUser()) {
+                          if (context.mounted) {
+                            onClick(widgetKey, product);
+                          }
+                        } else {
+                          if (context.mounted) {
+                            context.push('/authorization_page');
+                          }
+                        }
+                      },
                       child: Container(
                         height: 40,
                         width: 120,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                             color: const Color(0xffF7F3F3),
-                            borderRadius: BorderRadius.circular(200)
-                        ),
+                            borderRadius: BorderRadius.circular(200)),
                         child: const Text(
                           "Выбрать",
                           style: TextStyle(

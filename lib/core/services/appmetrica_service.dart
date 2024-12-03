@@ -8,10 +8,12 @@ abstract class IAppMetricaService {
 class AppMetricaService extends IAppMetricaService {
   @override
   Future<void> init() async {
-    AppMetrica.activate(AppMetricaConfig(ApiKeys.appMetricaKey));
+    await AppMetrica.activate(AppMetricaConfig(ApiKeys.appMetricaKey));
+    sendEvent('version 11');
   }
 
   Future<void> sendEvent(String name) async {
-    AppMetrica.reportEventWithMap(name, {});
+    AppMetrica.reportEventWithMap(name, {name: name});
+    AppMetrica.reportEvent(name);
   }
 }

@@ -4,8 +4,8 @@ import '../../presentation/product_page/models/price_model.dart';
 
 class ProductModel {
   final String id;
-  final int price;
-  final List<PriceModel> prices;
+  final int? price;
+  final List<PriceModel>? prices;
   final String image;
   final String title;
   final String description;
@@ -29,6 +29,13 @@ class ProductModel {
       image: json['image'],
       title: json['title'],
       price: json['price'],
+      prices: json['prices'] == null
+          ? []
+          : List<PriceModel>.from(
+        json['prices'].map(
+              (x) => PriceModel.fromJson(x),
+        ),
+      ),
       description: json['description'],
       composition: json['composition'],
       toppings: json['toppings'] == null

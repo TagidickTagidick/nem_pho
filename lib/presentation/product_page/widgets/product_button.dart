@@ -20,8 +20,6 @@ class ProductButton extends StatelessWidget {
         onTap: () async {
           if (await context.read<ProductProvider>().checkUser()) {
             if (context.mounted) {
-              print(onClick);
-              print(widgetKey);
               onClick(widgetKey);
               //context.read<ProductProvider>().addProductToBasket();
             }

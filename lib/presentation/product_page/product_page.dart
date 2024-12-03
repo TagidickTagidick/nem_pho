@@ -348,8 +348,8 @@ class _ProductPageState extends State<ProductPage> {
                   if (await context.read<ProductProvider>().checkUser()) {
                     if (context.mounted) {
                       await runAddToCartAnimation(widgetKey);
-                      await cartKey.currentState!
-                          .runCartAnimation((++_cartQuantityItems).toString());
+                      // await cartKey.currentState!
+                      //     .runCartAnimation((++_cartQuantityItems).toString());
                       context.read<CommonProvider>().addProductToBasket(provider.product);
                     }
                   }

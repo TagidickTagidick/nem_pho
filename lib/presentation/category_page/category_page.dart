@@ -42,13 +42,8 @@ class _CategoryPageState extends State<CategoryPage> {
 
   void listClick(GlobalKey widgetKey, ProductModel product) async {
     await runAddToCartAnimation(widgetKey);
-    try {
-      await cartKey.currentState!
-          .runCartAnimation((++_cartQuantityItems).toString());
-    }
-    catch (e) {
 
-    }
+
     context.read<CommonProvider>().addProductToBasket(product);
   }
 

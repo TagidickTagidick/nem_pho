@@ -34,7 +34,7 @@ class CartProvider extends ChangeNotifier {
     _commonService.getUser();
 
     for (int i = 0; i < _oldProducts.length; i++) {
-      _total += _oldProducts[i].price;
+      _total += _oldProducts[i].price ?? 0; ///TODO
     }
     if (_oldProducts.isNotEmpty) {
       _oldProducts.sort((a, b) => a.title.compareTo(b.title));
@@ -63,7 +63,7 @@ class CartProvider extends ChangeNotifier {
   Future<void> addProduct(ProductModel product, int index) async {
     await _commonService.addProductToBasket(product.id);
     _counts[index]++;
-    _total += product.price;
+    _total += product.price ?? 0; ///TODO
     notifyListeners();
   }
 
@@ -74,7 +74,7 @@ class CartProvider extends ChangeNotifier {
       _counts.removeAt(index);
     } else {
       _counts[index]--;
-      _total -= product.price;
+      _total -= product.price ?? 0; ///TODO
     }
     notifyListeners();
   }

@@ -27,7 +27,10 @@ class ProductProvider extends ChangeNotifier {
 
   Future<void> getProduct(String id) async {
     _product = await _productService.getProduct(id);
-    _price = product.price;
+
+    if (product.prices != null) {
+      _price = product.prices!.first.amount;
+    }
     // if (_product.isTopping) {
     //   _toppings = await _productService.getToppings();
     // } else {

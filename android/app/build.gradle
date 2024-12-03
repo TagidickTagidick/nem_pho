@@ -28,7 +28,7 @@ if (flutterVersionName == null) {
 android {
     namespace "nem.pho.nem_pho"
     compileSdkVersion 34
-    ndkVersion "25.1.8937393"
+    ndkVersion "27.0.12077973"
 
     compileOptions {
         coreLibraryDesugaringEnabled true
@@ -51,7 +51,7 @@ android {
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
-        versionCode 8
+        versionCode 11
         versionName '1.0.0'
         multiDexEnabled true
     }
