@@ -1,8 +1,11 @@
 import 'package:nem_pho/presentation/product_page/models/topping_model.dart';
 
+import '../../presentation/product_page/models/price_model.dart';
+
 class ProductModel {
   final String id;
   final int price;
+  final List<PriceModel> prices;
   final String image;
   final String title;
   final String description;
@@ -13,7 +16,8 @@ class ProductModel {
     required this.id,
     required this.image,
     required this.title,
-    required this.price,
+    this.price = 0,
+    this.prices = const [],
     required this.description,
     this.composition,
     required this.toppings,
@@ -55,7 +59,8 @@ class ProductModel {
         'g0ODY4MDMuMjIuMC4w',
     title: 'ФО БО',
     description: 'ФУ бо',
-    price: 500,
+    price: 0,
+    prices: [],
     toppings: [],
   );
 }

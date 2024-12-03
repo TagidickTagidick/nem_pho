@@ -4,15 +4,11 @@ import 'package:add_to_cart_animation/drag_to_cart_animation_options.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nem_pho/core/widgets/app_bar/cart_icon.dart';
 import 'package:nem_pho/presentation/product_page/product_provider/product_provider.dart';
-import 'package:nem_pho/presentation/product_page/widgets/product_button.dart';
 import 'package:provider/provider.dart';
 import 'package:nem_pho/core/widgets/custom/custom_shimmer.dart';
 import 'package:nem_pho/core/widgets/app_bar/custom_appbar.dart';
-
-import '../../core/providers/common_provider.dart';
-import '../authorization_page/authorization_page.dart';
+import 'package:nem_pho/core/providers/common_provider.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key, required this.id});

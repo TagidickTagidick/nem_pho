@@ -30,7 +30,7 @@ class _MyInfoState extends State<MyInfo> {
     if (user == null) return false;
 
     final bool nameChanged = _nameController.text != (user.name ?? '');
-    final bool birthdayChange = _dateOfBirth != (user.birthday ?? '');
+    final bool birthdayChange = _dateOfBirth != (user.birthday == null ? '' : Formatter.convertDateOfBirth(user.birthday!));
     final bool streetChange = _streetController.text != (user.street ?? '');
 
     final int floorNumber = _floorController.text.isEmpty ? 0 : int.parse(_floorController.text);

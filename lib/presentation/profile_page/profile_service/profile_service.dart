@@ -38,7 +38,7 @@ class ProfileService extends IProfileService {
     String? sex,
     String? street,
   }) async {
-    Map<String, dynamic> user = await _networkClient.patch(
+    Map<String, dynamic> userMap = await _networkClient.patch(
         'user',
         {
           if(birthday != null)
@@ -59,7 +59,7 @@ class ProfileService extends IProfileService {
             'street': street,
         }
     );
-    final UserModel userModel = UserModel.fromJson(user);
+    final UserModel userModel = UserModel.fromJson(userMap['user']);
     return userModel;
   }
 

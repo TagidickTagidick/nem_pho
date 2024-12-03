@@ -30,6 +30,7 @@ class ProfileProvider extends ChangeNotifier {
   }) async {
     _isLoading = true;
     notifyListeners();
+
     _user = await _profileService.patchUser(
         birthday: birthday,
         building: building,
@@ -40,6 +41,7 @@ class ProfileProvider extends ChangeNotifier {
         sex: sex,
         street: street
     );
+
     _isLoading = false;
     notifyListeners();
   }
