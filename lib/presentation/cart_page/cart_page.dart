@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:nem_pho/presentation/checkout_page/choose_street_page.dart';
 import 'package:nem_pho/core/widgets/app_bar/custom_appbar.dart';
+import 'package:nem_pho/presentation/checkout_page/first_stape.dart';
 import 'package:provider/provider.dart';
 import 'package:nem_pho/core/widgets/custom/custom_text_field.dart';
 import 'package:nem_pho/core/widgets/custom/mask_text_input_formatter.dart';
 import 'package:nem_pho/core/widgets/not_working.dart';
 import 'package:nem_pho/presentation/cart_page/cart_provider/cart_provider.dart';
+
+import '../../core/providers/common_provider.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -810,51 +813,58 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                       ],
                     ),
                     const SizedBox(height: 9),
-                    // context.watch<CartProvider>().isWorking ? GestureDetector(
-                    //   onTap: () {
-                    //     if (canCheckout) {
-                    //       Navigator.of(context).push(
-                    //         MaterialPageRoute(
-                    //           builder: (context) => CheckoutPage(
-                    //             street: street,
-                    //             flat: flatController.text,
-                    //             office: officeController.text,
-                    //             entrance: entranceController.text,
-                    //             floor: floorController.text,
-                    //             name: nameController.text,
-                    //             phone: phoneController.text,
-                    //             comment: commentController.text,
-                    //             total: context.read<CartProvider>().total,
-                    //             delivery:
-                    //             neighbourhood == "Кировский" ? 0 : 200,
-                    //             id: 0,
-                    //             isSelf: isSelf,
-                    //             isCash: isCash,
-                    //           ),
-                    //         ),
-                    //       );
-                    //     }
-                    //   },
-                    //   child: Opacity(
-                    //     opacity: canCheckout ? 1 : 0.5,
-                    //     child: Container(
-                    //       height: 39,
-                    //       width: double.infinity,
-                    //       alignment: Alignment.center,
-                    //       decoration: BoxDecoration(
-                    //           color: const Color(0xff19B80B),
-                    //           borderRadius: BorderRadius.circular(1)),
-                    //       child: const Text(
-                    //         "Оформить заказ",
-                    //         style: TextStyle(
-                    //           fontWeight: FontWeight.w400,
-                    //           fontSize: 16,
-                    //           color: Color(0xffFFFFFF),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ) :
+                    context.watch<CommonProvider>().isWorking ? GestureDetector(
+                      onTap: () async {
+                        if (canCheckout) {
+                          await context.read<CartProvider>().order();
+
+                          if (!context.mounted) return;
+
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => CheckoutPage())
+                          );
+                          // Navigator.of(context).push(
+                          //   MaterialPageRoute(
+                          //     builder: (context) => CheckoutPage(
+                          //       street: street,
+                          //       flat: flatController.text,
+                          //       office: officeController.text,
+                          //       entrance: entranceController.text,
+                          //       floor: floorController.text,
+                          //       name: nameController.text,
+                          //       phone: phoneController.text,
+                          //       comment: commentController.text,
+                          //       total: context.read<CartProvider>().total,
+                          //       delivery:
+                          //       neighbourhood == "Кировский" ? 0 : 200,
+                          //       id: 0,
+                          //       isSelf: isSelf,
+                          //       isCash: isCash,
+                          //     ),
+                          //   ),
+                          // );
+                        }
+                      },
+                      child: Opacity(
+                        opacity: canCheckout ? 1 : 0.5,
+                        child: Container(
+                          height: 39,
+                          width: double.infinity,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: const Color(0xff19B80B),
+                              borderRadius: BorderRadius.circular(1)),
+                          child: const Text(
+                            "Оформить заказ",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                              color: Color(0xffFFFFFF),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ) :
                     const SizedBox(
                       height: 60,
                       width: double.infinity,

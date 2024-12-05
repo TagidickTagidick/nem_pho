@@ -22,12 +22,13 @@ import 'package:nem_pho/presentation/product_page/product_service/product_servic
 import 'package:nem_pho/presentation/profile_page/profile_page.dart';
 import 'package:nem_pho/presentation/profile_page/profile_provider/profile_provider.dart';
 import 'package:nem_pho/presentation/profile_page/profile_service/profile_service.dart';
+import 'package:nem_pho/test_class.dart';
 import 'package:provider/provider.dart';
 import 'package:nem_pho/core/providers/common_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
-  runApp(App());
+  runApp(MyApp());
 }
 
 class App extends StatelessWidget {

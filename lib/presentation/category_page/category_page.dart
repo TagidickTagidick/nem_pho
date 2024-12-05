@@ -41,10 +41,15 @@ class _CategoryPageState extends State<CategoryPage> {
   // }
 
   void listClick(GlobalKey widgetKey, ProductModel product) async {
+    if(product.prices == null) return;
+
     await runAddToCartAnimation(widgetKey);
 
-
-    context.read<CommonProvider>().addProductToBasket(product);
+    context.read<CommonProvider>().addProductToBasket(
+        product: product,
+        price: product.prices!.first,
+        toppingIds: []
+    );
   }
 
   @override

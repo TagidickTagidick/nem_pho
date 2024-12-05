@@ -1,3 +1,4 @@
+import 'package:nem_pho/core/models/order_model.dart';
 import 'package:nem_pho/core/services/storage_service.dart';
 import 'package:nem_pho/presentation/loading_page/models/menu_model.dart';
 import 'package:nem_pho/core/models/banner_model.dart';
@@ -13,8 +14,13 @@ abstract class ICommonService {
   Future<String?> getAccessTokenFromStorage();
   Future<bool> checkIsUser();
   Future<List<ProductModel>> getBasket();
-  Future<void> addProductToBasket(String productId);
+  Future<void> addProductToBasket({
+    required String productId,
+    required int price,
+    required List<String> toppingIds,
+  });
   Future<UserModel> getUser();
+  Future<List<OrderModel>> getOrders();
 }
 
 class CommonService extends ICommonService {
@@ -87,12 +93,17 @@ class CommonService extends ICommonService {
   }
 
   @override
-  Future<void> addProductToBasket(String productId) async {
+  Future<void> addProductToBasket({
+    required String productId,
+    required int price,
+    required List<String> toppingIds,
+  }) async {
     await _networkClient.post(
         '/basket',
         {
           'product_id': productId,
-          'topping_ids': [],
+          'price': price,
+          'topping_ids': toppingIds,
         }
     );
   }
@@ -102,5 +113,15 @@ class CommonService extends ICommonService {
     Map<String, dynamic> user = await _networkClient.get('user');
     final UserModel userModel = UserModel.fromJson(user['payload']);
     return userModel;
+  }
+
+  @override
+  Future<List<OrderModel>> getOrders() async {
+    final Map<String, dynamic> ordersMap = await _networkClient.get('orders');
+    List<OrderModel> orders = [];
+    for(var order in ordersMap['payload']) {
+      orders.add(OrderModel.fromJson(order));
+    }
+    return orders;
   }
 }

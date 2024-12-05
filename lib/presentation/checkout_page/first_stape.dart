@@ -6,36 +6,7 @@ import 'package:nem_pho/presentation/checkout_page/payment_dot.dart';
 import 'package:nem_pho/presentation/checkout_page/payment_dot_enabled.dart';
 
 class CheckoutPage extends StatefulWidget {
-  const CheckoutPage({
-    super.key,
-    required this.street,
-    required this.flat,
-    required this.office,
-    required this.entrance,
-    required this.floor,
-    required this.name,
-    required this.phone,
-    required this.comment,
-    required this.total,
-    required this.delivery,
-    required this.id,
-    required this.isSelf,
-    required this.isCash,
-  });
-
-  final String street;
-  final String flat;
-  final String office;
-  final String entrance;
-  final String floor;
-  final String name;
-  final String phone;
-  final String comment;
-  final int total;
-  final int delivery;
-  final String id;
-  final bool isSelf;
-  final bool isCash;
+  const CheckoutPage({super.key});
 
   @override
   State<CheckoutPage> createState() => _CheckoutPageState();
@@ -47,33 +18,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
   List<int> counts = [];
 
   int id = 0;
-
-  @override
-  void initState() {
-    // id = widget.id;
-    // List<ProductModel> oldCart = context.read<CartProvider>().userModel!.cart;
-    // if (oldCart.isNotEmpty) {
-    //   oldCart.sort((a, b) => a.title.compareTo(b.title));
-    //   if (oldCart.length == 1) {
-    //     newProducts.add(oldCart[0]);
-    //     counts.add(1);
-    //   } else {
-    //     int count = 0;
-    //     for (int i = 1; i < oldCart.length; i++) {
-    //       count++;
-    //       if (oldCart[i].title != oldCart[i - 1].title) {
-    //         newProducts.add(oldCart[i - 1]);
-    //         counts.add(count);
-    //         count = 0;
-    //       }
-    //     }
-    //     count++;
-    //     newProducts.add(oldCart[oldCart.length - 1]);
-    //     counts.add(count);
-    //   }
-    // }
-    super.initState();
-  }
 
   final String status = "Новый";
 

@@ -1,11 +1,10 @@
 import 'package:nem_pho/presentation/product_page/models/topping_model.dart';
 
-import '../../presentation/product_page/models/price_model.dart';
-
 class ProductModel {
   final String id;
   final int? price;
-  final List<PriceModel>? prices;
+  final List<int> weights;
+  final List<int>? prices;
   final String image;
   final String title;
   final String description;
@@ -15,6 +14,7 @@ class ProductModel {
   ProductModel({
     required this.id,
     required this.image,
+    required this.weights,
     required this.title,
     this.price = 0,
     this.prices = const [],
@@ -27,14 +27,16 @@ class ProductModel {
     return ProductModel(
       id: json['id'],
       image: json['image'],
+      weights: json['weights'] == null 
+          ? []
+      : List<int>.from(json['weights'].map((x) => x),
+      ),
       title: json['title'],
       price: json['price'],
       prices: json['prices'] == null
           ? []
-          : List<PriceModel>.from(
-        json['prices'].map(
-              (x) => PriceModel.fromJson(x),
-        ),
+          : List<int>.from(
+        json['prices'].map((x) => x),
       ),
       description: json['description'],
       composition: json['composition'],
@@ -69,5 +71,6 @@ class ProductModel {
     price: 0,
     prices: [],
     toppings: [],
+    weights: []
   );
 }

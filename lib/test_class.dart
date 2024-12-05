@@ -22,15 +22,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   late IO.Socket socket;
 
-  // final channel = WebSocketChannel.connect(
-  //   Uri.parse('http://192.168.31.245:5000'),
-  // );
-
   @override
   void initState() {
     super.initState();
     // Configure socket connection
-    socket = IO.io('http://172.20.10.3:5000', <String, dynamic>{
+    socket = IO.io('https://nikolyamba-nem-pho-backend-64d9.twc1.net/',
+        <String, dynamic>{
       'transports': ['websocket'],
       'autoConnect': false,
     });

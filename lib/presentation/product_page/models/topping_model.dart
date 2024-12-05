@@ -1,9 +1,11 @@
 class ToppingModel {
+  final String id;
   final String image;
   final String title;
   final int price;
 
   ToppingModel({
+    required this.id,
     required this.image,
     required this.title,
     required this.price
@@ -11,6 +13,7 @@ class ToppingModel {
 
   factory ToppingModel.fromJson(Map<String, dynamic> json) {
     return ToppingModel(
+      id: json['id'],
         image: json['image'],
         title: json['title'],
         price: json['price']
@@ -26,6 +29,7 @@ class ToppingModel {
   }
 
   static ToppingModel mock = ToppingModel(
+    id: "1",
       image: 'Головяшкина',
       title: 'Говядина',
       price: 5500

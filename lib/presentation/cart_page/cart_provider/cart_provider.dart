@@ -61,7 +61,13 @@ class CartProvider extends ChangeNotifier {
   }
 
   Future<void> addProduct(ProductModel product, int index) async {
-    await _commonService.addProductToBasket(product.id);
+    if (product.price == null) return;
+
+    await _commonService.addProductToBasket(
+        productId: product.id,
+        price: product.price!,
+        toppingIds: []
+    );
     _counts[index]++;
     _total += product.price ?? 0; ///TODO
     notifyListeners();
@@ -77,5 +83,9 @@ class CartProvider extends ChangeNotifier {
       _total -= product.price ?? 0; ///TODO
     }
     notifyListeners();
+  }
+
+  Future<void> order() async {
+    await _cartService.postOrder();
   }
 }

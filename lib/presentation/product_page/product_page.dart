@@ -10,6 +10,9 @@ import 'package:nem_pho/core/widgets/custom/custom_shimmer.dart';
 import 'package:nem_pho/core/widgets/app_bar/custom_appbar.dart';
 import 'package:nem_pho/core/providers/common_provider.dart';
 
+import '../../core/models/product_model.dart';
+import 'models/topping_model.dart';
+
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key, required this.id});
   final String id;
@@ -19,12 +22,22 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-  bool isHalf = false;
-
   GlobalKey<CartIconKey> cartKey = GlobalKey<CartIconKey>();
   late Function(GlobalKey) runAddToCartAnimation;
   var _cartQuantityItems = 0;
   final GlobalKey widgetKey = GlobalKey();
+
+  int _getPrice(ProductModel product, int weightIndex, List<ToppingModel> myToppings) {
+    if(product.prices == null) return 0;
+
+    int price = product.prices![weightIndex];
+
+    for (int i = 0; i < myToppings.length; i++) {
+      price += myToppings[i].price;
+    }
+
+    return price;
+  }
 
   @override
   void initState() {
@@ -43,9 +56,8 @@ class _ProductPageState extends State<ProductPage> {
 
     final provider = context.watch<ProductProvider>();
 
-    final price = provider.price;
     final product = provider.product;
-    final toppings = provider.toppings;
+    final weight = provider.weightIndex;
     final myToppings = provider.myToppings;
 
     return AddToCartAnimation(
@@ -123,101 +135,61 @@ class _ProductPageState extends State<ProductPage> {
                         ),
                       ),
                       const SizedBox(height: 5),
-                      // product.gramm.length == 1
-                      //     ? GestureDetector(
-                      //   onTap: () {
-                      //     isHalf = false;
-                      //     setState(() {});
-                      //   },
-                      //   child: Container(
-                      //     height: 38,
-                      //     width: 100,
-                      //     alignment: Alignment.center,
-                      //     decoration: BoxDecoration(
-                      //         borderRadius: BorderRadius.circular(30),
-                      //         color: isHalf
-                      //             ? Color(0xFFFFFFFF)
-                      //             : Color(0xFFFF451D),
-                      //         border: Border.all(
-                      //           color: Color(0xFFF0B0B0),
-                      //           width: 2,
-                      //         )),
-                      //     child: Text(
-                      //       '${widget.product.gramm.first} гр',
-                      //       style: const TextStyle(
-                      //         fontSize: 12,
-                      //         fontWeight: FontWeight.w600,
-                      //         color: Color(0xff000000),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // )
-                      //     : Row(
-                      //   children: [
-                      //     Expanded(
-                      //       child: GestureDetector(
-                      //         onTap: () {
-                      //           isHalf = false;
-                      //           setState(() {});
-                      //         },
-                      //         child: Container(
-                      //           height: 38,
-                      //           alignment: Alignment.center,
-                      //           decoration: BoxDecoration(
-                      //               borderRadius:
-                      //               BorderRadius.circular(30),
-                      //               color: isHalf
-                      //                   ? Color(0xFFFFFFFF)
-                      //                   : Color(0xFFFF451D),
-                      //               border: Border.all(
-                      //                 color: Color(0xFFF0B0B0),
-                      //                 width: 2,
-                      //               )),
-                      //           child: Text(
-                      //             '${widget.product.gramm.first} гр',
-                      //             style: TextStyle(
-                      //               fontSize: 12,
-                      //               fontWeight: FontWeight.w600,
-                      //               color: Color(0xff000000),
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ),
-                      //     ),
-                      //     const SizedBox(width: 4),
-                      //     Expanded(
-                      //       child: GestureDetector(
-                      //         onTap: () {
-                      //           isHalf = true;
-                      //           setState(() {});
-                      //         },
-                      //         child: Container(
-                      //           height: 38,
-                      //           alignment: Alignment.center,
-                      //           decoration: BoxDecoration(
-                      //             borderRadius:
-                      //             BorderRadius.circular(30),
-                      //             color: isHalf
-                      //                 ? Color(0xFFFF451D)
-                      //                 : Color(0xFFFFFFFF),
-                      //             border: Border.all(
-                      //               color: Color(0xFFF0B0B0),
-                      //               width: 2,
-                      //             ),
-                      //           ),
-                      //           child: Text(
-                      //             '${widget.product.gramm.last} гр',
-                      //             style: TextStyle(
-                      //               fontSize: 12,
-                      //               fontWeight: FontWeight.w600,
-                      //               color: Color(0xff000000),
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
+                      product.weights.length == 1
+                          ? Container(
+                        height: 38,
+                        width: 100,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: Color(0xFFFF451D),
+                            border: Border.all(
+                              color: Color(0xFFF0B0B0),
+                              width: 2,
+                            )),
+                        child: Text(
+                          '${product.weights.first} гр',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xff000000),
+                          ),
+                        ),
+                      )
+                          : Row(
+                        children: [
+                          for(int i = 0; i < product.weights.length; i++)
+                          Expanded(
+                            child: GestureDetector(onTap: () {
+                              context.read<ProductProvider>().onTapWeight(i);
+                              },
+                              child: Container(
+                                height: 38,
+                                margin: EdgeInsets.symmetric(horizontal: 2),
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30),
+                                    color: weight == i
+                                    ? Color(0xFFFF451D)
+                                    : Colors.grey,
+                                    border: Border.all(
+                                      color: Color(0xFFF0B0B0),
+                                      width: 2,
+                                    )),
+                                child: Text(
+                                  '${product.weights[i]} гр',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color(0xff000000),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 4),
+                        ],
+                      ),
                       const SizedBox(height: 15),
                       // Text(
                       //     product.ml,
@@ -272,7 +244,7 @@ class _ProductPageState extends State<ProductPage> {
                   height: 137,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: toppings.length,
+                    itemCount: product.toppings.length,
                     itemBuilder: (context, index) =>
                         GestureDetector(onTap: () {
                           context.read<ProductProvider>().onTapTopping(index);
@@ -280,15 +252,15 @@ class _ProductPageState extends State<ProductPage> {
                           child: Container(
                             margin: const EdgeInsets.symmetric(horizontal: 10),
                             decoration: BoxDecoration(
-                              color: myToppings.contains(toppings[index])
+                              color: myToppings.contains(product.toppings[index])
                                   ? const Color(0xffD9D9D9).withOpacity(0.9)
                                   : Colors.transparent,
                               border: Border.all(
-                                color: myToppings.contains(toppings[index])
+                                color: myToppings.contains(product.toppings[index])
                                     ? Colors.red // измените цвет на красный
                                     : Colors.transparent,
                               ),
-                              borderRadius: myToppings.contains(toppings[index])
+                              borderRadius: myToppings.contains(product.toppings[index])
                                   ? BorderRadius.circular(10.0)
                                   : null,
                             ),
@@ -297,7 +269,7 @@ class _ProductPageState extends State<ProductPage> {
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
                                   child: CachedNetworkImage(
-                                    imageUrl: toppings[index].image,
+                                    imageUrl: product.toppings[index].image,
                                     fit: BoxFit.cover,
                                     height: 97,
                                     width: 108,
@@ -309,7 +281,7 @@ class _ProductPageState extends State<ProductPage> {
                                   ),
                                 ),
                                 Text(
-                                    toppings[index].title,
+                                    product.toppings[index].title,
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 14,
@@ -321,7 +293,7 @@ class _ProductPageState extends State<ProductPage> {
                                     const Text('+'),
                                     const SizedBox(width: 2),
                                     Text(
-                                      toppings[index].price.toString(),
+                                      product.toppings[index].price.toString(),
                                       style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 14,
@@ -343,14 +315,21 @@ class _ProductPageState extends State<ProductPage> {
               bottom: 38,
               left: 25,
               right: 25,
-              child: GestureDetector(
-                onTap: () async {
+              child: GestureDetector(onTap: () async {
                   if (await context.read<ProductProvider>().checkUser()) {
                     if (context.mounted) {
                       await runAddToCartAnimation(widgetKey);
+                      List<String> myToppingsId = [];
+                      for(int index = 0; index < myToppings.length; index++) {
+                        myToppingsId.add(myToppings[index].id);
+                      }
                       // await cartKey.currentState!
                       //     .runCartAnimation((++_cartQuantityItems).toString());
-                      context.read<CommonProvider>().addProductToBasket(provider.product);
+                      context.read<CommonProvider>().addProductToBasket(
+                          product: product,
+                          price: product.prices![weight],
+                          toppingIds: myToppingsId
+                      );
                     }
                   }
                   else {
@@ -385,7 +364,7 @@ class _ProductPageState extends State<ProductPage> {
                       borderRadius: BorderRadius.circular(200)
                   ),
                   child: Text(
-                    "Добавить ${context.read<ProductProvider>().price}",
+                    "Добавить ${_getPrice(product, weight, myToppings)}",
                     style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 16,

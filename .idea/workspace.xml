@@ -10,32 +10,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="912997e2-eaa7-4f83-87af-e7a147d5f857" name="Changes" comment="add settings.gradle">
-      <change afterPath="$PROJECT_DIR$/android/app/release/baselineProfiles/0/app-release.dm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/release/baselineProfiles/1/app-release.dm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/core/models/order_model.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/presentation/checkout_page/check_out_provider/check_out_provider.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/nem_pho.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/nem_pho.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/release/app-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/release/app-release.apk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/release/output-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/release/output-metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.idea/caches/deviceStreaming.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/.idea/kotlinc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/core/models/product_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/models/product_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/services/appmetrica_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/services/appmetrica_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/providers/common_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/providers/common_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/services/common_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/services/common_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/cart_page/cart_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/cart_page/cart_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/presentation/cart_page/cart_provider/cart_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/cart_page/cart_provider/cart_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/cart_page/cart_service/cart_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/cart_page/cart_service/cart_service.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/presentation/category_page/category_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/category_page/category_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/presentation/category_page/widgets/category_product.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/category_page/widgets/category_product.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/presentation/product_page/models/price_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/product_page/models/price_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/checkout_page/first_stape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/checkout_page/first_stape.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/presentation/product_page/models/topping_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/product_page/models/topping_model.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/presentation/product_page/product_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/product_page/product_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/presentation/product_page/product_provider/product_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/product_page/product_provider/product_provider.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/presentation/product_page/widgets/product_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/presentation/product_page/widgets/product_button.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/test_class.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/test_class.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

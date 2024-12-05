@@ -11,26 +11,20 @@ class ProductProvider extends ChangeNotifier {
   }): _productService = productService,
   _commonService = commonService;
 
-  int _price = 0;
+  int _weightIndex = 0;
   bool _isLoading = true;
   final IProductService _productService;
   final ICommonService _commonService;
   late final ProductModel _product;
-  final List<ToppingModel> _toppings = [];
   final List<ToppingModel> _myToppings = [];
 
-  int get price => _price;
+  int get weightIndex => _weightIndex;
   bool get isLoading => _isLoading;
   ProductModel get product => _product;
-  List<ToppingModel> get toppings => _toppings;
   List<ToppingModel> get myToppings => _myToppings;
 
   Future<void> getProduct(String id) async {
     _product = await _productService.getProduct(id);
-
-    if (product.prices != null) {
-      _price = product.prices!.first.amount;
-    }
     // if (_product.isTopping) {
     //   _toppings = await _productService.getToppings();
     // } else {
@@ -40,15 +34,18 @@ class ProductProvider extends ChangeNotifier {
     notifyListeners(); //изменение стейта
   }
 
-  ///По нажатию на виджет топпинга изменение статуса топпинга и изменение цены всего продукта
+  ///По нажатию на виджет топпинга изменение статуса топпинга
   void onTapTopping(int index) {
-    if (_myToppings.contains(_toppings[index])) {
-      _myToppings.remove(_toppings[index]);
-      _price -= _toppings[index].price;
+    if (_myToppings.contains(_product.toppings[index])) {
+      _myToppings.remove(_product.toppings[index]);
     } else {
-      _myToppings.add(_toppings[index]);
-      _price += _toppings[index].price;
+      _myToppings.add(_product.toppings[index]);
     }
+    notifyListeners();
+  }
+
+  void onTapWeight(int index) {
+    _weightIndex = index;
     notifyListeners();
   }
 

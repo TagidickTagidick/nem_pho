@@ -5,9 +5,8 @@ import 'package:nem_pho/core/services/common_service.dart';
 import 'package:nem_pho/presentation/loading_page/models/menu_model.dart';
 
 class CommonProvider extends ChangeNotifier {
-  CommonProvider({
-    required final ICommonService commonService
-  }): _commonService = commonService;
+  CommonProvider({required final ICommonService commonService})
+      : _commonService = commonService;
   final ICommonService _commonService;
 
   List<MenuModel> _menu = [];
@@ -18,12 +17,17 @@ class CommonProvider extends ChangeNotifier {
   bool _isWorking = true;
 
   List<BannerModel> get banners => _banners;
+
   bool get isBannersLoading => _isBannersLoading;
+
   bool get isWorking => _isWorking;
+
   List<MenuModel> get menu => _menu;
+
   bool get isLoading => _isLoading;
 
   List<ProductModel> _basket = [];
+
   List<ProductModel> get basket => _basket;
 
   Future<List<BannerModel>> getBanners() async {
@@ -84,8 +88,16 @@ class CommonProvider extends ChangeNotifier {
     }
   }
 
-  void addProductToBasket(ProductModel product) async {
-    await _commonService.addProductToBasket(product.id);
+  void addProductToBasket({
+    required ProductModel product,
+    required int price,
+    required List<String> toppingIds,
+  }) async {
+    await _commonService.addProductToBasket(
+      productId: product.id,
+      price: price,
+      toppingIds: toppingIds
+    );
     _basket.add(product);
     notifyListeners();
   }

@@ -84,7 +84,7 @@ class CategoryProduct extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("${product.prices?.firstOrNull?.amount} р",
+                    Text("${product.prices?.firstOrNull} р",
                         style: const TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 16,

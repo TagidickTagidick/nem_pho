@@ -56,7 +56,7 @@ class ProductButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(200)
           ),
           child: Text(
-            "Добавить ${context.read<ProductProvider>().price}",
+            "Добавить }",
             style: const TextStyle(
               fontWeight: FontWeight.w400,
               fontSize: 16,
