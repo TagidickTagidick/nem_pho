@@ -15,8 +15,7 @@ class CartIcon extends StatefulWidget {
 class _CartIconState extends State<CartIcon> {
   @override
   Widget build(BuildContext context) => GestureDetector(onTap: () async {
-    final bool checkUser = await context.read<CommonProvider>().checkIsAuthorized();
-    context.push(checkUser ? '/cart_page' : '/authorization_page');
+    context.push(context.read<CommonProvider>().isUser ? '/cart_page' : '/authorization_page');
   },
     child: Container(
       width: 50,

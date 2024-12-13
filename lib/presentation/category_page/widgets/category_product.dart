@@ -4,8 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nem_pho/core/models/product_model.dart';
 import 'package:nem_pho/core/widgets/custom/custom_shimmer.dart';
 import 'package:provider/provider.dart';
-
-import '../../product_page/product_provider/product_provider.dart';
+import 'package:nem_pho/core/providers/common_provider.dart';
 
 class CategoryProduct extends StatelessWidget {
   CategoryProduct({super.key, required this.product, required this.onClick});
@@ -89,9 +88,8 @@ class CategoryProduct extends StatelessWidget {
                             fontWeight: FontWeight.w700,
                             fontSize: 16,
                             color: Color(0xff000000))),
-                    GestureDetector(
-                      onTap: () async {
-                        if (await context.read<ProductProvider>().checkUser()) {
+                    GestureDetector(onTap: () async {
+                        if (context.read<CommonProvider>().isUser) {
                           if (context.mounted) {
                             onClick(widgetKey, product);
                           }

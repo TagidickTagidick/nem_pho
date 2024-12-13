@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nem_pho/core/services/appmetrica_service.dart';
 import 'package:provider/provider.dart';
 
 import 'package:nem_pho/core/providers/common_provider.dart';
@@ -12,6 +13,7 @@ class MainPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppMetricaService().sendLoadingPageEvent('MainPageBody');
     if (context.watch<CommonProvider>().isLoading) {
       return const MainPageShimmer();
     }

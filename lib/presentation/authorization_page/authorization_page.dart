@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nem_pho/core/services/appmetrica_service.dart';
 import 'package:provider/provider.dart';
 import 'package:nem_pho/core/providers/common_provider.dart';
 import 'package:nem_pho/core/widgets/custom/mask_text_input_formatter.dart';
@@ -15,7 +16,6 @@ class AuthorizationPage extends StatefulWidget {
 
 class _AuthorizationPageState extends State<AuthorizationPage> {
   final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _nameController = TextEditingController();
 
   bool canSignIn = false;
 
@@ -25,7 +25,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
       type: MaskAutoCompletionType.lazy);
 
   void checkCanSignIn() {
-    if (_phoneController.text.length == 18 || _nameController.text.isNotEmpty) {
+    if (_phoneController.text.length == 18) {
       setState(() {
         canSignIn = true;
       });
@@ -38,16 +38,14 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
 
   @override
   Widget build(BuildContext context) {
+    AppMetricaService().sendLoadingPageEvent('AuthorizationPage');
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
-            padding: EdgeInsets.only(
-              left: 33,
-              top: 76,
-            ),
+            padding: EdgeInsets.only(left: 33, top: 76),
             child: Text(
               'Авторизация',
               style: TextStyle(
@@ -58,12 +56,9 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
             ),
           ),
           const Padding(
-            padding: EdgeInsets.only(
-              left: 33,
-              top: 24,
-            ),
+            padding: EdgeInsets.only(left: 33, top: 24),
             child: Text(
-              'введите номер мобильного телефона',
+              'Введите номер мобильного телефона',
               style: TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 16,
@@ -75,10 +70,9 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           Container(
             height: 63,
             width: double.infinity,
+            margin: EdgeInsets.symmetric(horizontal: 10),
             color: const Color(0xffF3F3F3),
-            padding: const EdgeInsets.only(
-              left: 36,
-            ),
+            padding: const EdgeInsets.only(left: 36),
             child: TextField(
               controller: _phoneController,
               maxLength: 18,
@@ -94,58 +88,15 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
                 hintStyle: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 24,
-                    color: Colors.white.withOpacity(0.3)),
+                    color: Colors.white.withOpacity(0.3)
+                ),
               ),
               style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 24,
-                  color: Color(0xff6D6D6D)),
+                  color: Color(0xff6D6D6D)
+              ),
               inputFormatters: [maskFormatter],
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(
-              left: 33,
-              top: 24,
-            ),
-            child: Text(
-              'введите имя',
-              style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16,
-                  color: Color(0xff0000000)),
-            ),
-          ),
-          const SizedBox(height: 7),
-          Container(
-            height: 63,
-            width: double.infinity,
-            color: const Color(0xffF3F3F3),
-            padding: const EdgeInsets.only(
-              left: 36,
-            ),
-            child: TextField(
-              controller: _nameController,
-              maxLength: 18,
-              autofocus: true,
-              cursorHeight: 26,
-              cursorColor: const Color(0xffff9900),
-              onChanged: (value) {
-                checkCanSignIn();
-              },
-              keyboardType: TextInputType.name,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintStyle: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 24,
-                    color: Colors.white.withOpacity(0.3)),
-              ),
-              style: const TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 24,
-                color: Color(0xff6D6D6D),
-              ),
             ),
           ),
           const SizedBox(height: 74),
@@ -154,9 +105,12 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
               child: Column(
                 children: <Widget>[
                   GestureDetector(onTap: () async {
-                    final bool success = await context.read<AuthorizationProvider>().register(_phoneController.text.replaceAll(" ", "_"));
+                    final bool success = await context.read<
+                        AuthorizationProvider>().register(
+                        _phoneController.text.replaceAll(" ", "_"));
+                    context.read<CommonProvider>().changeUser();
                     await context.read<CommonProvider>().getIsWorking();
-                    if(success) {
+                    if (success) {
                       context.push('/profile_page');
                     }
                   },

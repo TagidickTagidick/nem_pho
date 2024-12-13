@@ -8,13 +8,11 @@ class ProductProvider extends ChangeNotifier {
   ProductProvider({
     required IProductService productService,
     required ICommonService commonService,
-  }): _productService = productService,
-  _commonService = commonService;
+  }): _productService = productService;
 
   int _weightIndex = 0;
   bool _isLoading = true;
   final IProductService _productService;
-  final ICommonService _commonService;
   late final ProductModel _product;
   final List<ToppingModel> _myToppings = [];
 
@@ -47,9 +45,5 @@ class ProductProvider extends ChangeNotifier {
   void onTapWeight(int index) {
     _weightIndex = index;
     notifyListeners();
-  }
-
-  Future<bool> checkUser() async {
-    return await _commonService.checkIsUser();
   }
 }

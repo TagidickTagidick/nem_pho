@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:nem_pho/presentation/checkout_page/choose_street_page.dart';
+import 'package:nem_pho/core/services/appmetrica_service.dart';
 import 'package:nem_pho/core/widgets/app_bar/custom_appbar.dart';
-import 'package:nem_pho/presentation/checkout_page/first_stape.dart';
+import 'package:nem_pho/presentation/checkout_page/checkout_page.dart';
 import 'package:provider/provider.dart';
 import 'package:nem_pho/core/widgets/custom/custom_text_field.dart';
 import 'package:nem_pho/core/widgets/custom/mask_text_input_formatter.dart';
 import 'package:nem_pho/core/widgets/not_working.dart';
 import 'package:nem_pho/presentation/cart_page/cart_provider/cart_provider.dart';
-
-import '../../core/providers/common_provider.dart';
+import 'package:nem_pho/core/providers/common_provider.dart';
+import 'package:nem_pho/presentation/checkout_page/choose_street_page.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -19,27 +19,22 @@ class CartPage extends StatefulWidget {
 
 class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
 
-  final TextEditingController flatController = TextEditingController();
-  final TextEditingController officeController = TextEditingController();
-  final TextEditingController entranceController = TextEditingController();
-  final TextEditingController floorController = TextEditingController();
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController commentController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-
-  String street = '';
-
-  var maskFormatter = MaskTextInputFormatter(
+  final TextEditingController _flatController = TextEditingController();
+  final TextEditingController _buildingController = TextEditingController();
+  final TextEditingController _entranceController = TextEditingController();
+  final TextEditingController _floorController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _commentController = TextEditingController();
+  String _street = '';
+  final MaskTextInputFormatter maskFormatter = MaskTextInputFormatter(
       mask: '+# (###) ###-##-##',
       filter: {"#": RegExp(r'[0-9]')},
       type: MaskAutoCompletionType.lazy);
 
-  bool isSelf = true;
+  bool _isSelf = true;
   bool isTime = true;
-  bool isCash = false;
-
-  bool canCheckout = false;
+  bool _isCard = false;
 
   final List<String> neighbourhoods = [
     'Кировский',
@@ -56,31 +51,10 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
 
   String neighbourhood = 'Выберите район';
 
-  void checkCanCheckout() {
-    // if (isSelf) {
-    //   if (total >= 900) {
-    //     canCheckout = true;
-    //   } else {
-    //     canCheckout = false;
-    //   }
-    // } else {
-    //   if ((total + (neighbourhood == "Кировский" ? 0 : 200) >= 900) &&
-    //       street.isNotEmpty &&
-    //       (flatController.text.isNotEmpty ||
-    //           officeController.text.isNotEmpty) &&
-    //       nameController.text.isNotEmpty &&
-    //       phoneController.text.isNotEmpty) {
-    //     canCheckout = true;
-    //   } else {
-    //     canCheckout = false;
-    //   }
-    // }
-    // setState(() {});
-  }
-
   @override
   void initState() {
     super.initState();
+    AppMetricaService().sendLoadingPageEvent('CartPage');
     _streetController = AnimationController(
       duration: const Duration(milliseconds: 200),
       vsync: this,
@@ -89,49 +63,39 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
       duration: const Duration(milliseconds: 200),
       vsync: this,
     );
-    //getData();
+    initFields();
   }
 
-  void _initFields() {
-
+  void initFields() async {
+    await context.read<CartProvider>().getProducts();
+    final user = context.read<CartProvider>().user;
+    if (user == null) return;
+    _nameController.text = user.name ?? "";
+    _street = user.street ?? '';
+    _phoneController.text = user.orderPhone ?? (user.phone ?? "");
+    _buildingController.text = user.building ?? '';
+    _floorController.text = user.floor == null ? '' : user.floor.toString();
+    _entranceController.text = user.entrance == null ? '' : user.entrance.toString();
+    _flatController.text = user.flat == null ? '' : user.flat.toString();
+    _commentController.text = user.comment == null ? '' : user.comment.toString();
+    _isSelf = user.isSelf ?? false;
+    _isCard = user.isCard ?? false;
   }
 
-  // void getData() async {
-  //   userModel = context.read<CartProvider>().userModel!;
-  //   phoneController.text = userModel.phone.replaceAll("_", " ");
-  //   nameController.text = userModel.name;
-  //   street = userModel.street;
-  //   flatController.text = userModel.flat;
-  //   officeController.text = userModel.office;
-  //   entranceController.text = userModel.entrance;
-  //   floorController.text = userModel.floor;
-  //
-  //   List<ProductModel> oldCart = userModel.cart;
-  //   for (int i = 0; i < oldCart.length; i++) {
-  //     total += int.parse(oldCart[i].price);
-  //   }
-  //   if (oldCart.isNotEmpty) {
-  //     oldCart.sort((a, b) => a.title.compareTo(b.title));
-  //     if (oldCart.length == 1) {
-  //       newProducts.add(oldCart[0]);
-  //       counts.add(1);
-  //     } else {
-  //       int count = 0;
-  //       for (int i = 1; i < oldCart.length; i++) {
-  //         count++;
-  //         if (oldCart[i].title != oldCart[i - 1].title) {
-  //           newProducts.add(oldCart[i - 1]);
-  //           counts.add(count);
-  //           count = 0;
-  //         }
-  //       }
-  //       count++;
-  //       newProducts.add(oldCart[oldCart.length - 1]);
-  //       counts.add(count);
-  //     }
-  //   }
-  //   checkCanCheckout();
-  // }
+  bool get canOrder {
+    final int total = context.read<CartProvider>().total;
+
+    if(_isSelf) {
+      return _nameController.text.isNotEmpty
+          && _phoneController.text.length == 18
+          && total >= 900;
+    }
+    return _nameController.text.isNotEmpty
+        && _street.isNotEmpty
+        && _buildingController.text.isNotEmpty
+        && _phoneController.text.length == 18
+        && total >= 900;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -147,8 +111,8 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
     final counts = context.watch<CartProvider>().counts;
     final total = context.watch<CartProvider>().total;
 
-    return GestureDetector(
-      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+    return GestureDetector(onTap: () =>
+        FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         backgroundColor: const Color(0xffFFFFFF),
         appBar: const CustomAppBar(isCart: false),
@@ -199,8 +163,8 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: GestureDetector(onTap: () {
-                               context.read<CartProvider>().deleteProduct(newProducts[i], i);
-                              },
+                              context.read<CartProvider>().deleteProduct(newProducts[i], i);
+                            },
                               child: Container(
                                 height: 37,
                                 width: 60,
@@ -223,8 +187,8 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                           Align(
                             alignment: Alignment.centerRight,
                             child: GestureDetector(onTap: () {
-                                context.read<CartProvider>().addProduct(newProducts[i], i);
-                              },
+                              context.read<CartProvider>().addProduct(newProducts[i], i);
+                            },
                               child: Container(
                                 height: 37,
                                 width: 60,
@@ -280,7 +244,7 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                     Row(
                       children: [
                         Text(
-                          isSelf ? "Самовывоз: " : "Доставка: ",
+                          _isSelf ? "Самовывоз: " : "Доставка: ",
                           style: const TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 20,
@@ -312,7 +276,7 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                           ),
                         ),
                         AnimatedAlign(
-                          alignment: isSelf
+                          alignment: _isSelf
                               ? Alignment.centerRight
                               : Alignment.centerLeft,
                           duration: const Duration(milliseconds: 200),
@@ -335,35 +299,33 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              GestureDetector(
-                                onTap: () {
-                                  _deliveryController.forward();
-                                  isSelf = false;
-                                  checkCanCheckout();
-                                },
+                              GestureDetector(onTap: () {
+                                _deliveryController.forward();
+                                _isSelf = false;
+                                setState(() {});
+                              },
                                 child: Text(
                                   "Доставка на дом",
                                   style: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 16,
-                                    color: isSelf
+                                    color: _isSelf
                                         ? const Color(0xff000000)
                                         : const Color(0xffffffff),
                                   ),
                                 ),
                               ),
-                              GestureDetector(
-                                onTap: () {
-                                  _deliveryController.reverse();
-                                  isSelf = true;
-                                  checkCanCheckout();
-                                },
+                              GestureDetector(onTap: () {
+                                _deliveryController.reverse();
+                                _isSelf = true;
+                                setState(() {});
+                              },
                                 child: Text(
                                   "Забрать самому",
                                   style: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 16,
-                                    color: isSelf
+                                    color: _isSelf
                                         ? const Color(0xffffffff)
                                         : const Color(0xff000000),
                                   ),
@@ -399,13 +361,12 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                               style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 16,
-                                color:
-                                const Color(0xff000000).withOpacity(0.42),
+                                color: const Color(0xff000000).withOpacity(0.42),
                               ),
                               underline: const SizedBox(),
                               onChanged: (String? value) {
                                 if (neighbourhood == 'Выберите район') {
-                                  street = '';
+                                  _street = '';
                                   _streetController.forward();
                                 } else {
                                   _streetController.reverse();
@@ -414,8 +375,7 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                                   neighbourhood = value!;
                                 });
                               },
-                              items: neighbourhoods
-                                  .map<DropdownMenuItem<String>>(
+                              items: neighbourhoods.map<DropdownMenuItem<String>>(
                                       (String value) {
                                     return DropdownMenuItem<String>(
                                       value: value,
@@ -434,23 +394,20 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                           const SizedBox(height: 18),
                           SizeTransition(
                             sizeFactor: _streetController.view,
-                            child: GestureDetector(
-                              onTap: () async {
-                                final result =
-                                await Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => ChooseStreetPage(
-                                      index: neighbourhoods.indexWhere(
-                                              (element) =>
-                                          element == neighbourhood),
+                            child: GestureDetector(onTap: () async {
+                              final result = await Navigator.of(context).push(
+                                MaterialPageRoute(builder: (context) =>
+                                    ChooseStreetPage(
+                                      index: neighbourhoods.indexWhere((element)
+                                      => element == neighbourhood
+                                      ),
                                     ),
-                                  ),
-                                );
-                                if (result != null) {
-                                  street = result;
-                                  checkCanCheckout();
-                                }
-                              },
+                                ),
+                              );
+                              if (result != null) {
+                                _street = result;
+                              }
+                            },
                               child: Container(
                                 height: 38,
                                 width: double.infinity,
@@ -464,13 +421,12 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                                   ),
                                 ),
                                 child: Text(
-                                  street.isEmpty ? "Укажите улицу" : street,
+                                  _street.isEmpty ? "Укажите улицу" : _street,
                                   style: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 16,
-                                    color: street.isEmpty
-                                        ? const Color(0xff000000)
-                                        .withOpacity(0.42)
+                                    color: _street.isEmpty
+                                        ? const Color(0xff000000).withOpacity(0.42)
                                         : Colors.black,
                                   ),
                                 ),
@@ -482,23 +438,17 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                             children: [
                               Expanded(
                                 child: CustomTextField(
-                                  controller: flatController,
+                                  controller: _flatController,
                                   hintText: "№ квартиры",
                                   textInputType: TextInputType.number,
-                                  onChanged: (value) {
-                                    checkCanCheckout();
-                                  },
                                 ),
                               ),
                               const SizedBox(width: 19),
                               Expanded(
                                 child: CustomTextField(
-                                  controller: officeController,
-                                  hintText: "№ офиса",
+                                  controller: _buildingController,
+                                  hintText: "№ дома",
                                   textInputType: TextInputType.number,
-                                  onChanged: (value) {
-                                    checkCanCheckout();
-                                  },
                                 ),
                               ),
                             ],
@@ -508,7 +458,7 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                             children: [
                               Expanded(
                                 child: CustomTextField(
-                                  controller: entranceController,
+                                  controller: _entranceController,
                                   hintText: "Подъезд",
                                   textInputType: TextInputType.number,
                                 ),
@@ -516,7 +466,7 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                               const SizedBox(width: 19),
                               Expanded(
                                 child: CustomTextField(
-                                  controller: floorController,
+                                  controller: _floorController,
                                   hintText: "Этаж",
                                   textInputType: TextInputType.number,
                                 ),
@@ -537,10 +487,7 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                         ),
                       ),
                       child: TextField(
-                        controller: phoneController,
-                        onChanged: (value) {
-                          checkCanCheckout();
-                        },
+                        controller: _phoneController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "Номер телефона",
@@ -555,12 +502,9 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                     ),
                     const SizedBox(height: 24),
                     CustomTextField(
-                      controller: nameController,
+                      controller: _nameController,
                       hintText: "Введите ваше имя",
                       textInputType: TextInputType.name,
-                      onChanged: (value) {
-                        checkCanCheckout();
-                      },
                     ),
                     const SizedBox(height: 24),
                     SizeTransition(
@@ -588,8 +532,7 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                                 child: AnimatedContainer(
                                   duration: const Duration(milliseconds: 200),
                                   height: 40,
-                                  width: MediaQuery.of(context).size.width /
-                                      (isTime ? 3 : 2),
+                                  width: MediaQuery.of(context).size.width / (isTime ? 3 : 2),
                                   decoration: BoxDecoration(
                                     color: const Color(0xffFF451D),
                                     borderRadius: BorderRadius.circular(200),
@@ -602,14 +545,10 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                               SizedBox(
                                 height: 40,
                                 child: Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceAround,
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    GestureDetector(
-                                      onTap: () =>
-                                          setState(() => isTime = false),
+                                    GestureDetector(onTap: () => setState(() => isTime = false),
                                       child: Text(
                                         "Как можно быстрее",
                                         style: TextStyle(
@@ -648,9 +587,11 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                                 color: const Color(0xffFFFFFF),
                                 borderRadius: BorderRadius.circular(200),
                                 border: Border.all(
-                                    color: const Color(0xffF0B0B0))),
+                                    color: const Color(0xffF0B0B0)
+                                )
+                            ),
                             child: TextField(
-                              controller: commentController,
+                              controller: _commentController,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "Комментарий курьеру",
@@ -674,7 +615,10 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                 padding: EdgeInsets.only(top: 31, left: 29, bottom: 4),
                 child: Text(
                   "Оплата",
-                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
+                  style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 20
+                  ),
                 ),
               ),
               Padding(
@@ -695,17 +639,18 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                                 color: const Color(0xffffffff),
                                 borderRadius: BorderRadius.circular(200),
                                 border: Border.all(
-                                    color: const Color(0xffF0B0B0)))),
-                        AnimatedAlign(
-                          alignment: isCash
-                              ? Alignment.centerRight
-                              : Alignment.centerLeft,
+                                    color: const Color(0xffF0B0B0)
+                                )
+                            )
+                        ),
+                        AnimatedAlign(alignment: _isCard
+                            ? Alignment.centerRight
+                            : Alignment.centerLeft,
                           duration: const Duration(milliseconds: 200),
                           child: AnimatedContainer(
                             duration: const Duration(milliseconds: 200),
                             height: 40,
-                            width: MediaQuery.of(context).size.width /
-                                (isCash ? 3 : 2),
+                            width: MediaQuery.of(context).size.width / (_isCard ? 3 : 2.3),
                             decoration: BoxDecoration(
                               color: const Color(0xffFF451D),
                               borderRadius: BorderRadius.circular(200),
@@ -721,27 +666,25 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              GestureDetector(
-                                onTap: () => setState(() => isCash = false),
+                              GestureDetector(onTap: () => setState(() => _isCard = false),
                                 child: Text(
                                   "Переводом СБП",
                                   style: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 16,
-                                    color: isCash
+                                    color: _isCard
                                         ? const Color(0xff000000)
                                         : const Color(0xffFFFFFF),
                                   ),
                                 ),
                               ),
-                              GestureDetector(
-                                onTap: () => setState(() => isCash = true),
+                              GestureDetector(onTap: () => setState(() => _isCard = true),
                                 child: Text(
                                   "Наличными",
                                   style: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 16,
-                                    color: isCash
+                                    color: _isCard
                                         ? const Color(0xffFFFFFF)
                                         : const Color(0xff000000),
                                   ),
@@ -758,7 +701,10 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                         style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 9,
-                            color: Color(0xff000000))),
+                            color: Color(0xff000000
+                            )
+                        )
+                    ),
                     const SizedBox(height: 12),
                     SizeTransition(
                       sizeFactor: _deliveryController.view,
@@ -792,18 +738,22 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                       style: TextStyle(
                           fontSize: 9,
                           fontWeight: FontWeight.w400,
-                          color: Color(0xff000000)),
+                          color: Color(0xff000000)
+                      ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text("К оплате:",
+                        const Text(
+                            "К оплате:",
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 20,
-                                color: Color(0xff000000))),
+                                color: Color(0xff000000)
+                            )
+                        ),
                         Text(
-                          "${total + (isSelf ? 0 : (neighbourhood == "Кировский" ? 0 : 200))}р",
+                          "${total + (_isSelf ? 0 : (neighbourhood == "Кировский" ? 0 : 200))}р",
                           style: const TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 20,
@@ -813,54 +763,48 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                       ],
                     ),
                     const SizedBox(height: 9),
-                    context.watch<CommonProvider>().isWorking ? GestureDetector(
-                      onTap: () async {
-                        if (canCheckout) {
-                          await context.read<CartProvider>().order();
+                    context.watch<CommonProvider>().isWorking
+                        ? GestureDetector(onTap: () async {
+                      if (canOrder) {
+                        await context.read<CartProvider>().order(
+                            phone: _phoneController.text,
+                            building: _buildingController.text,
+                            street: _street,
+                            name: _nameController.text,
+                            entrance: _entranceController.text.isEmpty
+                                ? null
+                                : int.parse(_entranceController.text),
+                            floor: _floorController.text.isEmpty
+                                ? null
+                                : int.parse(_floorController.text),
+                            comment: _commentController.text,
+                            isCard: _isCard,
+                            isSelf: _isSelf
+                        );
 
-                          if (!context.mounted) return;
+                        if (!context.mounted) return;
 
-                          Navigator.of(context).push(
+                        Navigator.of(context).push(
                             MaterialPageRoute(builder: (context) => CheckoutPage())
-                          );
-                          // Navigator.of(context).push(
-                          //   MaterialPageRoute(
-                          //     builder: (context) => CheckoutPage(
-                          //       street: street,
-                          //       flat: flatController.text,
-                          //       office: officeController.text,
-                          //       entrance: entranceController.text,
-                          //       floor: floorController.text,
-                          //       name: nameController.text,
-                          //       phone: phoneController.text,
-                          //       comment: commentController.text,
-                          //       total: context.read<CartProvider>().total,
-                          //       delivery:
-                          //       neighbourhood == "Кировский" ? 0 : 200,
-                          //       id: 0,
-                          //       isSelf: isSelf,
-                          //       isCash: isCash,
-                          //     ),
-                          //   ),
-                          // );
-                        }
-                      },
-                      child: Opacity(
-                        opacity: canCheckout ? 1 : 0.5,
-                        child: Container(
-                          height: 39,
-                          width: double.infinity,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              color: const Color(0xff19B80B),
-                              borderRadius: BorderRadius.circular(1)),
-                          child: const Text(
-                            "Оформить заказ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16,
-                              color: Color(0xffFFFFFF),
-                            ),
+                        );
+                      }
+                    },
+                      child: Container(
+                        height: 39,
+                        width: double.infinity,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: canOrder
+                                ? const Color(0xff19B80B)
+                                : const Color(0xff19B80B).withOpacity(0.5),
+                            borderRadius: BorderRadius.circular(10)
+                        ),
+                        child: const Text(
+                          "Оформить заказ",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16,
+                            color: Color(0xffFFFFFF),
                           ),
                         ),
                       ),

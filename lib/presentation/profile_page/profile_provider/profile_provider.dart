@@ -3,6 +3,8 @@ import 'package:nem_pho/core/services/common_service.dart';
 import 'package:nem_pho/presentation/profile_page/profile_service/profile_service.dart';
 import 'package:nem_pho/presentation/profile_page/profile_models/user_model.dart';
 
+import '../../../core/services/appmetrica_service.dart';
+
 class ProfileProvider extends ChangeNotifier {
   ProfileProvider({
     required final IProfileService profileService,
@@ -31,7 +33,7 @@ class ProfileProvider extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
 
-    _user = await _profileService.patchUser(
+    _user = await _commonService.patchUser(
         birthday: birthday,
         building: building,
         entrance: entrance,
@@ -47,6 +49,7 @@ class ProfileProvider extends ChangeNotifier {
   }
 
   Future<void> initUser() async {
+    AppMetricaService().sendLoadingPageEvent('ProfilePage');
     _isLoading = true;
     notifyListeners();
     _user = await _commonService.getUser();

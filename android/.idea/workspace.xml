@@ -5,32 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e48d0da-9685-4c87-aace-86456f6f1278" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/release/baselineProfiles/0/app-release.dm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/release/baselineProfiles/1/app-release.dm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/../.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/../.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/release/app-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/app-release.apk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/release/output-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/output-metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/core/models/product_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/core/models/product_model.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lib/core/services/appmetrica_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/core/services/appmetrica_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/core/services/common_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/core/services/common_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/core/services/network_client.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/core/services/network_client.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/authorization_page/authorization_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/authorization_page/authorization_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/cart_page/cart_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/cart_page/cart_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lib/presentation/cart_page/cart_provider/cart_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/cart_page/cart_provider/cart_provider.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lib/presentation/category_page/category_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/category_page/category_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/presentation/category_page/widgets/category_product.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/category_page/widgets/category_product.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/presentation/product_page/models/price_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/product_page/models/price_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/delivery_page/delivery_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/delivery_page/delivery_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/loading_page/loading_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/loading_page/loading_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/main_page/widgets/main_page_body.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/main_page/widgets/main_page_body.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lib/presentation/product_page/product_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/product_page/product_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/presentation/product_page/product_provider/product_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/product_page/product_provider/product_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/presentation/product_page/widgets/product_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/product_page/widgets/product_button.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/profile_page/profile_models/user_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/profile_page/profile_models/user_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/profile_page/profile_provider/profile_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/profile_page/profile_provider/profile_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/profile_page/profile_service/profile_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/profile_page/profile_service/profile_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/profile_page/widgets/my_info.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/profile_page/widgets/my_info.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/promotions/discounts_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/promotions/discounts_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/promotions/widgets/combo_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/promotions/widgets/combo_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/promotions/widgets/we_have_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/promotions/widgets/we_have_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/test_class.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/test_class.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +46,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\tagid\.android\avd\Medium_Phone.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\mesku\.android\avd\Pixel_4_API_TiramisuPrivacySandbox.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -59,7 +65,7 @@
     </system>
   </component>
   <component name="GenerateSignedApkSettings">
-    <option name="KEY_STORE_PATH" value="D:\Developer\keystore_path.jks" />
+    <option name="KEY_STORE_PATH" value="C:\Users\mesku\Documents\keystore_path.jks" />
     <option name="KEY_ALIAS" value="key0" />
     <option name="REMEMBER_PASSWORDS" value="true" />
     <option name="BUILD_TARGET_KEY" value="apk" />
@@ -73,12 +79,12 @@
     &quot;assignee&quot;: &quot;TagidickTagidick&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/TagidickTagidick/nem_pho.git",
-    "accountId": "1a2bcb61-51a4-461a-bb26-b8534f3f6268"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/TagidickTagidick/nem_pho.git&quot;,
+    &quot;accountId&quot;: &quot;1a2bcb61-51a4-461a-bb26-b8534f3f6268&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="ProjectErrors" />
   </component>
@@ -95,8 +101,8 @@
     "Android App.app.executor": "Run",
     "ApkExportedModule": "android.app",
     "BundleExportedModule": "android.app",
-    "ExportApk.ApkPathForandroid.app": "D:\\Developer\\test2\\nem_pho\\android\\app",
-    "ExportBundle.BundlePathForandroid.app": "D:\\Developer\\test2\\nem_pho\\android\\app",
+    "ExportApk.ApkPathForandroid.app": "C:\\Users\\mesku\\Documents",
+    "ExportBundle.BundlePathForandroid.app": "C:\\Users\\mesku\\Documents",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
@@ -107,7 +113,7 @@
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Developer/test2/nem_pho/android",
+    "last_opened_file_path": "C:/Users/mesku/Documents",
     "memory.settings.postsync.last.time.stamp": "1721750133031",
     "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
     "show.migrate.to.gradle.popup": "false"

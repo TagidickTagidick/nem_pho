@@ -96,7 +96,6 @@ class _MyInfoState extends State<MyInfo> {
 
       });
     });
-
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nem_pho/core/providers/common_provider.dart';
+import 'package:nem_pho/core/widgets/order_icon.dart';
 import 'package:nem_pho/presentation/main_page/widgets/main_page_body.dart';
 import 'package:nem_pho/core/widgets/not_working.dart';
 import 'package:provider/provider.dart';
@@ -51,7 +52,7 @@ class _MainPageState extends State<MainPage> {
               color: Color(0xff000000)
           )
       ),
-      actions: const [CartIcon()],
+      actions: const [OrderIcon(), CartIcon()],
     ),
     drawer: const CustomDrawer(),
     body: RefreshIndicator(

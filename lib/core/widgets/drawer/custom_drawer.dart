@@ -6,7 +6,7 @@ import 'package:nem_pho/presentation/about_us/about_us.dart';
 import 'package:nem_pho/presentation/delivery_page/delivery_page.dart';
 import 'package:nem_pho/presentation/promotions/discounts_page.dart';
 import 'package:provider/provider.dart';
-import 'menu_tile.dart';
+import 'package:nem_pho/core/widgets/drawer/menu_tile.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({super.key});
@@ -109,7 +109,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             ),
             const Divider(color: Color(0xffF0E0E0)),
             GestureDetector(onTap: () async {
-              if(await context.read<CommonProvider>().checkIsAuthorized()) {
+              if(context.read<CommonProvider>().isUser) {
                 context.push('/profile_page');
               } else {
                 context.push('/authorization_page');

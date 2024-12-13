@@ -1,17 +1,15 @@
 import 'package:add_to_cart_animation/add_to_cart_animation.dart';
-import 'package:add_to_cart_animation/add_to_cart_icon.dart';
-import 'package:add_to_cart_animation/drag_to_cart_animation_options.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nem_pho/core/services/appmetrica_service.dart';
 import 'package:nem_pho/presentation/product_page/product_provider/product_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:nem_pho/core/widgets/custom/custom_shimmer.dart';
 import 'package:nem_pho/core/widgets/app_bar/custom_appbar.dart';
 import 'package:nem_pho/core/providers/common_provider.dart';
-
-import '../../core/models/product_model.dart';
-import 'models/topping_model.dart';
+import 'package:nem_pho/core/models/product_model.dart';
+import 'package:nem_pho/presentation/product_page/models/topping_model.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key, required this.id});
@@ -24,7 +22,6 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   GlobalKey<CartIconKey> cartKey = GlobalKey<CartIconKey>();
   late Function(GlobalKey) runAddToCartAnimation;
-  var _cartQuantityItems = 0;
   final GlobalKey widgetKey = GlobalKey();
 
   int _getPrice(ProductModel product, int weightIndex, List<ToppingModel> myToppings) {
@@ -42,6 +39,7 @@ class _ProductPageState extends State<ProductPage> {
   @override
   void initState() {
     super.initState();
+    AppMetricaService().sendLoadingPageEvent('ProductPage');
     context.read<ProductProvider>().getProduct(widget.id);
   }
 
@@ -159,34 +157,34 @@ class _ProductPageState extends State<ProductPage> {
                           : Row(
                         children: [
                           for(int i = 0; i < product.weights.length; i++)
-                          Expanded(
-                            child: GestureDetector(onTap: () {
-                              context.read<ProductProvider>().onTapWeight(i);
+                            Expanded(
+                              child: GestureDetector(onTap: () {
+                                context.read<ProductProvider>().onTapWeight(i);
                               },
-                              child: Container(
-                                height: 38,
-                                margin: EdgeInsets.symmetric(horizontal: 2),
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: weight == i
-                                    ? Color(0xFFFF451D)
-                                    : Colors.grey,
-                                    border: Border.all(
-                                      color: Color(0xFFF0B0B0),
-                                      width: 2,
-                                    )),
-                                child: Text(
-                                  '${product.weights[i]} гр',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color(0xff000000),
+                                child: Container(
+                                  height: 38,
+                                  margin: EdgeInsets.symmetric(horizontal: 2),
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(30),
+                                      color: weight == i
+                                          ? Color(0xFFFF451D)
+                                          : Colors.grey,
+                                      border: Border.all(
+                                        color: Color(0xFFF0B0B0),
+                                        width: 2,
+                                      )),
+                                  child: Text(
+                                    '${product.weights[i]} гр',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                      color: Color(0xff000000),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
                           const SizedBox(width: 4),
                         ],
                       ),
@@ -228,14 +226,14 @@ class _ProductPageState extends State<ProductPage> {
                       //     )
                       // ),
                       if (product.toppings.isNotEmpty)
-                      const Text(
-                        "Добавьте топпинги",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 12,
-                          color: Color(0xff000000),
-                        ),
-                      )
+                        const Text(
+                          "Добавьте топпинги",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 12,
+                            color: Color(0xff000000),
+                          ),
+                        )
                     ],
                   ),
                 ),
@@ -316,45 +314,45 @@ class _ProductPageState extends State<ProductPage> {
               left: 25,
               right: 25,
               child: GestureDetector(onTap: () async {
-                  if (await context.read<ProductProvider>().checkUser()) {
-                    if (context.mounted) {
-                      await runAddToCartAnimation(widgetKey);
-                      List<String> myToppingsId = [];
-                      for(int index = 0; index < myToppings.length; index++) {
-                        myToppingsId.add(myToppings[index].id);
-                      }
-                      // await cartKey.currentState!
-                      //     .runCartAnimation((++_cartQuantityItems).toString());
-                      context.read<CommonProvider>().addProductToBasket(
-                          product: product,
-                          price: product.prices![weight],
-                          toppingIds: myToppingsId
-                      );
+                if (context.read<CommonProvider>().isUser) {
+                  if (context.mounted) {
+                    await runAddToCartAnimation(widgetKey);
+                    List<String> myToppingsId = [];
+                    for(int index = 0; index < myToppings.length; index++) {
+                      myToppingsId.add(myToppings[index].id);
                     }
+                    // await cartKey.currentState!
+                    //     .runCartAnimation((++_cartQuantityItems).toString());
+                    context.read<CommonProvider>().addProductToBasket(
+                        product: product,
+                        price: product.prices![weight],
+                        toppingIds: myToppingsId
+                    );
                   }
-                  else {
-                    if (context.mounted) {
-                      context.push('/authorization_page');
-                    }
+                }
+                else {
+                  if (context.mounted) {
+                    context.push('/authorization_page');
                   }
-                  // final prefs = await SharedPreferences.getInstance();
-                  // if (mounted) {
-                  //   if (prefs.getString('phone') == null) {
-                  //     Navigator.of(context).push(
-                  //       MaterialPageRoute(
-                  //         builder: (context) => const AuthorizationPage(),
-                  //       ),
-                  //     );
-                  //   }
-                  //   else {
-                  //     for (var topping in myToppings) {
-                  //       context.read<CartProvider>().addProduct(topping);
-                  //     }
-                  //     context.read<CartProvider>().addProduct(widget.product);
-                  //     Navigator.of(context).pop();
-                  //   }
-                  // }
-                },
+                }
+                // final prefs = await SharedPreferences.getInstance();
+                // if (mounted) {
+                //   if (prefs.getString('phone') == null) {
+                //     Navigator.of(context).push(
+                //       MaterialPageRoute(
+                //         builder: (context) => const AuthorizationPage(),
+                //       ),
+                //     );
+                //   }
+                //   else {
+                //     for (var topping in myToppings) {
+                //       context.read<CartProvider>().addProduct(topping);
+                //     }
+                //     context.read<CartProvider>().addProduct(widget.product);
+                //     Navigator.of(context).pop();
+                //   }
+                // }
+              },
                 child: Container(
                   height: 40,
                   width: double.infinity,

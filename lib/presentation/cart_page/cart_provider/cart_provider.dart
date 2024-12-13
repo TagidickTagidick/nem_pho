@@ -1,13 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:nem_pho/core/models/product_model.dart';
+import 'package:nem_pho/core/services/appmetrica_service.dart';
 import 'package:nem_pho/core/services/common_service.dart';
 import 'package:nem_pho/presentation/cart_page/cart_service/cart_service.dart';
+import 'package:nem_pho/presentation/profile_page/profile_models/user_model.dart';
 
 class CartProvider extends ChangeNotifier {
   CartProvider({
     required final ICartService cartService,
-    required final ICommonService commonService,
-  }): _cartService = cartService, _commonService = commonService;
+    required final ICommonService commonService
+  }): _cartService = cartService,
+        _commonService = commonService;
+
 
   final ICartService _cartService;
   final ICommonService _commonService;
@@ -26,12 +30,17 @@ class CartProvider extends ChangeNotifier {
   int _total = 0;
   int get total => _total;
 
+  UserModel? _user;
+  UserModel? get user => _user;
+
   Future<void> getProducts() async {
+    AppMetricaService().sendLoadingPageEvent('CartPage');
     _isLoading = true;
 
     _oldProducts = await _commonService.getBasket();
+    _user = await _commonService.getUser();
 
-    _commonService.getUser();
+    notifyListeners();
 
     for (int i = 0; i < _oldProducts.length; i++) {
       _total += _oldProducts[i].price ?? 0; ///TODO
@@ -85,7 +94,28 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> order() async {
+  Future<void> order({
+    required String phone,
+    required String name,
+    required bool isCard,
+    required bool isSelf,
+    String? comment,
+    String? building,
+    String? street,
+    int? entrance,
+    int? floor,
+  }) async {
+    await _commonService.patchUser(
+        phone: phone,
+        building: building,
+        name: name,
+        entrance: entrance,
+        floor: floor,
+        street: street,
+        comment: comment,
+        isCard: isCard,
+        isSelf: isSelf
+    );
     await _cartService.postOrder();
   }
 }

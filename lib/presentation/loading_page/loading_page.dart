@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nem_pho/core/services/appmetrica_service.dart';
 import 'package:nem_pho/core/services/push_notifications_service.dart';
 import 'package:nem_pho/presentation/loading_page/loading_provider/loading_provider.dart';
 import 'package:provider/provider.dart';
@@ -41,6 +42,7 @@ class _LoadingPageState extends State<LoadingPage> with SingleTickerProviderStat
   }
 
   void getData() async {
+    AppMetricaService().sendLoadingPageEvent('LoadingPage');
     await context.read<LoadingProvider>().init();
     // await context.read<CartProvider>().getUserData();
     controller = AnimationController(
@@ -68,15 +70,12 @@ class _LoadingPageState extends State<LoadingPage> with SingleTickerProviderStat
       4,
       context.read<CommonProvider>().getMenu(),
     );
-    if (mounted) {
-      context.pushReplacement('/main_page');
-    }
     await _progressLoader(
         5,
-        context.read<CommonProvider>().getBasket()
+        context.read<CommonProvider>().getBasketAndOrders()
     );
     if (mounted) {
-      context.push('/main_page');
+      context.pushReplacement('/main_page');
     }
   }
 

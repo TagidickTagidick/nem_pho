@@ -1,4 +1,4 @@
-import 'package:nem_pho/models/product_model.dart';
+import 'package:nem_pho/core/models/product_model.dart';
 
 class OrderModel {
   final String status;
@@ -13,8 +13,8 @@ class OrderModel {
     return OrderModel(
       status: json['status'],
       products: List<ProductModel>.from(json['products'].map((x) =>
-          ProductModel.fromJson(x)
-      )),
+          ProductModel.fromJson(x))
+      ),
     );
   }
 }

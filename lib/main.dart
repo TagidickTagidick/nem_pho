@@ -12,6 +12,8 @@ import 'package:nem_pho/presentation/cart_page/cart_service/cart_service.dart';
 import 'package:nem_pho/presentation/category_page/category_page.dart';
 import 'package:nem_pho/presentation/category_page/category_provider/category_provider.dart';
 import 'package:nem_pho/presentation/category_page/category_service/category_service.dart';
+import 'package:nem_pho/presentation/checkout_page/check_out_provider/check_out_provider.dart';
+import 'package:nem_pho/presentation/checkout_page/checkout_page.dart';
 import 'package:nem_pho/presentation/loading_page/loading_page.dart';
 import 'package:nem_pho/presentation/loading_page/loading_provider/loading_provider.dart';
 import 'package:nem_pho/presentation/loading_page/loading_service/loading_service.dart';
@@ -22,13 +24,12 @@ import 'package:nem_pho/presentation/product_page/product_service/product_servic
 import 'package:nem_pho/presentation/profile_page/profile_page.dart';
 import 'package:nem_pho/presentation/profile_page/profile_provider/profile_provider.dart';
 import 'package:nem_pho/presentation/profile_page/profile_service/profile_service.dart';
-import 'package:nem_pho/test_class.dart';
 import 'package:provider/provider.dart';
 import 'package:nem_pho/core/providers/common_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
-  runApp(MyApp());
+  runApp(App());
 }
 
 class App extends StatelessWidget {
@@ -89,13 +90,20 @@ class App extends StatelessWidget {
         path: '/cart_page',
         builder: (context, state) => ChangeNotifierProvider<CartProvider>(
             create:(_) => CartProvider(
-                cartService: CartService(),
-                commonService: CommonService(
-                    networkClient: NetworkClient(),
-                    storageService: ReceivingService.getStorage()
-                )
-            )..getProducts(),
+              cartService: CartService(),
+              commonService: CommonService(
+                  networkClient: NetworkClient(),
+                  storageService: ReceivingService.getStorage()
+              ),
+            ),
             child: const CartPage()
+        ),
+      ),
+      GoRoute(
+        path: '/checkout_page',
+        builder: (context, state) => ChangeNotifierProvider<CheckOutProvider>(
+            create:(_) => CheckOutProvider(),
+            child: const CheckoutPage()
         ),
       ),
       GoRoute(

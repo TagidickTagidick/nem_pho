@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:nem_pho/core/services/appmetrica_service.dart';
 
 class WeHavePage extends StatelessWidget {
   const WeHavePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    AppMetricaService().sendLoadingPageEvent('WeHavePage');
     return SingleChildScrollView(
       child: Container(
         decoration: BoxDecoration(
-            color: const Color(0xffF3F3F3),
-            border: Border.all(color: const Color(0xffF8DFDF)),
-            borderRadius: BorderRadius.circular(20)),
+          color: const Color(0xffF3F3F3),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+              color: const Color(0xffF8DFDF)
+          ),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,26 +26,28 @@ class WeHavePage extends StatelessWidget {
               children: [
                 Align(
                     alignment: Alignment.centerRight,
-                    child: GestureDetector(
-                        onTap: () => Navigator.of(context).pop(),
+                    child: GestureDetector(onTap: () => Navigator.of(context).pop(),
                         child: const Padding(
                             padding: EdgeInsets.only(right: 10.69),
-                            child: Icon(Icons.close,
-                                color: Color(0xffF66666), size: 43.2)))),
+                            child: Icon(
+                                Icons.close,
+                                color: Color(0xffF66666),
+                                size: 43.2
+                            )
+                        )
+                    )
+                ),
               ],
             ),
             SizedBox(
               height: 249,
               width: double.infinity,
-              child: Container(
-                  child: Image.asset(
+              child: Image.asset(
                 'images/Discount2.png',
                 fit: BoxFit.cover,
-              )),
+              ),
             ),
-            SizedBox(
-              height: 24,
-            ),
+            SizedBox(height: 24),
             Padding(
               padding: const EdgeInsets.only(left: 28),
               child: Text(
@@ -48,16 +55,13 @@ class WeHavePage extends StatelessWidget {
                 style: TextStyle(
                     color: Color(0xff000000),
                     fontSize: 20,
-                    fontWeight: FontWeight.w700),
+                    fontWeight: FontWeight.w700
+                ),
               ),
             ),
-            SizedBox(
-              height: 42,
-            ),
+            SizedBox(height: 42),
             Padding(
-              padding: const EdgeInsets.only(
-                left: 28,
-              ),
+              padding: const EdgeInsets.only(left: 28),
               child: Text(
                 '''🥢  Приветствуем вас в нашем кафе! Здесь вы сможете найти уникальные продукты прямо из замечательной страны Вьетнам. 🇻🇳
 
@@ -80,9 +84,7 @@ class WeHavePage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
+            SizedBox(height: 20),
           ],
         ),
       ),

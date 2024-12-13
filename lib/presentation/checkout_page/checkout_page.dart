@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nem_pho/models/product_model.dart';
 import 'package:nem_pho/core/widgets/app_bar/custom_appbar.dart';
 import 'package:nem_pho/presentation/checkout_page/payment_divider.dart';
 import 'package:nem_pho/presentation/checkout_page/payment_dot.dart';
@@ -13,7 +12,7 @@ class CheckoutPage extends StatefulWidget {
 }
 
 class _CheckoutPageState extends State<CheckoutPage> {
-  List<ProductModel> newProducts = [];
+  // List<ProductModel> newProducts = [];
 
   List<int> counts = [];
 
@@ -119,38 +118,38 @@ class _CheckoutPageState extends State<CheckoutPage> {
               ),
             ),
           ),
-          for (int i = 0; i < newProducts.length; i++)
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 47,
-                right: 35,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    newProducts[i].title,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 20,
-                      color: Color(
-                        0xff000000,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    "${counts[i]}*${newProducts[i].price} р",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 14,
-                      color: Color(
-                        0xff000000,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+          // for (int i = 0; i < newProducts.length; i++)
+            // Padding(
+            //   padding: const EdgeInsets.only(
+            //     left: 47,
+            //     right: 35,
+            //   ),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       Text(
+            //         newProducts[i].title,
+            //         style: TextStyle(
+            //           fontWeight: FontWeight.w700,
+            //           fontSize: 20,
+            //           color: Color(
+            //             0xff000000,
+            //           ),
+            //         ),
+            //       ),
+            //       Text(
+            //         "${counts[i]}*${newProducts[i].price} р",
+            //         style: TextStyle(
+            //           fontWeight: FontWeight.w400,
+            //           fontSize: 14,
+            //           color: Color(
+            //             0xff000000,
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
           SizedBox(
             height: 27,
           ),

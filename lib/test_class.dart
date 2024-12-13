@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:socket_io_client_flutter/socket_io_client_flutter.dart' as IO;
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -69,8 +71,18 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text('Flutter Socket.IO Demo'),
       ),
-      body: const Center(
-        child: Text('Check your console for connection logs'),
+      body: Center(
+        child: GestureDetector(onTap: () {
+          socket.emit('Get order', 12);
+        },
+          child: Container(
+            height: 50,
+              decoration: BoxDecoration(
+                color: Colors.cyanAccent,
+              ),
+              child: Text('Check your console for connection logs')
+          ),
+        ),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:nem_pho/core/services/storage_service.dart';
@@ -97,7 +98,7 @@ class NetworkClient extends INetworkClient {
     try {
       logRequest('get', url);
       Response response = await dio.get(
-        url
+          url
       );
       logResponse(response.statusCode!, response.data, 'get', url);
       switch (response.statusCode) {
@@ -126,8 +127,9 @@ class NetworkClient extends INetworkClient {
               message: response.data
           );
       }
-    } catch (_) {
-
+    } catch (e, trace) {
+      log(e.toString());
+      log(trace.toString());
       rethrow;
     }
   }
@@ -217,14 +219,14 @@ class NetworkClient extends INetworkClient {
       logRequest('post', 'refresh');
       final refreshToken = await _storageService.getRefreshToken();
       Response response = await dio.post(
-        'refresh',
-        options: Options(
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-            'Authorization': 'Bearer $refreshToken'
-          },
-          validateStatus: (_) => true,
-        )
+          'refresh',
+          options: Options(
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+              'Authorization': 'Bearer $refreshToken'
+            },
+            validateStatus: (_) => true,
+          )
       );
       logResponse(response.statusCode!, response.data, 'post', 'refresh');
       if (response.statusCode == 200) {

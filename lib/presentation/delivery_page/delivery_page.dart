@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:nem_pho/core/services/appmetrica_service.dart';
 
 class DeliveryPage extends StatelessWidget {
   const DeliveryPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    AppMetricaService().sendLoadingPageEvent('DeliveryPage');
     return Scaffold(
       body: Container(
         color: const Color(0xffffffff),

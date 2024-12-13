@@ -1,6 +1,7 @@
 import 'package:add_to_cart_animation/add_to_cart_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:nem_pho/core/providers/common_provider.dart';
+import 'package:nem_pho/core/services/appmetrica_service.dart';
 import 'package:nem_pho/presentation/category_page/category_provider/category_provider.dart';
 import 'package:nem_pho/presentation/category_page/widgets/category_page_body.dart';
 import 'package:nem_pho/core/widgets/app_bar/custom_appbar.dart';
@@ -31,6 +32,7 @@ class _CategoryPageState extends State<CategoryPage> {
   @override
   void initState() {
     super.initState();
+    AppMetricaService().sendLoadingPageEvent('CategoryPage');
     context.read<CategoryProvider>().getProducts(widget.id);
   }
 

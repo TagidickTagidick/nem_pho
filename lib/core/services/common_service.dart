@@ -19,8 +19,23 @@ abstract class ICommonService {
     required int price,
     required List<String> toppingIds,
   });
+  Future<UserModel> patchUser({
+    String? phone,
+    String? birthday,
+    String? building,
+    int? entrance,
+    int? flat,
+    int? floor,
+    String? name,
+    String? sex,
+    String? street,
+    String? comment,
+    bool? isCard,
+    bool isSelf
+  });
   Future<UserModel> getUser();
   Future<List<OrderModel>> getOrders();
+  Future<void> getOrder();
 }
 
 class CommonService extends ICommonService {
@@ -36,8 +51,7 @@ class CommonService extends ICommonService {
   @override
   Future<List<BannerModel>> getBanners() async {
     try {
-      final INetworkClient networkClient = NetworkClient();
-      final Map<String, dynamic> bannersMap = await networkClient.get('banners');
+      final Map<String, dynamic> bannersMap = await _networkClient.get('banners');
       return await bannersMap['payload'].map<BannerModel>((json) =>
           BannerModel.fromJson(json)).toList();
     } catch(e) {
@@ -116,6 +130,54 @@ class CommonService extends ICommonService {
   }
 
   @override
+  Future<UserModel> patchUser({
+    String? phone,
+    String? birthday,
+    String? building,
+    int? entrance,
+    int? flat,
+    int? floor,
+    String? name,
+    String? sex,
+    String? street,
+    String? comment,
+    bool? isCard,
+    bool? isSelf
+  }) async {
+    final Map<String, dynamic> userMap = await _networkClient.patch(
+        'user',
+        {
+          if(phone != null)
+            'phone': phone,
+          if(birthday != null)
+            'birthday': birthday,
+          if(building != null)
+            'building': building,
+          if(entrance != null)
+            'entrance': entrance,
+          if(flat != null)
+            'flat': flat,
+          if(floor != null)
+            'floor': floor,
+          if(name != null)
+            'name': name,
+          if(sex != null)
+            'sex': sex,
+          if(street != null)
+            'street': street,
+          if(comment != null)
+            'comment': comment,
+          if(isCard != null)
+            'is_card': isCard,
+          if(isSelf != null)
+            'is_self': isSelf,
+        }
+    );
+    final UserModel userModel = UserModel.fromJson(userMap['payload']);
+    return userModel;
+  }
+
+  @override
   Future<List<OrderModel>> getOrders() async {
     final Map<String, dynamic> ordersMap = await _networkClient.get('orders');
     List<OrderModel> orders = [];
@@ -123,5 +185,10 @@ class CommonService extends ICommonService {
       orders.add(OrderModel.fromJson(order));
     }
     return orders;
+  }
+
+  @override
+  Future<void> getOrder() async {
+    await _networkClient.get('orders');
   }
 }

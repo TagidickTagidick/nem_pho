@@ -15,6 +15,6 @@ class CartService extends ICartService {
 
   @override
   Future<void> postOrder() async {
-    await _networkClient.post('/order', {});
+    await _networkClient.post('order', {});
   }
 }

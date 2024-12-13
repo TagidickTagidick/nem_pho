@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-
-import '../product_provider/product_provider.dart';
+import 'package:nem_pho/core/providers/common_provider.dart';
 
 class ProductButton extends StatelessWidget {
   ProductButton({super.key, required this.onClick});
@@ -16,37 +15,36 @@ class ProductButton extends StatelessWidget {
       bottom: 38,
       left: 25,
       right: 25,
-      child: GestureDetector(
-        onTap: () async {
-          if (await context.read<ProductProvider>().checkUser()) {
-            if (context.mounted) {
-              onClick(widgetKey);
-              //context.read<ProductProvider>().addProductToBasket();
-            }
+      child: GestureDetector(onTap: () async {
+        if (context.read<CommonProvider>().isUser) {
+          if (context.mounted) {
+            onClick(widgetKey);
+            //context.read<ProductProvider>().addProductToBasket();
           }
-          else {
-            if (context.mounted) {
-              context.push('/authorization_page');
-            }
+        }
+        else {
+          if (context.mounted) {
+            context.push('/authorization_page');
           }
-          // final prefs = await SharedPreferences.getInstance();
-          // if (mounted) {
-          //   if (prefs.getString('phone') == null) {
-          //     Navigator.of(context).push(
-          //       MaterialPageRoute(
-          //         builder: (context) => const AuthorizationPage(),
-          //       ),
-          //     );
-          //   }
-          //   else {
-          //     for (var topping in myToppings) {
-          //       context.read<CartProvider>().addProduct(topping);
-          //     }
-          //     context.read<CartProvider>().addProduct(widget.product);
-          //     Navigator.of(context).pop();
-          //   }
-          // }
-        },
+        }
+        // final prefs = await SharedPreferences.getInstance();
+        // if (mounted) {
+        //   if (prefs.getString('phone') == null) {
+        //     Navigator.of(context).push(
+        //       MaterialPageRoute(
+        //         builder: (context) => const AuthorizationPage(),
+        //       ),
+        //     );
+        //   }
+        //   else {
+        //     for (var topping in myToppings) {
+        //       context.read<CartProvider>().addProduct(topping);
+        //     }
+        //     context.read<CartProvider>().addProduct(widget.product);
+        //     Navigator.of(context).pop();
+        //   }
+        // }
+      },
         child: Container(
           height: 40,
           width: double.infinity,

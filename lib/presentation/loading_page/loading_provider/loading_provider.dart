@@ -10,11 +10,9 @@ class LoadingProvider extends ChangeNotifier {
   LoadingProvider({
     required final ILoadingService loadingService,
     required final ICommonService commonService,
-  }): _loadingService = loadingService,
-  _commonService = commonService;
+  }): _loadingService = loadingService;
 
   final ILoadingService _loadingService;
-  final ICommonService _commonService;
 
   Future<void> init() async {
     try{
