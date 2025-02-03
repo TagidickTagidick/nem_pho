@@ -1,15 +1,7 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:nem_pho/core/constants/storage_constants.dart';
 import 'package:nem_pho/core/models/banner_model.dart';
-
-abstract class IStorageService {
-  Future<void> setToken(String accessToken, String refreshToken);
-  Future<String?> getAccessToken();
-  Future<String?> getRefreshToken();
-  Future<void> setBanners(List<BannerModel> banners);
-  Future<List<BannerModel>> getBanners();
-  Future<void> clear();
-}
+import 'package:nem_pho/core/services/storage/istorage_service.dart';
 
 class StorageService extends IStorageService {
   StorageService({

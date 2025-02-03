@@ -1,5 +1,5 @@
 import 'package:nem_pho/core/services/network_client.dart';
-import 'package:nem_pho/core/services/storage_service.dart';
+import 'package:nem_pho/core/services/storage/istorage_service.dart';
 
 abstract class IAuthorizationService {
   Future<Map<String, dynamic>> register(String phone);

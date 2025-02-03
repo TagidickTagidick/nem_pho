@@ -2,7 +2,8 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:nem_pho/core/services/storage_service.dart';
+import 'package:nem_pho/core/services/storage/istorage_service.dart';
+import 'package:nem_pho/core/services/storage/storage_service.dart';
 import 'package:nem_pho/core/utils/custom_log.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:nem_pho/core/models/error_model.dart';
@@ -251,7 +252,7 @@ class NetworkClient extends INetworkClient {
       String url,
       {Map<String, dynamic>? body}
       ){
-    talker.logTyped(CustomLog(
+    talker.logCustom(CustomLog(
         '\nType: $type'
             '\nurl: ${dio.options.baseUrl}$url'
             '${body == null ? '' : '\nbody: $body'}'
@@ -267,7 +268,7 @@ class NetworkClient extends INetworkClient {
       String type,
       String url
       ) {
-    talker.logTyped(CustomLog(
+    talker.logCustom(CustomLog(
         '\nType: $type'
             '\nurl: ${dio.options.baseUrl}$url'
             '\nStatus: $statusCode'

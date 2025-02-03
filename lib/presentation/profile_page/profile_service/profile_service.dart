@@ -1,4 +1,4 @@
-import 'package:nem_pho/core/services/storage_service.dart';
+import 'package:nem_pho/core/services/storage/istorage_service.dart';
 import 'package:nem_pho/core/services/network_client.dart';
 
 abstract class IProfileService {

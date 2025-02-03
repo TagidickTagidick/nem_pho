@@ -1,5 +1,5 @@
 import 'package:nem_pho/core/models/order_model.dart';
-import 'package:nem_pho/core/services/storage_service.dart';
+import 'package:nem_pho/core/services/storage/istorage_service.dart';
 import 'package:nem_pho/presentation/loading_page/models/menu_model.dart';
 import 'package:nem_pho/core/models/banner_model.dart';
 import 'package:nem_pho/core/services/network_client.dart';
