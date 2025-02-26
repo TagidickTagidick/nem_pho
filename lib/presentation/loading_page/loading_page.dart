@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nem_pho/core/services/appmetrica_service.dart';
 import 'package:nem_pho/core/services/push_notifications_service.dart';
@@ -14,6 +15,7 @@ class LoadingPage extends StatefulWidget {
 }
 
 class _LoadingPageState extends State<LoadingPage> with SingleTickerProviderStateMixin {
+
   late final AnimationController controller;
   Animation<double>? alpha;
 

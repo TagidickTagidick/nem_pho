@@ -1,4 +1,6 @@
+import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nem_pho/core/providers/common_provider.dart';
 import 'package:nem_pho/core/widgets/order_icon.dart';
 import 'package:nem_pho/presentation/main_page/widgets/main_page_body.dart';
@@ -57,13 +59,81 @@ class _MainPageState extends State<MainPage> {
     drawer: const CustomDrawer(),
     body: RefreshIndicator(
       onRefresh: _refresh,
-      child: const CustomScrollView(
+      child: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(child: NotWorking()),
-          CustomBanners(),
-          MainPageBody()
+          const SliverToBoxAdapter(child: NotWorking()),
+          const CustomBanners(),
+          const MainPageBody(),
+          SliverToBoxAdapter(
+            child: MaterialButton(
+              height: 10,
+                onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => _Da()));
+            }),
+          )
         ],
       ),
     ),
   );
+}
+
+class _Da extends StatefulWidget {
+  const _Da();
+
+  @override
+  State<_Da> createState() => _DaState();
+}
+
+class _DaState extends State<_Da> {
+  static const platform = MethodChannel('samples.flutter.dev/battery');
+
+  String test = '';
+  String test2 = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _getBatteryLevel();
+  }
+
+  Future<void> _getBatteryLevel() async {
+    //test2 = (await AppMetrica.requestDeferredDeeplinkParameters()).toString();
+    String batteryLevel;
+    try {
+      print("оыоы");
+      final result = await platform.invokeMethod<String>('getBatteryLevel');
+      print("оыоы1");
+      batteryLevel = 'Battery level at $result % .';
+    } on PlatformException catch (e) {
+      batteryLevel = "Failed to get battery level: '${e.message}'.";
+    }
+
+    setState(() {
+      test = batteryLevel;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          children: [
+            Text(
+              test,
+              style: TextStyle(
+                  color: Colors.black
+              ),
+            ),
+            Text(
+              test2,
+              style: TextStyle(
+                  color: Colors.black
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
